@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <div className="w-8 h-8 rounded-full bg-medical-teal/10 flex items-center justify-center text-medical-teal">
                     <Clock size={16} />
                   </div>
-                  <p className="text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">Contact Details</p>
+                  <p className="text-[0.65rem] font-medium uppercase tracking-widest text-slate-500">Contact Details</p>
                 </div>
                 
                 <div className="space-y-6">
@@ -176,8 +176,15 @@ export default function ContactPage() {
                       <Phone size={20} />
                     </div>
                     <div>
-                      <p className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Direct Line</p>
-                      <p className="text-lg font-bold text-medical-blue">6378062237</p>
+                      <p className="text-[0.6rem] font-medium text-slate-400 uppercase tracking-widest mb-1">Dr. Arshad Solanki</p>
+                      <a href="tel:6378062237" className="text-lg font-medium text-medical-blue hover:text-medical-teal">6378-062237</a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-5 group cursor-default pl-16">
+                    <div>
+                      <p className="text-[0.6rem] font-medium text-slate-400 uppercase tracking-widest mb-1">General Enquiry</p>
+                      <a href="tel:9571052222" className="text-lg font-medium text-medical-blue hover:text-medical-teal">9571052222</a>
                     </div>
                   </div>
                   
@@ -188,8 +195,11 @@ export default function ContactPage() {
                       <MapPin size={20} />
                     </div>
                     <div>
-                      <p className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Primary Clinic</p>
-                      <p className="text-base font-bold text-medical-blue leading-tight">Vasundhara Hospital, <br/> Jodhpur</p>
+                      <p className="text-[0.6rem] font-medium text-slate-400 uppercase tracking-widest mb-1">Locations</p>
+                      <p className="text-base font-medium text-medical-blue leading-tight">
+                        Multiple centers across Jodhpur <br/> 
+                        <span className="text-[0.65rem] opacity-60 font-normal">(Vasundhara, Chopasni, Paota, etc.)</span>
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -38,7 +38,7 @@ At Healing Hands Physiotherapy, we use a comprehensive approach to treat back pa
 - Take regular breaks from sitting
 
 If you're experiencing back pain, don't wait for it to become chronic. Early intervention with physiotherapy can prevent long-term complications and help you return to a pain-free life.`,
-    author: "Dr. Asad Solanki",
+    author: "Dr. Arshad Solanki",
     date: "2026-04-15",
     category: "Orthopedic",
     readTime: "5 min read",
@@ -128,8 +128,8 @@ The treatment typically lasts 15-30 minutes. You may feel a brief twitch respons
 - Knee pain
 - Plantar fasciitis
 
-Dr. Asad Solanki is certified in dry needling therapy and has successfully treated hundreds of patients using this technique. Book your session today at Healing Hands Physiotherapy.`,
-    author: "Dr. Asad Solanki",
+Dr. Arshad Solanki is certified in dry needling therapy and has successfully treated hundreds of patients using this technique. Book your session today at Healing Hands Physiotherapy.`,
+    author: "Dr. Arshad Solanki",
     date: "2026-04-05",
     category: "Advanced Therapy",
     readTime: "6 min read",

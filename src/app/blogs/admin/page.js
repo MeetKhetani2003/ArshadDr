@@ -9,7 +9,7 @@ export default function BlogAdminPage() {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     title: "", excerpt: "", content: "",
-    author: "Dr. Asad Solanki", category: "General", readTime: "5 min read",
+    author: "Dr. Arshad Solanki", category: "General", readTime: "5 min read",
   });
   const [editId, setEditId] = useState(null);
   const [message, setMessage] = useState("");
@@ -37,7 +37,7 @@ export default function BlogAdminPage() {
     const updatedBlogs = editId ? blogs.map((b) => (b.id === editId ? newBlog : b)) : [newBlog, ...blogs];
     setBlogs(updatedBlogs);
     localStorage.setItem("hh_blogs", JSON.stringify(updatedBlogs));
-    setFormData({ title: "", excerpt: "", content: "", author: "Dr. Asad Solanki", category: "General", readTime: "5 min read" });
+    setFormData({ title: "", excerpt: "", content: "", author: "Dr. Arshad Solanki", category: "General", readTime: "5 min read" });
     setEditId(null); setShowForm(false);
     setMessage(editId ? "Blog updated successfully! ✅" : "Blog published successfully! ✅");
     setTimeout(() => setMessage(""), 3000);
@@ -128,7 +128,7 @@ export default function BlogAdminPage() {
                           onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 outline-none focus:border-teal-600 focus:bg-white transition-all appearance-none"
                         >
-                          <option>Dr. Asad Solanki</option>
+                          <option>Dr. Arshad Solanki</option>
                           <option>Dr. Hadiya Khilji</option>
                           <option>Medical Team</option>
                         </select>

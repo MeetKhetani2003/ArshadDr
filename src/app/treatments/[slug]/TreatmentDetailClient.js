@@ -16,7 +16,7 @@ const treatmentIcons = {
   "orthopedic-physiotherapy": Bone,
   "neurological-physiotherapy": Brain,
   "cardio-pulmonary-physiotherapy": HeartPulse,
-  "womens-health-physiotherapy": Flower2,
+  "gynecological-physiotherapy": Flower2,
   "pediatric-physiotherapy": Baby,
   "geriatric-physiotherapy": PersonStanding,
   "advanced-physiotherapy-services": Zap,
@@ -72,7 +72,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
           variants={heroVariants}
         >
           {/* Breadcrumbs */}
-          <motion.div variants={itemVariants} className="flex items-center flex-wrap gap-2 mb-10 text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">
+          <motion.div variants={itemVariants} className="flex items-center flex-wrap gap-2 mb-10 text-[0.65rem] font-medium uppercase tracking-widest text-slate-400">
             <Link href="/" className="hover:text-medical-teal flex items-center gap-1.5 transition-colors">
               <Home size={12} /> Home
             </Link>
@@ -90,15 +90,15 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 </div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-slate-100">
                   <div className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-medical-blue">Clinical Protocol</span>
+                  <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-medical-blue">Clinical Protocol</span>
                 </div>
               </motion.div>
 
               <motion.div variants={itemVariants}>
-                <h1 className="text-display text-5xl md:text-7xl mb-8 leading-[1.05]">
+                <h1 className="text-display text-5xl md:text-7xl mb-8 leading-[1.05] font-light">
                   {treatment.title.split(' ').map((word, i, arr) => (
                     i === arr.length - 1 ? (
-                      <span key={i} className="text-medical-teal relative inline-block">
+                      <span key={i} className="text-medical-teal relative inline-block font-light">
                         {word}
                         <svg className="absolute -bottom-2 left-0 w-full h-3 text-medical-teal/30" viewBox="0 0 100 10" preserveAspectRatio="none">
                           <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
@@ -134,16 +134,16 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 <div className="w-12 h-12 rounded-xl bg-medical-teal/10 flex items-center justify-center text-medical-teal">
                   <Activity size={24} />
                 </div>
-                <h2 className="text-title text-3xl text-medical-blue">Conditions We Treat</h2>
+                <h2 className="text-3xl text-medical-blue font-light">Conditions We Treat</h2>
               </div>
               
               <div className="space-y-4">
                 {treatment.conditions.map((condition, i) => (
                   <div key={i} className="modern-card !p-5 flex items-center gap-5 border-none shadow-md group transition-all duration-300">
-                    <div className="w-10 h-10 rounded-lg bg-medical-teal/10 flex items-center justify-center text-medical-teal font-bold text-sm shrink-0 group-hover:bg-medical-teal group-hover:text-white transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-medical-teal/10 flex items-center justify-center text-medical-teal font-medium text-sm shrink-0 group-hover:bg-medical-teal group-hover:text-white transition-colors">
                       {String(i + 1).padStart(2, "0")}
                     </div>
-                    <span className="text-medical-blue font-semibold transition-colors">
+                    <span className="text-medical-blue font-medium transition-colors">
                       {condition}
                     </span>
                   </div>
@@ -157,7 +157,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 <div className="w-12 h-12 rounded-xl bg-medical-blue/10 flex items-center justify-center text-medical-blue">
                   <Zap size={24} />
                 </div>
-                <h2 className="text-title text-3xl text-medical-blue">Treatment Techniques</h2>
+                <h2 className="text-3xl text-medical-blue font-light">Treatment Techniques</h2>
               </div>
               
               <div className="space-y-4">
@@ -166,7 +166,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                     <div className="w-10 h-10 rounded-lg bg-medical-blue/5 flex items-center justify-center text-medical-blue shrink-0 group-hover:bg-medical-blue group-hover:text-white transition-colors duration-300">
                       <CheckCircle2 size={20} />
                     </div>
-                    <span className="text-slate-600 font-medium">
+                    <span className="text-slate-600 font-normal">
                       {technique}
                     </span>
                   </div>
@@ -176,11 +176,11 @@ export default function TreatmentDetailClient({ treatment, related }) {
               {/* Sticky CTA inside Techniques Column */}
               <div className="mt-12 modern-card !bg-medical-blue text-white border-none shadow-xl overflow-hidden relative p-8">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-medical-teal/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <h3 className="text-2xl font-bold mb-2 relative z-10">Start Recovery</h3>
+                <h3 className="text-2xl font-light mb-2 relative z-10">Start Recovery</h3>
                 <p className="text-slate-300 mb-6 font-normal text-sm relative z-10">
                   Book a consultation with our expert team today for a personalized assessment.
                 </p>
-                <a href="tel:6378062237" className="btn-modern bg-white text-medical-blue hover:bg-slate-50 w-full relative z-10">
+                <a href="tel:6378062237" className="btn-modern bg-white text-medical-blue hover:bg-slate-50 w-full relative z-10 font-medium">
                   <Phone size={16} /> 6378062237
                 </a>
               </div>
@@ -197,10 +197,10 @@ export default function TreatmentDetailClient({ treatment, related }) {
           <div className="max-site">
             <div className="will-animate scroll-reveal reveal flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
               <div>
-                <span className="text-label">Comprehensive Care</span>
-                <h2 className="text-title text-4xl mt-2 text-medical-blue">Other Treatments.</h2>
+                <span className="text-[0.65rem] font-medium uppercase tracking-widest text-medical-teal">Comprehensive Care</span>
+                <h2 className="text-4xl mt-2 text-medical-blue font-light">Other Treatments.</h2>
               </div>
-              <Link href="/treatments" className="btn-modern btn-outline">
+              <Link href="/treatments" className="btn-modern btn-outline font-medium">
                 View All Directory
               </Link>
             </div>
@@ -217,14 +217,14 @@ export default function TreatmentDetailClient({ treatment, related }) {
                     <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-medical-blue group-hover:scale-110 group-hover:border-medical-teal group-hover:text-medical-teal transition-all duration-500 mb-6 shadow-sm">
                       <RelIcon size={24} />
                     </div>
-                    <h3 className="text-xl font-bold text-medical-blue group-hover:text-medical-teal transition-colors leading-tight mb-3">
+                    <h3 className="text-xl font-medium text-medical-blue group-hover:text-medical-teal transition-colors leading-tight mb-3">
                       {t.title}
                     </h3>
                     <p className="text-slate-500 font-normal text-sm leading-relaxed mb-6 line-clamp-2">
                       {t.shortDesc}
                     </p>
                     <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-5">
-                      <span className="text-medical-teal text-[0.65rem] font-bold uppercase tracking-widest">
+                      <span className="text-medical-teal text-[0.65rem] font-medium uppercase tracking-widest">
                         Explore Protocol
                       </span>
                       <ArrowUpRight size={16} className="text-slate-300 group-hover:text-medical-teal" />
