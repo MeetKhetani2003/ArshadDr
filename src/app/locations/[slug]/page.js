@@ -128,6 +128,7 @@ export default function LocationPage({ params }) {
                 </p>
                 <div className="text-2xl font-light mb-2">Starting ₹500</div>
                 <p className="text-[0.6rem] uppercase tracking-widest text-medical-teal font-medium">Initial Assessment</p>
+              </div>
             </div>
           </div>
         </div>
