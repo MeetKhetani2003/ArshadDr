@@ -50,7 +50,7 @@ body {
 
 /* Slim Glass Navigation - Floating Pill UI */
 .nav-slim {
-  @apply fixed top-6 left-4 right-4 max-w-5xl mx-auto z-[100] transition-all duration-300;
+  @apply fixed top-6 left-4 right-4 max-w-6xl mx-auto z-[100] transition-all duration-300;
 }
 
 .nav-container {
@@ -102,11 +102,15 @@ body {
 
 /* Section Spacing */
 .section-padding {
-  @apply py-24 px-6;
+  @apply py-16 md:py-24;
 }
 
 .max-site {
-  @apply max-w-6xl mx-auto w-full relative;
+  @apply max-w-6xl mx-auto w-full px-6 relative;
+}
+
+.container-wide {
+  @apply max-w-7xl mx-auto w-full px-6 relative;
 }
 
 /* Smooth Backgrounds - Fix Color Blending Glitches */

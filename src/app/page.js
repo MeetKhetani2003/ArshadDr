@@ -9,7 +9,8 @@ import {
   ArrowRight, Activity, Bone, Brain, 
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
-  Stethoscope, CheckCircle2, Crosshair, Navigation
+  Stethoscope, CheckCircle2, Crosshair, Navigation,
+  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
 import { locations } from "@/data/team";
@@ -87,185 +88,209 @@ export default function HomePage() {
 
   return (
     <main ref={containerRef} className="bg-white selection:bg-medical-teal selection:text-white">
-      {/* ===== HERO: ULTRA-PREMIUM ===== */}
-      <section className="relative min-h-[95vh] flex items-center bg-mesh pt-40 pb-32 overflow-hidden">
-        <div className="max-site px-6">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
+      {/* ===== HERO: PRECISION RECOVERY ===== */}
+      <section className="relative min-h-[75vh] flex items-center pt-24 md:pt-28 pb-16 overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,#f0f9ff_0%,transparent_50%)]" />
+        <div className="container-wide relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Content */}
-            <motion.div 
-              className="lg:col-span-6 relative z-20"
-              initial="hidden"
-              animate="visible"
-              variants={heroVariants}
-            >
-              <motion.div variants={itemVariants}>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-slate-100 mb-8 shimmer-container">
-                  <div className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                  <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-medical-blue">Accepting New Patients</span>
+            {/* Text Column */}
+            <div className="lg:col-span-7">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-medical-teal/10 rounded-full border border-medical-teal/20 mb-8">
+                  <span className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
+                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-medical-teal">Now Serving Across Jodhpur</span>
                 </div>
-              </motion.div>
-              
-              <motion.div variants={itemVariants}>
-                <h1 className="text-display text-5xl md:text-7xl lg:text-[5.5rem] mb-8 leading-[1.05] font-light">
-                  Recovery <br /> 
-                  Redefined <br />
-                  <span className="text-medical-teal relative inline-block">
-                    Precision.
-                    <svg className="absolute -bottom-2 left-0 w-full h-3 text-medical-teal/30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                      <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
-                    </svg>
-                  </span>
+                
+                <h1 className="text-4xl md:text-6xl font-bold text-medical-blue tracking-tight leading-[1.1] mb-8">
+                  Precision Physiotherapy <br />
+                  <span className="text-medical-teal">for Long-Term Recovery</span>
                 </h1>
-              </motion.div>
+                
+                <p className="text-lg md:text-xl text-slate-600 mb-10 font-normal leading-relaxed max-w-2xl">
+                  Restore movement, eliminate pain at its root cause, and prevent recurrence with advanced, evidence-based rehabilitation.
+                </p>
 
-              <motion.div variants={itemVariants}>
-                <p className="text-slate-500 text-lg md:text-xl max-w-lg mb-10 leading-relaxed font-normal">
-                  At **Healing Hands Physiotherapy / MyoMotion Physiotherapy Center**, we are committed 
-                  to delivering advanced, patient-centered rehabilitation services designed to restore 
-                  function, reduce pain, and improve quality of life.
+                <div className="flex flex-col sm:flex-row items-center gap-6 mb-12">
+                  <Link href="/contact" className="btn-modern btn-primary px-10 py-5 text-lg w-full sm:w-auto text-center">
+                    Book Appointment
+                  </Link>
+                  <a href="tel:+916378062237" className="btn-modern btn-outline px-10 py-5 text-lg w-full sm:w-auto text-center border-2">
+                    Call Now
+                  </a>
+                </div>
+
+                <p className="text-sm text-slate-400 font-medium tracking-wide">
+                  Trusted by patients across Jodhpur for orthopedic, neurological, and advanced rehabilitation care.
                 </p>
               </motion.div>
+            </div>
 
-              <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
-                <Link href="/contact" className="btn-modern btn-primary hover-glow">
-                  Book Assessment <ArrowRight size={18} />
-                </Link>
-                <Link href="/treatments" className="btn-modern btn-outline group font-medium">
-                  Explore Services
-                  <ArrowUpRight size={18} className="text-slate-500 group-hover:text-medical-blue transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+            {/* Image Column */}
+            <div className="lg:col-span-5 hidden lg:block">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white"
+              >
+                <Image 
+                  src="/doctor/doc1.jpg" 
+                  alt="Precision Therapy" 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/20 to-transparent" />
               </motion.div>
-            </motion.div>
+            </div>
 
-            {/* Right Image Layout */}
-            <motion.div 
-              initial={{ opacity: 0, x: 40 }} 
-              animate={{ opacity: 1, x: 0 }} 
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="lg:col-span-6 relative z-10"
-              style={{ y: useSpring(useTransform(useMotionValue(0), [0, 1], [0, -20])) }} // Note: This needs scroll progress, but I'll use a simpler scale/y hover for now or just standard motion
-            >
-              <div className="relative group">
-                <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 relative z-10"
-                >
-                  <Image 
-                    src="/doctor/doc2.jpg" 
-                    alt="Clinic Facility" 
-                    fill 
-                    className="object-cover" 
-                    priority 
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/20 to-transparent" />
-                </motion.div>
-                
-                {/* Floating Glass Panels */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-                  className="absolute -bottom-8 -left-8 md:-left-16 glass-panel p-6 rounded-2xl z-20 flex items-center gap-5 animate-float"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-medical-teal/10 flex items-center justify-center text-medical-teal">
-                    <ShieldCheck size={28} />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-light leading-none mb-1 text-medical-blue uppercase tracking-tight">ISO 9001</p>
-                    <p className="text-slate-500 text-[0.65rem] font-medium uppercase tracking-widest">Certified Quality</p>
-                  </div>
-                </motion.div>
-
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-                  className="absolute top-12 -right-8 md:-right-12 glass-panel p-5 rounded-xl z-20 flex items-center gap-4 hidden md:flex animate-float-delayed"
-                >
-                  <div className="w-12 h-12 rounded-full bg-medical-blue flex items-center justify-center text-white shadow-inner">
-                    <Activity size={24} />
-                  </div>
-                  <div className="pr-2">
-                    <p className="text-sm font-medium text-slate-900 leading-tight">15K+ Success</p>
-                    <p className="text-[0.6rem] text-slate-500 font-medium uppercase tracking-wider">Stories</p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ===== SERVICE SEGMENTATION: MODES OF CARE ===== */}
-      <section className="relative z-40 -mt-24 px-6 mb-20">
-        <div className="max-site">
-          <div className="grid md:grid-cols-3 gap-6">
+      {/* ===== WHY PAIN COMES BACK: THE ROOT CAUSE ===== */}
+      <section className="section-padding bg-white relative overflow-hidden border-t border-slate-50">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="will-animate scroll-reveal reveal">
+              <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-6 block">The Problem</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 leading-tight tracking-tight">
+                Why Your Pain <br />Keeps Coming Back
+              </h2>
+              <div className="space-y-6 text-xl text-slate-600 font-normal leading-relaxed">
+                <p>
+                  Most treatments focus only on temporary relief. Painkillers, rest, or basic exercises may reduce symptoms—but they don’t address the underlying dysfunction.
+                </p>
+                <p>
+                  At our center, we focus on identifying the root cause of your pain, correcting movement patterns, and rebuilding strength to ensure long-term recovery.
+                </p>
+              </div>
+              <div className="mt-12 p-8 bg-medical-surface rounded-3xl border border-slate-100 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-medical-teal/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
+                <p className="text-2xl font-medium text-medical-blue relative z-10">
+                  We don’t just treat pain—<span className="text-medical-teal font-bold">we correct the cause behind it.</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="will-animate scroll-reveal reveal relative">
+              <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative">
+                <Image 
+                  src="/movement_analysis.png" 
+                  alt="Root Cause Analysis" 
+                  fill 
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
+                <div className="absolute bottom-10 left-10 right-10 p-8 glass-panel !bg-white/90 rounded-2xl border-none">
+                  <p className="text-xl font-bold text-medical-blue mb-2">We Fix the Root Cause.</p>
+                  <p className="text-sm text-slate-500 font-medium uppercase tracking-widest">Not Just Pain.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HOW WE FIX ROOT CAUSE: THE SOLUTION ===== */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="order-2 lg:order-1 will-animate scroll-reveal reveal relative">
+              <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative">
+                <Image 
+                  src="/patient_therapy.png" 
+                  alt="Root Cause Treatment" 
+                  fill 
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 will-animate scroll-reveal reveal">
+              <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-6 block">Our Solution</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 leading-tight tracking-tight">
+                How We Fix <br />The Root Cause
+              </h2>
+              <div className="space-y-6 text-xl text-slate-600 font-normal leading-relaxed">
+                <p>
+                  We move beyond the surface. Our clinical experts use advanced movement screening to identify exactly where your body is over-compensating or failing.
+                </p>
+                <p>
+                  By combining manual therapy with precision loading, we retrain your nervous system and rebuild structural integrity to ensure pain never returns.
+                </p>
+              </div>
+              <div className="mt-12 flex flex-col sm:flex-row gap-8">
+                <div className="flex flex-col">
+                  <span className="text-4xl font-bold text-medical-blue mb-2">100%</span>
+                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Bespoke Protocols</span>
+                </div>
+                <div className="w-px h-12 bg-slate-100 hidden sm:block" />
+                <div className="flex flex-col">
+                  <span className="text-4xl font-bold text-medical-blue mb-2">AI</span>
+                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Recovery Tracking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SERVICE SEGMENTATION: INTEGRATED ECOSYSTEM ===== */}
+      <section className="section-padding bg-medical-surface/30">
+        <div className="container-wide">
+          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-6 tracking-tight">Clinic + Home + Online.</h2>
+            <p className="text-slate-500 text-lg font-normal">A seamless care ecosystem designed around your lifestyle.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: "Clinic Visit",
-                desc: "Visit our fully-equipped centers for specialized treatment and manual therapy.",
+                desc: "High-end facilities for specialized manual therapy and advanced equipment.",
                 icon: MapPin,
-                badge: "In Jodhpur Locality",
                 color: "bg-medical-blue",
-                textColor: "text-white",
-                href: "/treatments"
+                textColor: "text-white"
               },
               {
                 title: "Home Visit",
-                desc: "Expert physiotherapists visit your home for convenient recovery and care.",
+                desc: "We bring the entire clinical setup to the comfort of your home.",
                 icon: Users,
-                badge: "Saves Travel Time",
                 color: "bg-white",
-                textColor: "text-medical-blue",
-                href: "/services/home-visit"
+                textColor: "text-medical-blue"
               },
               {
                 title: "Online Physio",
-                desc: "Consult our experts via video call for safe and effective tele-rehabilitation.",
-                icon: Activity,
-                badge: "From Anywhere",
+                desc: "Consult our experts via video call from anywhere in the world.",
+                icon: Laptop,
                 color: "bg-white",
-                textColor: "text-medical-blue",
-                href: "/services/online-consultation"
+                textColor: "text-medical-blue"
               }
             ].map((item, i) => (
-              <Link 
-                key={i} 
-                href={item.href} 
-                className={`will-animate scroll-reveal reveal p-8 rounded-3xl group hover:shadow-2xl transition-all duration-500 border-none relative overflow-hidden ${
-                  item.color === "bg-medical-blue" 
-                  ? "bg-medical-blue shadow-2xl shadow-medical-blue/20" 
-                  : "glass-panel bg-white/50"
-                }`}
-              >
-                {item.color === "bg-medical-blue" && <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/20 to-transparent pointer-events-none" />}
-                <div className="flex justify-between items-start mb-8 relative z-10">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${item.color === "bg-medical-blue" ? "bg-white/10 text-white" : "bg-medical-teal/5 text-medical-teal"} group-hover:scale-110 transition-transform duration-500`}>
-                    <item.icon size={28} />
-                  </div>
-                  <span className={`text-[0.55rem] font-medium uppercase tracking-widest px-3 py-1.5 rounded-full border ${item.color === "bg-medical-blue" ? "border-white/20 text-white/80" : "border-slate-200 text-slate-500"}`}>
-                    {item.badge}
-                  </span>
+              <div key={i} className={`p-10 rounded-[2.5rem] ${item.color} shadow-sm border border-slate-50 group hover:shadow-2xl transition-all duration-500`}>
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-8 ${item.color === "bg-medical-blue" ? "bg-white/10 text-white" : "bg-medical-teal/10 text-medical-teal"}`}>
+                  <item.icon size={28} />
                 </div>
-                <h3 className={`text-2xl font-light mb-4 tracking-tight ${item.textColor}`}>{item.title}</h3>
-                <p className={`text-sm leading-relaxed mb-8 font-normal ${item.color === "bg-medical-blue" ? "text-white/70" : "text-slate-500"}`}>
-                  {item.desc}
-                </p>
-                <div className={`inline-flex items-center gap-2 text-[0.65rem] font-medium uppercase tracking-widest ${item.color === "bg-medical-blue" ? "text-medical-teal" : "text-medical-blue"} group-hover:gap-3 transition-all`}>
-                  Learn More <ArrowRight size={14} />
-                </div>
-              </Link>
+                <h3 className={`text-2xl font-bold mb-4 ${item.textColor}`}>{item.title}</h3>
+                <p className={`text-sm leading-relaxed mb-8 ${item.color === "bg-medical-blue" ? "text-white/60" : "text-slate-500"}`}>{item.desc}</p>
+                <Link href="/contact" className={`text-[0.6rem] font-bold uppercase tracking-[0.2em] flex items-center gap-2 ${item.color === "bg-medical-blue" ? "text-medical-teal" : "text-medical-blue"}`}>
+                  Book Now <ArrowRight size={14} />
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ===== FLOATING TRUST BAR ===== */}
-      <section className="relative z-30 -mt-16 mb-20 px-6">
-        <div className="max-site bg-medical-blue text-white rounded-2xl p-10 shadow-2xl shadow-medical-blue/10 overflow-hidden relative">
+      <section className="relative z-30 -mt-16 mb-20">
+        <div className="container-wide bg-medical-blue text-white rounded-2xl p-10 shadow-2xl shadow-medical-blue/10 overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-r from-medical-blue to-slate-800" />
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
             {[
@@ -279,6 +304,63 @@ export default function HomePage() {
                   <StatCounter value={item.n} />{item.suffix}
                 </p>
                 <p className="text-medical-teal font-medium uppercase tracking-[0.2em] text-[0.55rem] opacity-90">{item.l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* ===== RECOVERY ROADMAP: 3-STEP SYSTEM ===== */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-surface rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 opacity-60" />
+        <div className="max-site relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
+            <span className="text-label">The Patient Journey</span>
+            <h2 className="text-title text-4xl md:text-6xl mt-4 text-medical-blue">The Path to Restoration.</h2>
+            <p className="text-slate-500 mt-6 text-lg font-normal">Our 3-step evidence-based recovery model ensures precision in every movement and certainty in your results.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-100 -translate-y-12 z-0" />
+            
+            {[
+              { 
+                step: "01", 
+                title: "Assess", 
+                desc: "Scientific movement analysis and clinical evaluation to map your current physiological state.",
+                icon: Search,
+                color: "text-medical-teal",
+                bg: "bg-medical-teal/10"
+              },
+              { 
+                step: "02", 
+                title: "Plan", 
+                desc: "Creation of a precision-rehab protocol tailored to your unique anatomical and lifestyle requirements.",
+                icon: Target,
+                color: "text-medical-blue",
+                bg: "bg-medical-blue/10"
+              },
+              { 
+                step: "03", 
+                title: "Recover", 
+                desc: "Execution of your roadmap under expert supervision, leveraging data to track your return to strength.",
+                icon: Activity,
+                color: "text-medical-teal",
+                bg: "bg-medical-teal/10"
+              }
+            ].map((item, i) => (
+              <div key={i} className="will-animate scroll-reveal reveal relative z-10">
+                <div className="modern-card group hover:shadow-2xl transition-all duration-700 bg-white border-slate-100 p-10 h-full flex flex-col items-center text-center">
+                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50">
+                    {item.step}
+                  </div>
+                  <div className={`w-20 h-20 rounded-[2rem] ${item.bg} ${item.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                    <item.icon size={36} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-2xl font-light text-medical-blue mb-4 tracking-tight">{item.title}</h3>
+                  <p className="text-slate-500 text-[0.95rem] leading-relaxed font-normal">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -332,82 +414,88 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== CONDITIONS TREATED: SEO POWERHOUSE ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      {/* ===== COMMON CONDITIONS: MINIMAL LIST ===== */}
+      <section className="section-padding bg-white">
         <div className="max-site">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 will-animate scroll-reveal reveal">
-            <div className="max-w-2xl">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">SEO Authority</span>
-              <h2 className="text-4xl md:text-5xl mt-3 text-medical-blue font-light">Conditions We Treat.</h2>
-              <p className="text-slate-500 mt-6 font-normal leading-relaxed">
-                Comprehensive specialized care for a wide range of physical and neurological conditions 
-                using result-oriented international protocols.
-              </p>
-            </div>
-            {/* Google Rating Badge */}
-            <div className="bg-medical-surface p-6 rounded-2xl border border-slate-100 flex items-center gap-5 will-animate scroll-reveal reveal hover-glow transition-all">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
-                <svg className="w-6 h-6 text-yellow-400 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-2xl font-light text-medical-blue leading-none mb-1">4.9 / 5.0</p>
-                <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">Google Rating (15K+ Reviews)</p>
-              </div>
-            </div>
+          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Common Conditions</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue tracking-tight">We Treat.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {[
-              { 
-                cat: "Orthopedic & Spine", 
-                icon: Bone,
-                items: ["Back Pain & Sciatica", "Cervical Spondylosis", "Frozen Shoulder", "Slip Disc (IVDP)", "Arthritis (OA/RA)", "Heel & Foot Pain"] 
-              },
-              { 
-                cat: "Neurological Care", 
-                icon: Brain,
-                items: ["Stroke (Paralysis)", "Parkinson's Disease", "Bell's Palsy", "Spinal Cord Injury", "Cerebral Palsy", "Balance Disorders"] 
-              },
-              { 
-                cat: "Sports & Post-Surgical", 
-                icon: Activity,
-                items: ["ACL & Ligament Rehab", "TKR / THR Recovery", "Tennis / Golfer's Elbow", "Fracture Rehab", "Muscle Strains", "Spine Surgery Rehab"] 
-              },
-              { 
-                cat: "Women's Health", 
-                icon: Users,
-                items: ["Prenatal Exercises", "Postnatal Recovery", "Pelvic Floor Rehab", "PCOS Management", "Incontinence Care"] 
-              },
-              { 
-                cat: "Pediatric Rehab", 
-                icon: HeartPulse,
-                items: ["Delayed Milestones", "Down Syndrome", "Club Foot (CTEV)", "Sensory Integration", "Autism Support"] 
-              },
-              { 
-                cat: "Advanced Therapy", 
-                icon: Zap,
-                items: ["Manual Therapy", "Dry Needling", "HVLA Chiropractic", "Neuro Rehab (NDT)", "Kinesio Taping"] 
-              }
+              { cat: "Orthopedic", items: ["Back Pain & Sciatica", "Cervical Spondylosis", "Slip Disc (IVDP)", "Arthritis (OA/RA)"] },
+              { cat: "Neurological", items: ["Stroke (Paralysis)", "Parkinson's Disease", "Bell's Palsy", "Spinal Cord Injury"] },
+              { cat: "Sports", items: ["ACL & Ligament Rehab", "TKR / THR Recovery", "Tennis Elbow", "Muscle Strains"] }
             ].map((group, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal modern-card bg-medical-surface/50 border border-slate-100 hover:bg-white hover:border-medical-teal/30 hover:shadow-xl transition-all duration-500">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-medical-teal/5 flex items-center justify-center text-medical-teal">
-                    <group.icon size={20} />
-                  </div>
-                  <h4 className="text-lg font-medium text-medical-blue tracking-tight">{group.cat}</h4>
-                </div>
-                <ul className="space-y-3">
+              <div key={i} className="will-animate scroll-reveal reveal">
+                <h4 className="text-2xl font-bold text-medical-blue mb-8 border-b border-slate-100 pb-4">{group.cat}</h4>
+                <ul className="space-y-4">
                   {group.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-3 text-slate-500 group cursor-default">
-                      <div className="w-1 h-1 rounded-full bg-medical-teal/30 group-hover:bg-medical-teal group-hover:scale-150 transition-all" />
-                      <span className="text-[0.8rem] font-normal group-hover:text-medical-blue transition-colors leading-tight">{item}</span>
+                    <li key={j} className="text-lg text-slate-500 font-normal hover:text-medical-teal cursor-default transition-colors">
+                      {item}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PRECISION TECH: AI & INNOVATION ===== */}
+      <section className="section-padding bg-medical-blue relative overflow-hidden">
+        <div className="absolute inset-0 bg-mesh opacity-5" />
+        <div className="absolute -bottom-1/2 -left-1/4 w-[1000px] h-[1000px] bg-medical-teal/10 rounded-full blur-[150px]" />
+        
+        <div className="max-site relative z-10">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="will-animate scroll-reveal reveal">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 mb-8">
+                <Sparkles size={16} className="text-medical-teal" />
+                <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-white/80">Next-Gen Rehabilitation</span>
+              </div>
+              <h2 className="text-title text-4xl md:text-6xl text-white mb-8 leading-tight">Precision Rehab. <br />Driven by Technology.</h2>
+              <p className="text-slate-300 text-lg mb-12 font-light leading-relaxed">
+                We bridge the gap between traditional therapy and high-performance recovery using AI-assisted protocols and digital movement tracking. 
+                Experience rehabilitation that is mapped to your biology, not just your symptoms.
+              </p>
+              
+              <div className="space-y-6">
+                {[
+                  { t: "AI Recovery Paths", d: "Dynamic protocols that adapt based on your session progress.", i: Cpu },
+                  { t: "Precision Bio-Metrics", d: "Real-time tracking of joint angles and muscle activation.", i: Layers },
+                  { t: "Digital Health Integration", d: "Access your recovery roadmap and progress data 24/7.", i: Activity }
+                ].map((feature, i) => (
+                  <div key={i} className="flex gap-6 group">
+                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white transition-all">
+                      <feature.i size={20} />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-medium mb-1">{feature.t}</h4>
+                      <p className="text-slate-400 text-sm font-normal">{feature.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="will-animate scroll-reveal reveal relative">
+              <div className="aspect-square rounded-[3rem] overflow-hidden border-8 border-white/5 shadow-2xl relative">
+                <Image 
+                  src="/doctor/doc3.jpg" 
+                  alt="Precision Technology" 
+                  fill 
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-medical-blue/20" />
+              </div>
+              {/* Floating Tech Tag */}
+              <div className="absolute -top-10 -right-10 glass-panel !bg-medical-teal/90 p-8 rounded-3xl border-none shadow-2xl animate-float">
+                <div className="text-4xl font-light text-white mb-1">98%</div>
+                <div className="text-[0.6rem] font-bold uppercase tracking-widest text-white/70">Recovery Precision</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -424,75 +512,51 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                title: "Zero Waiting Time",
+                desc: "Instant booking and priority slots. We value your time as much as your recovery.",
+                icon: Clock
+              },
+              {
+                title: "Certified Experts",
+                desc: "Top-tier therapists with advanced certifications in Neuro, Ortho, and Pediatric care.",
+                icon: Award
+              },
+              {
+                title: "Affordable Quality",
+                desc: "Premium clinical rehabilitation accessible to everyone with transparent pricing.",
+                icon: Wallet
+              },
+              {
                 title: "Evidence-Based",
-                desc: "Every treatment protocol is backed by the latest clinical research and proven medical outcomes.",
+                desc: "Every protocol is backed by the latest clinical research and proven medical outcomes.",
                 icon: ShieldCheck
               },
               {
-                title: "Patient-Centered",
-                desc: "Your goals are our priority. We design personalized recovery paths tailored to your lifestyle.",
-                icon: Users
+                title: "Home-Like Comfort",
+                desc: "Whether at clinic or home, we ensure a stress-free environment for healing.",
+                icon: HeartPulse
               },
               {
-                title: "Advanced Tech",
-                desc: "We utilize state-of-the-art diagnostic and therapeutic technologies for faster recovery.",
-                icon: Zap
+                title: "Personalized Care",
+                desc: "No generic plans. Every roadmap is bespoke to your unique recovery needs.",
+                icon: Users
               }
             ].map((item, i) => (
               <div key={i} className="will-animate scroll-reveal reveal modern-card bg-white p-10 border-none shadow-sm hover:shadow-xl transition-all duration-500 group">
                 <div className="w-16 h-16 rounded-2xl bg-medical-teal/5 flex items-center justify-center text-medical-teal mb-8 group-hover:bg-medical-teal group-hover:text-white transition-colors duration-500">
                   <item.icon size={32} />
                 </div>
-                <h3 className="text-2xl font-medium mb-4 text-medical-blue">{item.title}</h3>
-                <p className="text-slate-500 leading-relaxed font-normal">{item.desc}</p>
+                <h3 className="text-xl font-medium mb-4 text-medical-blue group-hover:text-medical-teal transition-colors">{item.title}</h3>
+                <p className="text-slate-500 leading-relaxed font-normal text-sm">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===== RECOVERY JOURNEY: STEP-BY-STEP ===== */}
-      <section className="section-padding bg-white relative">
-        <div className="max-site">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 will-animate scroll-reveal reveal">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Patient Experience</span>
-              <h2 className="text-4xl md:text-5xl mt-4 mb-8 text-medical-blue font-light">Your Journey to <br /> Peak Mobility.</h2>
-              <p className="text-slate-500 mb-10 leading-relaxed font-normal text-lg">
-                We believe in a structured recovery process. From the moment you walk in, 
-                our team ensures you are informed, supported, and making measurable progress.
-              </p>
-              <Link href="/contact" className="btn-modern btn-primary">
-                Start Your Journey
-              </Link>
-            </div>
-            
-            <div className="lg:col-span-7">
-              <div className="space-y-6">
-                {[
-                  { step: "01", title: "Comprehensive Assessment", desc: "Detailed clinical evaluation to identify the root cause of your concern." },
-                  { step: "02", title: "Customized Recovery Plan", desc: "A personalized roadmap combining manual therapy and technology." },
-                  { step: "03", title: "Advanced Treatment", desc: "Execution of the protocol using world-class physiotherapy techniques." },
-                  { step: "04", title: "Progress & Optimization", desc: "Continuous monitoring and lifestyle adjustments for long-term health." }
-                ].map((item, i) => (
-                  <div key={i} className="will-animate scroll-reveal reveal group flex gap-8 p-8 rounded-2xl bg-medical-surface border border-slate-50 hover:border-medical-teal/20 hover:bg-white hover:shadow-lg transition-all duration-500">
-                    <span className="text-4xl font-light text-medical-teal/20 group-hover:text-medical-teal transition-colors duration-500">
-                      {item.step}
-                    </span>
-                    <div>
-                      <h4 className="text-xl font-medium text-medical-blue mb-2">{item.title}</h4>
-                      <p className="text-slate-600 font-normal leading-relaxed text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== DOCTOR: EDITORIAL OVERLAP ===== */}
       <section className="section-padding bg-medical-surface overflow-hidden relative">
@@ -558,41 +622,48 @@ export default function HomePage() {
       </section>
 
       {/* ===== TESTIMONIALS: SUCCESS STORIES ===== */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white relative overflow-hidden">
         <div className="max-site">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 will-animate scroll-reveal reveal">
-            <div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Patient Stories</span>
-              <h2 className="text-4xl md:text-5xl mt-3 text-medical-blue font-light">Voices of Recovery.</h2>
+          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Testimonials</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 tracking-tight">What Our Patients Say</h2>
+            <div className="flex items-center justify-center gap-2 text-yellow-400">
+              {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={20} fill="currentColor" />)}
+              <span className="ml-2 text-slate-400 font-medium">4.9/5.0 Google Rating</span>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Rajesh Sharma",
-                role: "Post-ACL Surgery",
-                text: "The personalized care I received here was exceptional. Dr. Arshad and his team helped me get back to running in record time."
+                text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended.",
+                author: "Patient Review",
+                source: "Google Maps"
               },
               {
-                name: "Priyanka Verma",
-                role: "Chronic Back Pain",
-                text: "I had lived with lower back pain for years. After just 6 sessions of targeted therapy, I finally found lasting relief."
+                text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional.",
+                author: "Patient Review",
+                source: "Google Maps"
               },
               {
-                name: "Amit Singhania",
-                role: "Neuro Rehabilitation",
-                text: "Their approach to stroke rehab is world-class. The progress my father has made in 3 months is truly miraculous."
+                text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief.",
+                author: "Patient Review",
+                source: "Google Maps"
               }
-            ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal modern-card p-10 bg-medical-surface border-none group hover:bg-white hover:shadow-xl transition-all duration-500">
-                <div className="flex gap-1 mb-6 text-medical-teal">
-                  {[...Array(5)].map((_, i) => <Award key={i} size={16} fill="currentColor" className="opacity-30" />)}
-                </div>
-                <p className="text-slate-600 mb-8 font-normal italic leading-relaxed">"{item.text}"</p>
-                <div>
-                  <p className="font-medium text-medical-blue">{item.name}</p>
-                  <p className="text-[0.65rem] uppercase tracking-widest text-slate-400 mt-1 font-medium">{item.role}</p>
+            ].map((test, i) => (
+              <div key={i} className="will-animate scroll-reveal reveal p-10 rounded-[2.5rem] bg-medical-surface border border-slate-50 shadow-sm hover:shadow-xl transition-all duration-500 relative">
+                <div className="absolute top-8 left-8 text-6xl text-medical-teal/20 font-serif">“</div>
+                <p className="text-lg text-slate-600 font-normal leading-relaxed mb-8 relative z-10 italic">
+                  {test.text}
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-medical-teal flex items-center justify-center text-white font-bold text-xs">
+                    G
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-medical-blue">{test.author}</p>
+                    <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">{test.source}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -600,48 +671,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== LOCATIONS: JODHPUR NETWORK ===== */}
-      <section className="section-padding bg-medical-surface relative overflow-hidden">
+      {/* ===== LOCATIONS: OUR PRESENCE ===== */}
+      <section className="section-padding bg-medical-blue relative overflow-hidden">
+        <div className="absolute inset-0 bg-mesh opacity-5" />
         <div className="max-site relative z-10">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
-            <div className="lg:col-span-5 will-animate scroll-reveal reveal">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Service Network</span>
-              <h2 className="text-4xl md:text-5xl mt-4 mb-8 text-medical-blue font-light">Presence in <br /> Jodhpur.</h2>
-              <p className="text-slate-500 mb-10 leading-relaxed font-normal text-lg">
-                We are committed to making advanced physiotherapy accessible. Visit us at any 
-                of our specialized centers across Jodhpur for expert care.
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="will-animate scroll-reveal reveal">
+              <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Our Presence</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">Serving Across Jodhpur</h2>
+              <p className="text-slate-300 text-xl mb-12 font-light leading-relaxed">
+                We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.
               </p>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-5 rounded-2xl bg-white shadow-sm border border-slate-100">
-                  <div className="w-10 h-10 rounded-full bg-medical-blue/5 flex items-center justify-center text-medical-blue">
-                    <Phone size={18} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                {[
+                  "Chopasni Housing Board",
+                  "Kamla Nehru Nagar",
+                  "Paota (1st Polo & Main Road)",
+                  "Khetanadi Road",
+                  "Near Mandore Garden",
+                  "Ramsagar Circle"
+                ].map((loc, i) => (
+                  <div key={i} className="flex items-center gap-4 group">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white transition-all">
+                      <MapPin size={16} />
+                    </div>
+                    <span className="text-white/80 font-medium">{loc}</span>
                   </div>
-                  <div>
-                    <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">Direct Clinical Line</p>
-                    <p className="text-lg font-medium text-medical-blue">6378-062237</p>
-                  </div>
-                </div>
+                ))}
+              </div>
+              
+              <div className="mt-16 p-8 bg-white/5 rounded-3xl border border-white/10 inline-block">
+                <p className="text-medical-teal font-bold uppercase tracking-widest text-xs">Expanding to more locations soon.</p>
               </div>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="grid sm:grid-cols-2 gap-4">
-                {locations.map((loc, i) => (
-                  <Link 
-                    key={i} 
-                    href={`/locations/${loc.slug}`}
-                    className="will-animate scroll-reveal reveal group p-6 rounded-2xl bg-white border border-slate-100 hover:border-medical-teal/30 hover:shadow-xl transition-all duration-500 flex items-start gap-4"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-medical-teal/5 flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white transition-colors duration-500 shrink-0">
-                      <MapPin size={16} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-medical-blue leading-tight mb-1">{loc.name}</p>
-                      <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">View Center Details</p>
-                    </div>
-                  </Link>
-                ))}
+            <div className="will-animate scroll-reveal reveal">
+              <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-white/5">
+                <Image 
+                  src="/clinic_interior.png" 
+                  alt="Healing Hands Clinic" 
+                  fill 
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -650,7 +722,7 @@ export default function HomePage() {
 
       {/* ===== TRANSPARENT PRICING: TRUST BUILDER ===== */}
       <section className="section-padding bg-white relative overflow-hidden">
-        <div className="max-site px-6">
+        <div className="max-site">
           <div className="bg-medical-blue rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/10 to-transparent pointer-events-none" />
             <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
@@ -695,7 +767,7 @@ export default function HomePage() {
 
       {/* ===== FIND US ON MAP ===== */}
       <section className="section-padding bg-white pt-0">
-        <div className="max-site px-6">
+        <div className="max-site">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Our Presence</span>
             <h2 className="text-4xl md:text-5xl mt-4 text-medical-blue font-light tracking-tight">Visit Our Centers.</h2>

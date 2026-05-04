@@ -52,7 +52,7 @@ export default function AboutPage() {
   const drArshad = teamMembers.find(m => m.name === "Dr. Arshad Solanki");
 
   return (
-    <main ref={containerRef} className="bg-white pt-40 selection:bg-medical-teal selection:text-white">
+    <main ref={containerRef} className="bg-white pt-32 selection:bg-medical-teal selection:text-white">
       {/* ===== HEADER ===== */}
       <section className="section-padding bg-mesh !pt-0 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />

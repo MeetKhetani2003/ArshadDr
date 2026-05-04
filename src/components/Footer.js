@@ -15,7 +15,7 @@ export default function Footer() {
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       
-      <div className="container-wide px-6 relative z-10">
+      <div className="container-wide relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
           
           {/* Brand Column */}
@@ -104,6 +104,28 @@ export default function Footer() {
                   >
                     <MapPin size={12} className="text-slate-600 group-hover:text-medical-teal transition-colors" />
                     {loc.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Modes of Care */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-medium mb-10 tracking-wider uppercase text-[0.65rem]">Care Delivery</h4>
+            <ul className="space-y-5">
+              {[
+                { href: "/treatments", label: "In-Clinic Care" },
+                { href: "/services/home-visit", label: "Home Rehabilitation" },
+                { href: "/services/online-consultation", label: "Online Consultation" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-normal"
+                  >
+                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0 text-medical-teal" />
+                    {link.label}
                   </Link>
                 </li>
               ))}
