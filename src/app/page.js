@@ -10,7 +10,7 @@ import {
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
-  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star
+  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
 import { locations } from "@/data/team";
@@ -665,29 +665,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== CORE APPROACH: WHY CHOOSE US ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
-        {/* Left Corner Pattern */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad-left-3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path d="M0 0 L100 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
-            <path d="M0 10 L90 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
-            <path d="M0 20 L80 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
-            <path d="M10 0 L100 90" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
-            <path d="M20 0 L100 80" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
-          </svg>
-        </div>
+      {/* ===== THE HEALING HANDS STANDARD: CORE VALUES ===== */}
+      <section className="section-padding bg-medical-blue relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/10 rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+        
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
-            <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Excellence</span>
-            <h2 className="text-4xl md:text-5xl mt-4 mb-6 text-medical-blue font-light">The Healing Hands Standard.</h2>
-            <p className="text-slate-500 font-normal text-lg">
+            <span className="text-sm font-bold uppercase tracking-[0.4em] text-medical-teal mb-4 block">Clinical Excellence</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">
+              The Healing Hands Standard.
+            </h2>
+            <p className="text-white/60 font-normal text-xl leading-relaxed">
               We redefine physical rehabilitation through a systematic, evidence-based approach 
               that puts patient recovery at the center of everything we do.
             </p>
@@ -718,21 +712,37 @@ export default function HomePage() {
               {
                 title: "Home-Like Comfort",
                 desc: "Whether at clinic or home, we ensure a stress-free environment for healing.",
-                icon: HeartPulse
+                icon: Home
               },
               {
-                title: "Personalized Care",
-                desc: "No generic plans. Every roadmap is bespoke to your unique recovery needs.",
-                icon: Users
+                title: "Advanced Tech",
+                desc: "Utilizing world-class modalities like LASER, Shockwave, and Digital Gait Analysis.",
+                icon: Zap
               }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal modern-card bg-medical-surface p-10 border-none shadow-sm hover:shadow-xl transition-all duration-500 group">
-                <div className="w-16 h-16 rounded-2xl bg-medical-teal/5 flex items-center justify-center text-medical-teal mb-8 group-hover:bg-medical-teal group-hover:text-white transition-colors duration-500">
-                  <item.icon size={32} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-medical-teal/40 hover:bg-white/[0.08] transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/20 transition-all duration-500" />
+                
+                <div className="w-14 h-14 rounded-xl bg-medical-teal/10 flex items-center justify-center text-medical-teal mb-8 group-hover:scale-110 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                  <item.icon size={28} />
                 </div>
-                <h3 className="text-xl font-medium mb-4 text-medical-blue group-hover:text-medical-teal transition-colors">{item.title}</h3>
-                <p className="text-slate-500 leading-relaxed font-normal text-sm">{item.desc}</p>
-              </div>
+                
+                <h3 className="text-xl font-bold mb-4 text-white group-hover:text-medical-teal transition-colors tracking-tight">
+                  {item.title}
+                </h3>
+                
+                <p className="text-white/50 text-sm leading-relaxed font-normal group-hover:text-white/70 transition-colors">
+                  {item.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
