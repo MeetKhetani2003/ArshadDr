@@ -15,6 +15,7 @@ import {
 import { treatments } from "@/data/treatments";
 import { locations } from "@/data/team";
 import { useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Marquee from "react-fast-marquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,70 +90,211 @@ export default function HomePage() {
   return (
     <main ref={containerRef} className="bg-white selection:bg-medical-teal selection:text-white">
       {/* ===== HERO: PRECISION RECOVERY ===== */}
-      <section className="relative min-h-[75vh] flex items-center pt-24 md:pt-28 pb-16 overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,#f0f9ff_0%,transparent_50%)]" />
-        <div className="container-wide relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            
-            {/* Text Column */}
-            <div className="lg:col-span-7">
+      <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="https://r2.vidzflow.com/v/RvbC1fBjQk_1080p_1743260519.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay for readability - Using medical-blue with alpha for brand consistency */}
+          <div className="absolute inset-0 bg-medical-blue/30 backdrop-blur-[1px]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-medical-blue/20 via-transparent to-medical-blue/40" /> */}
+        </div>
+
+        <div className="container-wide relative z-10 text-center">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-medical-teal/20 rounded-full border border-medical-teal/30 mb-8 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Now Serving Across Jodhpur</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
+                Precision Physiotherapy <br />
+                <span className="text-medical-teal drop-shadow-sm">for Long-Term Recovery</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-slate-200 mb-10 font-normal leading-relaxed max-w-2xl mx-auto">
+                Restore movement, eliminate pain at its root cause, and prevent recurrence with advanced, evidence-based rehabilitation.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+                <Link href="/contact" className="btn-modern bg-medical-teal text-white px-10 py-5 text-lg w-full sm:w-auto text-center shadow-2xl shadow-medical-teal/40 hover:scale-105 hover:shadow-medical-teal/60 transition-all font-bold">
+                  Book Appointment
+                </Link>
+                <a href="tel:+916378062237" className="btn-modern border-2 border-white text-white px-10 py-5 text-lg w-full sm:w-auto text-center hover:bg-white hover:text-medical-blue transition-all font-bold">
+                  Call Now
+                </a>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-8 text-white/90">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-medical-teal" />
+                  <span className="text-xs font-medium uppercase tracking-widest">Expert Care</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-medical-teal" />
+                  <span className="text-xs font-medium uppercase tracking-widest">Modern Tech</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-medical-teal" />
+                  <span className="text-xs font-medium uppercase tracking-widest">Trusted Results</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        >
+          <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/40 font-bold">Discover More</span>
+          <div className="w-px h-12 bg-gradient-to-b from-medical-teal to-transparent" />
+        </motion.div>
+      </section>
+
+      {/* ===== MARQUEE SECTION: THE BRAND ESSENCE ===== */}
+      <section className="bg-medical-blue py-12 md:py-20 overflow-hidden relative border-y border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-r from-medical-blue via-transparent to-medical-blue z-10 pointer-events-none" />
+        
+        <div className="container-wide mb-8 relative z-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-medical-teal mb-3 block">The Healing Hands Method</span>
+            <h2 className="text-2xl md:text-4xl font-semibold text-white tracking-tighter uppercase">Redefining Recovery for Jodhpur.</h2>
+          </motion.div>
+        </div>
+
+        <div className="flex flex-col gap-3 md:gap-6">
+          <Marquee speed={40} gradient={false} className="overflow-hidden">
+            <span className="text-3xl md:text-5xl font-bold text-white px-6 uppercase tracking-tighter">
+              Assessment • Manual Therapy • Rehabilitation • Assessment • Manual Therapy • Rehabilitation •
+            </span>
+          </Marquee>
+          
+          <Marquee speed={60} direction="right" gradient={false} className="overflow-hidden">
+            <span className="text-3xl md:text-5xl font-bold text-transparent px-6 uppercase tracking-tighter" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.5)" }}>
+              Recover Better • Move Faster • Live Pain Free • Recover Better • Move Faster • Live Pain Free •
+            </span>
+          </Marquee>
+          
+          <Marquee speed={30} gradient={false} className="overflow-hidden">
+            <span className="text-3xl md:text-5xl font-bold text-white px-6 uppercase tracking-tighter">
+              Clinic Visit • Home Visit • Online Physio • Clinic Visit • Home Visit • Online Physio •
+            </span>
+          </Marquee>
+        </div>
+
+        <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-medical-teal/10 rounded-full blur-[100px] pointer-events-none" />
+      </section>
+      {/* ===== CLINICAL FOCUS AREAS: PREMIUM CARDS ===== */}
+      <section className="section-padding bg-medical-surface relative overflow-hidden">
+        {/* Pattern Left */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.05]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-focus-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 0 L100 100" stroke="url(#grad-focus-left)" strokeWidth="0.2" fill="none" />
+            <path d="M0 10 L90 100" stroke="url(#grad-focus-left)" strokeWidth="0.2" fill="none" />
+            <path d="M10 0 L100 90" stroke="url(#grad-focus-left)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
+
+        <div className="max-site relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+            <div className="will-animate scroll-reveal reveal">
+              <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Specialized Expertise</span>
+              <h2 className="text-4xl md:text-5xl text-medical-blue font-bold tracking-tight">Clinical Focus Areas.</h2>
+            </div>
+            <Link href="/treatments" className="will-animate scroll-reveal reveal btn-modern btn-outline bg-white group font-semibold border-slate-200 shadow-sm hover:shadow-md">
+              Explore All Services 
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {treatments.map((t, i) => (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                key={t.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
               >
-                <div className="inline-flex items-center gap-3 px-4 py-2 bg-medical-teal/10 rounded-full border border-medical-teal/20 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-medical-teal">Now Serving Across Jodhpur</span>
-                </div>
-                
-                <h1 className="text-4xl md:text-6xl font-bold text-medical-blue tracking-tight leading-[1.1] mb-8">
-                  Precision Physiotherapy <br />
-                  <span className="text-medical-teal">for Long-Term Recovery</span>
-                </h1>
-                
-                <p className="text-lg md:text-xl text-slate-600 mb-10 font-normal leading-relaxed max-w-2xl">
-                  Restore movement, eliminate pain at its root cause, and prevent recurrence with advanced, evidence-based rehabilitation.
-                </p>
+                <Link 
+                  href={`/treatments/${t.slug}`} 
+                  className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
+                >
+                  <div className="relative h-56 w-full overflow-hidden">
+                    <Image 
+                      src={t.image} 
+                      alt={t.title} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                    
+                    <div className="absolute top-4 right-4 z-20">
+                      <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
+                        {t.slug === "orthopedic-physiotherapy" && <Bone size={24} />}
+                        {t.slug === "neurological-physiotherapy" && <Brain size={24} />}
+                        {t.slug === "cardio-pulmonary-physiotherapy" && <HeartPulse size={24} />}
+                        {t.slug === "gynecological-physiotherapy" && <Users size={24} />}
+                        {t.slug === "pediatric-physiotherapy" && <Activity size={24} />}
+                        {t.slug === "geriatric-physiotherapy" && <Stethoscope size={24} />}
+                        {t.slug === "advanced-physiotherapy-services" && <Zap size={24} />}
+                      </div>
+                    </div>
 
-                <div className="flex flex-col sm:flex-row items-center gap-6 mb-12">
-                  <Link href="/contact" className="btn-modern btn-primary px-10 py-5 text-lg w-full sm:w-auto text-center">
-                    Book Appointment
-                  </Link>
-                  <a href="tel:+916378062237" className="btn-modern btn-outline px-10 py-5 text-lg w-full sm:w-auto text-center border-2">
-                    Call Now
-                  </a>
-                </div>
+                    <div className="absolute bottom-4 left-6 z-20">
+                      <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-medical-teal transition-colors">
+                        {t.title}
+                      </h3>
+                    </div>
+                  </div>
 
-                <p className="text-sm text-slate-400 font-medium tracking-wide">
-                  Trusted by patients across Jodhpur for orthopedic, neurological, and advanced rehabilitation care.
-                </p>
+                  <div className="p-8 flex-1 flex flex-col">
+                    <p className="text-slate-500 font-normal text-sm leading-relaxed mb-8 line-clamp-2">
+                      {t.shortDesc}
+                    </p>
+                    
+                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
+                      <span className="text-medical-teal font-bold uppercase tracking-[0.15em] text-[0.65rem] group-hover:tracking-[0.25em] transition-all duration-500">
+                        Explore Protocol
+                      </span>
+                      <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-medical-teal group-hover:text-medical-teal group-hover:bg-medical-teal/5 transition-all">
+                        <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
-            </div>
-
-            {/* Image Column */}
-            <div className="lg:col-span-5 hidden lg:block">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95, x: 20 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white"
-              >
-                <Image 
-                  src="/doctor/doc1.jpg" 
-                  alt="Precision Therapy" 
-                  fill 
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/20 to-transparent" />
-              </motion.div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
-
       {/* ===== WHY PAIN COMES BACK: THE ROOT CAUSE ===== */}
       <section className="section-padding bg-white relative overflow-hidden border-t border-slate-50">
         <div className="container-wide">
@@ -198,7 +340,23 @@ export default function HomePage() {
       </section>
 
       {/* ===== HOW WE FIX ROOT CAUSE: THE SOLUTION ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      <section className="section-padding bg-medical-surface relative overflow-hidden">
+        {/* Left Corner Pattern */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-left-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 0 L100 100" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
+            <path d="M0 10 L90 100" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
+            <path d="M0 20 L80 100" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
+            <path d="M10 0 L100 90" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
+            <path d="M20 0 L100 80" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 will-animate scroll-reveal reveal relative">
@@ -242,7 +400,23 @@ export default function HomePage() {
       </section>
 
       {/* ===== SERVICE SEGMENTATION: INTEGRATED ECOSYSTEM ===== */}
-      <section className="section-padding bg-medical-surface/30">
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Right Corner Pattern */}
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-right-1" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M100 0 L0 100" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
+            <path d="M100 10 L10 100" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
+            <path d="M100 20 L20 100" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
+            <path d="M90 0 L0 90" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
+            <path d="M80 0 L0 80" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
         <div className="container-wide">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
             <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-6 tracking-tight">Clinic + Home + Online.</h2>
@@ -311,7 +485,23 @@ export default function HomePage() {
       </section>
       
       {/* ===== RECOVERY ROADMAP: 3-STEP SYSTEM ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      <section className="section-padding bg-medical-surface relative overflow-hidden">
+        {/* Left Corner Pattern */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-left-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 0 L100 100" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
+            <path d="M0 10 L90 100" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
+            <path d="M0 20 L80 100" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
+            <path d="M10 0 L100 90" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
+            <path d="M20 0 L100 80" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-surface rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 opacity-60" />
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
@@ -368,54 +558,29 @@ export default function HomePage() {
       </section>
 
       {/* ===== SERVICES GRID: PREMIUM BENTO ===== */}
-      <section className="section-padding bg-medical-surface relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
-        <div className="max-site relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-            <div className="will-animate scroll-reveal reveal">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Specialized Expertise</span>
-              <h2 className="text-4xl md:text-5xl mt-3 text-medical-blue font-light">Clinical Focus Areas.</h2>
-            </div>
-            <Link href="/treatments" className="will-animate scroll-reveal reveal btn-modern btn-outline bg-white group font-medium">
-              View All Services 
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {treatments.map((t, i) => (
-              <Link key={t.slug} href={`/treatments/${t.slug}`} className="will-animate scroll-reveal reveal modern-card group block">
-                <div className="w-14 h-14 rounded-xl bg-medical-teal/5 flex items-center justify-center text-medical-teal group-hover:scale-110 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 mb-8">
-                  {t.slug === "orthopedic-physiotherapy" && <Bone size={28} />}
-                  {t.slug === "neurological-physiotherapy" && <Brain size={28} />}
-                  {t.slug === "cardio-pulmonary-physiotherapy" && <HeartPulse size={28} />}
-                  {t.slug === "gynecological-physiotherapy" && <Users size={28} />}
-                  {t.slug === "pediatric-physiotherapy" && <Activity size={28} />}
-                  {t.slug === "geriatric-physiotherapy" && <Stethoscope size={28} />}
-                  {t.slug === "advanced-physiotherapy-services" && <Zap size={28} />}
-                </div>
-                <h3 className="text-xl font-medium mb-3 tracking-tight text-medical-blue group-hover:text-medical-teal transition-colors">
-                  {t.title}
-                </h3>
-                <p className="text-slate-500 font-normal text-sm leading-relaxed mb-8 line-clamp-2">
-                  {t.shortDesc}
-                </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-medical-teal font-medium uppercase tracking-[0.15em] text-[0.65rem]">
-                    Explore Protocol
-                  </span>
-                  <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-medical-teal group-hover:text-medical-teal group-hover:bg-medical-teal/5 transition-all">
-                    <ArrowUpRight size={16} />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Right Corner Pattern */}
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-right-2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M100 0 L0 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+            <path d="M100 10 L10 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+            <path d="M100 20 L20 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+            <path d="M90 0 L0 90" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+            <path d="M80 0 L0 80" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+          </svg>
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
+   
       </section>
 
       {/* ===== COMMON CONDITIONS: MINIMAL LIST ===== */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-medical-surface">
         <div className="max-site">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Common Conditions</span>
@@ -501,7 +666,23 @@ export default function HomePage() {
       </section>
 
       {/* ===== CORE APPROACH: WHY CHOOSE US ===== */}
-      <section className="section-padding bg-medical-surface relative overflow-hidden">
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Left Corner Pattern */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-left-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 0 L100 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
+            <path d="M0 10 L90 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
+            <path d="M0 20 L80 100" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
+            <path d="M10 0 L100 90" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
+            <path d="M20 0 L100 80" stroke="url(#grad-left-3)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Excellence</span>
@@ -545,7 +726,7 @@ export default function HomePage() {
                 icon: Users
               }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal modern-card bg-white p-10 border-none shadow-sm hover:shadow-xl transition-all duration-500 group">
+              <div key={i} className="will-animate scroll-reveal reveal modern-card bg-medical-surface p-10 border-none shadow-sm hover:shadow-xl transition-all duration-500 group">
                 <div className="w-16 h-16 rounded-2xl bg-medical-teal/5 flex items-center justify-center text-medical-teal mb-8 group-hover:bg-medical-teal group-hover:text-white transition-colors duration-500">
                   <item.icon size={32} />
                 </div>
@@ -721,7 +902,23 @@ export default function HomePage() {
       </section>
 
       {/* ===== TRANSPARENT PRICING: TRUST BUILDER ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      <section className="section-padding bg-medical-surface relative overflow-hidden">
+        {/* Right Corner Pattern */}
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-right-3" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M100 0 L0 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M100 10 L10 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M100 20 L20 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M90 0 L0 90" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M80 0 L0 80" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
         <div className="max-site">
           <div className="bg-medical-blue rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/10 to-transparent pointer-events-none" />
