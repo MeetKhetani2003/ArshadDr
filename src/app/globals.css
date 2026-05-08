@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-medical-teal: #06b6d4; /* Smoother Cyan/Teal from logo */
+  --color-medical-teal: #2563eb; /* Sophisticated Cobalt Blue */
   --color-medical-blue: #0f172a; /* Deep Slate Blue */
   --color-medical-surface: #f8fafc;
 }

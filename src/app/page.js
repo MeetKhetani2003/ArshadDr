@@ -10,10 +10,10 @@ import {
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
-  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home
+  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
-import { locations } from "@/data/team";
+import { teamMembers, locations } from "@/data/team";
 import { useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
@@ -245,7 +245,7 @@ export default function HomePage() {
               >
                 <Link 
                   href={`/treatments/${t.slug}`} 
-                  className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(6,182,212,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
+                  className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
                 >
                   <div className="relative h-56 w-full overflow-hidden">
                     <Image 
@@ -417,46 +417,195 @@ export default function HomePage() {
             <path d="M80 0 L0 80" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
           </svg>
         </div>
-        <div className="container-wide">
-          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
-            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-6 tracking-tight">Clinic + Home + Online.</h2>
+        {/* Animated Ecosystem Path */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20 hidden lg:block">
+          <svg className="w-full h-full" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path 
+              d="M-100 300 C 200 100, 400 500, 600 300 C 800 100, 1000 500, 1300 300" 
+              stroke="url(#path-grad)" 
+              strokeWidth="2" 
+              strokeDasharray="10 15"
+              className="animate-flow-line"
+            />
+            <defs>
+              <linearGradient id="path-grad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#2563eb" />
+                <stop offset="50%" stopColor="#10b981" />
+                <stop offset="100%" stopColor="#2563eb" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Technical Dot Grid Background */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+          style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '30px 30px' }} 
+        />
+
+        <div className="container-wide relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-12 will-animate scroll-reveal reveal">
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-3 tracking-tight">Clinic + Home + Online.</h2>
             <p className="text-slate-500 text-lg font-normal">A seamless care ecosystem designed around your lifestyle.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 items-stretch">
             {[
               {
-                title: "Clinic Visit",
-                desc: "High-end facilities for specialized manual therapy and advanced equipment.",
-                icon: MapPin,
-                color: "bg-medical-blue",
-                textColor: "text-white"
+                id: "01",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
               },
               {
-                title: "Home Visit",
-                desc: "We bring the entire clinical setup to the comfort of your home.",
-                icon: Users,
-                color: "bg-white",
-                textColor: "text-medical-blue"
+                id: "02",
+                title: "Healing Hands Home Care",
+                subtitle: "Across Jodhpur City",
+                pin: "SERVICE AREA",
+                address: "We bring the entire clinical setup to your home.",
+                landmarks: [
+                  { name: "Service Available 24/7", detail: "Express" },
+                  { name: "All major areas", detail: "Full Coverage" },
+                  { name: "Doorstep Rehab", detail: "At Home" }
+                ],
+                hours: "Available: 7 AM–9 PM (Daily)",
+                doctor: "Senior On-Call PT",
+                doctorRole: "Home Care Specialist",
+                buttonText: "BOOK HOME VISIT",
+                mapImg: "/map_placeholder.png"
               },
               {
-                title: "Online Physio",
-                desc: "Consult our experts via video call from anywhere in the world.",
-                icon: Laptop,
-                color: "bg-white",
-                textColor: "text-medical-blue"
+                id: "03",
+                title: "Healing Hands Online",
+                subtitle: "Virtual Consultation",
+                pin: "DIGITAL CLINIC",
+                address: "Consult our experts via video call from anywhere.",
+                landmarks: [
+                  { name: "HD Video Call", detail: "Global" },
+                  { name: "Digital Plan", detail: "Instant" },
+                  { name: "Remote Monitoring", detail: "Daily" }
+                ],
+                hours: "Mon–Sun: 10 AM–8 PM (IST)",
+                doctor: "Expert Consultant",
+                doctorRole: "Tele-Rehab Specialist",
+                buttonText: "START CONSULTATION",
+                mapImg: "/map_placeholder.png"
               }
             ].map((item, i) => (
-              <div key={i} className={`p-10 rounded-[2.5rem] ${item.color} shadow-sm border border-slate-50 group hover:shadow-2xl transition-all duration-500`}>
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-8 ${item.color === "bg-medical-blue" ? "bg-white/10 text-white" : "bg-medical-teal/10 text-medical-teal"}`}>
-                  <item.icon size={28} />
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.7 }}
+                className="group relative"
+              >
+                {/* Background Large Number */}
+                <div className="absolute -top-10 -right-4 text-[10rem] font-black text-slate-100/50 select-none pointer-events-none group-hover:text-medical-teal/5 transition-colors">
+                  {item.id}
                 </div>
-                <h3 className={`text-2xl font-bold mb-4 ${item.textColor}`}>{item.title}</h3>
-                <p className={`text-sm leading-relaxed mb-8 ${item.color === "bg-medical-blue" ? "text-white/60" : "text-slate-500"}`}>{item.desc}</p>
-                <Link href="/contact" className={`text-[0.6rem] font-bold uppercase tracking-[0.2em] flex items-center gap-2 ${item.color === "bg-medical-blue" ? "text-medical-teal" : "text-medical-blue"}`}>
-                  Book Now <ArrowRight size={14} />
-                </Link>
-              </div>
+
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
+                  
+                  {/* Modern Header */}
+                  <div className="mb-6 relative">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="px-2.5 py-0.5 rounded-lg bg-medical-teal text-white text-[0.6rem] font-bold tracking-tight uppercase">
+                        PIN: {item.pin}
+                      </div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-medical-blue tracking-tight leading-none mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-semibold tracking-tight">
+                      {item.subtitle}
+                    </p>
+                  </div>
+
+                  {/* Technical Detail Blocks */}
+                  <div className="space-y-6 flex-1">
+                    {/* Address Block */}
+                    <div className="relative pl-5 border-l-2 border-slate-100 group-hover:border-medical-teal/30 transition-colors">
+                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Location Coordinates</span>
+                      <p className="text-sm font-bold text-medical-blue leading-relaxed">{item.address}</p>
+                    </div>
+
+                    {/* Landmarks "Distance Chips" */}
+                    <div>
+                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-3">Access Points</span>
+                      <div className="space-y-2">
+                        {item.landmarks.map((l, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/50 border border-slate-100 group-hover:bg-white transition-all">
+                            <div className="flex items-center gap-2.5">
+                              <Navigation2 size={13} className="text-medical-teal" />
+                              <span className="text-[0.7rem] font-semibold text-slate-600">{l.name}</span>
+                            </div>
+                            <span className="px-2 py-0.5 rounded-md bg-white text-[0.55rem] font-bold text-medical-teal border border-slate-100 shadow-sm uppercase tracking-tighter">
+                              {l.detail}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Technical Hours */}
+                    <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
+                      <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
+                        <Clock size={18} className="text-medical-teal" />
+                      </div>
+                      <div>
+                        <span className="text-[0.55rem] font-bold text-white/40 uppercase tracking-tight block">Availability Matrix</span>
+                        <p className="text-[0.7rem] font-bold tracking-tight">{item.hours}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* High-End Doctor Spotlight */}
+                  <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
+                        <Image src={item.doctor === "Dr. Arshad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                      </div>
+                      <div>
+                        <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
+                        <p className="text-[0.5rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole.split('—')[0]}</p>
+                      </div>
+                    </div>
+                    <div className="pr-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 block animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Circular Map Portal */}
+                  <div className="absolute bottom-24 -right-10 w-32 h-32 rounded-full border-8 border-white shadow-2xl overflow-hidden hidden group-hover:block will-animate hover:scale-150 transition-all cursor-crosshair">
+                    <Image src={item.mapImg} alt="Map Portal" fill className="object-cover" />
+                  </div>
+
+                  {/* Dual Primary Actions */}
+                  <div className="flex gap-2.5 mt-auto">
+                    <Link 
+                      href="/contact" 
+                      className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
+                    >
+                      {item.buttonText}
+                    </Link>
+                    <button className="w-14 h-14 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-slate-400 hover:border-medical-teal hover:text-medical-teal hover:bg-medical-teal/5 transition-all shadow-sm">
+                      <MapPin size={22} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -580,7 +729,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== COMMON CONDITIONS: MINIMAL LIST ===== */}
-      <section className="section-padding bg-medical-surface">
+      <section className="section-padding bg-medical-surface -mt-48">
         <div className="max-site">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Common Conditions</span>

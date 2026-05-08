@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { treatments } from "@/data/treatments";
@@ -8,23 +9,11 @@ import { motion } from "framer-motion";
 import { 
   ArrowUpRight, Activity, Bone, Brain, 
   HeartPulse, Baby, PersonStanding, Zap,
-  Phone
+  Phone, Users, Stethoscope, ArrowRight
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const getIcon = (slug) => {
-  const icons = {
-    "orthopedic-physiotherapy": Bone,
-    "neurological-physiotherapy": Brain,
-    "cardio-pulmonary-physiotherapy": HeartPulse,
-    "womens-health-physiotherapy": HeartPulse,
-    "pediatric-physiotherapy": Baby,
-    "geriatric-physiotherapy": PersonStanding,
-    "advanced-physiotherapy-services": Zap,
-  };
-  return icons[slug] || Activity;
-};
 
 export default function TreatmentsPage() {
   const containerRef = useRef(null);
@@ -100,31 +89,65 @@ export default function TreatmentsPage() {
       {/* ===== LIST ===== */}
       <section className="section-padding bg-medical-surface relative">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
-        <div className="max-site grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-          {treatments.map((t, i) => {
-            const Icon = getIcon(t.slug);
-            return (
-              <Link key={t.slug} href={`/treatments/${t.slug}`} className="will-animate scroll-reveal reveal modern-card group block">
-                <div className="w-14 h-14 rounded-xl bg-medical-teal/5 flex items-center justify-center text-medical-teal group-hover:scale-110 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 mb-6">
-                  <Icon size={28} />
+        <div className="max-site grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          {treatments.map((t, i) => (
+            <motion.div
+              key={t.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -10 }}
+            >
+              <Link 
+                href={`/treatments/${t.slug}`} 
+                className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
+              >
+                <div className="relative h-56 w-full overflow-hidden">
+                  <Image 
+                    src={t.image} 
+                    alt={t.title} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                  
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
+                      {t.slug === "orthopedic-physiotherapy" && <Bone size={24} />}
+                      {t.slug === "neurological-physiotherapy" && <Brain size={24} />}
+                      {t.slug === "cardio-pulmonary-physiotherapy" && <HeartPulse size={24} />}
+                      {t.slug === "gynecological-physiotherapy" && <Users size={24} />}
+                      {t.slug === "pediatric-physiotherapy" && <Activity size={24} />}
+                      {t.slug === "geriatric-physiotherapy" && <Stethoscope size={24} />}
+                      {t.slug === "advanced-physiotherapy-services" && <Zap size={24} />}
+                    </div>
+                  </div>
+
+                  <div className="absolute bottom-4 left-6 z-20">
+                    <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-medical-teal transition-colors">
+                      {t.title}
+                    </h3>
+                  </div>
                 </div>
-                <h2 className="text-xl font-bold mb-3 tracking-tight text-medical-blue group-hover:text-medical-teal transition-colors">
-                  {t.title}
-                </h2>
-                <p className="text-slate-500 font-normal text-sm leading-relaxed mb-8 line-clamp-2">
-                  {t.shortDesc}
-                </p>
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
-                  <span className="text-medical-teal font-bold uppercase tracking-[0.15em] text-[0.65rem]">
-                    View Details
-                  </span>
-                  <div className="w-8 h-8 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-medical-teal group-hover:text-medical-teal group-hover:bg-medical-teal/5 transition-all">
-                    <ArrowUpRight size={16} />
+
+                <div className="p-8 flex-1 flex flex-col">
+                  <p className="text-slate-500 font-normal text-sm leading-relaxed mb-8 line-clamp-2">
+                    {t.shortDesc}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
+                    <span className="text-medical-teal font-bold uppercase tracking-[0.15em] text-[0.65rem] group-hover:tracking-[0.25em] transition-all duration-500">
+                      Explore Protocol
+                    </span>
+                    <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-medical-teal group-hover:text-medical-teal group-hover:bg-medical-teal/5 transition-all">
+                      <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </Link>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
       </section>
 
