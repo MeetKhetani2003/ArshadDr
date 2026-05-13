@@ -10,7 +10,7 @@ import {
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
-  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2
+  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
 import { teamMembers, locations } from "@/data/team";
@@ -55,6 +55,16 @@ function StatCounter({ value }) {
 export default function HomePage() {
   const containerRef = useRef(null);
   const [partnerIndex, setPartnerIndex] = useState(0);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeFaq, setActiveFaq] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -234,7 +244,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {treatments.map((t, i) => (
               <motion.div
                 key={t.slug}
@@ -243,6 +253,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
+                className="min-w-[85vw] md:min-w-0 snap-center"
               >
                 <Link
                   href={`/treatments/${t.slug}`}
@@ -431,7 +442,7 @@ export default function HomePage() {
             <p className="text-slate-300 text-lg font-normal">We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {[
               {
                 id: "01",
@@ -539,12 +550,8 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.7 }}
-                className="group relative"
+                className="group relative min-w-[85vw] md:min-w-0 snap-center"
               >
-                {/* Background Large Number */}
-                <div className="absolute -top-10 -right-4 text-[10rem] font-black text-slate-100/50 select-none pointer-events-none group-hover:text-medical-teal/5 transition-colors">
-                  {item.id}
-                </div>
 
                 <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
 
@@ -666,7 +673,7 @@ export default function HomePage() {
             <p className="text-slate-500 text-lg font-normal">Bespoke rehabilitation protocols delivered wherever you are.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 max-w-5xl mx-auto">
             {[
               {
                 id: "01",
@@ -709,12 +716,8 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.7 }}
-                className="group relative"
+                className="group relative min-w-[85vw] md:min-w-0 snap-center"
               >
-                {/* Background Large Number */}
-                <div className="absolute -top-10 -right-4 text-[10rem] font-black text-slate-100/50 select-none pointer-events-none group-hover:text-medical-teal/5 transition-colors">
-                  {item.id}
-                </div>
 
                 <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
 
@@ -852,7 +855,7 @@ export default function HomePage() {
             <p className="text-slate-300 mt-6 text-lg font-normal">Our 3-step evidence-based recovery model ensures precision in every movement and certainty in your results.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 relative">
+          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 relative">
             {/* Connection Line (Desktop) */}
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-100 -translate-y-12 z-0" />
 
@@ -882,7 +885,7 @@ export default function HomePage() {
                 bg: "bg-medical-teal/10"
               }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal relative z-10">
+              <div key={i} className="will-animate scroll-reveal reveal relative z-10 min-w-[85vw] md:min-w-0 snap-center">
                 <div className="modern-card group hover:shadow-2xl transition-all duration-700 bg-white border-slate-100 p-10 h-full flex flex-col items-center text-center">
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50">
                     {item.step}
@@ -1029,7 +1032,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {[
               {
                 title: "Zero Waiting Time",
@@ -1069,7 +1072,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-medical-teal/40 hover:shadow-xl transition-all duration-500 relative overflow-hidden"
+                className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-medical-teal/40 hover:shadow-xl transition-all duration-500 relative overflow-hidden min-w-[85vw] md:min-w-0 snap-center"
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
 
@@ -1106,14 +1109,14 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 lg:-right-12 glass-panel !bg-white/10 backdrop-blur-xl p-6 rounded-2xl hidden md:block border-white/20">
+            <div className="absolute -bottom-6 -right-6 lg:-right-12 bg-white shadow-2xl p-6 rounded-3xl hidden md:block border border-slate-100 animate-float">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-medical-teal rounded-full flex items-center justify-center text-white shadow-lg">
-                  <Award size={24} />
+                <div className="w-14 h-14 bg-medical-teal rounded-2xl flex items-center justify-center text-white shadow-lg shadow-medical-teal/20 rotate-3">
+                  <Award size={28} />
                 </div>
                 <div>
-                  <p className="font-medium text-white">Dr. Arshad Solanki</p>
-                  <p className="text-[0.65rem] uppercase tracking-widest text-white/50 font-medium">Founder & Chief PT</p>
+                  <p className="font-bold text-medical-blue text-lg leading-tight">Dr. Arshad Solanki</p>
+                  <p className="text-[0.6rem] uppercase tracking-[0.2em] text-medical-teal font-bold mt-1">Founder & Chief PT</p>
                 </div>
               </div>
             </div>
@@ -1185,61 +1188,142 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended for clinical precision.",
-                author: "Rajesh Kumar",
-                role: "Verified Patient",
-                date: "2 weeks ago"
-              },
-              {
-                text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional and hygienic.",
-                author: "Ananya Sharma",
-                role: "Verified Patient",
-                date: "1 month ago"
-              },
-              {
-                text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief. Amazing team.",
-                author: "Vikram Singh",
-                role: "Verified Patient",
-                date: "3 weeks ago"
-              }
-            ].map((test, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal p-8 rounded-[2rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 relative flex flex-col">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex gap-0.5">
-                    {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="#FBBC05" className="text-[#FBBC05]" />)}
-                  </div>
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-50 text-green-600 border border-green-100">
-                    <ShieldCheck size={12} />
-                    <span className="text-[0.55rem] font-bold uppercase tracking-tighter">Verified</span>
-                  </div>
-                </div>
+          <div className="relative group/carousel px-4 md:px-12">
+            <div className="overflow-hidden py-12">
+              <motion.div
+                drag="x"
+                dragConstraints={{
+                  right: 0,
+                  left: isMobile ? -(10 * 100) + '%' : -(8 * (100 / 3 + 1)) + '%'
+                }}
+                dragElastic={0.1}
+                dragMomentum={false}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = offset.x;
+                  const threshold = 50;
+                  if (swipe < -threshold && testimonialIndex < (isMobile ? 10 : 8)) {
+                    setTestimonialIndex(prev => prev + 1);
+                  } else if (swipe > threshold && testimonialIndex > 0) {
+                    setTestimonialIndex(prev => prev - 1);
+                  }
+                }}
+                animate={{ x: `-${testimonialIndex * (isMobile ? 100 : 33.8)}%` }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
+              >
+                {[
+                  {
+                    text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended for clinical precision.",
+                    author: "Rajesh Kumar", role: "Verified Patient", date: "2 weeks ago"
+                  },
+                  {
+                    text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional and hygienic.",
+                    author: "Ananya Sharma", role: "Verified Patient", date: "1 month ago"
+                  },
+                  {
+                    text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief. Amazing team.",
+                    author: "Vikram Singh", role: "Verified Patient", date: "3 weeks ago"
+                  },
+                  {
+                    text: "My arthritis pain has significantly reduced. The personalized exercise plan works wonders. Truly grateful to the team.",
+                    author: "Meera Bai", role: "Verified Patient", date: "5 days ago"
+                  },
+                  {
+                    text: "Recovered from an ACL injury faster than expected. The sports rehab protocol here is world-class and very scientific.",
+                    author: "Amit Patel", role: "Verified Patient", date: "2 months ago"
+                  },
+                  {
+                    text: "Cervical pain was making my life difficult. Within 10 sessions, I felt 90% better. The manual therapy is exceptional.",
+                    author: "Sunita Devi", role: "Verified Patient", date: "1 week ago"
+                  },
+                  {
+                    text: "My father showed great improvement in movement after his stroke. The neuro-physiotherapists are very patient and expert.",
+                    author: "Rahul Verma", role: "Verified Patient", date: "3 months ago"
+                  },
+                  {
+                    text: "The post-surgery rehabilitation for my knee replacement was seamless. I'm back to walking comfortably now.",
+                    author: "Priya Sharma", role: "Verified Patient", date: "2 weeks ago"
+                  },
+                  {
+                    text: "Dealing with a slip disc was terrifying, but the non-surgical approach here helped me avoid surgery and recover fully.",
+                    author: "Kamal Kishor", role: "Verified Patient", date: "1 month ago"
+                  },
+                  {
+                    text: "The Bell's Palsy treatment was very effective. I saw visible changes in facial movement within the first week of therapy.",
+                    author: "Anita Gupta", role: "Verified Patient", date: "4 days ago"
+                  },
+                  {
+                    text: "Great care for senior citizens. My grandfather's balance and mobility improved a lot with their geriatric specialized care.",
+                    author: "Suresh Mehra", role: "Verified Patient", date: "6 weeks ago"
+                  }
+                ].map((test, i) => (
+                  <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
+                    <div className="will-animate scroll-reveal reveal p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 relative flex flex-col h-full group/card">
+                      <div className="flex justify-between items-start mb-6">
+                        <div className="flex gap-0.5">
+                          {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="#FBBC05" className="text-[#FBBC05]" />)}
+                        </div>
+                        <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-50 text-green-600 border border-green-100">
+                          <ShieldCheck size={12} />
+                          <span className="text-[0.55rem] font-bold uppercase tracking-tighter">Verified</span>
+                        </div>
+                      </div>
 
-                <p className="text-base text-slate-600 font-normal leading-relaxed mb-8 flex-1">
-                  "{test.text}"
-                </p>
+                      <p className="text-base text-slate-600 font-normal leading-relaxed mb-8 flex-1 italic">
+                        "{test.text}"
+                      </p>
 
-                <div className="flex items-center justify-between pt-6 border-t border-slate-50">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
-                      <Users size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-medical-blue">{test.author}</p>
-                      <p className="text-[0.6rem] font-medium text-slate-400">{test.role} • {test.date}</p>
+                      <div className="flex items-center justify-between pt-6 border-t border-slate-50">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover/card:bg-medical-teal/10 group-hover/card:text-medical-teal transition-all">
+                            <Users size={20} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold text-medical-blue">{test.author}</p>
+                            <p className="text-[0.6rem] font-medium text-slate-400">{test.role} • {test.date}</p>
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" className="opacity-100 group-hover/card:scale-110 transition-all duration-500">
+                          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.07-3.71 1.07-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                          <path d="M5.84 14.11c-.22-.66-.35-1.36-.35-2.11s.13-1.45.35-2.11V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.83z" fill="#FBBC05" />
+                          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.83c.87-2.6 3.3-4.51 6.16-4.51z" fill="#EA4335" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                  <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" className="opacity-20">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.07-3.71 1.07-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-                    <path d="M5.84 14.11c-.22-.66-.35-1.36-.35-2.11s.13-1.45.35-2.11V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.83z" fill="#FBBC05" />
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.83c.87-2.6 3.3-4.51 6.16-4.51z" fill="#EA4335" />
-                  </svg>
-                </div>
-              </div>
-            ))}
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Carousel Navigation */}
+            <div className="absolute top-1/2 -left-4 md:-left-8 -right-4 md:-right-8 -translate-y-1/2 flex justify-between pointer-events-none">
+              <button
+                onClick={() => setTestimonialIndex(prev => Math.max(0, prev - 1))}
+                className={`w-12 h-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center transition-all pointer-events-auto ${testimonialIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-medical-teal hover:text-white"}`}
+                disabled={testimonialIndex === 0}
+              >
+                <ChevronRight size={24} className="rotate-180" />
+              </button>
+              <button
+                onClick={() => setTestimonialIndex(prev => Math.min(isMobile ? 10 : 8, prev + 1))}
+                className={`w-12 h-12 rounded-full bg-white shadow-xl border border-slate-100 flex items-center justify-center transition-all pointer-events-auto ${testimonialIndex >= (isMobile ? 10 : 8) ? "opacity-30 cursor-not-allowed" : "hover:bg-medical-teal hover:text-white"}`}
+                disabled={testimonialIndex >= (isMobile ? 10 : 8)}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {[...Array(isMobile ? 11 : 9)].map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setTestimonialIndex(i)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${testimonialIndex === i ? "bg-medical-teal w-8" : "bg-slate-200"}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -1304,7 +1388,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {[
               {
                 name: "RGHS",
@@ -1332,7 +1416,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group"
+                className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[85vw] md:min-w-0 snap-center"
               >
                 <div className="w-32 h-32 relative mb-8 rounded-2xl overflow-hidden bg-slate-50 p-2 group-hover:scale-105 transition-transform duration-500">
                   <Image
@@ -1372,13 +1456,13 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {teamMembers.slice(0, 8).map((doctor, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="group relative"
+                className="group relative min-w-[85vw] md:min-w-0 snap-center"
               >
                 <div className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
                   <div className="aspect-[4/5] relative overflow-hidden">
@@ -1419,13 +1503,13 @@ export default function HomePage() {
                     </div>
 
                     <div className="flex gap-3 mt-auto">
-                      <Link 
+                      <Link
                         href={`/doctor/${doctor.slug}`}
                         className="flex-1 py-3 rounded-xl border border-slate-100 text-medical-blue text-[0.65rem] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all text-center"
                       >
                         Profile
                       </Link>
-                      <Link 
+                      <Link
                         href="/contact"
                         className="flex-1 py-3 rounded-xl bg-medical-teal text-white text-[0.65rem] font-bold uppercase tracking-widest hover:bg-medical-blue hover:shadow-lg transition-all text-center"
                       >
@@ -1441,7 +1525,8 @@ export default function HomePage() {
       </section>
 
       {/* ===== HEALTHCARE PARTNERS: OUR NETWORK ===== */}
-      <section className="py-24 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+      <section className="py-24 bg-medical-blue relative overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-mesh opacity-5" />
         <div className="max-site relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
             <div className="will-animate scroll-reveal reveal">
@@ -1449,8 +1534,8 @@ export default function HomePage() {
                 <div className="w-4 h-4 border-2 border-medical-teal rotate-45" />
                 Our Network
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-4 tracking-tight">Our Healthcare Partners</h2>
-              <p className="text-slate-500 text-lg font-normal max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Our Healthcare Partners</h2>
+              <p className="text-slate-300 text-lg font-normal max-w-2xl">
                 Trusted by leading medical institutions for fast response and quality care.
               </p>
             </div>
@@ -1472,11 +1557,27 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative mb-12 overflow-hidden">
+          <div className="relative mb-12 overflow-hidden py-10">
             <motion.div
-              animate={{ x: `-${partnerIndex * (100 / 3.05)}%` }}
+              drag="x"
+              dragConstraints={{
+                right: 0,
+                left: isMobile ? -(6 * 100) + '%' : -(4 * 33.33) + '%'
+              }}
+              dragElastic={0.1}
+              dragMomentum={false}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = offset.x;
+                const threshold = 50;
+                if (swipe < -threshold && partnerIndex < (isMobile ? 6 : 4)) {
+                  setPartnerIndex(prev => prev + 1);
+                } else if (swipe > threshold && partnerIndex > 0) {
+                  setPartnerIndex(prev => prev - 1);
+                }
+              }}
+              animate={{ x: `-${partnerIndex * (isMobile ? 100 : 33.33)}%` }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="flex gap-8 py-10 pr-20"
+              className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
             >
               {[
                 { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
@@ -1487,7 +1588,7 @@ export default function HomePage() {
                 { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
                 { name: "PHC Multi Speciality Hospital", image: "/hospital_2.png", rating: "5.0" },
               ].map((item, i) => (
-                <div key={i} className="flex-shrink-0 w-80 lg:w-[calc(33.33%-1.5rem)]">
+                <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
                   <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
                     <div className="aspect-[4/3] relative mb-8 flex items-center justify-center">
                       <Image
@@ -1517,29 +1618,20 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* Progress Bar UI */}
-          <div className="flex items-center gap-6 mb-20">
-            <div className="flex-1 h-1 bg-slate-200 rounded-full overflow-hidden">
-              <motion.div
-                animate={{ width: `${((partnerIndex + 1) / 5) * 100}%` }}
-                className="h-full bg-medical-teal"
-              />
-            </div>
-            <span className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">0{partnerIndex + 1} / 05</span>
-          </div>
 
           {/* Footer Icons */}
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 py-12 border-t border-slate-200">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 py-12 border-t border-white/10">
             {[
               { label: "Verified Partners", icon: <ShieldCheck size={20} className="text-medical-teal" /> },
-              { label: "Quality Care", icon: <Award size={20} className="text-blue-500" /> },
-              { label: "Instant Support", icon: <Zap size={20} className="text-yellow-500" /> },
+              { label: "Quality Care", icon: <Award size={20} className="text-blue-400" /> },
+              { label: "Instant Support", icon: <Zap size={20} className="text-yellow-400" /> },
+              { label: "Global Standards", icon: <Globe size={20} className="text-indigo-400" /> }
             ].map((feature, i) => (
               <div key={i} className="flex flex-col items-center gap-3 group cursor-default">
-                <div className="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-white/5 shadow-sm border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>
-                <span className="text-[0.7rem] font-bold text-medical-blue uppercase tracking-widest">{feature.label}</span>
+                <span className="text-[0.7rem] font-bold text-white uppercase tracking-widest">{feature.label}</span>
               </div>
             ))}
           </div>
@@ -1564,13 +1656,13 @@ export default function HomePage() {
             <path d="M80 0 L0 80" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
           </svg>
         </div>
-        <div className="max-site">
-          <div className="bg-medical-blue rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+        <div className="md:max-site mx-2 py-6">
+          <div className="bg-medical-blue rounded-[1.5rem] md:rounded-[3rem] p-5 md:p-20 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/10 to-transparent pointer-events-none" />
-            <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
               <div className="will-animate scroll-reveal reveal">
-                <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Patient First Policy</span>
-                <h2 className="text-4xl md:text-5xl mt-6 mb-8 text-white font-light leading-tight">Care Beyond Recovery. <br /> Pricing Beyond Doubt.</h2>
+                <span className="text-[0.65rem] md:text-sm font-bold uppercase tracking-[0.2em] text-medical-teal">Patient First Policy</span>
+                <h2 className="text-3xl md:text-5xl mt-4 md:mt-6 mb-6 md:mb-8 text-white font-light leading-tight">Care Beyond Recovery. <br /> Pricing Beyond Doubt.</h2>
                 <p className="text-white/70 text-lg mb-10 leading-relaxed font-normal">
                   We believe in complete transparency. Our treatment plans are built around
                   your recovery goals, with no hidden package fees or unnecessary sessions.
@@ -1624,7 +1716,7 @@ export default function HomePage() {
                   </div>
 
                   <Link href="/contact" className="w-full py-5 rounded-2xl bg-medical-blue text-white font-bold text-sm uppercase tracking-widest hover:bg-medical-teal hover:shadow-xl hover:shadow-medical-teal/20 transition-all flex items-center justify-center gap-3 group">
-                    Schedule Your Session
+                    Book Your Session
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -1684,15 +1776,18 @@ export default function HomePage() {
       <section className="section-padding bg-medical-blue relative overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-5" />
         <div className="max-site">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-16">
             <div className="lg:col-span-5 will-animate scroll-reveal reveal">
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Common Queries</span>
-              <h2 className="text-4xl md:text-5xl mt-4 mb-8 text-white font-light">Questions & <br /> Answers.</h2>
-              <p className="text-slate-300 font-normal text-lg mb-10 leading-relaxed">
+              <span className="text-[0.7rem] md:text-sm font-bold uppercase tracking-[0.2em] text-medical-teal">Common Queries</span>
+              <h2 className="text-3xl md:text-5xl mt-4 mb-6 md:mb-8 text-white font-light">Questions & <br className="hidden md:block" /> Answers.</h2>
+              <p className="text-slate-300 font-normal text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
                 Everything you need to know about starting your physical therapy journey with us.
               </p>
-              <Link href="/contact" className="btn-modern btn-outline bg-white/5 border-white/10 text-white hover:bg-white hover:text-medical-blue font-medium">
-                Ask a Specific Question
+              <Link href="/contact" className="group flex items-center gap-4 text-white font-bold bg-white/5 border border-white/10 px-6 md:px-8 py-3.5 md:py-4 rounded-2xl hover:bg-white hover:text-medical-blue transition-all duration-500 w-full md:w-fit shadow-xl justify-center md:justify-start">
+                <span className="text-sm md:text-base">Ask a Specific Question</span>
+                <div className="w-8 h-8 rounded-full bg-medical-teal text-white flex items-center justify-center group-hover:translate-x-1 transition-transform shrink-0">
+                  <ArrowRight size={16} />
+                </div>
               </Link>
             </div>
 
@@ -1701,11 +1796,38 @@ export default function HomePage() {
                 { q: "What should I bring to my first appointment?", a: "Please bring your recent medical reports, scans (X-ray/MRI), and wear comfortable, loose clothing for the assessment." },
                 { q: "How long is a typical physiotherapy session?", a: "A standard session lasts between 45 to 60 minutes, depending on the severity of the condition and the treatment plan." },
                 { q: "Do you offer home visit services?", a: "Yes, we provide specialized home rehabilitation for patients with mobility issues or post-surgical cases." },
-                { q: "How many sessions will I need?", a: "This depends on your specific diagnosis. We provide a projected timeline after your initial assessment." }
+                { q: "How many sessions will I need?", a: "This depends on your specific diagnosis. We provide a projected timeline after your initial assessment." },
+                { q: "Is physiotherapy painful?", a: "Some treatments may cause temporary discomfort, but our goal is to manage pain and improve mobility using gentle, evidence-based techniques." },
+                { q: "Do I need a doctor's referral?", a: "No, you can book an assessment directly with us. However, if you have a referral from a surgeon or GP, please bring it along." }
               ].map((item, i) => (
-                <div key={i} className="will-animate scroll-reveal reveal p-8 rounded-2xl bg-white/5 border border-white/10 group">
-                  <h4 className="text-lg font-medium text-white mb-3 group-hover:text-medical-teal transition-colors">{item.q}</h4>
-                  <p className="text-slate-400 text-sm leading-relaxed font-normal">{item.a}</p>
+                <div
+                  key={i}
+                  className={`will-animate scroll-reveal reveal overflow-hidden transition-all duration-500 rounded-[1.5rem] md:rounded-3xl border ${activeFaq === i ? 'bg-white/10 border-medical-teal/30 shadow-2xl shadow-medical-teal/5' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+                >
+                  <button
+                    onClick={() => setActiveFaq(activeFaq === i ? -1 : i)}
+                    className="w-full p-5 md:p-8 flex items-center justify-between text-left group gap-4"
+                  >
+                    <h4 className={`text-base md:text-lg font-bold transition-colors duration-300 ${activeFaq === i ? 'text-medical-teal' : 'text-white group-hover:text-medical-teal/70'}`}>
+                      {item.q}
+                    </h4>
+                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 shrink-0 ${activeFaq === i ? 'bg-medical-teal text-white rotate-45' : 'bg-white/5 text-white/40'}`}>
+                      <Plus size={18} />
+                    </div>
+                  </button>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: activeFaq === i ? "auto" : 0, opacity: activeFaq === i ? 1 : 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 pb-5 md:px-8 md:pb-8">
+                      <div className="h-px w-full bg-white/10 mb-4 md:mb-6" />
+                      <p className="text-slate-300 text-sm md:text-base leading-relaxed font-normal max-w-2xl">
+                        {item.a}
+                      </p>
+                    </div>
+                  </motion.div>
                 </div>
               ))}
             </div>
@@ -1727,11 +1849,14 @@ export default function HomePage() {
               <Link href="/contact" className="btn-modern bg-white text-medical-blue hover:bg-slate-50 px-10 py-4 shadow-xl font-medium">
                 Book Initial Assessment
               </Link>
-              <a href="tel:6378062237" className="group flex items-center gap-3 text-white/90 font-medium uppercase tracking-widest text-[0.7rem] hover:text-white transition-colors">
-                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-medical-teal transition-colors">
-                  <Phone size={14} />
-                </span>
-                Call: 6378-062237
+              <a href="tel:6378062237" className="group flex items-center gap-4 text-white font-bold hover:text-medical-teal transition-all duration-300">
+                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-medical-teal transition-all shadow-lg">
+                  <Phone size={20} />
+                </div>
+                <div className="text-left">
+                  <p className="text-[0.6rem] uppercase tracking-[0.2em] text-white/50 mb-0.5">Direct Line</p>
+                  <p className="text-xl md:text-2xl tracking-tighter">6378-062237</p>
+                </div>
               </a>
             </div>
           </div>

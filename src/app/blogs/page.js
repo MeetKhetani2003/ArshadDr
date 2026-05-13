@@ -16,9 +16,16 @@ export default function BlogsPage() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem("hh_blogs") : null;
-    const customBlogs = stored ? JSON.parse(stored) : [];
-    setBlogs([...customBlogs, ...defaultBlogs]);
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("/api/blogs");
+        const dbBlogs = await res.json();
+        setBlogs([...dbBlogs, ...defaultBlogs]);
+      } catch (err) {
+        setBlogs(defaultBlogs);
+      }
+    };
+    fetchBlogs();
 
     // Setup scroll reveals for dynamically rendered elements
     const ctx = gsap.context(() => {
@@ -38,7 +45,7 @@ export default function BlogsPage() {
     return () => ctx.revert();
   }, [blogs.length]);
 
-  const categories = ["All", ...new Set(blogs.map((b) => b.category))];
+  const categories = ["All", ...new Set(blogs.map((b) => b.category || "Insight"))];
   const filteredBlogs = filter === "All" ? blogs : blogs.filter((b) => b.category === filter);
 
   const heroVariants = {
@@ -128,7 +135,7 @@ export default function BlogsPage() {
             <AnimatePresence mode="popLayout">
               {filteredBlogs.map((blog) => (
                 <motion.div
-                  key={blog.id}
+                  key={blog._id || blog.id || Math.random()}
                   layout
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -136,12 +143,12 @@ export default function BlogsPage() {
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
                   <Link 
-                    href={`/blogs/${blog.slug}`}
+                    href={`/blogs/${blog.slug || "entry"}`}
                     className="modern-card group flex flex-col h-full border-none shadow-xl bg-white block"
                   >
                     <div className="aspect-[16/10] relative rounded-xl overflow-hidden mb-8 bg-slate-100">
                       <Image 
-                        src={blog.image} 
+                        src={blog.imageId ? `/api/media/${blog.imageId}` : blog.image} 
                         alt={blog.title} 
                         fill 
                         className="object-cover transition-transform duration-700 group-hover:scale-105" 
@@ -150,14 +157,16 @@ export default function BlogsPage() {
                       <div className="absolute inset-0 bg-medical-blue/10 group-hover:bg-transparent transition-colors duration-500" />
                       <div className="absolute top-4 left-4 glass-panel px-3 py-1.5 rounded-lg flex items-center gap-1.5 z-10">
                         <Clock size={12} className="text-medical-teal" />
-                        <span className="text-[0.6rem] font-bold uppercase tracking-wider text-medical-blue">{blog.readTime}</span>
+                        <span className="text-[0.6rem] font-bold uppercase tracking-wider text-medical-blue">{blog.readTime || "5 min"}</span>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">{blog.date}</span>
+                      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">
+                        {blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : blog.date}
+                      </span>
                       <span className="w-1 h-1 rounded-full bg-medical-teal" />
-                      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-medical-teal">{blog.category}</span>
+                      <span className="text-[0.65rem] font-bold uppercase tracking-widest text-medical-teal">{blog.category || "Insight"}</span>
                     </div>
 
                     <h2 className="text-2xl font-bold mb-4 group-hover:text-medical-teal transition-colors leading-tight text-medical-blue">

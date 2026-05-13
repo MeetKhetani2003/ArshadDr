@@ -19,45 +19,46 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
 
           {/* Brand Column (4 cols) */}
-          <div className="lg:col-span-4 space-y-1">
-            <Link href="/" className="">
-              <div className="">
-                <Image
-                  src="/Logo.png"
-                  alt="Healing Hands Logo"
-                  height={190}
-                  width={190}
-                  className="object-cover"
-                />
-              </div>
+          <div className="lg:col-span-4 relative pt-40 md:pt-44 -mt-14 md:-mt-28">
+            <Link href="/" className="absolute top-0 -left-4 block">
+              <Image
+                src="/Logo.png"
+                alt="Healing Hands Logo"
+                height={280}
+                width={280}
+                className="object-contain"
+              />
             </Link>
-            <p className="text-sm leading-relaxed max-w-sm font-normal text-slate-400/80">
-              Healing Hands / MyoMotion is Jodhpur's premier physiotherapy network,
-              pioneering advanced, evidence-based rehabilitation and personalized
-              patient care pathways since 2013.
-            </p>
 
-            <div className="flex gap-4 pt-4">
-              {[
-                { Icon: FaFacebookF, href: "#" },
-                { Icon: FaInstagram, href: "#" },
-                { Icon: FaXTwitter, href: "#" },
-                { Icon: FaYoutube, href: "#" },
-              ].map(({ Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-medical-teal hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-lg"
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
+            <div className="space-y-6 relative z-10">
+              <p className="text-xl leading-relaxed max-w-md font-medium text-slate-300">
+                Healing Hands / MyoMotion is Jodhpur's premier physiotherapy network,
+                pioneering advanced, evidence-based rehabilitation and personalized
+                patient care pathways since 2013.
+              </p>
+
+              <div className="flex gap-4 pt-4">
+                {[
+                  { Icon: FaFacebookF, href: "#" },
+                  { Icon: FaInstagram, href: "#" },
+                  { Icon: FaXTwitter, href: "#" },
+                  { Icon: FaYoutube, href: "#" },
+                ].map(({ Icon, href }, i) => (
+                  <a
+                    key={i}
+                    href={href}
+                    className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-medical-teal hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-lg"
+                  >
+                    <Icon size={20} />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Platform</h4>
+            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.7rem]">Platform</h4>
             <ul className="space-y-4">
               {[
                 { href: "/", label: "Home" },
@@ -69,7 +70,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-xs hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
+                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
                   >
                     <ArrowRight size={10} className="text-medical-teal opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
                     {link.label}
@@ -81,13 +82,13 @@ export default function Footer() {
 
           {/* Locations Links (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Clinical Hubs</h4>
+            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.7rem]">Clinical Hubs</h4>
             <ul className="space-y-4">
               {locations.map((loc) => (
                 <li key={loc.slug}>
                   <Link
                     href={`/locations/${loc.slug}`}
-                    className="text-xs hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
+                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
                   >
                     <MapPin size={10} className="text-slate-600 group-hover:text-medical-teal transition-colors" />
                     {loc.name}
@@ -100,15 +101,15 @@ export default function Footer() {
           {/* Clinical Trust & Empty Corner Fix (3 cols) */}
           <div className="lg:col-span-3 space-y-10">
             <div>
-              <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Quality & Trust</h4>
+              <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.7rem]">Quality & Trust</h4>
               <div className="grid gap-4">
                 <div className="p-4 rounded-xl bg-slate-900 border border-slate-800/50 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-medical-teal/10 flex items-center justify-center text-medical-teal shadow-inner">
                     <ShieldCheck size={20} />
                   </div>
                   <div>
-                    <p className="text-white text-[0.65rem] font-bold uppercase tracking-widest leading-none mb-1">Verified Clinical Care</p>
-                    <p className="text-[0.6rem] text-slate-500 font-medium">ISO 9001:2015 Certified</p>
+                    <p className="text-white text-[0.75rem] font-bold uppercase tracking-widest leading-none mb-1">Verified Clinical Care</p>
+                    <p className="text-[0.7rem] text-slate-500 font-medium">ISO 9001:2015 Certified</p>
                   </div>
                 </div>
                 <div className="p-4 rounded-xl bg-slate-900 border border-slate-800/50 flex items-center gap-4">
@@ -116,8 +117,8 @@ export default function Footer() {
                     <Star size={20} fill="currentColor" />
                   </div>
                   <div>
-                    <p className="text-white text-[0.65rem] font-bold uppercase tracking-widest leading-none mb-1">Patient Approved</p>
-                    <p className="text-[0.6rem] text-slate-500 font-medium">4.9/5 Google Rating</p>
+                    <p className="text-white text-[0.75rem] font-bold uppercase tracking-widest leading-none mb-1">Patient Approved</p>
+                    <p className="text-[0.7rem] text-slate-500 font-medium">4.9/5 Google Rating</p>
                   </div>
                 </div>
               </div>

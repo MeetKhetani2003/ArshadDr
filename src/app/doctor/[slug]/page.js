@@ -9,9 +9,11 @@ import {
   ChevronRight, Phone, Mail, ArrowRight
 } from "lucide-react";
 import { teamMembers } from "@/data/team";
+import { useBooking } from "@/components/BookingContext";
 
 export default function DoctorProfile() {
   const { slug } = useParams();
+  const { openBookingModal } = useBooking();
   const doctor = teamMembers.find(m => m.slug === slug);
 
   if (!doctor) {
@@ -102,14 +104,17 @@ export default function DoctorProfile() {
                 </div>
 
                 <div className="flex flex-wrap gap-4">
-                  <Link 
-                    href="/contact" 
+                  <button 
+                    onClick={() => openBookingModal({ doctor: doctor.name, consultType: "Offline" })}
                     className="px-10 py-5 bg-medical-teal text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-medical-blue hover:shadow-xl hover:shadow-medical-blue/20 transition-all flex items-center gap-3 group"
                   >
                     Book Appointment
                     <Calendar size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  <button className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all">
+                  </button>
+                  <button 
+                    onClick={() => openBookingModal({ doctor: doctor.name, consultType: "Online" })}
+                    className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all"
+                  >
                     Consult Online
                   </button>
                 </div>
@@ -214,13 +219,13 @@ export default function DoctorProfile() {
                 Take the first step towards pain-free movement today. Our specialist is ready to help you recover.
               </p>
             </div>
-            <Link 
-              href="/contact" 
+            <button 
+              onClick={() => openBookingModal({ doctor: doctor.name, consultType: "Offline" })}
               className="relative z-10 px-12 py-6 bg-medical-teal text-white rounded-[2rem] font-bold text-lg uppercase tracking-widest hover:bg-medical-blue hover:shadow-2xl hover:shadow-medical-blue/20 transition-all flex items-center gap-4 group"
             >
               Start Your Plan
               <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <div className="absolute bottom-0 right-0 opacity-5">
               <Activity size={300} />
             </div>

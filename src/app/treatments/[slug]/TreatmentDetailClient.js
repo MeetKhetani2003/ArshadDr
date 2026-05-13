@@ -10,6 +10,7 @@ import {
   Home, ArrowUpRight
 } from "lucide-react";
 import Image from "next/image";
+import { useBooking } from "@/components/BookingContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ const treatmentIcons = {
 
 export default function TreatmentDetailClient({ treatment, related }) {
   const Icon = treatmentIcons[treatment.slug] || Activity;
+  const { openBookingModal } = useBooking();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -180,9 +182,12 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 <p className="text-slate-500 text-base mb-6">
                   Our clinicians are trained in multiple manual therapy schools, ensuring a multi-dimensional approach to your recovery.
                 </p>
-                <a href="/contact" className="btn-modern btn-primary inline-flex py-3 px-8 text-sm">
+                <button 
+                  onClick={() => openBookingModal({ treatment: treatment.title })}
+                  className="btn-modern btn-primary inline-flex py-3 px-8 text-sm"
+                >
                   Consult a Specialist
-                </a>
+                </button>
               </div>
             </div>
 
@@ -267,9 +272,12 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 <p className="text-slate-300 mb-6 font-normal text-sm relative z-10">
                   Book a consultation with our expert team today for a personalized assessment.
                 </p>
-                <a href="tel:6378062237" className="btn-modern bg-white text-medical-blue hover:bg-slate-50 w-full relative z-10 font-medium">
-                  <Phone size={16} /> 6378062237
-                </a>
+                <button 
+                  onClick={() => openBookingModal({ treatment: treatment.title })}
+                  className="btn-modern bg-white text-medical-blue hover:bg-slate-50 w-full relative z-10 font-bold py-4 rounded-xl flex items-center justify-center gap-2"
+                >
+                  <Phone size={16} /> Book Appointment
+                </button>
               </div>
             </div>
 
