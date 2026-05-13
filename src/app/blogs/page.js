@@ -56,39 +56,50 @@ export default function BlogsPage() {
   };
 
   return (
-    <main ref={containerRef} className="bg-medical-surface min-h-screen pt-40 selection:bg-medical-teal selection:text-white">
+    <main ref={containerRef} className="bg-medical-surface min-h-screen selection:bg-medical-teal selection:text-white">
       {/* ===== HEADER ===== */}
-      <section className="section-padding bg-mesh !pt-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
-        <motion.div 
-          className="max-site relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={heroVariants}
-        >
-          <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-slate-100 mb-8">
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-medical-blue">Clinical Journal</span>
-            </div>
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+        {/* Background Image with Cinematic Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/journal_hero.png"
+            alt="Clinical Journal"
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/95 via-medical-blue/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent z-10" />
+        </div>
+
+        <div className="max-site relative z-20 pt-20">
+          <motion.div 
+            className="max-site relative z-10"
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-sm border border-white/10 mb-8">
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-medical-teal">Clinical Journal</span>
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tight leading-[1.1]">
+                Insights & <br /> 
+                <span className="text-medical-teal relative inline-block">
+                  Guides.
+                </span>
+              </h1>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <p className="text-slate-200 text-lg md:text-xl max-w-2xl mt-8 leading-relaxed font-normal opacity-90">
+                Explore the latest evidence-based physiotherapy research, recovery protocols, 
+                and expert clinical advice from our specialists.
+              </p>
+            </motion.div>
           </motion.div>
-          <motion.div variants={itemVariants}>
-            <h1 className="text-display text-5xl md:text-7xl lg:text-[5.5rem] mt-2">
-              Insights & <br /> 
-              <span className="text-medical-teal relative inline-block">
-                Guides.
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-medical-teal/30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
-                </svg>
-              </span>
-            </h1>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <p className="text-slate-500 text-lg md:text-xl max-w-2xl mt-8 leading-relaxed font-normal">
-              Explore the latest evidence-based physiotherapy research, recovery protocols, 
-              and expert clinical advice from our specialists.
-            </p>
-          </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ===== BLOG LIST ===== */}

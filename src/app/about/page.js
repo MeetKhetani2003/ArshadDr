@@ -6,8 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { teamMembers, locations } from "@/data/team";
 import { motion } from "framer-motion";
-import { 
-  GraduationCap, Award, Stethoscope, 
+import {
+  GraduationCap, Award, Stethoscope,
   ShieldCheck, Users, MapPin, Target,
   HeartPulse, Activity, Zap
 } from "lucide-react";
@@ -37,8 +37,8 @@ export default function AboutPage() {
 
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.1 }
     }
@@ -52,44 +52,67 @@ export default function AboutPage() {
   const drArshad = teamMembers.find(m => m.name === "Dr. Arshad Solanki");
 
   return (
-    <main ref={containerRef} className="bg-white pt-32 selection:bg-medical-teal selection:text-white">
+    <main ref={containerRef} className="bg-white selection:bg-medical-teal selection:text-white">
       {/* ===== HEADER ===== */}
-      <section className="section-padding bg-mesh !pt-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
-        <motion.div 
-          className="max-site relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={heroVariants}
-        >
-          <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-slate-100 mb-8">
-              <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-medical-blue">The Clinical Journey</span>
-            </div>
+      <section className="relative min-h-[65vh] flex items-center overflow-hidden">
+        {/* Background Image with Cinematic Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/about_hero.png"
+            alt="About Healing Hands"
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/95 via-medical-blue/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent z-10" />
+        </div>
+
+        <div className="max-site relative z-20 pt-20">
+          <motion.div
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-3xl"
+          >
+            <motion.span
+              variants={itemVariants}
+              className="text-sm font-bold uppercase tracking-[0.4em] text-medical-teal block mb-6"
+            >
+              Excellence in Motion
+            </motion.span>
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
+            >
+              Restoring Life <br />
+              Through Precision.
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="text-slate-200 text-lg md:text-xl max-w-2xl leading-relaxed font-normal opacity-90"
+            >
+              At **Healing Hands Physiotherapy**, we combine advanced evidence-based
+              rehabilitation with compassionate care to restore function and improve
+              your quality of life.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-12">
+              <div className="flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                <ShieldCheck className="text-medical-teal" size={20} />
+                <span className="text-xs font-bold text-white uppercase tracking-widest">ISO Certified</span>
+              </div>
+              <div className="flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                <Award className="text-medical-teal" size={20} />
+                <span className="text-xs font-bold text-white uppercase tracking-widest">Clinical Expert</span>
+              </div>
+            </motion.div>
           </motion.div>
-          <motion.div variants={itemVariants}>
-            <h1 className="text-display text-5xl md:text-7xl lg:text-[5.5rem] mt-2 font-light">
-              Authority & <br /> 
-              <span className="text-medical-teal relative inline-block">
-                Excellence.
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-medical-teal/30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
-                </svg>
-              </span>
-            </h1>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <p className="text-slate-500 text-lg md:text-xl max-w-2xl mt-10 leading-relaxed font-normal">
-              At **Healing Hands Physiotherapy / MyoMotion Physiotherapy Center**, we are committed to 
-              delivering advanced, patient-centered rehabilitation services designed to restore function, 
-              reduce pain, and improve quality of life.
-            </p>
-          </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ===== WHO WE ARE & SPECIALIZATION ===== */}
-      <section className="section-padding bg-white relative">
+      {/* <section className="section-padding bg-white relative">
         <div className="max-site">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
             <div className="will-animate scroll-reveal reveal">
@@ -132,25 +155,25 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ===== FOUNDER JOURNEY ===== */}
       <section className="section-padding bg-medical-surface relative">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
         <div className="max-site grid lg:grid-cols-12 gap-16 items-start relative z-10">
-          
-          <div className="lg:col-span-5 will-animate scroll-reveal reveal sticky top-32">
+
+          <div className="lg:col-span-5 will-animate scroll-reveal reveal lg:sticky lg:top-32 mb-12 lg:mb-0">
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white">
-              <Image 
-                src="/doctor/doc1.jpg" 
-                alt="Dr. Arshad Solanki" 
-                fill 
-                className="object-cover" 
+              <Image
+                src="/doctor/doc1.jpg"
+                alt="Dr. Arshad Solanki"
+                fill
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/30 via-transparent to-transparent pointer-events-none" />
             </div>
-            <div className="absolute -bottom-6 -right-6 lg:-right-8 glass-panel p-6 rounded-xl hidden md:block">
+            <Link href="/doctor/arshad-solanki" className="absolute -bottom-6 -right-6 lg:-right-8 glass-panel p-6 rounded-xl hidden md:block hover:scale-105 transition-transform cursor-pointer shadow-xl border border-white/20">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-medical-teal rounded-full flex items-center justify-center text-white shadow-lg">
                   <Award size={24} />
@@ -160,18 +183,18 @@ export default function AboutPage() {
                   <p className="text-[0.65rem] uppercase tracking-widest text-slate-500 font-medium">Founder & Chief PT</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
-          
+
           <div className="lg:col-span-7 lg:pl-10">
             <h2 className="text-4xl md:text-5xl mb-8 will-animate scroll-reveal reveal text-medical-blue font-light">
               The Founder's Story.
             </h2>
-            
+
             <div className="space-y-8 text-slate-500 leading-relaxed font-normal text-lg will-animate scroll-reveal reveal">
               <p>
-                Dr. Arshad Solanki began his journey in physiotherapy with a clear vision—to bring advanced, 
-                evidence-based rehabilitation services to patients with a focus on long-term recovery, 
+                Dr. Arshad Solanki began his journey in physiotherapy with a clear vision—to bring advanced,
+                evidence-based rehabilitation services to patients with a focus on long-term recovery,
                 not just temporary relief.
               </p>
 
@@ -182,7 +205,7 @@ export default function AboutPage() {
                     Early Foundation
                   </h4>
                   <p className="text-sm">
-                    Completed BPT in 2013 followed by clinical exposure at Apollo Hospital, Gandhinagar, 
+                    Completed BPT in 2013 followed by clinical exposure at Apollo Hospital, Gandhinagar,
                     training under renowned physiotherapist Dr. K.M. Annamalai.
                   </p>
                 </div>
@@ -201,8 +224,8 @@ export default function AboutPage() {
               </div>
 
               <p>
-                Dr. Arshad started his professional practice at **Yuvraj Shivraj Singh Neuro Rehab Center**, Jodhpur, 
-                a trust-run institution managed by the royal family of Jodhpur, where he gained extensive 
+                Dr. Arshad started his professional practice at **Yuvraj Shivraj Singh Neuro Rehab Center**, Jodhpur,
+                a trust-run institution managed by the royal family of Jodhpur, where he gained extensive
                 experience in neurological rehabilitation.
               </p>
 
@@ -212,14 +235,14 @@ export default function AboutPage() {
                   Current Association
                 </h4>
                 <p className="text-sm">
-                  Currently associated with **Vasundhara Hospital, Jodhpur**, where he leads a 
-                  state-of-the-art physiotherapy department equipped with advanced technologies 
+                  Currently associated with **Vasundhara Hospital, Jodhpur**, where he leads a
+                  state-of-the-art physiotherapy department equipped with advanced technologies
                   and modern rehabilitation protocols.
                 </p>
               </div>
 
               <p className="text-medical-blue italic font-light text-xl">
-                "His vision is to build one of the most trusted physiotherapy networks in Rajasthan, 
+                "His vision is to build one of the most trusted physiotherapy networks in Rajasthan,
                 combining clinical excellence with compassionate care."
               </p>
             </div>
@@ -230,7 +253,7 @@ export default function AboutPage() {
                 Commitment to Excellence
               </h3>
               <p className="text-slate-500 text-base leading-relaxed font-normal">
-                Our treatment protocols are built on verified clinical outcomes and global standards 
+                Our treatment protocols are built on verified clinical outcomes and global standards
                 set by leading institutions. We believe in measurable recovery.
               </p>
             </div>
@@ -241,29 +264,29 @@ export default function AboutPage() {
       {/* ===== TEAM ===== */}
       <section className="section-padding bg-medical-blue text-white py-24 rounded-t-2xl relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-800 via-medical-blue to-medical-blue" />
-        
+
         <div className="max-site relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 will-animate scroll-reveal reveal gap-6">
             <div className="max-w-2xl">
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Our Team</span>
               <h2 className="text-4xl md:text-5xl mt-4 text-white font-light">Clinical Experts.</h2>
               <p className="text-slate-300 mt-6 font-normal leading-relaxed">
-                Our highly qualified and experienced physiotherapy team includes specialists trained in modern 
+                Our highly qualified and experienced physiotherapy team includes specialists trained in modern
                 techniques and evidence-based practice protocols.
               </p>
             </div>
             <Users size={48} className="text-white/5 hidden md:block" />
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {teamMembers.map((m, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal group">
+              <Link key={i} href={`/doctor/${m.slug}`} className="will-animate scroll-reveal reveal group">
                 <div className="aspect-[3/4] relative rounded-xl overflow-hidden mb-4 bg-slate-800">
-                  <Image 
-                    src={m.image} 
-                    alt={m.name} 
-                    fill 
-                    className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                  <Image
+                    src={m.image}
+                    alt={m.name}
+                    fill
+                    className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     sizes="(max-width: 768px) 50vw, 16vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-medical-blue via-transparent to-transparent opacity-80" />
@@ -272,7 +295,7 @@ export default function AboutPage() {
                     <p className="text-medical-teal font-medium uppercase tracking-[0.15em] text-[0.55rem]">{m.role}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -292,8 +315,8 @@ export default function AboutPage() {
             <div className="flex flex-col items-center md:items-end gap-6">
               <div className="flex flex-wrap justify-center md:justify-end gap-3 max-w-lg">
                 {locations.map((loc, i) => (
-                  <Link 
-                    key={i} 
+                  <Link
+                    key={i}
                     href={`/locations/${loc.slug}`}
                     className="px-5 py-2.5 bg-white border border-slate-100 rounded-lg text-[0.65rem] font-medium uppercase tracking-widest text-medical-blue hover:border-medical-teal hover:text-medical-teal shadow-sm transition-all"
                   >

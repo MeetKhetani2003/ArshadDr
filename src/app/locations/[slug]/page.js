@@ -22,33 +22,45 @@ export default function LocationPage({ params }) {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-40 pb-24 overflow-hidden bg-medical-surface">
-        <div className="absolute inset-0 bg-mesh opacity-40" />
-        <div className="max-site relative z-10 px-6">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/locations_hero.png"
+            alt="Locations Background"
+            fill
+            className="object-cover scale-110"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue via-medical-blue/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent z-10" />
+        </div>
+
+        <div className="max-site relative z-20 px-6 pt-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100 mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-sm border border-white/10 mb-8">
                 <div className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-medical-blue">Pincode: {location.pincode}</span>
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Pincode: {location.pincode}</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-light text-medical-blue mb-8 leading-[1.1] tracking-tight">
-                Best Physiotherapy in <br />
-                <span className="text-medical-teal">{location.name}</span>
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+                Best Physiotherapy <br />
+                in <span className="text-medical-teal">{location.name}</span>
               </h1>
-              <p className="text-slate-500 text-lg mb-10 leading-relaxed font-normal max-w-xl">
+              <p className="text-slate-200 text-lg mb-10 leading-relaxed font-normal max-w-xl opacity-90">
                 {location.description} Located near {location.landmarks.join(" and ")}, our specialized center provides 
-                advanced evidence-based care for residents in {location.areas.slice(0, 2).join(", ")} and surrounding areas.
+                advanced evidence-based care for residents in {location.areas.slice(0, 2).join(", ")}.
               </p>
               
               <div className="flex flex-wrap items-center gap-4">
-                <Link href="/contact" className="btn-modern btn-primary hover-glow">
-                  Book Assessment <ArrowRight size={18} />
+                <Link href="/contact" className="px-8 py-4 bg-medical-teal text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-medical-blue transition-all flex items-center gap-3 group">
+                  Book Assessment <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="tel:6378062237" className="btn-modern btn-outline">
+                <a href="tel:6378062237" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all flex items-center gap-3">
                   Call Clinic <Phone size={18} />
                 </a>
               </div>
@@ -60,7 +72,7 @@ export default function LocationPage({ params }) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl relative z-10">
+              <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl relative z-10 border-4 border-white/20">
                 <Image 
                   src="/doctor/doc2.jpg" 
                   alt={location.name} 
@@ -68,13 +80,13 @@ export default function LocationPage({ params }) {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 glass-panel p-6 rounded-2xl z-20 flex items-center gap-4 animate-float">
-                <div className="w-12 h-12 rounded-full bg-yellow-400/10 flex items-center justify-center text-yellow-600">
+              <div className="absolute -bottom-6 -right-6 glass-panel p-6 rounded-2xl z-20 flex items-center gap-4 animate-float border border-white/20 shadow-2xl">
+                <div className="w-12 h-12 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-400">
                   <Star size={24} fill="currentColor" />
                 </div>
                 <div>
-                  <p className="text-xl font-light text-medical-blue leading-none mb-1">4.9/5.0</p>
-                  <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">Google Rating</p>
+                  <p className="text-xl font-bold text-medical-blue leading-none mb-1">4.9/5.0</p>
+                  <p className="text-[0.6rem] uppercase tracking-widest text-slate-500 font-medium">Google Rating</p>
                 </div>
               </div>
             </motion.div>

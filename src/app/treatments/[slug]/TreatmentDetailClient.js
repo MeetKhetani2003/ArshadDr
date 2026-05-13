@@ -9,6 +9,7 @@ import {
   Activity, ArrowRight, Phone, CheckCircle2, ChevronRight,
   Home, ArrowUpRight
 } from "lucide-react";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,8 +47,8 @@ export default function TreatmentDetailClient({ treatment, related }) {
 
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.1 }
     }
@@ -59,75 +60,161 @@ export default function TreatmentDetailClient({ treatment, related }) {
   };
 
   return (
-    <main ref={containerRef} className="bg-medical-surface min-h-screen pt-40 selection:bg-medical-teal selection:text-white">
-      
-      {/* ===== HERO ===== */}
-      <section className="section-padding bg-mesh !pt-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
-        
-        <motion.div 
-          className="max-site relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={heroVariants}
-        >
-          {/* Breadcrumbs */}
-          <motion.div variants={itemVariants} className="flex items-center flex-wrap gap-2 mb-10 text-[0.65rem] font-medium uppercase tracking-widest text-slate-400">
-            <Link href="/" className="hover:text-medical-teal flex items-center gap-1.5 transition-colors">
-              <Home size={12} /> Home
-            </Link>
-            <ChevronRight size={12} />
-            <Link href="/treatments" className="hover:text-medical-teal transition-colors">Treatments</Link>
-            <ChevronRight size={12} />
-            <span className="text-medical-teal">{treatment.title}</span>
+    <main ref={containerRef} className="bg-white min-h-screen selection:bg-medical-teal selection:text-white">
+
+      {/* ===== CINEMATIC HERO ===== */}
+      <section className="relative h-[60vh] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={treatment.image || "/treatments_hero_v2.png"}
+            alt={treatment.title}
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/95 via-medical-blue/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent z-10" />
+        </div>
+
+        <div className="max-site relative z-20">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
+          >
+            {/* Breadcrumbs */}
+            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-8 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/60">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={10} />
+              <Link href="/treatments" className="hover:text-white transition-colors">Treatments</Link>
+              <ChevronRight size={10} />
+              <span className="text-medical-teal">{treatment.title}</span>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex items-center gap-6 mb-8">
+              <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-medical-teal shadow-2xl">
+                <Icon size={32} />
+              </div>
+              <div className="px-4 py-1.5 rounded-full bg-medical-teal/20 border border-medical-teal/30 backdrop-blur-sm">
+                <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-medical-teal">Clinical Protocol</span>
+              </div>
+            </motion.div>
+
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-bold text-white tracking-tight leading-[1.05] max-w-4xl">
+              {treatment.title}
+            </motion.h1>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-8">
-              <motion.div variants={itemVariants} className="flex items-center gap-6 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-white shadow-xl shadow-medical-blue/5 flex items-center justify-center text-medical-teal border border-slate-100">
-                  <Icon size={32} />
-                </div>
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full shadow-sm border border-slate-100">
-                  <div className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                  <span className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-medical-blue">Clinical Protocol</span>
-                </div>
-              </motion.div>
+      {/* ===== SECTION 1: ABOUT (Left Image, Right Content) ===== */}
+      <section className="py-16 bg-white">
+        <div className="max-site">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl"
+            >
+              <Image
+                src={treatment.image || "/clinic.png"}
+                alt="Treatment Context"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
+            </motion.div>
 
-              <motion.div variants={itemVariants}>
-                <h1 className="text-display text-5xl md:text-7xl mb-8 leading-[1.05] font-light">
-                  {treatment.title.split(' ').map((word, i, arr) => (
-                    i === arr.length - 1 ? (
-                      <span key={i} className="text-medical-teal relative inline-block font-light">
-                        {word}
-                        <svg className="absolute -bottom-2 left-0 w-full h-3 text-medical-teal/30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                          <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="transparent"/>
-                        </svg>
-                      </span>
-                    ) : (
-                      <span key={i}>{word} </span>
-                    )
-                  ))}
-                </h1>
-              </motion.div>
-            </div>
-            
-            <div className="lg:col-span-4 pb-4">
-              <motion.div variants={itemVariants}>
+            {/* Content Side */}
+            <div className="space-y-6">
+              <div className="will-animate scroll-reveal reveal">
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-medical-teal block mb-3">The Approach</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-medical-blue mb-4 tracking-tight">Understanding {treatment.title}.</h2>
                 <p className="text-slate-500 text-lg leading-relaxed font-normal">
                   {treatment.fullDescription}
                 </p>
-              </motion.div>
+              </div>
+
+              <div className="will-animate scroll-reveal reveal">
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-slate-50 border border-slate-100">
+                  <div className="w-8 h-8 rounded-lg bg-medical-teal/10 flex items-center justify-center text-medical-teal shrink-0">
+                    <CheckCircle2 size={16} />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-medical-blue mb-1">Evidence-Based Care</h4>
+                    <p className="text-xs text-slate-500 leading-relaxed">We utilize globally recognized protocols and the latest clinical research for every patient.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* ===== CONTENT GRID ===== */}
-      <section className="section-padding !pt-0 relative z-10 pb-32">
+      {/* ===== SECTION 2: PROTOCOL (Left Content, Right Image) ===== */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-site">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content Side */}
+            <div className="order-2 lg:order-1 space-y-10">
+              <div className="will-animate scroll-reveal reveal">
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-medical-blue block mb-3">Clinical Protocol</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-medical-blue mb-6 tracking-tight">Our Specialized <br /> Treatment Matrix.</h2>
+
+                <div className="grid gap-4">
+                  {treatment.techniques.slice(0, 4).map((tech, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm group hover:border-medical-teal transition-all">
+                      <div className="w-9 h-9 rounded-lg bg-medical-blue/5 flex items-center justify-center text-medical-blue group-hover:bg-medical-teal group-hover:text-white transition-all">
+                        <Zap size={18} />
+                      </div>
+                      <span className="text-medical-blue font-bold tracking-tight text-sm">{tech}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="will-animate scroll-reveal reveal">
+                <p className="text-slate-500 text-base mb-6">
+                  Our clinicians are trained in multiple manual therapy schools, ensuring a multi-dimensional approach to your recovery.
+                </p>
+                <a href="/contact" className="btn-modern btn-primary inline-flex py-3 px-8 text-sm">
+                  Consult a Specialist
+                </a>
+              </div>
+            </div>
+
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl"
+            >
+              <Image
+                src="/treatment_process_v2.png"
+                alt="Clinical Process"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
+              {/* Floating Stat Badge */}
+              <div className="absolute bottom-6 right-6 p-5 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 max-w-[160px]">
+                <p className="text-2xl font-bold text-medical-blue mb-0.5">10k+</p>
+                <p className="text-[0.55rem] font-bold text-slate-500 uppercase tracking-widest leading-tight">Recoveries handled in this domain</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== RESTORED CONTENT GRID (Conditions & Techniques) ===== */}
+      <section className="py-20 bg-white relative z-10">
         <div className="max-site">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            
+
             {/* Conditions Box */}
             <div className="will-animate scroll-reveal reveal">
               <div className="flex items-center gap-4 mb-8">
@@ -136,7 +223,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 </div>
                 <h2 className="text-3xl text-medical-blue font-light">Conditions We Treat</h2>
               </div>
-              
+
               <div className="space-y-4">
                 {treatment.conditions.map((condition, i) => (
                   <div key={i} className="modern-card !p-5 flex items-center gap-5 border-none shadow-md group transition-all duration-300">
@@ -159,7 +246,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 </div>
                 <h2 className="text-3xl text-medical-blue font-light">Treatment Techniques</h2>
               </div>
-              
+
               <div className="space-y-4">
                 {treatment.techniques.map((technique, i) => (
                   <div key={i} className="modern-card !p-5 flex items-center gap-5 border-none shadow-md group">
@@ -192,44 +279,69 @@ export default function TreatmentDetailClient({ treatment, related }) {
 
       {/* ===== RELATED TREATMENTS ===== */}
       {related.length > 0 && (
-        <section className="section-padding bg-white relative">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+        <section className="section-padding bg-slate-50 border-t border-slate-100">
           <div className="max-site">
             <div className="will-animate scroll-reveal reveal flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
               <div>
-                <span className="text-[0.65rem] font-medium uppercase tracking-widest text-medical-teal">Comprehensive Care</span>
-                <h2 className="text-4xl mt-2 text-medical-blue font-light">Other Treatments.</h2>
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest text-medical-teal">Directory</span>
+                <h2 className="text-4xl font-bold text-medical-blue mt-2 tracking-tight">Other Specialties.</h2>
               </div>
-              <Link href="/treatments" className="btn-modern btn-outline font-medium">
-                View All Directory
+              <Link href="/treatments" className="text-medical-teal font-bold uppercase tracking-widest text-xs hover:underline">
+                View All Treatments
               </Link>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {related.map((t) => {
                 const RelIcon = treatmentIcons[t.slug] || Activity;
                 return (
-                  <Link 
+                  <motion.div
                     key={t.slug}
-                    href={`/treatments/${t.slug}`}
-                    className="will-animate scroll-reveal reveal modern-card group flex flex-col h-full bg-slate-50 border-none shadow-sm"
+                    whileHover={{ y: -10 }}
+                    className="will-animate scroll-reveal reveal"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-medical-blue group-hover:scale-110 group-hover:border-medical-teal group-hover:text-medical-teal transition-all duration-500 mb-6 shadow-sm">
-                      <RelIcon size={24} />
-                    </div>
-                    <h3 className="text-xl font-medium text-medical-blue group-hover:text-medical-teal transition-colors leading-tight mb-3">
-                      {t.title}
-                    </h3>
-                    <p className="text-slate-500 font-normal text-sm leading-relaxed mb-6 line-clamp-2">
-                      {t.shortDesc}
-                    </p>
-                    <div className="mt-auto flex items-center justify-between border-t border-slate-200 pt-5">
-                      <span className="text-medical-teal text-[0.65rem] font-medium uppercase tracking-widest">
-                        Explore Protocol
-                      </span>
-                      <ArrowUpRight size={16} className="text-slate-300 group-hover:text-medical-teal" />
-                    </div>
-                  </Link>
+                    <Link
+                      href={`/treatments/${t.slug}`}
+                      className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
+                    >
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={t.image || "/placeholder.png"}
+                          alt={t.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+                        <div className="absolute top-4 right-4 z-20">
+                          <div className="w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
+                            <RelIcon size={20} />
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-4 left-6 z-20">
+                          <h3 className="text-lg font-bold tracking-tight text-white group-hover:text-medical-teal transition-colors leading-tight">
+                            {t.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div className="p-6 flex-1 flex flex-col">
+                        <p className="text-slate-500 font-normal text-xs leading-relaxed mb-6 line-clamp-2">
+                          {t.shortDesc || "Explore our comprehensive clinical approach to this specialized area of physiotherapy."}
+                        </p>
+
+                        <div className="flex items-center justify-between mt-auto pt-5 border-t border-slate-50">
+                          <span className="text-medical-teal font-bold uppercase tracking-[0.15em] text-[0.55rem] group-hover:tracking-[0.25em] transition-all duration-500">
+                            Explore Protocol
+                          </span>
+                          <div className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-medical-teal group-hover:text-medical-teal group-hover:bg-medical-teal/5 transition-all">
+                            <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>

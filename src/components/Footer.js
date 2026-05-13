@@ -3,54 +3,41 @@ import Link from "next/link";
 import Image from "next/image";
 import { treatments } from "@/data/treatments";
 import { locations } from "@/data/team";
-import { 
-  Phone, MapPin, ArrowRight, Heart, Mail, 
-  Clock, ShieldCheck, Star, Award 
+import {
+  Phone, MapPin, ArrowRight, Heart, Mail,
+  Clock, ShieldCheck, Star, Award
 } from "lucide-react";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-medical-blue text-slate-400 pt-32 pb-12 relative overflow-hidden">
+    <footer className="bg-medical-blue text-slate-400 pt-24 pb-12 relative overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      
+
       <div className="container-wide relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
-          
-          {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-10">
-            <Link href="/">
-              <div className="text-white font-light text-2xl tracking-tight leading-tight flex items-center gap-3">
-                <div className="w-10 h-10 bg-medical-teal rounded-xl flex items-center justify-center text-white">
-                  <Heart size={24} fill="currentColor" />
-                </div>
-                <div>
-                  Healing Hands <br />
-                  <span className="text-medical-teal font-medium">Physiotherapy</span>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+
+          {/* Brand Column (4 cols) */}
+          <div className="lg:col-span-4 space-y-1">
+            <Link href="/" className="">
+              <div className="">
+                <Image
+                  src="/Logo.png"
+                  alt="Healing Hands Logo"
+                  height={190}
+                  width={190}
+                  className="object-cover"
+                />
               </div>
             </Link>
             <p className="text-sm leading-relaxed max-w-sm font-normal text-slate-400/80">
-              Healing Hands / MyoMotion is Jodhpur's leading physiotherapy network, dedicated to 
-              providing world-class, evidence-based rehabilitation across multiple specialized 
-              centers since 2013.
+              Healing Hands / MyoMotion is Jodhpur's premier physiotherapy network,
+              pioneering advanced, evidence-based rehabilitation and personalized
+              patient care pathways since 2013.
             </p>
-            
-            {/* Trust Badges in Footer */}
-            <div className="flex items-center gap-6 pt-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="text-medical-teal" size={20} />
-                <span className="text-[0.6rem] uppercase tracking-widest text-white/60 font-medium">ISO 9001:2015</span>
-              </div>
-              <div className="w-px h-4 bg-slate-800" />
-              <div className="flex items-center gap-2">
-                <Star className="text-yellow-500" size={20} fill="currentColor" />
-                <span className="text-[0.6rem] uppercase tracking-widest text-white/60 font-medium">4.9 Google Rating</span>
-              </div>
-            </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 pt-4">
               {[
                 { Icon: FaFacebookF, href: "#" },
                 { Icon: FaInstagram, href: "#" },
@@ -60,18 +47,18 @@ export default function Footer() {
                 <a
                   key={i}
                   href={href}
-                  className="w-11 h-11 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-medical-teal hover:text-white hover:-translate-y-1 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-medical-teal hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-lg"
                 >
-                  <Icon size={18} />
+                  <Icon size={20} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-medium mb-10 tracking-wider uppercase text-[0.65rem]">Platform</h4>
-            <ul className="space-y-5">
+            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Platform</h4>
+            <ul className="space-y-4">
               {[
                 { href: "/", label: "Home" },
                 { href: "/treatments", label: "Treatments" },
@@ -82,9 +69,9 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-normal"
+                    className="text-xs hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
                   >
-                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0 text-medical-teal" />
+                    <ArrowRight size={10} className="text-medical-teal opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
                     {link.label}
                   </Link>
                 </li>
@@ -92,17 +79,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Locations Links */}
+          {/* Locations Links (3 cols) */}
           <div className="lg:col-span-3">
-            <h4 className="text-white font-medium mb-10 tracking-wider uppercase text-[0.65rem]">Clinical Hubs</h4>
-            <ul className="space-y-5">
+            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Clinical Hubs</h4>
+            <ul className="space-y-4">
               {locations.map((loc) => (
                 <li key={loc.slug}>
                   <Link
                     href={`/locations/${loc.slug}`}
-                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-normal"
+                    className="text-xs hover:text-white flex items-center gap-2 group transition-colors font-medium tracking-tight"
                   >
-                    <MapPin size={12} className="text-slate-600 group-hover:text-medical-teal transition-colors" />
+                    <MapPin size={10} className="text-slate-600 group-hover:text-medical-teal transition-colors" />
                     {loc.name}
                   </Link>
                 </li>
@@ -110,84 +97,86 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Modes of Care */}
-          <div className="lg:col-span-3">
-            <h4 className="text-white font-medium mb-10 tracking-wider uppercase text-[0.65rem]">Care Delivery</h4>
-            <ul className="space-y-5">
-              {[
-                { href: "/treatments", label: "In-Clinic Care" },
-                { href: "/services/home-visit", label: "Home Rehabilitation" },
-                { href: "/services/online-consultation", label: "Online Consultation" },
-              ].map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm hover:text-white flex items-center gap-2 group transition-colors font-normal"
-                  >
-                    <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0 text-medical-teal" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Clinical Trust & Empty Corner Fix (3 cols) */}
+          <div className="lg:col-span-3 space-y-10">
+            <div>
+              <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-[0.6rem]">Quality & Trust</h4>
+              <div className="grid gap-4">
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800/50 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-medical-teal/10 flex items-center justify-center text-medical-teal shadow-inner">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white text-[0.65rem] font-bold uppercase tracking-widest leading-none mb-1">Verified Clinical Care</p>
+                    <p className="text-[0.6rem] text-slate-500 font-medium">ISO 9001:2015 Certified</p>
+                  </div>
+                </div>
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800/50 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500">
+                    <Star size={20} fill="currentColor" />
+                  </div>
+                  <div>
+                    <p className="text-white text-[0.65rem] font-bold uppercase tracking-widest leading-none mb-1">Patient Approved</p>
+                    <p className="text-[0.6rem] text-slate-500 font-medium">4.9/5 Google Rating</p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* Contact */}
-          <div className="lg:col-span-3">
-            <h4 className="text-white font-medium mb-10 tracking-wider uppercase text-[0.65rem]">Direct Support</h4>
-            <div className="space-y-8">
-              <a href="tel:6378062237" className="group block">
-                <p className="text-[0.6rem] uppercase tracking-widest text-slate-500 mb-2 font-medium">Dr. Arshad Solanki</p>
-                <div className="flex items-center gap-3 text-lg text-white font-light group-hover:text-medical-teal transition-colors">
-                  <Phone size={18} className="text-medical-teal" />
-                  6378-062237
+            {/* Health Scheme Badges */}
+            <div className="pt-2">
+              <p className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-slate-600 mb-4">Official Health Partner</p>
+              <div className="flex flex-wrap gap-3 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                <div className="px-3 py-1.5 bg-white rounded-md text-[0.5rem] font-black text-medical-blue flex items-center gap-1.5 shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-600" /> RGHS
                 </div>
-              </a>
-              <a href="tel:9571052222" className="group block">
-                <p className="text-[0.6rem] uppercase tracking-widest text-slate-500 mb-2 font-medium">General Enquiry</p>
-                <div className="flex items-center gap-3 text-lg text-white font-light group-hover:text-medical-teal transition-colors">
-                  <Phone size={18} className="text-medical-teal" />
-                  9571052222
+                <div className="px-3 py-1.5 bg-white rounded-md text-[0.5rem] font-black text-medical-blue flex items-center gap-1.5 shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600" /> CGHS
                 </div>
-              </a>
-              <div className="flex items-center gap-3 text-sm font-normal">
-                <Clock size={18} className="text-slate-600" />
-                <span>Mon - Sat: 9 AM - 8 PM</span>
+                <div className="px-3 py-1.5 bg-white rounded-md text-[0.5rem] font-black text-medical-blue flex items-center gap-1.5 shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-600" /> ECHS
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* SEO Areas We Serve Grid */}
-        <div className="pt-16 pb-12 border-t border-slate-800/60">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-10">
-            <h4 className="text-white font-medium tracking-wider uppercase text-[0.65rem]">Areas We Serve in Jodhpur</h4>
-            <Link href="/contact" className="text-[0.6rem] uppercase tracking-[0.2em] text-medical-teal hover:text-white transition-colors">Book Assessment Near You</Link>
+        <div className="pt-12 pb-10 border-t border-slate-800/60">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+            <h4 className="text-white font-bold tracking-wider uppercase text-[0.6rem]">Serving Greater Jodhpur</h4>
+            <Link href="/contact" className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-medical-teal hover:text-white transition-all">
+              Find a Clinic Near You →
+            </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-4 gap-x-8">
-            {locations.flatMap(l => l.areas).concat(["Ratanada", "Sardarpura", "Shastri Nagar", "Kamla Nehru Nagar"]).map((area, i) => (
-              <span key={i} className="text-[0.7rem] text-slate-400 hover:text-white cursor-default transition-colors font-normal whitespace-nowrap flex items-center gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-3 gap-x-8">
+            {locations.flatMap(l => l.areas).concat(["Ratanada", "Sardarpura", "Shastri Nagar", "Kamla Nehru Nagar"]).slice(0, 12).map((area, i) => (
+              <span key={i} className="text-[0.65rem] text-slate-500 hover:text-medical-teal cursor-default transition-colors font-medium flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-slate-800" />
-                Physiotherapy in {area}
+                {area}
               </span>
             ))}
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="pt-10 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-[0.7rem] font-normal">
-              © {new Date().getFullYear()} Healing Hands / MyoMotion Physiotherapy.
+            <p className="text-[0.65rem] font-medium text-slate-500">
+              © {new Date().getFullYear()} Healing Hands Physiotherapy. All Rights Reserved.
             </p>
-            <div className="flex items-center gap-6 text-[0.7rem] font-medium uppercase tracking-widest">
+            <div className="flex items-center gap-6 text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
               <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
             </div>
           </div>
-          <p className="flex items-center gap-2 text-[0.7rem] font-normal">
-            Clinically Excellence in <Heart size={14} className="text-medical-teal" fill="currentColor" /> Jodhpur, Rajasthan
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="text-[0.65rem] font-medium text-slate-500">Clinical Excellence in</p>
+            <div className="flex items-center gap-2 px-3 py-1 bg-slate-900 border border-slate-800 rounded-full">
+              <Heart size={10} className="text-medical-teal" fill="currentColor" />
+              <span className="text-[0.6rem] font-bold uppercase tracking-widest text-white">Jodhpur, RJ</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -4,7 +4,7 @@ export const treatments = [
     title: "Orthopedic Physiotherapy",
     icon: "🦴",
     shortDesc: "Focused on musculoskeletal disorders involving bones, joints, ligaments, and muscles.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#1a2e5a",
     conditions: [
       "Cervical & Lumbar Spondylosis",
@@ -31,7 +31,7 @@ export const treatments = [
     title: "Neurological Physiotherapy",
     icon: "🧠",
     shortDesc: "Specialized rehab for patients with neurological impairments.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#0d9488",
     conditions: [
       "Stroke (Paralysis/Hemiplegia)",
@@ -56,7 +56,7 @@ export const treatments = [
     title: "Cardio-Pulmonary Physiotherapy",
     icon: "❤️",
     shortDesc: "Improving heart and lung function, endurance, and recovery.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#e8732a",
     conditions: [
       "Post Cardiac Surgery Rehab (CABG, Angioplasty)",
@@ -78,7 +78,7 @@ export const treatments = [
     title: "Gynecological Physiotherapy",
     icon: "🌸",
     shortDesc: "Focused on pelvic health and women-specific conditions.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#d946ef",
     conditions: [
       "Pre & Post Natal Care",
@@ -101,7 +101,7 @@ export const treatments = [
     title: "Pediatric Physiotherapy",
     icon: "👶",
     shortDesc: "Rehabilitation for infants and children with developmental or physical challenges.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#f59e0b",
     conditions: [
       "Cerebral Palsy",
@@ -123,7 +123,7 @@ export const treatments = [
     title: "Geriatric Physiotherapy",
     icon: "🧓",
     shortDesc: "Enhancing mobility and independence in elderly patients.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#6366f1",
     conditions: [
       "Osteoporosis",
@@ -144,7 +144,7 @@ export const treatments = [
     title: "Advanced Physiotherapy Services",
     icon: "⚡",
     shortDesc: "Dry Needling, Chiropractic Adjustments, and Sports Injury Rehab.",
-    image: "/clinic.png",
+    image: "/clinic_v2.png",
     color: "#0ea5e9",
     conditions: [
       "Sports Injuries",

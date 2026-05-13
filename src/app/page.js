@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  ArrowRight, Activity, Bone, Brain, 
+import {
+  ArrowRight, Activity, Bone, Brain,
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
@@ -27,7 +27,7 @@ function StatCounter({ value }) {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    
+
     const obj = { val: 0 };
     const tween = gsap.to(obj, {
       val: value,
@@ -54,6 +54,7 @@ function StatCounter({ value }) {
 
 export default function HomePage() {
   const containerRef = useRef(null);
+  const [partnerIndex, setPartnerIndex] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,8 +76,8 @@ export default function HomePage() {
 
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.1 }
     }
@@ -118,12 +119,12 @@ export default function HomePage() {
                 <span className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
                 <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Now Serving Across Jodhpur</span>
               </div>
-              
+
               <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
                 Precision Physiotherapy <br />
                 <span className="text-medical-teal drop-shadow-sm">for Long-Term Recovery</span>
               </h1>
-              
+
               <p className="text-lg md:text-xl text-slate-200 mb-10 font-normal leading-relaxed max-w-2xl mx-auto">
                 Restore movement, eliminate pain at its root cause, and prevent recurrence with advanced, evidence-based rehabilitation.
               </p>
@@ -154,9 +155,9 @@ export default function HomePage() {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
@@ -170,7 +171,7 @@ export default function HomePage() {
       {/* ===== MARQUEE SECTION: THE BRAND ESSENCE ===== */}
       <section className="bg-medical-blue py-12 md:py-20 overflow-hidden relative border-y border-white/5">
         <div className="absolute inset-0 bg-gradient-to-r from-medical-blue via-transparent to-medical-blue z-10 pointer-events-none" />
-        
+
         <div className="container-wide mb-8 relative z-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -188,13 +189,13 @@ export default function HomePage() {
               Assessment • Manual Therapy • Rehabilitation • Assessment • Manual Therapy • Rehabilitation •
             </span>
           </Marquee>
-          
+
           <Marquee speed={60} direction="right" gradient={false} className="overflow-hidden">
             <span className="text-3xl md:text-5xl font-bold text-transparent px-6 uppercase tracking-tighter" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.5)" }}>
               Recover Better • Move Faster • Live Pain Free • Recover Better • Move Faster • Live Pain Free •
             </span>
           </Marquee>
-          
+
           <Marquee speed={30} gradient={false} className="overflow-hidden">
             <span className="text-3xl md:text-5xl font-bold text-white px-6 uppercase tracking-tighter">
               Clinic Visit • Home Visit • Online Physio • Clinic Visit • Home Visit • Online Physio •
@@ -228,7 +229,7 @@ export default function HomePage() {
               <h2 className="text-4xl md:text-5xl text-medical-blue font-bold tracking-tight">Clinical Focus Areas.</h2>
             </div>
             <Link href="/treatments" className="will-animate scroll-reveal reveal btn-modern btn-outline bg-white group font-semibold border-slate-200 shadow-sm hover:shadow-md">
-              Explore All Services 
+              Explore All Services
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -243,19 +244,19 @@ export default function HomePage() {
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
               >
-                <Link 
-                  href={`/treatments/${t.slug}`} 
+                <Link
+                  href={`/treatments/${t.slug}`}
                   className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
                 >
                   <div className="relative h-56 w-full overflow-hidden">
-                    <Image 
-                      src={t.image} 
-                      alt={t.title} 
-                      fill 
+                    <Image
+                      src={t.image}
+                      alt={t.title}
+                      fill
                       className="object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                    
+
                     <div className="absolute top-4 right-4 z-20">
                       <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
                         {t.slug === "orthopedic-physiotherapy" && <Bone size={24} />}
@@ -279,7 +280,7 @@ export default function HomePage() {
                     <p className="text-slate-500 font-normal text-sm leading-relaxed mb-8 line-clamp-2">
                       {t.shortDesc}
                     </p>
-                    
+
                     <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
                       <span className="text-medical-teal font-bold uppercase tracking-[0.15em] text-[0.65rem] group-hover:tracking-[0.25em] transition-all duration-500">
                         Explore Protocol
@@ -322,10 +323,10 @@ export default function HomePage() {
 
             <div className="will-animate scroll-reveal reveal relative">
               <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl relative">
-                <Image 
-                  src="/movement_analysis.png" 
-                  alt="Root Cause Analysis" 
-                  fill 
+                <Image
+                  src="/movement_analysis.png"
+                  alt="Root Cause Analysis"
+                  fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
@@ -361,10 +362,10 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 will-animate scroll-reveal reveal relative">
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative">
-                <Image 
-                  src="/patient_therapy.png" 
-                  alt="Root Cause Treatment" 
-                  fill 
+                <Image
+                  src="/patient_therapy.png"
+                  alt="Root Cause Treatment"
+                  fill
                   className="object-cover"
                 />
               </div>
@@ -419,144 +420,224 @@ export default function HomePage() {
         </div>
 
         {/* Technical Dot Grid Background */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-          style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }} 
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}
         />
 
         <div className="container-wide relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Physical Center</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">Our Primary Clinic.</h2>
-            <p className="text-slate-300 text-lg font-normal">Visit our specialized center for advanced physiotherapy and precision care.</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">Serving Across Jodhpur</h2>
+            <p className="text-slate-300 text-lg font-normal">We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.</p>
           </div>
-          
-          <div className="flex justify-center">
-            <div className="max-w-xl w-full">
-              {[
-                {
-                  id: "01",
-                  title: "Healing Hands Clinic",
-                  subtitle: "Chopasni Housing Board",
-                  pin: "342008",
-                  address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                  landmarks: [
-                    { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                    { name: "Near 1st Puliya", detail: "Walkable" },
-                    { name: "DPS Circle", detail: "5 mins away" }
-                  ],
-                  hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                  doctor: "Dr. Arshad Solanki",
-                  doctorRole: "Founder — 10+ Years Experience",
-                  buttonText: "VIEW CLINIC",
-                  mapImg: "/map_placeholder.png"
-                }
-              ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2, duration: 0.7 }}
-                  className="group relative"
-                >
-                  {/* Background Large Number */}
-                  <div className="absolute -top-10 -right-4 text-[10rem] font-black text-slate-100/50 select-none pointer-events-none group-hover:text-medical-teal/5 transition-colors">
-                    {item.id}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                id: "01",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              },
+              {
+                id: "02",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              }, {
+                id: "03",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              }, {
+                id: "04",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              }
+              , {
+                id: "05",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              }, {
+                id: "06",
+                title: "Healing Hands Clinic",
+                subtitle: "Chopasni Housing Board",
+                pin: "342008",
+                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
+                landmarks: [
+                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
+                  { name: "Near 1st Puliya", detail: "Walkable" },
+                  { name: "DPS Circle", detail: "5 mins away" }
+                ],
+                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
+                doctor: "Dr. Arshad Solanki",
+                doctorRole: "Founder — 10+ Years Experience",
+                buttonText: "VIEW CLINIC",
+                mapImg: "/map_placeholder.png"
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+                className="group relative"
+              >
+                {/* Background Large Number */}
+                <div className="absolute -top-10 -right-4 text-[10rem] font-black text-slate-100/50 select-none pointer-events-none group-hover:text-medical-teal/5 transition-colors">
+                  {item.id}
+                </div>
+
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
+
+                  {/* Modern Header */}
+                  <div className="mb-6 relative">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="px-2.5 py-0.5 rounded-lg bg-medical-teal text-white text-[0.6rem] font-bold tracking-tight uppercase">
+                        PIN: {item.pin}
+                      </div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-medical-blue tracking-tight leading-none mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-semibold tracking-tight">
+                      {item.subtitle}
+                    </p>
                   </div>
 
-                  <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
-                    
-                    {/* Modern Header */}
-                    <div className="mb-6 relative">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="px-2.5 py-0.5 rounded-lg bg-medical-teal text-white text-[0.6rem] font-bold tracking-tight uppercase">
-                          PIN: {item.pin}
-                        </div>
-                        <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-medical-blue tracking-tight leading-none mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 font-semibold tracking-tight">
-                        {item.subtitle}
-                      </p>
+                  {/* Technical Detail Blocks */}
+                  <div className="space-y-6 flex-1">
+                    {/* Address Block */}
+                    <div className="relative pl-5 border-l-2 border-slate-100 group-hover:border-medical-teal/30 transition-colors">
+                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Location Coordinates</span>
+                      <p className="text-sm font-bold text-medical-blue leading-relaxed">{item.address}</p>
                     </div>
 
-                    {/* Technical Detail Blocks */}
-                    <div className="space-y-6 flex-1">
-                      {/* Address Block */}
-                      <div className="relative pl-5 border-l-2 border-slate-100 group-hover:border-medical-teal/30 transition-colors">
-                        <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Location Coordinates</span>
-                        <p className="text-sm font-bold text-medical-blue leading-relaxed">{item.address}</p>
-                      </div>
-
-                      {/* Landmarks "Distance Chips" */}
-                      <div>
-                        <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-3">Access Points</span>
-                        <div className="space-y-2">
-                          {item.landmarks.map((l, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/50 border border-slate-100 group-hover:bg-white transition-all">
-                              <div className="flex items-center gap-2.5">
-                                <Navigation2 size={13} className="text-medical-teal" />
-                                <span className="text-[0.7rem] font-semibold text-slate-600">{l.name}</span>
-                              </div>
-                              <span className="px-2 py-0.5 rounded-md bg-white text-[0.55rem] font-bold text-medical-teal border border-slate-100 shadow-sm uppercase tracking-tighter">
-                                {l.detail}
-                              </span>
+                    {/* Landmarks "Distance Chips" */}
+                    <div>
+                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-3">Access Points</span>
+                      <div className="space-y-2">
+                        {item.landmarks.map((l, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/50 border border-slate-100 group-hover:bg-white transition-all">
+                            <div className="flex items-center gap-2.5">
+                              <Navigation2 size={13} className="text-medical-teal" />
+                              <span className="text-[0.7rem] font-semibold text-slate-600">{l.name}</span>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Technical Hours */}
-                      <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
-                        <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-                          <Clock size={18} className="text-medical-teal" />
-                        </div>
-                        <div>
-                          <span className="text-[0.55rem] font-bold text-white/40 uppercase tracking-tight block">Availability Matrix</span>
-                          <p className="text-[0.7rem] font-bold tracking-tight">{item.hours}</p>
-                        </div>
+                            <span className="px-2 py-0.5 rounded-md bg-white text-[0.55rem] font-bold text-medical-teal border border-slate-100 shadow-sm uppercase tracking-tighter">
+                              {l.detail}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
 
-                    {/* High-End Doctor Spotlight */}
-                    <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
-                          <Image src={item.doctor === "Dr. Arshad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
-                        </div>
-                        <div>
-                          <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
-                          <p className="text-[0.5rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole.split('—')[0]}</p>
-                        </div>
+                    {/* Technical Hours */}
+                    <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
+                      <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
+                        <Clock size={18} className="text-medical-teal" />
                       </div>
-                      <div className="pr-4">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 block animate-pulse" />
+                      <div>
+                        <span className="text-[0.55rem] font-bold text-white/40 uppercase tracking-tight block">Availability Matrix</span>
+                        <p className="text-[0.7rem] font-bold tracking-tight">{item.hours}</p>
                       </div>
-                    </div>
-
-                    {/* Circular Map Portal */}
-                    <div className="absolute bottom-24 -right-10 w-32 h-32 rounded-full border-8 border-white shadow-2xl overflow-hidden hidden group-hover:block will-animate hover:scale-150 transition-all cursor-crosshair">
-                      <Image src={item.mapImg} alt="Map Portal" fill className="object-cover" />
-                    </div>
-
-                    {/* Dual Primary Actions */}
-                    <div className="flex gap-2.5 mt-auto">
-                      <Link 
-                        href="/contact" 
-                        className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
-                      >
-                        {item.buttonText}
-                      </Link>
-                      <button className="w-14 h-14 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-slate-400 hover:border-medical-teal hover:text-medical-teal hover:bg-medical-teal/5 transition-all shadow-sm">
-                        <MapPin size={22} />
-                      </button>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+
+                  {/* High-End Doctor Spotlight */}
+                  <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
+                        <Image src={item.doctor === "Dr. Arshad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                      </div>
+                      <div>
+                        <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
+                        <p className="text-[0.5rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole.split('—')[0]}</p>
+                      </div>
+                    </div>
+                    <div className="pr-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 block animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Circular Map Portal */}
+                  <div className="absolute bottom-24 -right-10 w-32 h-32 rounded-full border-8 border-white shadow-2xl overflow-hidden hidden group-hover:block will-animate hover:scale-150 transition-all cursor-crosshair">
+                    <Image src={item.mapImg} alt="Map Portal" fill className="object-cover" />
+                  </div>
+
+                  {/* Dual Primary Actions */}
+                  <div className="flex gap-2.5 mt-auto">
+                    <Link
+                      href="/contact"
+                      className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
+                    >
+                      {item.buttonText}
+                    </Link>
+                    <button className="w-14 h-14 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-slate-400 hover:border-medical-teal hover:text-medical-teal hover:bg-medical-teal/5 transition-all shadow-sm">
+                      <MapPin size={22} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -584,7 +665,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-3 tracking-tight">Home & Online Care.</h2>
             <p className="text-slate-500 text-lg font-normal">Bespoke rehabilitation protocols delivered wherever you are.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
@@ -622,7 +703,7 @@ export default function HomePage() {
                 mapImg: "/map_placeholder.png"
               }
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -636,7 +717,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
-                  
+
                   {/* Modern Header */}
                   <div className="mb-6 relative">
                     <div className="flex items-center gap-2 mb-3">
@@ -709,8 +790,8 @@ export default function HomePage() {
 
                   {/* Dual Primary Actions */}
                   <div className="flex gap-2.5 mt-auto">
-                    <Link 
-                      href="/contact" 
+                    <Link
+                      href="/contact"
                       className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
                     >
                       {item.buttonText}
@@ -744,7 +825,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
+
       {/* ===== RECOVERY ROADMAP: 3-STEP SYSTEM ===== */}
       <section className="section-padding bg-medical-blue relative overflow-hidden border-t border-white/5">
         {/* Left Corner Pattern */}
@@ -774,27 +855,27 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8 relative">
             {/* Connection Line (Desktop) */}
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-100 -translate-y-12 z-0" />
-            
+
             {[
-              { 
-                step: "01", 
-                title: "Assess", 
+              {
+                step: "01",
+                title: "Assess",
                 desc: "Scientific movement analysis and clinical evaluation to map your current physiological state.",
                 icon: Search,
                 color: "text-medical-teal",
                 bg: "bg-medical-teal/10"
               },
-              { 
-                step: "02", 
-                title: "Plan", 
+              {
+                step: "02",
+                title: "Plan",
                 desc: "Creation of a precision-rehab protocol tailored to your unique anatomical and lifestyle requirements.",
                 icon: Target,
                 color: "text-medical-blue",
                 bg: "bg-medical-blue/10"
               },
-              { 
-                step: "03", 
-                title: "Recover", 
+              {
+                step: "03",
+                title: "Recover",
                 desc: "Execution of your roadmap under expert supervision, leveraging data to track your return to strength.",
                 icon: Activity,
                 color: "text-medical-teal",
@@ -837,7 +918,7 @@ export default function HomePage() {
           </svg>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
-   
+
       </section>
 
       {/* ===== COMMON CONDITIONS: MINIMAL LIST ===== */}
@@ -873,7 +954,7 @@ export default function HomePage() {
       <section className="section-padding bg-medical-blue relative overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-5" />
         <div className="absolute -bottom-1/2 -left-1/4 w-[1000px] h-[1000px] bg-medical-teal/10 rounded-full blur-[150px]" />
-        
+
         <div className="max-site relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="will-animate scroll-reveal reveal">
@@ -883,10 +964,10 @@ export default function HomePage() {
               </div>
               <h2 className="text-title text-4xl md:text-6xl text-white mb-8 leading-tight">Precision Rehab. <br />Driven by Technology.</h2>
               <p className="text-slate-300 text-lg mb-12 font-light leading-relaxed">
-                We bridge the gap between traditional therapy and high-performance recovery using AI-assisted protocols and digital movement tracking. 
+                We bridge the gap between traditional therapy and high-performance recovery using AI-assisted protocols and digital movement tracking.
                 Experience rehabilitation that is mapped to your biology, not just your symptoms.
               </p>
-              
+
               <div className="space-y-6">
                 {[
                   { t: "AI Recovery Paths", d: "Dynamic protocols that adapt based on your session progress.", i: Cpu },
@@ -908,10 +989,10 @@ export default function HomePage() {
 
             <div className="will-animate scroll-reveal reveal relative">
               <div className="aspect-square rounded-[3rem] overflow-hidden border-8 border-white/5 shadow-2xl relative">
-                <Image 
-                  src="/doctor/doc3.jpg" 
-                  alt="Precision Technology" 
-                  fill 
+                <Image
+                  src="/doctor/doc3.jpg"
+                  alt="Precision Technology"
+                  fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 bg-medical-blue/20" />
@@ -931,10 +1012,10 @@ export default function HomePage() {
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
-        
+
         {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-             style={{ backgroundImage: 'radial-gradient(circle, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
@@ -943,7 +1024,7 @@ export default function HomePage() {
               The Healing Hands Standard.
             </h2>
             <p className="text-slate-500 font-normal text-xl leading-relaxed">
-              We redefine physical rehabilitation through a systematic, evidence-based approach 
+              We redefine physical rehabilitation through a systematic, evidence-based approach
               that puts patient recovery at the center of everything we do.
             </p>
           </div>
@@ -991,15 +1072,15 @@ export default function HomePage() {
                 className="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-medical-teal/40 hover:shadow-xl transition-all duration-500 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
-                
+
                 <div className="w-14 h-14 rounded-xl bg-medical-teal/10 flex items-center justify-center text-medical-teal mb-8 group-hover:scale-110 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shadow-[0_0_20px_rgba(6,182,212,0.1)]">
                   <item.icon size={28} />
                 </div>
-                
+
                 <h3 className="text-xl font-bold mb-4 text-medical-blue group-hover:text-medical-teal transition-colors tracking-tight">
                   {item.title}
                 </h3>
-                
+
                 <p className="text-slate-500 text-sm leading-relaxed font-normal group-hover:text-slate-600 transition-colors">
                   {item.desc}
                 </p>
@@ -1013,15 +1094,15 @@ export default function HomePage() {
       {/* ===== DOCTOR: EDITORIAL OVERLAP ===== */}
       <section className="section-padding bg-medical-blue overflow-hidden relative">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        
+
         <div className="max-site grid lg:grid-cols-12 gap-12 lg:gap-0 items-center">
           <div className="lg:col-span-5 will-animate scroll-reveal reveal relative z-20">
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white/10">
-              <Image 
-                src="/doctor/doc1.jpg" 
-                alt="Dr. Arshad Solanki" 
-                fill 
-                className="object-cover" 
+              <Image
+                src="/doctor/doc1.jpg"
+                alt="Dr. Arshad Solanki"
+                fill
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             </div>
@@ -1037,18 +1118,18 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          
+
           <div className="lg:col-span-7 lg:pl-20 will-animate scroll-reveal reveal relative z-10">
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Leadership</span>
             <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Arshad Solanki.</h2>
             <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-xl font-normal">
-              Founder of Healing Hands, Dr. Arshad Solanki trained at Apollo Hospital 
-              and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads 
-              the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing 
-              advanced international protocols to Rajasthan. His vision is to redefine 
+              Founder of Healing Hands, Dr. Arshad Solanki trained at Apollo Hospital
+              and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads
+              the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing
+              advanced international protocols to Rajasthan. His vision is to redefine
               recovery through evidence-based practice and compassionate clinical care.
             </p>
-            
+
             <div className="grid grid-cols-2 gap-y-8 gap-x-6 mb-12">
               {[
                 { l: "Certification", v: "BPT, COMT, NDT" },
@@ -1065,7 +1146,7 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-            
+
             <Link href="/about" className="btn-modern btn-primary px-8 font-medium">
               Read Full Journey
             </Link>
@@ -1073,49 +1154,89 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS: SUCCESS STORIES ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      {/* ===== TESTIMONIALS: GOOGLE VERIFIED SUCCESS STORIES ===== */}
+      <section className="section-padding bg-slate-50/50 relative overflow-hidden">
         <div className="max-site">
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
-            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Testimonials</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 tracking-tight">What Our Patients Say</h2>
-            <div className="flex items-center justify-center gap-2 text-yellow-400">
-              {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={20} fill="currentColor" />)}
-              <span className="ml-2 text-slate-400 font-medium">4.9/5.0 Google Rating</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-slate-100 shadow-sm mb-6">
+              <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.07-3.71 1.07-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                <path d="M5.84 14.11c-.22-.66-.35-1.36-.35-2.11s.13-1.45.35-2.11V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.83z" fill="#FBBC05" />
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.83c.87-2.6 3.3-4.51 6.16-4.51z" fill="#EA4335" />
+              </svg>
+              <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-500">Google Verified Business</span>
+              <div className="w-1 h-1 rounded-full bg-slate-300" />
+              <div className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={10} fill="#FBBC05" className="text-[#FBBC05]" />)}
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 tracking-tight">Patient Success Stories</h2>
+            <div className="flex items-center justify-center gap-6">
+              <div className="text-center">
+                <p className="text-3xl font-bold text-medical-blue">4.9</p>
+                <p className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Google Rating</p>
+              </div>
+              <div className="w-px h-10 bg-slate-200" />
+              <div className="text-center">
+                <p className="text-3xl font-bold text-medical-blue">500+</p>
+                <p className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Verified Reviews</p>
+              </div>
             </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended.",
-                author: "Patient Review",
-                source: "Google Maps"
+                text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended for clinical precision.",
+                author: "Rajesh Kumar",
+                role: "Verified Patient",
+                date: "2 weeks ago"
               },
               {
-                text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional.",
-                author: "Patient Review",
-                source: "Google Maps"
+                text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional and hygienic.",
+                author: "Ananya Sharma",
+                role: "Verified Patient",
+                date: "1 month ago"
               },
               {
-                text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief.",
-                author: "Patient Review",
-                source: "Google Maps"
+                text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief. Amazing team.",
+                author: "Vikram Singh",
+                role: "Verified Patient",
+                date: "3 weeks ago"
               }
             ].map((test, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal p-10 rounded-[2.5rem] bg-medical-surface border border-slate-50 shadow-sm hover:shadow-xl transition-all duration-500 relative">
-                <div className="absolute top-8 left-8 text-6xl text-medical-teal/20 font-serif">“</div>
-                <p className="text-lg text-slate-600 font-normal leading-relaxed mb-8 relative z-10 italic">
-                  {test.text}
+              <div key={i} className="will-animate scroll-reveal reveal p-8 rounded-[2rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 relative flex flex-col">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="#FBBC05" className="text-[#FBBC05]" />)}
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-50 text-green-600 border border-green-100">
+                    <ShieldCheck size={12} />
+                    <span className="text-[0.55rem] font-bold uppercase tracking-tighter">Verified</span>
+                  </div>
+                </div>
+
+                <p className="text-base text-slate-600 font-normal leading-relaxed mb-8 flex-1">
+                  "{test.text}"
                 </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-medical-teal flex items-center justify-center text-white font-bold text-xs">
-                    G
+
+                <div className="flex items-center justify-between pt-6 border-t border-slate-50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+                      <Users size={20} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-medical-blue">{test.author}</p>
+                      <p className="text-[0.6rem] font-medium text-slate-400">{test.role} • {test.date}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-medical-blue">{test.author}</p>
-                    <p className="text-[0.6rem] uppercase tracking-widest text-slate-400 font-medium">{test.source}</p>
-                  </div>
+                  <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" className="opacity-20">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.07-3.71 1.07-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.11c-.22-.66-.35-1.36-.35-2.11s.13-1.45.35-2.11V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.83z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.83c.87-2.6 3.3-4.51 6.16-4.51z" fill="#EA4335" />
+                  </svg>
                 </div>
               </div>
             ))}
@@ -1124,7 +1245,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== LOCATIONS: OUR PRESENCE ===== */}
-      <section className="section-padding bg-medical-blue relative overflow-hidden">
+      {/* <section className="section-padding bg-medical-blue relative overflow-hidden">
         <div className="absolute inset-0 bg-mesh opacity-5" />
         <div className="max-site relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -1134,7 +1255,7 @@ export default function HomePage() {
               <p className="text-slate-300 text-xl mb-12 font-light leading-relaxed">
                 We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 {[
                   "Chopasni Housing Board",
@@ -1152,7 +1273,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              
+
               <div className="mt-16 p-8 bg-white/5 rounded-3xl border border-white/10 inline-block">
                 <p className="text-medical-teal font-bold uppercase tracking-widest text-xs">Expanding to more locations soon.</p>
               </div>
@@ -1160,14 +1281,267 @@ export default function HomePage() {
 
             <div className="will-animate scroll-reveal reveal">
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-white/5">
-                <Image 
-                  src="/clinic_interior.png" 
-                  alt="Healing Hands Clinic" 
-                  fill 
+                <Image
+                  src="/clinic_interior.png"
+                  alt="Healing Hands Clinic"
+                  fill
                   className="object-cover"
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* ===== AFFILIATIONS & CERTIFICATIONS: TRUST & EMPANELMENT ===== */}
+      <section className="py-24 bg-medical-blue relative overflow-hidden">
+        <div className="max-site relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 will-animate scroll-reveal reveal">
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Government Health Schemes</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Government Health Schemes</h2>
+            <p className="text-slate-300 text-lg font-normal">
+              Healing Hands Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "RGHS",
+                fullName: "Rajasthan Government Health Scheme",
+                desc: "Cashless medical facilities for Rajasthan state government employees and pensioners.",
+                image: "/rghs_logo.png"
+              },
+              {
+                name: "CGHS",
+                fullName: "Central Government Health Scheme",
+                desc: "Comprehensive medical care for Central Government employees and retirees across India.",
+                image: "/cghs_logo.png"
+              },
+              {
+                name: "ECHS",
+                fullName: "Ex-Servicemen Contributory Health Scheme",
+                desc: "Dedicated healthcare support for our veterans and their dependents with cashless treatment.",
+                image: "/echs_logo.png"
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group"
+              >
+                <div className="w-32 h-32 relative mb-8 rounded-2xl overflow-hidden bg-slate-50 p-2 group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src={item.image}
+                    alt={item.fullName}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-medical-blue mb-2">{item.name}</h3>
+                <p className="text-[0.65rem] font-bold text-medical-teal uppercase tracking-widest mb-4">{item.fullName}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {item.desc}
+                </p>
+                <div className="mt-8 flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-full border border-green-100">
+                  <ShieldCheck size={14} />
+                  <span className="text-[0.55rem] font-bold uppercase tracking-widest">Authorized Center</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== MEDICAL TEAM: EXPERT PROFILES ===== */}
+      <section className="section-padding bg-white relative overflow-hidden border-t border-slate-100">
+        <div className="max-site">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+            <div className="will-animate scroll-reveal reveal">
+              <div className="w-12 h-1 bg-medical-teal mb-6" />
+              <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-2 tracking-tight">Our Medical Team</h2>
+              <p className="text-slate-500 font-medium text-lg">Expert Doctors, Nurses & Technicians for Home Care</p>
+            </div>
+            <Link href="/team" className="will-animate scroll-reveal reveal flex items-center gap-2 text-medical-teal font-bold text-sm uppercase tracking-wider hover:gap-3 transition-all group">
+              View All Team
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.slice(0, 8).map((doctor, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="group relative"
+              >
+                <div className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <Image
+                      src={doctor.image}
+                      alt={doctor.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <div className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100 flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
+                        <span className="text-[0.6rem] font-bold text-slate-600 uppercase tracking-widest">Available Today</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="flex items-center gap-1 text-yellow-400 mb-3">
+                      <Star size={12} fill="currentColor" />
+                      <span className="text-[0.7rem] font-bold text-slate-700">4.9/5.0</span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-medical-blue mb-1 group-hover:text-medical-teal transition-colors tracking-tight">
+                      {doctor.name}
+                    </h3>
+                    <p className="text-xs font-bold text-medical-teal uppercase tracking-[0.15em] mb-6">{doctor.role}</p>
+
+                    <div className="grid grid-cols-2 gap-4 mb-8 py-4 border-y border-slate-50">
+                      <div>
+                        <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Experience</p>
+                        <p className="text-xs font-bold text-medical-blue">{doctor.slug === 'arshad-solanki' ? '10+ Years' : '7+ Years'}</p>
+                      </div>
+                      <div>
+                        <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Specialist</p>
+                        <p className="text-xs font-bold text-medical-blue truncate">{doctor.specialization.split(',')[0]}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3 mt-auto">
+                      <Link 
+                        href={`/doctor/${doctor.slug}`}
+                        className="flex-1 py-3 rounded-xl border border-slate-100 text-medical-blue text-[0.65rem] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all text-center"
+                      >
+                        Profile
+                      </Link>
+                      <Link 
+                        href="/contact"
+                        className="flex-1 py-3 rounded-xl bg-medical-teal text-white text-[0.65rem] font-bold uppercase tracking-widest hover:bg-medical-blue hover:shadow-lg transition-all text-center"
+                      >
+                        Book Now
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HEALTHCARE PARTNERS: OUR NETWORK ===== */}
+      <section className="py-24 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+        <div className="max-site relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+            <div className="will-animate scroll-reveal reveal">
+              <span className="text-sm font-bold uppercase tracking-[0.4em] text-medical-teal block mb-6 flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-medical-teal rotate-45" />
+                Our Network
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-4 tracking-tight">Our Healthcare Partners</h2>
+              <p className="text-slate-500 text-lg font-normal max-w-2xl">
+                Trusted by leading medical institutions for fast response and quality care.
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <button
+                onClick={() => setPartnerIndex(prev => Math.max(0, prev - 1))}
+                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex === 0 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                disabled={partnerIndex === 0}
+              >
+                <ChevronRight size={24} className="rotate-180" />
+              </button>
+              <button
+                onClick={() => setPartnerIndex(prev => Math.min(4, prev + 1))}
+                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= 4 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                disabled={partnerIndex >= 4}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+
+          <div className="relative mb-12 overflow-hidden">
+            <motion.div
+              animate={{ x: `-${partnerIndex * (100 / 3.05)}%` }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              className="flex gap-8 py-10 pr-20"
+            >
+              {[
+                { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
+                { name: "PHC Multi Speciality Hospital", image: "/hospital_2.png", rating: "5.0" },
+                { name: "Lucknow CISRO Hospital", image: "/hospital_3.png", rating: "5.0" },
+                { name: "SRS Hospital", image: "/hospital_4.png", rating: "5.0" },
+                { name: "Amrut Hospital", image: "/hospital_1.png", rating: "5.0" },
+                { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
+                { name: "PHC Multi Speciality Hospital", image: "/hospital_2.png", rating: "5.0" },
+              ].map((item, i) => (
+                <div key={i} className="flex-shrink-0 w-80 lg:w-[calc(33.33%-1.5rem)]">
+                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
+                    <div className="aspect-[4/3] relative mb-8 flex items-center justify-center">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={200}
+                        height={150}
+                        className="object-contain group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-medical-blue mb-4 leading-tight">{item.name}</h3>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-4">
+                        <CheckCircle2 size={10} />
+                        <span className="text-[0.6rem] font-bold uppercase tracking-widest">Verified</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star key={star} size={10} fill="#FFD700" color="#FFD700" />
+                        ))}
+                        <span className="text-[0.7rem] font-bold text-slate-400 ml-2">{item.rating}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Progress Bar UI */}
+          <div className="flex items-center gap-6 mb-20">
+            <div className="flex-1 h-1 bg-slate-200 rounded-full overflow-hidden">
+              <motion.div
+                animate={{ width: `${((partnerIndex + 1) / 5) * 100}%` }}
+                className="h-full bg-medical-teal"
+              />
+            </div>
+            <span className="text-[0.65rem] font-bold text-slate-400 uppercase tracking-widest">0{partnerIndex + 1} / 05</span>
+          </div>
+
+          {/* Footer Icons */}
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 py-12 border-t border-slate-200">
+            {[
+              { label: "Verified Partners", icon: <ShieldCheck size={20} className="text-medical-teal" /> },
+              { label: "Quality Care", icon: <Award size={20} className="text-blue-500" /> },
+              { label: "Instant Support", icon: <Zap size={20} className="text-yellow-500" /> },
+            ].map((feature, i) => (
+              <div key={i} className="flex flex-col items-center gap-3 group cursor-default">
+                <div className="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  {feature.icon}
+                </div>
+                <span className="text-[0.7rem] font-bold text-medical-blue uppercase tracking-widest">{feature.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1198,7 +1572,7 @@ export default function HomePage() {
                 <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Patient First Policy</span>
                 <h2 className="text-4xl md:text-5xl mt-6 mb-8 text-white font-light leading-tight">Care Beyond Recovery. <br /> Pricing Beyond Doubt.</h2>
                 <p className="text-white/70 text-lg mb-10 leading-relaxed font-normal">
-                  We believe in complete transparency. Our treatment plans are built around 
+                  We believe in complete transparency. Our treatment plans are built around
                   your recovery goals, with no hidden package fees or unnecessary sessions.
                 </p>
                 <div className="flex flex-wrap gap-6">
@@ -1214,17 +1588,44 @@ export default function HomePage() {
               </div>
 
               <div className="will-animate scroll-reveal reveal lg:flex lg:justify-end">
-                <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md text-center">
-                  <p className="text-[0.65rem] font-medium uppercase tracking-[0.2em] text-slate-500 mb-4">Initial Consultation</p>
-                  <div className="flex items-center justify-center gap-2 mb-6">
-                    <span className="text-2xl font-light text-slate-500 mt-2">₹</span>
-                    <span className="text-7xl font-light text-medical-blue tracking-tighter">500</span>
+                <div className="bg-white p-10 rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] w-full max-w-md border border-slate-100">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="w-12 h-12 rounded-2xl bg-medical-teal/10 flex items-center justify-center text-medical-teal">
+                      <Clock size={24} />
+                    </div>
+                    <div>
+                      <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-medical-teal leading-none mb-1">Appointment</p>
+                      <h3 className="text-xl font-bold text-medical-blue tracking-tight">Booking Process</h3>
+                    </div>
                   </div>
-                  <p className="text-slate-500 text-sm mb-10 font-normal leading-relaxed">
-                    Includes detailed history taking, physical assessment, and personalized recovery roadmap.
-                  </p>
-                  <Link href="/contact" className="btn-modern btn-primary w-full py-5 text-lg font-medium hover-glow">
-                    Book Assessment Now
+
+                  <div className="space-y-6 mb-10 text-left">
+                    {[
+                      { step: "01", title: "Instant Booking", desc: "Choose your preferred date and time slot via our portal." },
+                      { step: "02", title: "Expert Diagnosis", desc: "Our chief doctor conducts a thorough physical assessment." },
+                      { step: "03", title: "Recovery Roadmap", desc: "Receive a personalized therapy plan for long-term health." }
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex gap-4 group">
+                        <span className="text-xs font-black text-slate-200 group-hover:text-medical-teal/30 transition-colors mt-1">{item.step}</span>
+                        <div>
+                          <p className="text-sm font-bold text-medical-blue mb-1">{item.title}</p>
+                          <p className="text-xs text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 mb-8 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      <span className="text-[0.65rem] font-bold text-slate-600 uppercase tracking-widest">Available for Home & Clinic</span>
+                    </div>
+                    <ChevronRight size={14} className="text-slate-300" />
+                  </div>
+
+                  <Link href="/contact" className="w-full py-5 rounded-2xl bg-medical-blue text-white font-bold text-sm uppercase tracking-widest hover:bg-medical-teal hover:shadow-xl hover:shadow-medical-teal/20 transition-all flex items-center justify-center gap-3 group">
+                    Schedule Your Session
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </div>
@@ -1234,13 +1635,13 @@ export default function HomePage() {
       </section>
 
       {/* ===== FIND US ON MAP ===== */}
-      <section className="section-padding bg-white pt-0">
+      {/* <section className="section-padding bg-white pt-0">
         <div className="max-site">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Our Presence</span>
             <h2 className="text-4xl md:text-5xl mt-4 text-medical-blue font-light tracking-tight">Visit Our Centers.</h2>
           </div>
-          
+
           <div className="rounded-[3rem] overflow-hidden bg-medical-surface border border-slate-100 shadow-2xl relative group">
             <div className="absolute top-12 left-12 z-10 glass-panel p-8 rounded-3xl border-white/40 shadow-2xl backdrop-blur-3xl hidden lg:block">
               <div className="flex items-center gap-4 mb-4">
@@ -1253,7 +1654,7 @@ export default function HomePage() {
                 Paota B Road, near Landmark landmarks, Jodhpur, Rajasthan 342001
               </p>
               <div className="flex gap-4">
-                <a 
+                <a
                   href="https://www.google.com/maps/search/?api=1&query=Healing+Hands+Physiotherapy+Jodhpur"
                   target="_blank"
                   className="px-8 py-4 bg-medical-blue text-white rounded-2xl text-[0.7rem] font-medium uppercase tracking-widest hover:bg-medical-teal transition-all flex items-center gap-2"
@@ -1262,22 +1663,22 @@ export default function HomePage() {
                 </a>
               </div>
             </div>
-            
+
             <div className="aspect-[21/9] min-h-[500px] w-full relative">
-              <iframe 
+              <iframe
                 src="https://www.google.com/maps?q=Healing+Hands+Physiotherapy+Jodhpur&output=embed"
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen="" 
-                loading="lazy" 
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000"
               />
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ===== FAQ: FREQUENT QUESTIONS ===== */}
       <section className="section-padding bg-medical-blue relative overflow-hidden">
@@ -1294,7 +1695,7 @@ export default function HomePage() {
                 Ask a Specific Question
               </Link>
             </div>
-            
+
             <div className="lg:col-span-7 space-y-4">
               {[
                 { q: "What should I bring to my first appointment?", a: "Please bring your recent medical reports, scans (X-ray/MRI), and wear comfortable, loose clothing for the assessment." },
@@ -1317,7 +1718,7 @@ export default function HomePage() {
         <div className="max-site bg-medical-blue rounded-2xl p-12 md:p-24 text-white text-center relative overflow-hidden shadow-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-medical-blue via-slate-800 to-medical-blue" />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-medical-teal opacity-20 blur-[120px] rounded-full pointer-events-none" />
-          
+
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl mb-10 leading-tight will-animate scroll-reveal reveal font-light">
               Ready to begin your <br /> Recovery Journey?

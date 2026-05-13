@@ -1,5 +1,6 @@
 export const teamMembers = [
   {
+    slug: "arshad-solanki",
     name: "Dr. Arshad Solanki",
     role: "Founder & Chief Physiotherapist",
     image: "/doctor/doc1.jpg",
@@ -17,6 +18,7 @@ export const teamMembers = [
     ]
   },
   {
+    slug: "hadiya-khilji",
     name: "Dr. Hadiya Khilji",
     role: "Senior Physiotherapist",
     image: "/doctor/doc5.jpg",
@@ -24,6 +26,7 @@ export const teamMembers = [
     bio: "Expert in neurological rehabilitation with years of clinical experience.",
   },
   {
+    slug: "pankaj-kumar",
     name: "Dr. Pankaj Kumar",
     role: "Physiotherapist",
     image: "/doctor/doc6.jpg",
@@ -31,6 +34,7 @@ export const teamMembers = [
     bio: "Specialized in musculoskeletal conditions and post-surgical rehabilitation.",
   },
   {
+    slug: "simran",
     name: "Dr. Simran",
     role: "Physiotherapist",
     image: "/doctor/doc5.jpg",
@@ -38,6 +42,7 @@ export const teamMembers = [
     bio: "Focused on women's health (Gynae) physiotherapy and prenatal/postnatal care.",
   },
   {
+    slug: "jyoti",
     name: "Dr. Jyoti",
     role: "Physiotherapist",
     image: "/doctor/doc7.jpg",
@@ -45,6 +50,7 @@ export const teamMembers = [
     bio: "Dedicated to helping children achieve their developmental milestones.",
   },
   {
+    slug: "sahil",
     name: "Dr. Sahil",
     role: "Physiotherapist",
     image: "/doctor/doc6.jpg",
@@ -52,6 +58,7 @@ export const teamMembers = [
     bio: "Expert in sports injury rehabilitation and performance enhancement.",
   },
   {
+    slug: "rubina-pathan",
     name: "Dr. Rubina Pathan",
     role: "Physiotherapist",
     image: "/doctor/doc7.jpg",
