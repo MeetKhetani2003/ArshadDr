@@ -179,7 +179,7 @@ export default function Navbar() {
               <div className="flex flex-col gap-4">
                 <a href="tel:6378062237" className="p-5 bg-slate-50 rounded-2xl flex items-center justify-between border border-slate-100">
                   <div>
-                    <p className="text-[0.6rem] font-medium uppercase tracking-widest text-slate-500 mb-1">Dr. Arshad Solanki</p>
+                    <p className="text-[0.6rem] font-medium uppercase tracking-widest text-slate-500 mb-1">Dr. Asad Solanki</p>
                     <p className="text-xl font-light text-medical-blue">6378-062237</p>
                   </div>
                   <div className="w-10 h-10 rounded-full bg-medical-teal/10 flex items-center justify-center text-medical-teal">

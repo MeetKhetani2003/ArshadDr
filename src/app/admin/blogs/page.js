@@ -144,7 +144,7 @@ export default function AdminBlogUpload() {
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                   <input
                     name="author"
-                    defaultValue="Dr. Arshad Solanki"
+                    defaultValue="Dr. Asad Solanki"
                     className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:border-medical-teal transition-all"
                   />
                 </div>

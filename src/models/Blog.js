@@ -5,7 +5,7 @@ const BlogSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   excerpt: { type: String, required: true },
   content: { type: String, required: true },
-  author: { type: String, default: "Dr. Arshad Solanki" },
+  author: { type: String, default: "Dr. Asad Solanki" },
   category: { type: String, default: "Clinical" },
   readTime: { type: String, default: "5 min read" },
   imageId: { type: mongoose.Schema.Types.ObjectId, ref: "media.files" },

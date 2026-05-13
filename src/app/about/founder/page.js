@@ -97,7 +97,7 @@ export default function FounderPage() {
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white">
               <Image
                 src="/doctor/doc1.jpg"
-                alt="Dr. Arshad Solanki"
+                alt="Dr. Asad Solanki"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -110,7 +110,7 @@ export default function FounderPage() {
                   <Award size={24} />
                 </div>
                 <div>
-                  <p className="font-medium text-medical-blue">Dr. Arshad Solanki</p>
+                  <p className="font-medium text-medical-blue">Dr. Asad Solanki</p>
                   <p className="text-[0.65rem] uppercase tracking-widest text-slate-500 font-medium">Founder & Chief PT</p>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function FounderPage() {
 
             <div className="space-y-8 text-slate-500 leading-relaxed font-normal text-lg will-animate scroll-reveal reveal">
               <p>
-                Dr. Arshad Solanki began his journey in physiotherapy with a clear vision—to bring advanced,
+                Dr. Asad Solanki began his journey in physiotherapy with a clear vision—to bring advanced,
                 evidence-based rehabilitation services to patients with a focus on long-term recovery,
                 not just temporary relief.
               </p>
@@ -155,7 +155,7 @@ export default function FounderPage() {
               </div>
 
               <p>
-                Dr. Arshad started his professional practice at **Yuvraj Shivraj Singh Neuro Rehab Center**, Jodhpur,
+                Dr. Asad started his professional practice at **Yuvraj Shivraj Singh Neuro Rehab Center**, Jodhpur,
                 a trust-run institution managed by the royal family of Jodhpur, where he gained extensive
                 experience in neurological rehabilitation.
               </p>
@@ -187,7 +187,7 @@ export default function FounderPage() {
           <div className="will-animate scroll-reveal reveal modern-card !bg-medical-blue text-white border-none shadow-xl flex flex-col md:flex-row justify-between items-center gap-12 p-12 md:p-20 rounded-[3rem]">
             <div className="max-w-xl text-center md:text-left">
               <h2 className="text-3xl md:text-5xl mb-6 font-light">Join the journey to <br /> healthy living.</h2>
-              <p className="text-slate-300">Experience world-class rehabilitation with Dr. Arshad and his team.</p>
+              <p className="text-slate-300">Experience world-class rehabilitation with Dr. Asad and his team.</p>
             </div>
             <Link href="/contact" className="btn-modern bg-white text-medical-blue hover:bg-medical-teal hover:text-white px-10 py-4 shadow-xl">
               Book Appointment

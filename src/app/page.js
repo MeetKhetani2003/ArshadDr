@@ -456,7 +456,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -473,7 +473,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -489,7 +489,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -505,7 +505,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -522,7 +522,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -538,7 +538,7 @@ export default function HomePage() {
                   { name: "DPS Circle", detail: "5 mins away" }
                 ],
                 hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Arshad Solanki",
+                doctor: "Dr. Asad Solanki",
                 doctorRole: "Founder — 10+ Years Experience",
                 buttonText: "VIEW CLINIC",
                 mapImg: "/map_placeholder.png"
@@ -613,7 +613,7 @@ export default function HomePage() {
                   <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
-                        <Image src={item.doctor === "Dr. Arshad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                        <Image src={item.doctor === "Dr. Asad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
@@ -779,7 +779,7 @@ export default function HomePage() {
                   <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
-                        <Image src={item.doctor === "Dr. Arshad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                        <Image src={item.doctor === "Dr. Asad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
@@ -1103,7 +1103,7 @@ export default function HomePage() {
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white/10">
               <Image
                 src="/doctor/doc1.jpg"
-                alt="Dr. Arshad Solanki"
+                alt="Dr. Asad Solanki"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -1115,7 +1115,7 @@ export default function HomePage() {
                   <Award size={28} />
                 </div>
                 <div>
-                  <p className="font-bold text-medical-blue text-lg leading-tight">Dr. Arshad Solanki</p>
+                  <p className="font-bold text-medical-blue text-lg leading-tight">Dr. Asad Solanki</p>
                   <p className="text-[0.6rem] uppercase tracking-[0.2em] text-medical-teal font-bold mt-1">Founder & Chief PT</p>
                 </div>
               </div>
@@ -1124,9 +1124,9 @@ export default function HomePage() {
 
           <div className="lg:col-span-7 lg:pl-20 will-animate scroll-reveal reveal relative z-10">
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Leadership</span>
-            <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Arshad Solanki.</h2>
+            <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Asad Solanki.</h2>
             <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-xl font-normal">
-              Founder of Healing Hands, Dr. Arshad Solanki trained at Apollo Hospital
+              Founder of Healing Hands, Dr. Asad Solanki trained at Apollo Hospital
               and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads
               the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing
               advanced international protocols to Rajasthan. His vision is to redefine
@@ -1494,7 +1494,7 @@ export default function HomePage() {
                     <div className="grid grid-cols-2 gap-4 mb-8 py-4 border-y border-slate-50">
                       <div>
                         <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Experience</p>
-                        <p className="text-xs font-bold text-medical-blue">{doctor.slug === 'arshad-solanki' ? '10+ Years' : '7+ Years'}</p>
+                        <p className="text-xs font-bold text-medical-blue">{doctor.slug === 'asad-solanki' ? '10+ Years' : '7+ Years'}</p>
                       </div>
                       <div>
                         <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Specialist</p>

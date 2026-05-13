@@ -91,7 +91,7 @@ export default function DoctorProfile() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-12 max-w-2xl">
                   <div className="p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
                     <p className="text-[0.6rem] font-bold text-slate-300 uppercase tracking-widest mb-2">Experience</p>
-                    <p className="text-lg font-bold text-white">{doctor.slug === 'arshad-solanki' ? '10+ Years' : '7+ Years'}</p>
+                    <p className="text-lg font-bold text-white">{doctor.slug === 'asad-solanki' ? '10+ Years' : '7+ Years'}</p>
                   </div>
                   <div className="p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
                     <p className="text-[0.6rem] font-bold text-slate-300 uppercase tracking-widest mb-2">Patients</p>
