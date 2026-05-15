@@ -209,30 +209,6 @@ export default function BlogsPage() {
         </div>
       </section>
 
-      {/* ===== NEWSLETTER ===== */}
-      <section className="section-padding pt-10 pb-32">
-        <div className="max-site bg-medical-blue rounded-2xl p-12 md:p-24 text-white text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-slate-800 via-medical-blue to-medical-blue" />
-          <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-medical-teal opacity-10 blur-[100px] rounded-full pointer-events-none" />
-          
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-label !text-medical-teal mb-4 block">Stay Informed</span>
-            <h2 className="text-title text-3xl md:text-5xl mb-12 leading-tight">
-              Subscribe to Clinical Updates.
-            </h2>
-            <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
-                className="flex-grow bg-transparent px-6 py-4 outline-none text-white font-medium placeholder-white/40" 
-              />
-              <button className="btn-modern bg-white text-medical-blue hover:bg-slate-100 rounded-xl px-8 shadow-lg">
-                Subscribe <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

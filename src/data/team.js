@@ -5,6 +5,7 @@ export const teamMembers = [
     role: "Founder & Chief Physiotherapist",
     image: "/doctor/doc1.jpg",
     specialization: "BPT, COMT, NDT, Dry Needling, HVLA Chiropractic",
+    experience: "10+ Years",
     bio: "Dr. Asad Solanki began his journey in physiotherapy with a clear vision—to bring advanced, evidence-based rehabilitation services to patients with a focus on long-term recovery, not just temporary relief. He completed his BPT in 2013 after clinical training at Apollo Hospital. He has served at Yuvraj Shivraj Singh Neuro Rehab Center and currently leads the physiotherapy department at Vasundhara Hospital, Jodhpur.",
     journey: [
       "Completed BPT in 2013 (Enrolled 2008)",
@@ -18,90 +19,147 @@ export const teamMembers = [
     ]
   },
   {
-    slug: "hadiya-khilji",
-    name: "Dr. Hadiya Khilji",
-    role: "Senior Physiotherapist",
-    image: "/doctor/doc5.jpg",
-    specialization: "Neuro Rehabilitation",
-    bio: "Expert in neurological rehabilitation with years of clinical experience.",
+    slug: "rubina-pathan",
+    name: "Dr. Rubina Pathan",
+    role: "Ortho & Neuro Rehab Specialist",
+    image: "/Doctors/Dr. Rubina Pathan .jpeg",
+    specialization: "BPT, Orthopedic Rehabilitation, Neurological Rehabilitation",
+    experience: "10+ Years",
+    bio: "With over a decade of dedicated experience, Dr. Rubina Pathan is a trusted name in physiotherapy in the Kamla Nehru Nagar area. She holds a Bachelor of Physiotherapy and specializes in Orthopedic and Neurological Rehabilitation, helping patients regain strength, mobility, and independence after injury, surgery, or chronic conditions.\n\nDr. Rubina believes in treating not just the condition, but the person. Her approach combines evidence-based techniques with compassionate care, ensuring every patient receives a personalized recovery plan tailored to their lifestyle and goals.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "10+ Years of Clinical Excellence",
+      "Specialist in Ortho & Neuro Rehab",
+      "Expert in Post-fracture & Post-surgical recovery",
+      "Balance & Coordination Training specialist"
+    ]
   },
   {
-    slug: "pankaj-kumar",
-    name: "Dr. Pankaj Kumar",
-    role: "Physiotherapist",
-    image: "/doctor/doc6.jpg",
-    specialization: "Orthopedic Rehabilitation",
-    bio: "Specialized in musculoskeletal conditions and post-surgical rehabilitation.",
-  },
-  {
-    slug: "simran",
-    name: "Dr. Simran",
-    role: "Physiotherapist",
-    image: "/doctor/doc5.jpg",
-    specialization: "Women’s Health (Gynae) Physiotherapy",
-    bio: "Focused on women's health (Gynae) physiotherapy and prenatal/postnatal care.",
+    slug: "hadiya",
+    name: "Dr. Hadiya",
+    role: "Orthopaedic, Neurology & Gynae Physiotherapist",
+    image: "/Doctors/Dr. Hadiya .jpeg",
+    specialization: "BPT, Orthopedic, Neurological & Gynecological Physiotherapy",
+    experience: "Clinical Specialist",
+    bio: "Dr. Hadiya is a passionate and compassionate physiotherapist committed to helping patients improve their mobility, independence, and overall quality of life. She holds a Bachelor of Physiotherapy and has clinical experience in Orthopaedic Rehabilitation, Neurological Conditions, Gynecological Physiotherapy, and Musculoskeletal Care.\n\nShe believes in a patient-centered approach where every treatment plan is tailored according to the patient's condition, lifestyle, and recovery goals. Her focus is not only on pain relief, but also on restoring confidence, function, and long-term well-being.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "Clinical Experience in Musculoskeletal Care",
+      "Specialization in Gynecological Physiotherapy",
+      "Antenatal & Postnatal Physiotherapy expert",
+      "Practicing at Vasundhara Hospital, Jodhpur"
+    ]
   },
   {
     slug: "jyoti",
     name: "Dr. Jyoti",
-    role: "Physiotherapist",
-    image: "/doctor/doc7.jpg",
-    specialization: "Pediatric Rehabilitation",
-    bio: "Dedicated to helping children achieve their developmental milestones.",
+    role: "Orthopaedic & Neurology Physiotherapist",
+    image: "/Doctors/Dr. Jyoti.jpeg",
+    specialization: "BPT, Orthopedic Rehabilitation, Neurological Conditions",
+    experience: "Clinical Specialist",
+    bio: "Dr. Jyoti is a dedicated and compassionate physiotherapist committed to helping patients regain mobility, confidence, and a better quality of life. She holds a Bachelor of Physiotherapy and has clinical experience in Orthopaedic Rehabilitation, Neurological Conditions, and Musculoskeletal Care.\n\nShe believes in a patient-focused approach where every treatment plan is designed according to the patient's condition, lifestyle, and recovery goals. Her aim is not only to reduce pain but also to improve strength, movement, posture, and long-term wellness.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "Dedicated Clinical Practice & Patient Care",
+      "Expertise in Sports Injury Rehabilitation",
+      "Stroke & Paralysis Management specialist",
+      "Practicing at Suncity Hospital, Paota, Jodhpur"
+    ]
   },
   {
-    slug: "sahil",
-    name: "Dr. Sahil",
+    slug: "simran-mathur",
+    name: "Dr. Simran Mathur (PT)",
     role: "Physiotherapist",
-    image: "/doctor/doc6.jpg",
-    specialization: "Sports Rehabilitation",
-    bio: "Expert in sports injury rehabilitation and performance enhancement.",
+    image: "/Doctors/Dr. Simran Mathur (PT).jpeg",
+    specialization: "BPT, Taping, IASTM, Pain Management",
+    experience: "Certified Professional",
+    bio: "Dr. Simran Mathur is a Bachelor of Physiotherapy graduate with certifications in Taping and Instrument Assisted Soft Tissue Mobilization (IASTM). She is highly skilled in pain management and functional rehabilitation, focused on restoring patients to their peak physical health through modern evidence-based techniques.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "Certification in Taping Techniques",
+      "Certification in IASTM",
+      "Physiotherapy Intern at JNU Hospital (2024)",
+      "Specialist in Acute Pain Management"
+    ]
   },
   {
-    slug: "rubina-pathan",
-    name: "Dr. Rubina Pathan",
+    slug: "sahil-gouri",
+    name: "Dr. Sahil Gouri",
     role: "Physiotherapist",
-    image: "/doctor/doc7.jpg",
-    specialization: "Geriatric Rehabilitation",
-    bio: "Specialized in elderly care and mobility enhancement programs.",
+    image: "/Doctors/Dr sahil.jpeg",
+    specialization: "BPT, MFR, Dry Needling, Cupping Therapy",
+    experience: "Certified Professional",
+    bio: "Dr. Sahil Gouri is a qualified Physiotherapist with a Bachelor of Physiotherapy (BPT). He is proficient in Myofascial Release (MFR), taping, dry needling, cupping, manual and electrotherapy, and exercise prescription. He is dedicated to providing empathetic care and maintaining great communication with his patients to ensure their recovery goals are met.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "Physiotherapy Intern at Marengo CIMS Hospital",
+      "Expert in Myofascial Release (MFR)",
+      "Certified in Dry Needling & Cupping Therapy",
+      "Specialist in Post-Surgical Rehabilitation"
+    ]
   },
+  {
+    slug: "safa",
+    name: "Dr. Safa",
+    role: "Cardiovascular & Pediatric Physiotherapist",
+    image: "/Doctors/Dr. Safa.jpeg",
+    specialization: "BPT, Cardiovascular, Orthopaedic & Pediatric Care",
+    experience: "Clinical Specialist",
+    bio: "Dr. Safa is a dedicated and compassionate physiotherapist committed to improving the health, mobility, and quality of life of her patients through evidence-based rehabilitation and personalized care. She holds a Bachelor of Physiotherapy and has a keen interest in Cardiovascular Rehabilitation, Orthopaedic Physiotherapy, and Pediatric Care.",
+    journey: [
+      "Bachelor of Physiotherapy",
+      "Dedicated Clinical Practice in Jodhpur",
+      "Specialist in Cardiovascular Rehabilitation",
+      "Expert in Pediatric Physiotherapy",
+      "Developmental Delay Management specialist"
+    ]
+  }
 ];
 
 export const locations = [
   {
-    name: "Chopasni Housing Board",
-    slug: "chopasni-housing-board",
-    description: "Our flagship center serving the western residential hub of Jodhpur with advanced neurological and orthopedic equipment.",
-    address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-    landmarks: ["Near AIIMS Jodhpur", "1st Puliya"],
+    name: "Vasundhara Hospital",
+    slug: "vasundhara-hospital",
+    description: "Our main center located at Vasundhara Hospital, serving as a hub for advanced rehabilitation and emergency physiotherapy.",
+    address: "Vasundhara Hospital, Chopasni Housing Board, Jodhpur",
+    landmarks: ["Chopasni Housing Board"],
     areas: ["Shastri Nagar", "Kamla Nehru Nagar", "Vishwa Karma Colony"],
     pincode: "342008"
   },
   {
-    name: "Paota B Road",
-    slug: "paota-b-road",
-    description: "Conveniently located at Paota B Road, providing comprehensive physiotherapy services to the heart of the city.",
-    address: "Paota B Road, Jodhpur, Rajasthan",
+    name: "Suncity Hospital",
+    slug: "suncity-hospital",
+    description: "Located at Suncity Hospital and Research Center, Paota, providing specialized orthopedic and neuro care.",
+    address: "Suncity Hospital, Paota, Jodhpur",
     landmarks: ["Paota Circle", "Mandore Road"],
     areas: ["Ratanada", "Sardarpura", "Umaid Heritage"],
+    pincode: "342005"
+  },
+  {
+    name: "Marwar Hospital",
+    slug: "marwar-hospital",
+    description: "Serving the Mandore region through Marwar Hospital with expert physiotherapy services.",
+    address: "Marwar Hospital, Mandore, Jodhpur",
+    landmarks: ["Mandore Garden"],
+    areas: ["Bhadwasiya", "Mandore Garden", "Mahamandir"],
     pincode: "342001"
   },
   {
-    name: "Main Mandore Road",
-    slug: "mandore-road",
-    description: "Specialized pediatric and orthopedic center catering to the northern Jodhpur region.",
-    address: "Mandore Rd, Bhadwasiya, Paota, Jodhpur",
-    landmarks: ["Kheta Nadi", "Krishi Mandi Circle"],
-    areas: ["Bhadwasiya", "Mandore Garden", "Mahamandir"],
+    name: "Chandra Mangal Hospital",
+    slug: "chandra-mangal-hospital",
+    description: "Providing advanced pain management and clinical excellence at Khetanadi.",
+    address: "Chandra Mangal Hospital, Khetanadi, Mandore Road, Jodhpur",
+    landmarks: ["Kheta Nadi"],
+    areas: ["Paota", "Mandore Road"],
     pincode: "342006"
   },
   {
-    name: "Kamla Nehru Nagar",
-    slug: "kamla-nehru-nagar",
-    description: "Expert recovery center focused on sports injuries and post-surgical rehabilitation.",
-    address: "Kamla Nehru Nagar, Jodhpur, Rajasthan",
-    landmarks: ["Near MDM Hospital"],
+    name: "Shubham Hospital",
+    slug: "shubham-hospital",
+    description: "Expert recovery center focused on geriatric care and mobility training in Kamla Nehru Nagar.",
+    address: "Shubham Hospital, Kamla Nehru Nagar, Jodhpur",
+    landmarks: ["Kamla Nehru Nagar"],
     areas: ["Pal Road", "Chopasni", "Luni Road"],
-    pincode: "342009"
+    pincode: "342003"
   }
 ];

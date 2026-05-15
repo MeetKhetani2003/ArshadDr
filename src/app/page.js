@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowRight, Activity, Bone, Brain,
   HeartPulse, ShieldCheck, Award, Users,
-  MapPin, ChevronRight, Zap, ArrowUpRight, Phone,
+  MapPin, ChevronRight, Zap, ArrowUpRight, Phone, Video,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
   Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus
 } from "lucide-react";
@@ -443,203 +443,97 @@ export default function HomePage() {
           </div>
 
           <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
-            {[
-              {
-                id: "01",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              },
-              {
-                id: "02",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              }, {
-                id: "03",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              }, {
-                id: "04",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              }
-              , {
-                id: "05",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              }, {
-                id: "06",
-                title: "Healing Hands Clinic",
-                subtitle: "Chopasni Housing Board",
-                pin: "342008",
-                address: "Chopasni Housing Board, Jodhpur, Rajasthan",
-                landmarks: [
-                  { name: "Near AIIMS Jodhpur", detail: "2 min drive" },
-                  { name: "Near 1st Puliya", detail: "Walkable" },
-                  { name: "DPS Circle", detail: "5 mins away" }
-                ],
-                hours: "Mon–Sat: 8 AM–2 PM & 4–8:30 PM",
-                doctor: "Dr. Asad Solanki",
-                doctorRole: "Founder — 10+ Years Experience",
-                buttonText: "VIEW CLINIC",
-                mapImg: "/map_placeholder.png"
-              }
-            ].map((item, i) => (
+            {locations.map((loc, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
-                className="group relative min-w-[85vw] md:min-w-0 snap-center"
+                transition={{ delay: i * 0.1, duration: 0.8 }}
+                className="group relative min-w-[320px] md:min-w-0"
               >
-
-                <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
-
-                  {/* Modern Header */}
-                  <div className="mb-6 relative">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="px-2.5 py-0.5 rounded-lg bg-medical-teal text-white text-[0.6rem] font-bold tracking-tight uppercase">
-                        PIN: {item.pin}
-                      </div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
+                <div className="bg-[#E5E9F0] rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden">
+                  {/* Card Header: PIN Badge */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="px-3 py-1 bg-[#3B82F6] rounded-md flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                      <span className="text-[0.6rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
+                      <div className="w-1 h-1 bg-white/40 rounded-full" />
                     </div>
-                    <h3 className="text-2xl font-bold text-medical-blue tracking-tight leading-none mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 font-semibold tracking-tight">
-                      {item.subtitle}
-                    </p>
+                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                   </div>
 
-                  {/* Technical Detail Blocks */}
-                  <div className="space-y-6 flex-1">
-                    {/* Address Block */}
-                    <div className="relative pl-5 border-l-2 border-slate-100 group-hover:border-medical-teal/30 transition-colors">
-                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Location Coordinates</span>
-                      <p className="text-sm font-bold text-medical-blue leading-relaxed">{item.address}</p>
-                    </div>
+                  {/* Title Section */}
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">Healing Hands Clinic</h3>
+                    <p className="text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.name}</p>
+                  </div>
 
-                    {/* Landmarks "Distance Chips" */}
-                    <div>
-                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-3">Access Points</span>
-                      <div className="space-y-2">
-                        {item.landmarks.map((l, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/50 border border-slate-100 group-hover:bg-white transition-all">
-                            <div className="flex items-center gap-2.5">
-                              <Navigation2 size={13} className="text-medical-teal" />
-                              <span className="text-[0.7rem] font-semibold text-slate-600">{l.name}</span>
-                            </div>
-                            <span className="px-2 py-0.5 rounded-md bg-white text-[0.55rem] font-bold text-medical-teal border border-slate-100 shadow-sm uppercase tracking-tighter">
-                              {l.detail}
-                            </span>
+                  {/* Location Section */}
+                  <div className="mb-6">
+                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-2 opacity-60">Location Coordinates</p>
+                    <div className="p-4 rounded-xl bg-white/40 border border-white/60">
+                      <p className="text-[0.7rem] font-bold text-[#1E293B] leading-relaxed">{loc.address}</p>
+                    </div>
+                  </div>
+
+                  {/* Access Points Section */}
+                  <div className="mb-6">
+                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-3 opacity-60">Access Points</p>
+                    <div className="space-y-2">
+                      {[
+                        { label: "Near AIIMS Jodhpur", tag: "3 KM DRIVE", icon: <Navigation2 size={12} /> },
+                        { label: "Near Tai Puliya", tag: "WALKABLE", icon: <Navigation2 size={12} /> },
+                        { label: "DPS Circle", icon: <Navigation2 size={12} />, tag: "5 MINS AWAY" }
+                      ].map((point, idx) => (
+                        <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white/60 border border-white/80 group/point hover:bg-white transition-all">
+                          <div className="flex items-center gap-3">
+                            <div className="text-blue-500">{point.icon}</div>
+                            <span className="text-[0.65rem] font-bold text-[#475569]">{point.label}</span>
                           </div>
-                        ))}
-                      </div>
+                          <span className="text-[0.55rem] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">{point.tag}</span>
+                        </div>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Technical Hours */}
-                    <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
-                      <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Clock size={18} className="text-medical-teal" />
+                  {/* Availability Matrix Section */}
+                  <div className="mb-6">
+                    <div className="p-4 rounded-2xl bg-[#0F172A] flex items-center gap-4 border border-white/10 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
+                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0 border border-white/5">
+                        <Clock size={20} />
                       </div>
                       <div>
-                        <span className="text-[0.55rem] font-bold text-white/40 uppercase tracking-tight block">Availability Matrix</span>
-                        <p className="text-[0.7rem] font-bold tracking-tight">{item.hours}</p>
+                        <p className="text-[0.5rem] font-black text-blue-400 uppercase tracking-widest mb-0.5">Availability Matrix</p>
+                        <p className="text-[0.65rem] font-bold text-white">Mon–Sat: 8 AM–2 PM & 4–8:30 PM</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* High-End Doctor Spotlight */}
-                  <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
-                        <Image src={item.doctor === "Dr. Asad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                  {/* Founder Info */}
+                  <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
+                      <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
+                         <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
-                        <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
-                        <p className="text-[0.5rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole.split('—')[0]}</p>
+                        <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
+                        <p className="text-[0.55rem] font-black text-blue-500 uppercase tracking-widest leading-none">Founder</p>
                       </div>
                     </div>
-                    <div className="pr-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 block animate-pulse" />
-                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
                   </div>
 
-                  {/* Circular Map Portal */}
-                  <div className="absolute bottom-24 -right-10 w-32 h-32 rounded-full border-8 border-white shadow-2xl overflow-hidden hidden group-hover:block will-animate hover:scale-150 transition-all cursor-crosshair">
-                    <Image src={item.mapImg} alt="Map Portal" fill className="object-cover" />
-                  </div>
-
-                  {/* Dual Primary Actions */}
-                  <div className="flex gap-2.5 mt-auto">
+                  {/* Action Buttons */}
+                  <div className="flex gap-2">
                     <Link
                       href="/contact"
-                      className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
+                      className="flex-1 py-4 bg-[#3B82F6] text-white rounded-2xl text-[0.7rem] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/30 hover:bg-[#2563EB] transition-all text-center flex items-center justify-center group/btn"
                     >
-                      {item.buttonText}
+                      View Clinic
                     </Link>
-                    <button className="w-14 h-14 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-slate-400 hover:border-medical-teal hover:text-medical-teal hover:bg-medical-teal/5 transition-all shadow-sm">
-                      <MapPin size={22} />
+                    <button className="w-14 h-14 bg-white/60 border border-white/80 rounded-2xl flex items-center justify-center text-[#64748B] hover:text-blue-500 hover:bg-white transition-all shadow-sm">
+                      <MapPin size={18} />
                     </button>
                   </div>
                 </div>
@@ -669,135 +563,95 @@ export default function HomePage() {
         <div className="container-wide relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-12 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Flexible Care</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-3 tracking-tight">Home & Online Care.</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-3 tracking-tight">Home & Online</h2>
             <p className="text-slate-500 text-lg font-normal">Bespoke rehabilitation protocols delivered wherever you are.</p>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
                 id: "01",
                 title: "Healing Hands Home Care",
                 subtitle: "Across Jodhpur City",
-                pin: "SERVICE AREA",
+                icon: Home,
                 address: "We bring the entire clinical setup to your home.",
-                landmarks: [
-                  { name: "Service Available 24/7", detail: "Express" },
-                  { name: "All major areas", detail: "Full Coverage" },
-                  { name: "Doorstep Rehab", detail: "At Home" }
-                ],
-                hours: "Available: 7 AM–9 PM (Daily)",
                 doctor: "Senior On-Call PT",
                 doctorRole: "Home Care Specialist",
                 buttonText: "BOOK HOME VISIT",
-                mapImg: "/map_placeholder.png"
               },
               {
                 id: "02",
                 title: "Healing Hands Online",
                 subtitle: "Virtual Consultation",
-                pin: "DIGITAL CLINIC",
+                icon: Globe,
                 address: "Consult our experts via video call from anywhere.",
-                landmarks: [
-                  { name: "HD Video Call", detail: "Global" },
-                  { name: "Digital Plan", detail: "Instant" },
-                  { name: "Remote Monitoring", detail: "Daily" }
-                ],
-                hours: "Mon–Sun: 10 AM–8 PM (IST)",
                 doctor: "Expert Consultant",
                 doctorRole: "Tele-Rehab Specialist",
                 buttonText: "START CONSULTATION",
-                mapImg: "/map_placeholder.png"
               }
             ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.7 }}
-                className="group relative min-w-[85vw] md:min-w-0 snap-center"
+                transition={{ delay: i * 0.2, duration: 0.8 }}
+                className="group relative"
               >
+                <div className="relative h-full bg-white rounded-[3rem] p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 overflow-hidden flex flex-col transition-all duration-500 hover:shadow-[0_40px_100px_-20px_rgba(37,99,235,0.12)] hover:-translate-y-2">
 
-                <div className="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.06)] border border-slate-100 flex flex-col h-full hover:shadow-[0_40px_120px_-25px_rgba(37,99,235,0.12)] transition-all duration-500 overflow-hidden">
+                  {/* Subtle Background Pattern */}
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none">
+                    <item.icon size={240} strokeWidth={1} />
+                  </div>
 
-                  {/* Modern Header */}
-                  <div className="mb-6 relative">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="px-2.5 py-0.5 rounded-lg bg-medical-teal text-white text-[0.6rem] font-bold tracking-tight uppercase">
-                        PIN: {item.pin}
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-medical-teal/10 flex items-center justify-center text-medical-teal">
+                        <item.icon size={24} />
                       </div>
-                      <div className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
+                      <span className="text-[0.6rem] font-bold text-medical-teal uppercase tracking-[0.25em]">Premium Care</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-medical-blue tracking-tight leading-none mb-2">
+
+                    <h3 className="text-3xl font-bold text-medical-blue mb-2 tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-500 font-semibold tracking-tight">
+                    <p className="text-slate-500 font-medium mb-8">
                       {item.subtitle}
                     </p>
-                  </div>
 
-                  {/* Technical Detail Blocks */}
-                  <div className="space-y-6 flex-1">
-                    {/* Address Block */}
-                    <div className="relative pl-5 border-l-2 border-slate-100 group-hover:border-medical-teal/30 transition-colors">
-                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-1.5">Location Details</span>
-                      <p className="text-sm font-bold text-medical-blue leading-relaxed">{item.address}</p>
-                    </div>
-
-                    {/* Landmarks "Distance Chips" */}
-                    <div>
-                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-tight block mb-3">Service Benefits</span>
-                      <div className="space-y-2">
-                        {item.landmarks.map((l, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50/50 border border-slate-100 group-hover:bg-white transition-all">
-                            <div className="flex items-center gap-2.5">
-                              <CheckCircle2 size={13} className="text-medical-teal" />
-                              <span className="text-[0.7rem] font-semibold text-slate-600">{l.name}</span>
-                            </div>
-                            <span className="px-2 py-0.5 rounded-md bg-white text-[0.55rem] font-bold text-medical-teal border border-slate-100 shadow-sm uppercase tracking-tighter">
-                              {l.detail}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Technical Hours */}
-                    <div className="flex items-center gap-4 p-3.5 rounded-2xl bg-slate-900 text-white shadow-xl shadow-slate-900/10">
-                      <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
-                        <Clock size={18} className="text-medical-teal" />
-                      </div>
-                      <div>
-                        <span className="text-[0.55rem] font-bold text-white/40 uppercase tracking-tight block">Availability Window</span>
-                        <p className="text-[0.7rem] font-bold tracking-tight">{item.hours}</p>
-                      </div>
+                    <div className="relative pl-6 border-l-2 border-slate-100 group-hover:border-medical-teal transition-colors duration-500 mb-10">
+                      <span className="text-[0.6rem] font-bold text-slate-400 uppercase tracking-widest block mb-2">Primary Objective</span>
+                      <p className="text-lg font-medium text-medical-blue leading-relaxed">{item.address}</p>
                     </div>
                   </div>
 
-                  {/* High-End Doctor Spotlight */}
-                  <div className="mt-8 mb-6 p-1 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-between group/doc hover:bg-white transition-all">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg bg-white relative">
-                        <Image src={item.doctor === "Dr. Asad Solanki" ? teamMembers[0].image : teamMembers[1].image} alt="Doctor" fill className="object-cover" />
+                  {/* Refined Doctor Spotlight */}
+                  <div className="mt-auto relative z-10">
+                    <div className="flex items-center justify-between mb-8 p-1.5 pr-6 rounded-full bg-slate-50 border border-slate-100 group/doc hover:bg-white transition-all duration-500">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-white relative">
+                          <Image
+                            src={item.doctor === "Senior On-Call PT" ? teamMembers[0].image : teamMembers[1].image}
+                            alt="Doctor"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
+                          <p className="text-[0.6rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[0.75rem] font-bold text-medical-blue leading-none mb-1">{item.doctor}</p>
-                        <p className="text-[0.5rem] text-slate-500 font-bold uppercase tracking-tight">{item.doctorRole}</p>
-                      </div>
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                     </div>
-                    <div className="pr-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 block animate-pulse" />
-                    </div>
-                  </div>
 
-                  {/* Dual Primary Actions */}
-                  <div className="flex gap-2.5 mt-auto">
                     <Link
                       href="/contact"
-                      className="flex-1 bg-medical-teal text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider text-center shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
+                      className="w-full flex items-center justify-center gap-3 bg-medical-teal text-white py-5 rounded-2xl font-bold text-sm uppercase tracking-widest shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
                     >
-                      {item.buttonText}
+                      <span>{item.buttonText}</span>
+                      <ArrowRight size={18} />
                     </Link>
                   </div>
                 </div>
@@ -813,10 +667,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-r from-medical-blue to-slate-800" />
           <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
             {[
-              { n: 15000, suffix: "+", l: "Patients Restored" },
-              { n: 10, suffix: "+ Years", l: "Clinical Excellence" },
-              { n: 7, suffix: " Experts", l: "Specialized Staff" },
-              { n: 6, suffix: " Centers", l: "Across Jodhpur" }
+              { n: 250000, suffix: "+", l: "Patients Restored" },
+              { n: 13, suffix: "+ Years", l: "Clinical Experience" },
+              { n: 1, suffix: " on 1", l: "Personalized Care" },
+              { n: 8, suffix: "+ Hubs", l: "Expanding Across Jodhpur" }
             ].map((item, i) => (
               <div key={i} className="will-animate scroll-reveal reveal px-4">
                 <p className="text-3xl md:text-4xl font-light mb-2 tracking-tight text-white drop-shadow-sm flex items-center justify-center">
@@ -1381,7 +1235,7 @@ export default function HomePage() {
       <section className="py-24 bg-medical-blue relative overflow-hidden">
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 will-animate scroll-reveal reveal">
-            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Government Health Schemes</span>
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Cashless Government Health Schemes</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Government Health Schemes</h2>
             <p className="text-slate-300 text-lg font-normal">
               Healing Hands Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
@@ -1393,20 +1247,20 @@ export default function HomePage() {
               {
                 name: "RGHS",
                 fullName: "Rajasthan Government Health Scheme",
-                desc: "Cashless medical facilities for Rajasthan state government employees and pensioners.",
-                image: "/rghs_logo.png"
+                desc: "Cashless Physiotherapy for Rajasthan state government employees and pensioners.",
+                image: "/cirtificates/rghs.jpeg"
               },
               {
                 name: "CGHS",
                 fullName: "Central Government Health Scheme",
-                desc: "Comprehensive medical care for Central Government employees and retirees across India.",
-                image: "/cghs_logo.png"
+                desc: "Cashless Physiotherapy for Central Government employees and retirees across India.",
+                image: "/cirtificates/cghs.jpeg"
               },
               {
                 name: "ECHS",
                 fullName: "Ex-Servicemen Contributory Health Scheme",
-                desc: "Dedicated healthcare support for our veterans and their dependents with cashless treatment.",
-                image: "/echs_logo.png"
+                desc: "Cashless Physiotherapy for our veterans and their dependents.",
+                image: "/cirtificates/echs.jpeg"
               }
             ].map((item, i) => (
               <motion.div
@@ -1416,22 +1270,22 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[85vw] md:min-w-0 snap-center"
+                className="p-6 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[85vw] md:min-w-0 snap-center"
               >
-                <div className="w-32 h-32 relative mb-8 rounded-2xl overflow-hidden bg-slate-50 p-2 group-hover:scale-105 transition-transform duration-500">
+                <div className="w-full aspect-[3/4] relative mb-8 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 group-hover:scale-[1.02] transition-transform duration-500">
                   <Image
                     src={item.image}
                     alt={item.fullName}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-medical-blue mb-2">{item.name}</h3>
                 <p className="text-[0.65rem] font-bold text-medical-teal uppercase tracking-widest mb-4">{item.fullName}</p>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <p className="text-sm text-slate-500 leading-relaxed mb-6">
                   {item.desc}
                 </p>
-                <div className="mt-8 flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-full border border-green-100">
+                <div className="mt-auto flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-full border border-green-100">
                   <ShieldCheck size={14} />
                   <span className="text-[0.55rem] font-bold uppercase tracking-widest">Authorized Center</span>
                 </div>
@@ -1494,7 +1348,7 @@ export default function HomePage() {
                     <div className="grid grid-cols-2 gap-4 mb-8 py-4 border-y border-slate-50">
                       <div>
                         <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Experience</p>
-                        <p className="text-xs font-bold text-medical-blue">{doctor.slug === 'asad-solanki' ? '10+ Years' : '7+ Years'}</p>
+                        <p className="text-xs font-bold text-medical-blue">{doctor.experience}</p>
                       </div>
                       <div>
                         <p className="text-[0.55rem] font-bold text-slate-400 uppercase tracking-widest mb-1">Specialist</p>
@@ -1548,9 +1402,9 @@ export default function HomePage() {
                 <ChevronRight size={24} className="rotate-180" />
               </button>
               <button
-                onClick={() => setPartnerIndex(prev => Math.min(4, prev + 1))}
-                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= 4 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
-                disabled={partnerIndex >= 4}
+                onClick={() => setPartnerIndex(prev => Math.min(isMobile ? 4 : 2, prev + 1))}
+                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= (isMobile ? 4 : 2) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                disabled={partnerIndex >= (isMobile ? 4 : 2)}
               >
                 <ChevronRight size={24} />
               </button>
@@ -1562,14 +1416,14 @@ export default function HomePage() {
               drag="x"
               dragConstraints={{
                 right: 0,
-                left: isMobile ? -(6 * 100) + '%' : -(4 * 33.33) + '%'
+                left: isMobile ? -(4 * 100) + '%' : -(2 * 33.33) + '%'
               }}
               dragElastic={0.1}
               dragMomentum={false}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = offset.x;
                 const threshold = 50;
-                if (swipe < -threshold && partnerIndex < (isMobile ? 6 : 4)) {
+                if (swipe < -threshold && partnerIndex < (isMobile ? 4 : 2)) {
                   setPartnerIndex(prev => prev + 1);
                 } else if (swipe > threshold && partnerIndex > 0) {
                   setPartnerIndex(prev => prev - 1);
@@ -1580,13 +1434,11 @@ export default function HomePage() {
               className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
             >
               {[
-                { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
-                { name: "PHC Multi Speciality Hospital", image: "/hospital_2.png", rating: "5.0" },
-                { name: "Lucknow CISRO Hospital", image: "/hospital_3.png", rating: "5.0" },
-                { name: "SRS Hospital", image: "/hospital_4.png", rating: "5.0" },
-                { name: "Amrut Hospital", image: "/hospital_1.png", rating: "5.0" },
-                { name: "Lakshay Cancer Hospital", image: "/hospital_1.png", rating: "5.0" },
-                { name: "PHC Multi Speciality Hospital", image: "/hospital_2.png", rating: "5.0" },
+                { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", rating: "5.0" },
+                { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", rating: "5.0" },
+                { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", rating: "5.0" },
+                { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
+                { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
               ].map((item, i) => (
                 <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
                   <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
@@ -1639,92 +1491,7 @@ export default function HomePage() {
       </section>
 
       {/* ===== TRANSPARENT PRICING: TRUST BUILDER ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
-        {/* Right Corner Pattern */}
-        <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
-          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad-right-3" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path d="M100 0 L0 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
-            <path d="M100 10 L10 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
-            <path d="M100 20 L20 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
-            <path d="M90 0 L0 90" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
-            <path d="M80 0 L0 80" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
-          </svg>
-        </div>
-        <div className="md:max-site mx-2 py-6">
-          <div className="bg-medical-blue rounded-[1.5rem] md:rounded-[3rem] p-5 md:p-20 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/10 to-transparent pointer-events-none" />
-            <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center relative z-10">
-              <div className="will-animate scroll-reveal reveal">
-                <span className="text-[0.65rem] md:text-sm font-bold uppercase tracking-[0.2em] text-medical-teal">Patient First Policy</span>
-                <h2 className="text-3xl md:text-5xl mt-4 md:mt-6 mb-6 md:mb-8 text-white font-light leading-tight">Care Beyond Recovery. <br /> Pricing Beyond Doubt.</h2>
-                <p className="text-white/70 text-lg mb-10 leading-relaxed font-normal">
-                  We believe in complete transparency. Our treatment plans are built around
-                  your recovery goals, with no hidden package fees or unnecessary sessions.
-                </p>
-                <div className="flex flex-wrap gap-6">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={20} className="text-medical-teal" />
-                    <span className="text-white/80 text-sm font-medium">No Hidden Costs</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={20} className="text-medical-teal" />
-                    <span className="text-white/80 text-sm font-medium">Session-wise Billing</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className="will-animate scroll-reveal reveal lg:flex lg:justify-end">
-                <div className="bg-white p-10 rounded-[2.5rem] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] w-full max-w-md border border-slate-100">
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-medical-teal/10 flex items-center justify-center text-medical-teal">
-                      <Clock size={24} />
-                    </div>
-                    <div>
-                      <p className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-medical-teal leading-none mb-1">Appointment</p>
-                      <h3 className="text-xl font-bold text-medical-blue tracking-tight">Booking Process</h3>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6 mb-10 text-left">
-                    {[
-                      { step: "01", title: "Instant Booking", desc: "Choose your preferred date and time slot via our portal." },
-                      { step: "02", title: "Expert Diagnosis", desc: "Our chief doctor conducts a thorough physical assessment." },
-                      { step: "03", title: "Recovery Roadmap", desc: "Receive a personalized therapy plan for long-term health." }
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex gap-4 group">
-                        <span className="text-xs font-black text-slate-200 group-hover:text-medical-teal/30 transition-colors mt-1">{item.step}</span>
-                        <div>
-                          <p className="text-sm font-bold text-medical-blue mb-1">{item.title}</p>
-                          <p className="text-xs text-slate-400 font-medium leading-relaxed">{item.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100 mb-8 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                      <span className="text-[0.65rem] font-bold text-slate-600 uppercase tracking-widest">Available for Home & Clinic</span>
-                    </div>
-                    <ChevronRight size={14} className="text-slate-300" />
-                  </div>
-
-                  <Link href="/contact" className="w-full py-5 rounded-2xl bg-medical-blue text-white font-bold text-sm uppercase tracking-widest hover:bg-medical-teal hover:shadow-xl hover:shadow-medical-teal/20 transition-all flex items-center justify-center gap-3 group">
-                    Book Your Session
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== FIND US ON MAP ===== */}
       {/* <section className="section-padding bg-white pt-0">
@@ -1773,17 +1540,16 @@ export default function HomePage() {
       </section> */}
 
       {/* ===== FAQ: FREQUENT QUESTIONS ===== */}
-      <section className="section-padding bg-medical-blue relative overflow-hidden">
-        <div className="absolute inset-0 bg-mesh opacity-5" />
+      <section className="section-padding bg-white relative overflow-hidden border-t border-slate-100">
         <div className="max-site">
           <div className="grid lg:grid-cols-12 gap-10 md:gap-16">
             <div className="lg:col-span-5 will-animate scroll-reveal reveal">
               <span className="text-[0.7rem] md:text-sm font-bold uppercase tracking-[0.2em] text-medical-teal">Common Queries</span>
-              <h2 className="text-3xl md:text-5xl mt-4 mb-6 md:mb-8 text-white font-light">Questions & <br className="hidden md:block" /> Answers.</h2>
-              <p className="text-slate-300 font-normal text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
+              <h2 className="text-3xl md:text-5xl mt-4 mb-6 md:mb-8 text-medical-blue font-bold tracking-tight">Questions & <br className="hidden md:block" /> Answers.</h2>
+              <p className="text-slate-500 font-normal text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
                 Everything you need to know about starting your physical therapy journey with us.
               </p>
-              <Link href="/contact" className="group flex items-center gap-4 text-white font-bold bg-white/5 border border-white/10 px-6 md:px-8 py-3.5 md:py-4 rounded-2xl hover:bg-white hover:text-medical-blue transition-all duration-500 w-full md:w-fit shadow-xl justify-center md:justify-start">
+              <Link href="/contact" className="group flex items-center gap-4 text-medical-blue font-bold bg-slate-50 border border-slate-200 px-6 md:px-8 py-3.5 md:py-4 rounded-2xl hover:bg-medical-teal hover:text-white transition-all duration-500 w-full md:w-fit shadow-sm justify-center md:justify-start">
                 <span className="text-sm md:text-base">Ask a Specific Question</span>
                 <div className="w-8 h-8 rounded-full bg-medical-teal text-white flex items-center justify-center group-hover:translate-x-1 transition-transform shrink-0">
                   <ArrowRight size={16} />
@@ -1802,16 +1568,16 @@ export default function HomePage() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`will-animate scroll-reveal reveal overflow-hidden transition-all duration-500 rounded-[1.5rem] md:rounded-3xl border ${activeFaq === i ? 'bg-white/10 border-medical-teal/30 shadow-2xl shadow-medical-teal/5' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+                  className={`will-animate scroll-reveal reveal overflow-hidden transition-all duration-500 rounded-[1.5rem] md:rounded-3xl border ${activeFaq === i ? 'bg-slate-50 border-medical-teal/30 shadow-xl shadow-slate-200/50' : 'bg-white border-slate-100 hover:border-slate-200 shadow-sm'}`}
                 >
                   <button
                     onClick={() => setActiveFaq(activeFaq === i ? -1 : i)}
                     className="w-full p-5 md:p-8 flex items-center justify-between text-left group gap-4"
                   >
-                    <h4 className={`text-base md:text-lg font-bold transition-colors duration-300 ${activeFaq === i ? 'text-medical-teal' : 'text-white group-hover:text-medical-teal/70'}`}>
+                    <h4 className={`text-base md:text-lg font-bold transition-colors duration-300 ${activeFaq === i ? 'text-medical-teal' : 'text-medical-blue group-hover:text-medical-teal'}`}>
                       {item.q}
                     </h4>
-                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 shrink-0 ${activeFaq === i ? 'bg-medical-teal text-white rotate-45' : 'bg-white/5 text-white/40'}`}>
+                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 shrink-0 ${activeFaq === i ? 'bg-medical-teal text-white rotate-45' : 'bg-slate-100 text-slate-400'}`}>
                       <Plus size={18} />
                     </div>
                   </button>
@@ -1822,8 +1588,8 @@ export default function HomePage() {
                     className="overflow-hidden"
                   >
                     <div className="px-5 pb-5 md:px-8 md:pb-8">
-                      <div className="h-px w-full bg-white/10 mb-4 md:mb-6" />
-                      <p className="text-slate-300 text-sm md:text-base leading-relaxed font-normal max-w-2xl">
+                      <div className="h-px w-full bg-slate-100 mb-4 md:mb-6" />
+                      <p className="text-slate-500 text-sm md:text-base leading-relaxed font-normal max-w-2xl">
                         {item.a}
                       </p>
                     </div>
@@ -1836,28 +1602,93 @@ export default function HomePage() {
       </section>
 
       {/* ===== FINAL CTA: PREMIUM BANNER ===== */}
-      <section className="section-padding pt-10">
-        <div className="max-site bg-medical-blue rounded-2xl p-12 md:p-24 text-white text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-medical-blue via-slate-800 to-medical-blue" />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-medical-teal opacity-20 blur-[120px] rounded-full pointer-events-none" />
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Right Corner Pattern */}
+        <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad-right-3" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M100 0 L0 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M100 10 L10 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M100 20 L20 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M90 0 L0 90" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+            <path d="M80 0 L0 80" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
+          </svg>
+        </div>
+        <div className="md:max-site mx-2 py-10">
+          <div className="bg-medical-blue rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-24 relative overflow-hidden group">
+            {/* Animated Background Elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-medical-teal/10 rounded-full blur-[100px] -mr-48 -mt-48 animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -ml-48 -mb-48" />
 
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-6xl mb-10 leading-tight will-animate scroll-reveal reveal font-light">
-              Ready to begin your <br /> Recovery Journey?
-            </h2>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6 will-animate scroll-reveal reveal">
-              <Link href="/contact" className="btn-modern bg-white text-medical-blue hover:bg-slate-50 px-10 py-4 shadow-xl font-medium">
-                Book Initial Assessment
-              </Link>
-              <a href="tel:6378062237" className="group flex items-center gap-4 text-white font-bold hover:text-medical-teal transition-all duration-300">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-medical-teal transition-all shadow-lg">
-                  <Phone size={20} />
+            <div className="grid lg:grid-cols-12 gap-16 items-center relative z-10">
+              <div className="lg:col-span-7 will-animate scroll-reveal reveal">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[0.65rem] md:text-xs font-bold uppercase tracking-[0.2em] text-medical-teal mb-8">
+                  <ShieldCheck size={14} />
+                  Patient First Policy
+                </span>
+                <h2 className="text-4xl md:text-6xl text-white font-bold leading-[1.1] mb-8 tracking-tight">
+                  Care Beyond Recovery. <br />
+                  <span className="text-medical-teal">Pricing Beyond Doubt.</span>
+                </h2>
+                <p className="text-slate-300 text-lg mb-12 leading-relaxed font-normal max-w-xl">
+                  Healing Hands Physiotherapy is built on the foundation of trust. We believe medical care should be transparent, accessible, and focused entirely on the patient's well-being.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-8 mb-12">
+                  {[
+                    { title: "No Hidden Costs", icon: Wallet, desc: "Clear, upfront pricing with zero hidden charges." },
+                    { title: "Session-wise Billing", icon: Activity, desc: "Pay per session. No forced long-term packages." },
+                    { title: "Instant Booking", icon: Zap, desc: "Skip the queue with our real-time scheduling." },
+                    { title: "Expert Diagnosis", icon: Stethoscope, desc: "Detailed assessment by senior specialists." }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex gap-4 group/item">
+                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover/item:bg-medical-teal/20 group-hover/item:border-medical-teal/30 transition-all duration-500">
+                        <item.icon size={22} className="text-medical-teal" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-bold mb-1 tracking-tight">{item.title}</h4>
+                        <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="text-left">
-                  <p className="text-[0.6rem] uppercase tracking-[0.2em] text-white/50 mb-0.5">Direct Line</p>
-                  <p className="text-xl md:text-2xl tracking-tighter">6378-062237</p>
+              </div>
+
+              <div className="lg:col-span-5 will-animate scroll-reveal reveal">
+                <div className="relative p-10 rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-sm overflow-hidden group/cta">
+                  <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/5 to-transparent opacity-0 group-hover/cta:opacity-100 transition-opacity duration-700" />
+
+                  <div className="relative z-10 text-center">
+                    <div className="w-20 h-20 rounded-3xl bg-medical-teal flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-medical-teal/30 rotate-3 group-hover/cta:rotate-6 transition-transform">
+                      <Phone size={32} className="text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">Need Immediate Help?</h3>
+                    <p className="text-slate-400 mb-10 text-sm">Our patient care coordinators are available to assist you with scheduling and recovery advice.</p>
+
+                    <div className="space-y-4">
+                      <Link
+                        href="/contact"
+                        className="w-full py-5 rounded-2xl bg-white text-medical-blue font-bold text-sm uppercase tracking-widest hover:bg-medical-teal hover:text-white transition-all flex items-center justify-center gap-3 shadow-xl"
+                      >
+                        Book Your Session
+                        <ArrowRight size={18} />
+                      </Link>
+                      <Link
+                        href="tel:+916378062237"
+                        className="w-full py-5 rounded-2xl bg-white/10 text-white border border-white/10 font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all flex items-center justify-center gap-3"
+                      >
+                        <Phone size={18} className="text-medical-teal" />
+                        6378-062237
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
