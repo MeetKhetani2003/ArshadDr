@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ArrowRight, Activity, Bone, Brain,
+  ArrowRight, Activity, Bone, Brain, Baby, Wind, Dumbbell,
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone, Video,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
@@ -778,30 +778,60 @@ export default function HomePage() {
 
       </section>
 
-      {/* ===== COMMON CONDITIONS: MINIMAL LIST ===== */}
-      <section className="section-padding bg-white -mt-48">
+      {/* ===== COMMON CONDITIONS: PREMIUM CARDS ===== */}
+      <section className="section-padding bg-white -mt-48 relative z-30">
         <div className="max-site">
-          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
-            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Common Conditions</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-medical-blue tracking-tight">We Treat.</h2>
+          <div className="text-center max-w-3xl mx-auto mb-16 will-animate scroll-reveal reveal">
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Expert Specializations</span>
+            <h2 className="text-4xl md:text-6xl font-bold text-medical-blue tracking-tight">What We Treat.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-0">
             {[
-              { cat: "Orthopedic", items: ["Back Pain & Sciatica", "Cervical Spondylosis", "Slip Disc (IVDP)", "Arthritis (OA/RA)"] },
-              { cat: "Neurological", items: ["Stroke (Paralysis)", "Parkinson's Disease", "Bell's Palsy", "Spinal Cord Injury"] },
-              { cat: "Sports", items: ["ACL & Ligament Rehab", "TKR / THR Recovery", "Tennis Elbow", "Muscle Strains"] }
+              { cat: "Orthopedic", icon: Bone, desc: "Bone, joint, and muscle pain recovery." },
+              { cat: "Neurological", icon: Brain, desc: "Stroke, paralysis, and nerve disorders." },
+              { cat: "Pediatric", icon: Baby, desc: "Developmental and childhood motor care." },
+              { cat: "Sports Injury", icon: Activity, desc: "Athletic injuries and performance rehab." },
+              { cat: "Geriatric", icon: HeartPulse, desc: "Age-related mobility and balance care." },
+              { cat: "Cardiopulmonary", icon: Wind, desc: "Heart and lung health rehabilitation." },
+              { cat: "Women’s Health", icon: Users, desc: "Pre/postnatal and pelvic floor care." },
+              { cat: "Pain Management", icon: Zap, desc: "Chronic pain and trigger point therapy." },
+              { cat: "Post Surgical", icon: Stethoscope, desc: "Recovery after major surgeries." },
+              { cat: "Manual Therapy", icon: Layers, desc: "Hands-on mobilization and advanced rehab." },
+              { cat: "Vestibular", icon: Navigation, desc: "Vertigo and balance restoration." },
+              { cat: "Occupational", icon: Laptop, desc: "Work-related injuries and ergonomics." },
+              { cat: "Fitness & Lifestyle", icon: Dumbbell, desc: "Weight loss and lifestyle rehabilitation." }
             ].map((group, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal">
-                <h4 className="text-2xl font-bold text-medical-blue mb-8 border-b border-slate-100 pb-4">{group.cat}</h4>
-                <ul className="space-y-4">
-                  {group.items.map((item, j) => (
-                    <li key={j} className="text-lg text-slate-500 font-normal hover:text-medical-teal cursor-default transition-colors">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % 4) * 0.1, duration: 0.6 }}
+                whileHover={{ y: -5 }}
+                className="group relative bg-white p-6 md:p-8 rounded-[2rem] border border-slate-100 hover:border-medical-teal/30 hover:shadow-xl hover:shadow-medical-teal/5 transition-all duration-500 flex flex-col items-start text-left overflow-hidden h-full"
+              >
+                {/* Background Decor */}
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
+                
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-medical-teal mb-6 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shrink-0">
+                  <group.icon size={24} />
+                </div>
+
+                <h3 className="text-lg font-bold text-medical-blue mb-3 tracking-tight group-hover:text-medical-teal transition-colors">
+                  {group.cat}
+                </h3>
+                
+                <p className="text-slate-500 font-normal text-[0.8rem] leading-relaxed mb-6">
+                  {group.desc}
+                </p>
+
+                <div className="mt-auto pt-4 border-t border-slate-50 w-full flex items-center justify-between">
+                  <Link href="/contact" className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 group-hover:text-medical-teal transition-all flex items-center gap-2">
+                    Inquire <ArrowRight size={12} />
+                  </Link>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>

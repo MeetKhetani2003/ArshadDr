@@ -8,7 +8,7 @@ import { treatments } from "@/data/treatments";
 import { motion } from "framer-motion";
 import { 
   ArrowUpRight, Activity, Bone, Brain, 
-  HeartPulse, Baby, PersonStanding, Zap,
+  HeartPulse, Baby, Wind, Dumbbell, Laptop, Zap,
   Phone, Users, Stethoscope, ArrowRight
 } from "lucide-react";
 
@@ -125,13 +125,19 @@ export default function TreatmentsPage() {
                   
                   <div className="absolute top-4 right-4 z-20">
                     <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
-                      {t.slug === "orthopedic-physiotherapy" && <Bone size={24} />}
-                      {t.slug === "neurological-physiotherapy" && <Brain size={24} />}
-                      {t.slug === "cardio-pulmonary-physiotherapy" && <HeartPulse size={24} />}
-                      {t.slug === "gynecological-physiotherapy" && <Users size={24} />}
-                      {t.slug === "pediatric-physiotherapy" && <Activity size={24} />}
-                      {t.slug === "geriatric-physiotherapy" && <Stethoscope size={24} />}
-                      {t.slug === "advanced-physiotherapy-services" && <Zap size={24} />}
+                      {t.slug.includes("orthopedic") && <Bone size={24} />}
+                      {t.slug.includes("neurological") && <Brain size={24} />}
+                      {t.slug.includes("pediatric") && <Baby size={24} />}
+                      {t.slug.includes("sports") && <Activity size={24} />}
+                      {t.slug.includes("geriatric") && <HeartPulse size={24} />}
+                      {t.slug.includes("cardio") && <Wind size={24} />}
+                      {t.slug.includes("womens") && <Users size={24} />}
+                      {t.slug.includes("pain") && <Zap size={24} />}
+                      {t.slug.includes("surgical") && <Stethoscope size={24} />}
+                      {t.slug.includes("manual") && <Users size={24} />}
+                      {t.slug.includes("vestibular") && <ArrowUpRight size={24} />}
+                      {t.slug.includes("occupational") && <Laptop size={24} />}
+                      {t.slug.includes("fitness") && <Dumbbell size={24} />}
                     </div>
                   </div>
 

@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Bone, Brain, HeartPulse, Flower2, Baby, PersonStanding, Zap,
   Activity, ArrowRight, Phone, CheckCircle2, ChevronRight,
-  Home, ArrowUpRight
+  Home, ArrowUpRight, Wind, Dumbbell, Laptop, Users, Stethoscope
 } from "lucide-react";
 import Image from "next/image";
 import { useBooking } from "@/components/BookingContext";
@@ -17,11 +17,17 @@ gsap.registerPlugin(ScrollTrigger);
 const treatmentIcons = {
   "orthopedic-physiotherapy": Bone,
   "neurological-physiotherapy": Brain,
-  "cardio-pulmonary-physiotherapy": HeartPulse,
-  "gynecological-physiotherapy": Flower2,
   "pediatric-physiotherapy": Baby,
-  "geriatric-physiotherapy": PersonStanding,
-  "advanced-physiotherapy-services": Zap,
+  "sports-physiotherapy": Activity,
+  "geriatric-physiotherapy": HeartPulse,
+  "cardiopulmonary-physiotherapy": Wind,
+  "womens-health-physiotherapy": Users,
+  "pain-management-physiotherapy": Zap,
+  "post-surgical-rehabilitation": Stethoscope,
+  "manual-therapy-advanced-rehab": Users,
+  "vestibular-balance-rehabilitation": ArrowUpRight,
+  "occupational-ergonomic-rehabilitation": Laptop,
+  "fitness-lifestyle-rehabilitation": Dumbbell,
 };
 
 export default function TreatmentDetailClient({ treatment, related }) {
