@@ -8,7 +8,7 @@ import { treatments } from "@/data/treatments";
 import { motion } from "framer-motion";
 import { 
   ArrowUpRight, Activity, Bone, Brain, 
-  HeartPulse, Baby, Wind, Dumbbell, Laptop, Zap,
+  HeartPulse, Baby, Dumbbell, Laptop, Zap,
   Phone, Users, Stethoscope, ArrowRight
 } from "lucide-react";
 
@@ -130,7 +130,7 @@ export default function TreatmentsPage() {
                       {t.slug.includes("pediatric") && <Baby size={24} />}
                       {t.slug.includes("sports") && <Activity size={24} />}
                       {t.slug.includes("geriatric") && <HeartPulse size={24} />}
-                      {t.slug.includes("cardio") && <Wind size={24} />}
+                      {t.slug.includes("cardio") && <Activity size={24} />}
                       {t.slug.includes("womens") && <Users size={24} />}
                       {t.slug.includes("pain") && <Zap size={24} />}
                       {t.slug.includes("surgical") && <Stethoscope size={24} />}

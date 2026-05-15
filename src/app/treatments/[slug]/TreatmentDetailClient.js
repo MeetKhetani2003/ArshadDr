@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Bone, Brain, HeartPulse, Flower2, Baby, PersonStanding, Zap,
   Activity, ArrowRight, Phone, CheckCircle2, ChevronRight,
-  Home, ArrowUpRight, Wind, Dumbbell, Laptop, Users, Stethoscope
+  Home, ArrowUpRight, Dumbbell, Laptop, Users, Stethoscope
 } from "lucide-react";
 import Image from "next/image";
 import { useBooking } from "@/components/BookingContext";
@@ -20,7 +20,7 @@ const treatmentIcons = {
   "pediatric-physiotherapy": Baby,
   "sports-physiotherapy": Activity,
   "geriatric-physiotherapy": HeartPulse,
-  "cardiopulmonary-physiotherapy": Wind,
+  "cardiopulmonary-physiotherapy": Activity,
   "womens-health-physiotherapy": Users,
   "pain-management-physiotherapy": Zap,
   "post-surgical-rehabilitation": Stethoscope,

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ArrowRight, Activity, Bone, Brain, Baby, Wind, Dumbbell,
+  ArrowRight, Activity, Bone, Brain, Baby, Dumbbell,
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone, Video,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
@@ -793,7 +793,7 @@ export default function HomePage() {
               { cat: "Pediatric", icon: Baby, desc: "Developmental and childhood motor care." },
               { cat: "Sports Injury", icon: Activity, desc: "Athletic injuries and performance rehab." },
               { cat: "Geriatric", icon: HeartPulse, desc: "Age-related mobility and balance care." },
-              { cat: "Cardiopulmonary", icon: Wind, desc: "Heart and lung health rehabilitation." },
+              { cat: "Cardiopulmonary", icon: Activity, desc: "Heart and lung health rehabilitation." },
               { cat: "Women’s Health", icon: Users, desc: "Pre/postnatal and pelvic floor care." },
               { cat: "Pain Management", icon: Zap, desc: "Chronic pain and trigger point therapy." },
               { cat: "Post Surgical", icon: Stethoscope, desc: "Recovery after major surgeries." },
