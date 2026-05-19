@@ -17,6 +17,7 @@ const links = [
     ]
   },
   { href: "/blogs", label: "Journal" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Appointments" },
 ];
 
@@ -28,6 +29,9 @@ export default function Navbar() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
   }, [pathname]);

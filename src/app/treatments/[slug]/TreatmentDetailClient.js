@@ -205,7 +205,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
               className="order-1 lg:order-2 relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl"
             >
               <Image
-                src="/treatment_process_v2.png"
+                src={treatment.protocolImage || "/treatment_process_v2.png"}
                 alt="Clinical Process"
                 fill
                 className="object-cover"

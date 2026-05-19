@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -10,7 +10,7 @@ import {
   HeartPulse, ShieldCheck, Award, Users,
   MapPin, ChevronRight, Zap, ArrowUpRight, Phone, Video,
   Stethoscope, CheckCircle2, Crosshair, Navigation,
-  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus
+  Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus, Image as ImageIcon, X, Play, ZoomIn, Download, Loader2
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
 import { teamMembers, locations } from "@/data/team";
@@ -20,6 +20,13 @@ import Marquee from "react-fast-marquee";
 gsap.registerPlugin(ScrollTrigger);
 
 const numberFormatter = new Intl.NumberFormat("en-US");
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
 
 function StatCounter({ value }) {
   const ref = useRef(null);
@@ -58,6 +65,50 @@ export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [activeHomeVideo, setActiveHomeVideo] = useState(null);
+  const [activeHomePhoto, setActiveHomePhoto] = useState(null);
+  const [downloadingId, setDownloadingId] = useState(null);
+
+  const handleDownload = async (e, imageId, title) => {
+    e.stopPropagation();
+    setDownloadingId(imageId);
+    try {
+      const res = await fetch(`/api/media/${imageId}`);
+      if (!res.ok) throw new Error("Failed to fetch image data");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = title || `healing-hands-recovery-${imageId}.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download error:", err);
+      alert("Could not download image. Please try again.");
+    } finally {
+      setDownloadingId(null);
+    }
+  };
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const res = await fetch("/api/gallery");
+        if (res.ok) {
+          const data = await res.json();
+          setGalleryItems(data.slice(0, 10));
+        }
+      } catch (err) {
+        console.error("Homepage gallery fetch failed:", err);
+      }
+    };
+    fetchGallery();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -514,7 +565,7 @@ export default function HomePage() {
                   <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
                       <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                         <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
+                        <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
@@ -674,7 +725,9 @@ export default function HomePage() {
             ].map((item, i) => (
               <div key={i} className="will-animate scroll-reveal reveal px-4">
                 <p className="text-3xl md:text-4xl font-light mb-2 tracking-tight text-white drop-shadow-sm flex items-center justify-center">
-                  <StatCounter value={item.n} />{item.suffix}
+                  <StatCounter value={item.n} />
+                  {item.suffix.startsWith(" ") ? "\u00A0" : ""}
+                  {item.suffix.trim()}
                 </p>
                 <p className="text-medical-teal font-medium uppercase tracking-[0.2em] text-[0.55rem] opacity-90">{item.l}</p>
               </div>
@@ -813,7 +866,7 @@ export default function HomePage() {
               >
                 {/* Background Decor */}
                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
-                
+
                 <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-medical-teal mb-6 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shrink-0">
                   <group.icon size={24} />
                 </div>
@@ -821,7 +874,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-bold text-medical-blue mb-3 tracking-tight group-hover:text-medical-teal transition-colors">
                   {group.cat}
                 </h3>
-                
+
                 <p className="text-slate-500 font-normal text-[0.8rem] leading-relaxed mb-6">
                   {group.desc}
                 </p>
@@ -1041,6 +1094,161 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ===== HOMEPAGE GALLERY CAROUSEL: HEALING HANDS IN ACTION ===== */}
+      {galleryItems.length > 0 && (
+        <section className="section-padding bg-white relative overflow-hidden border-t border-slate-100">
+          <div className="max-site relative z-10">
+            <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+              <div className="will-animate scroll-reveal reveal">
+                <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6 flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-medical-teal rotate-45" />
+                  Visual Portfolio
+                </span>
+                <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-4 tracking-tight">Healing Hands in Action</h2>
+                <p className="text-slate-500 text-lg max-w-2xl">
+                  Take a look at our clinical excellence, state-of-the-art rehabilitation setups, and real patient recovery stories.
+                </p>
+              </div>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setGalleryIndex(prev => Math.max(0, prev - 1))}
+                  className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${galleryIndex === 0 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                  disabled={galleryIndex === 0}
+                >
+                  <ChevronRight size={24} className="rotate-180" />
+                </button>
+                <button
+                  onClick={() => setGalleryIndex(prev => Math.min(galleryItems.length - (isMobile ? 1 : 3), prev + 1))}
+                  className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${galleryIndex >= (galleryItems.length - (isMobile ? 1 : 3)) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                  disabled={galleryIndex >= (galleryItems.length - (isMobile ? 1 : 3))}
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
+
+            {/* Slider Container */}
+            <div className="relative overflow-hidden py-6">
+              <motion.div
+                drag="x"
+                dragConstraints={{
+                  right: 0,
+                  left: isMobile ? -((galleryItems.length - 1) * 100) + '%' : -((galleryItems.length - 3) * 33.8) + '%'
+                }}
+                dragElastic={0.1}
+                dragMomentum={false}
+                onDragEnd={(e, { offset }) => {
+                  const swipe = offset.x;
+                  const threshold = 50;
+                  if (swipe < -threshold && galleryIndex < galleryItems.length - (isMobile ? 1 : 3)) {
+                    setGalleryIndex(prev => prev + 1);
+                  } else if (swipe > threshold && galleryIndex > 0) {
+                    setGalleryIndex(prev => prev - 1);
+                  }
+                }}
+                animate={{ x: `-${galleryIndex * (isMobile ? 100 : 33.8)}%` }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
+              >
+                {galleryItems.map((item, i) => {
+                  const ytId = item.type === "video" ? getYouTubeId(item.videoUrl) : null;
+                  const thumbUrl = item.type === "image"
+                    ? `/api/media/${item.imageId}`
+                    : ytId
+                      ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+                      : null;
+
+                  return (
+                    <div key={item._id} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
+                      <div
+                        className="group bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.05)] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full relative"
+                      >
+                        {/* Media Thumbnail */}
+                        <div className="aspect-[4/3] relative w-full bg-slate-50 overflow-hidden shrink-0">
+                          {thumbUrl ? (
+                            <img
+                              src={thumbUrl}
+                              alt={item.title || "Clinical Portfolio"}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-slate-300">
+                              <ImageIcon size={40} />
+                            </div>
+                          )}
+
+                          {/* cinematic overlay with action buttons */}
+                          <div className="absolute inset-0 flex items-center justify-center gap-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-medical-blue/40 backdrop-blur-[2px]">
+                            {item.type === "image" ? (
+                              <>
+                                <button
+                                  onClick={() => setActiveHomePhoto(item)}
+                                  className="w-14 h-14 rounded-full bg-white hover:bg-medical-teal hover:text-white shadow-xl flex items-center justify-center text-medical-blue transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer border-none"
+                                  title="Zoom Photo"
+                                >
+                                  <ZoomIn size={22} />
+                                </button>
+                                <button
+                                  onClick={(e) => handleDownload(e, item.imageId, item.title)}
+                                  disabled={downloadingId === item.imageId}
+                                  className="w-14 h-14 rounded-full bg-white hover:bg-medical-teal hover:text-white shadow-xl flex items-center justify-center text-medical-blue transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer border-none"
+                                  title="Download Photo"
+                                >
+                                  {downloadingId === item.imageId ? (
+                                    <Loader2 className="animate-spin" size={20} />
+                                  ) : (
+                                    <Download size={20} />
+                                  )}
+                                </button>
+                              </>
+                            ) : (
+                              <button
+                                onClick={() => setActiveHomeVideo(item.videoUrl)}
+                                className="w-16 h-16 rounded-full bg-white hover:bg-medical-teal hover:text-white shadow-xl flex items-center justify-center text-medical-blue transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer border-none"
+                                title="Play Video"
+                              >
+                                <Play size={24} className="text-medical-teal hover:text-white fill-current ml-1" />
+                              </button>
+                            )}
+                          </div>
+
+                          {/* type indicator icon badge */}
+                          <span className={`absolute top-6 left-6 px-3.5 py-1.5 rounded-xl text-[0.6rem] font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5 ${item.type === "image" ? "bg-white/95 text-medical-blue" : "bg-red-500 text-white"
+                            }`}>
+                            {item.type === "image" ? <ImageIcon size={10} /> : <Play size={10} className="fill-white" />}
+                            {item.type}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </div>
+
+            {/* Pagination Dots */}
+            {galleryItems.length > (isMobile ? 1 : 3) && (
+              <div className="flex justify-center gap-2 mt-8">
+                {[...Array(galleryItems.length - (isMobile ? 0 : 2))].map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setGalleryIndex(i)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${galleryIndex === i ? "bg-medical-teal w-8" : "bg-slate-200"}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* View All Button */}
+            <div className="flex justify-center mt-12">
+              <Link href="/gallery" className="btn-modern btn-primary px-10 py-5 text-sm uppercase tracking-widest font-extrabold shadow-xl">
+                View Full Recovery Gallery <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ===== TESTIMONIALS: GOOGLE VERIFIED SUCCESS STORIES ===== */}
       <section className="section-padding bg-slate-50/50 relative overflow-hidden">
         <div className="max-site">
@@ -1154,7 +1362,7 @@ export default function HomePage() {
                       </div>
 
                       <p className="text-base text-slate-600 font-normal leading-relaxed mb-8 flex-1 italic">
-                        "{test.text}"
+                        &ldquo;{test.text}&rdquo;
                       </p>
 
                       <div className="flex items-center justify-between pt-6 border-t border-slate-50">
@@ -1272,7 +1480,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-6 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {[
               {
                 name: "RGHS",
@@ -1290,7 +1498,7 @@ export default function HomePage() {
                 name: "ECHS",
                 fullName: "Ex-Servicemen Contributory Health Scheme",
                 desc: "Cashless Physiotherapy for our veterans and their dependents.",
-                image: "/cirtificates/echs.jpeg"
+                image: "/cirtificates/echs.png"
               }
             ].map((item, i) => (
               <motion.div
@@ -1300,7 +1508,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="p-6 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[85vw] md:min-w-0 snap-center"
+                className="p-3 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[90vw] md:min-w-0 snap-center"
               >
                 <div className="w-full aspect-[3/4] relative mb-8 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 group-hover:scale-[1.02] transition-transform duration-500">
                   <Image
@@ -1666,7 +1874,7 @@ export default function HomePage() {
                   <span className="text-medical-teal">Pricing Beyond Doubt.</span>
                 </h2>
                 <p className="text-slate-300 text-lg mb-12 leading-relaxed font-normal max-w-xl">
-                  Healing Hands Physiotherapy is built on the foundation of trust. We believe medical care should be transparent, accessible, and focused entirely on the patient's well-being.
+                  Healing Hands Physiotherapy is built on the foundation of trust. We believe medical care should be transparent, accessible, and focused entirely on the patient&apos;s well-being.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-8 mb-12">
@@ -1723,6 +1931,94 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* --- HOMEPAGE LIGHTBOX OVERLAYS --- */}
+
+      {/* 1. YouTube Video Modal */}
+      <AnimatePresence>
+        {activeHomeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveHomeVideo(null)}
+            className="fixed inset-0 bg-medical-blue/90 backdrop-blur-md z-[200] flex items-center justify-center p-4 md:p-10"
+          >
+            <button
+              onClick={() => setActiveHomeVideo(null)}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-medical-blue flex items-center justify-center transition-all hover:rotate-90 pointer-events-auto"
+            >
+              <X size={24} />
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-5xl aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black border border-white/10"
+            >
+              <iframe
+                src={`https://www.youtube.com/embed/${getYouTubeId(activeHomeVideo)}?autoplay=1&rel=0`}
+                title="Clinical Video Player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 2. Photo Lightbox Modal */}
+      <AnimatePresence>
+        {activeHomePhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveHomePhoto(null)}
+            className="fixed inset-0 bg-medical-blue/95 backdrop-blur-lg z-[200] flex flex-col justify-between p-6 select-none"
+          >
+            <div className="flex items-center justify-end text-white relative z-10">
+              <button
+                onClick={() => setActiveHomePhoto(null)}
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white text-white hover:text-medical-blue flex items-center justify-center transition-all hover:rotate-90"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="relative flex-1 flex items-center justify-center py-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
+                className="max-w-[85vw] max-h-[70vh] rounded-2xl overflow-hidden shadow-2xl relative border border-white/5 bg-slate-950 flex items-center justify-center"
+              >
+                <img
+                  src={`/api/media/${activeHomePhoto.imageId}`}
+                  alt={activeHomePhoto.title || "Lightbox Media"}
+                  className="max-w-full max-h-[70vh] object-contain"
+                />
+              </motion.div>
+            </div>
+
+            <div className="text-center text-white max-w-xl mx-auto pb-4 relative z-10">
+              <h4 className="text-lg font-bold tracking-tight">
+                {activeHomePhoto.title || "Healing Hands Case Study"}
+              </h4>
+              <p className="text-xs text-slate-400 mt-2">
+                Click close or click outside to return. Visit our full gallery page to download high-resolution photos.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

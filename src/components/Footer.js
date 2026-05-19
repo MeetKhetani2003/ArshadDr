@@ -16,11 +16,11 @@ export default function Footer() {
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
       <div className="container-wide relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-5 mb-20">
 
           {/* Brand Column (4 cols) */}
-          <div className="lg:col-span-4 relative pt-40 md:pt-44 -mt-14 md:-mt-28">
-            <Link href="/" className="absolute top-0 -left-4 block">
+          <div className="lg:col-span-4">
+            <Link href="/" >
               <Image
                 src="/Logo.png"
                 alt="Healing Hands Logo"
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
         {/* SEO Areas We Serve Grid */}
-        <div className="pt-12 pb-10 border-t border-slate-800/60">
+        {/* <div className="pt-12 pb-10 border-t border-slate-800/60">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
             <h4 className="text-white font-bold tracking-wider uppercase text-[0.6rem]">Serving Greater Jodhpur</h4>
             <Link href="/contact" className="text-[0.6rem] font-bold uppercase tracking-[0.25em] text-medical-teal hover:text-white transition-all">
@@ -159,10 +159,10 @@ export default function Footer() {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="pt-5 border-t border-slate-800/60 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
             <p className="text-[0.65rem] font-medium text-slate-500">
               © {new Date().getFullYear()} Healing Hands Physiotherapy. All Rights Reserved.

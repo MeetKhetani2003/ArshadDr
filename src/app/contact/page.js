@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Phone, MapPin, CheckCircle2, Clock,
-  ArrowRight, Loader2, Calendar, User, Activity, 
+  ArrowRight, Loader2, Calendar, User, Activity,
   Stethoscope, Info, Navigation2, ArrowUpRight
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
@@ -41,7 +41,7 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
   return (
     <main ref={containerRef} className="bg-white min-h-screen selection:bg-medical-teal selection:text-white">
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[75vh] flex items-center overflow-hidden pt-32 pb-20">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
             src="/contact_hero_v2.png"
@@ -102,14 +102,14 @@ export default function ContactPage() {
               <div className="w-12 h-px bg-medical-teal" />
               <span className="text-[0.65rem] md:text-xs font-bold uppercase tracking-[0.4em] text-medical-teal">Clinical Scheduler</span>
             </motion.div>
-            
+
             <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-bold text-white tracking-tight leading-[0.9] mb-10">
-              Book Your <br /> 
+              Book Your <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical-teal to-blue-400">Recovery.</span>
             </motion.h1>
-            
+
             <motion.p variants={itemVariants} className="text-slate-300 text-lg md:text-2xl max-w-2xl font-light opacity-90 leading-relaxed mb-12">
-              Schedule your consultation with Jodhpur's leading clinical specialists. 
+              Schedule your consultation with Jodhpur's leading clinical specialists.
               Personalized assessment for <span className="text-white font-medium italic">home or clinic care</span>.
             </motion.p>
 
@@ -140,7 +140,7 @@ export default function ContactPage() {
             <div className="lg:col-span-4 space-y-8">
               <div className="bg-medical-blue rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-medical-teal/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
-                
+
                 <h2 className="text-2xl font-bold mb-6 relative z-10">Why Book Online?</h2>
                 <div className="space-y-6 relative z-10">
                   {[
@@ -188,10 +188,10 @@ export default function ContactPage() {
                   <h2 className="text-3xl font-bold text-medical-blue tracking-tight">Book Appointment</h2>
                   <p className="text-slate-500 mt-2 font-medium">Please fill in the details below to schedule your consultation.</p>
                 </div>
-                
+
                 {status === "success" ? (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }} 
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center py-20"
                   >
@@ -202,8 +202,8 @@ export default function ContactPage() {
                     <p className="text-slate-500 text-lg max-w-md mx-auto mb-10">
                       We've received your request. A clinical receipt has been sent to your email. Our team will call you to confirm the final slot.
                     </p>
-                    <button 
-                      onClick={() => setStatus(null)} 
+                    <button
+                      onClick={() => setStatus(null)}
                       className="btn-modern btn-primary px-10 py-4"
                     >
                       Schedule Another Slot
@@ -307,8 +307,8 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <button 
-                      type="submit" 
+                    <button
+                      type="submit"
                       disabled={isSubmitting}
                       className="w-full py-6 bg-medical-blue text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-medical-teal transition-all shadow-2xl shadow-medical-blue/20 flex items-center justify-center gap-3"
                     >
@@ -405,7 +405,7 @@ export default function ContactPage() {
                   <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
                       <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                         <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
+                        <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
