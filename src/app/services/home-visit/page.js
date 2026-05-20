@@ -55,7 +55,7 @@ export default function HomeVisitPage() {
             >
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl relative z-10">
                 <Image 
-                  src="/doctor/doc1.jpg" 
+                  src="/home_physiotherapy.png" 
                   alt="Home Physiotherapy" 
                   fill 
                   className="object-cover"

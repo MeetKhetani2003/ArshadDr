@@ -405,7 +405,7 @@ export default function ContactPage() {
                   <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
                       <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                        <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
+                        <Image src="/doctor/doc2.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>

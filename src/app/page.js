@@ -565,7 +565,7 @@ export default function HomePage() {
                   <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
                     <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
                       <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                        <Image src="/doctor/doc1.jpg" alt="Dr. Asad" fill className="object-cover" />
+                        <Image src="/doctor/doc2.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
                         <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
@@ -1039,7 +1039,7 @@ export default function HomePage() {
           <div className="lg:col-span-5 will-animate scroll-reveal reveal relative z-20">
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white/10">
               <Image
-                src="/doctor/doc1.jpg"
+                src="/doctor/doc2.jpg"
                 alt="Dr. Asad Solanki"
                 fill
                 className="object-cover"
@@ -1515,7 +1515,7 @@ export default function HomePage() {
                     src={item.image}
                     alt={item.fullName}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-medical-blue mb-2">{item.name}</h3>

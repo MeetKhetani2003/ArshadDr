@@ -96,7 +96,7 @@ export default function FounderPage() {
           <div className="lg:col-span-5 will-animate scroll-reveal reveal lg:sticky lg:top-32 mb-12 lg:mb-0">
             <div className="relative aspect-[3/4] md:aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-slate-100 border-4 border-white">
               <Image
-                src="/doctor/doc1.jpg"
+                src="/doctor/doc2.jpg"
                 alt="Dr. Asad Solanki"
                 fill
                 className="object-cover"

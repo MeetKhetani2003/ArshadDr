@@ -79,6 +79,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
             alt={treatment.title}
             fill
             className="object-cover scale-105"
+            sizes="100vw"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/95 via-medical-blue/80 to-transparent z-10" />
@@ -132,6 +133,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 alt="Treatment Context"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
             </motion.div>
@@ -209,6 +211,7 @@ export default function TreatmentDetailClient({ treatment, related }) {
                 alt="Clinical Process"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/40 to-transparent" />
               {/* Floating Stat Badge */}

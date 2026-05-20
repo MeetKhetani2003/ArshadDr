@@ -3,7 +3,7 @@ export const teamMembers = [
     slug: "asad-solanki",
     name: "Dr. Asad Solanki",
     role: "Founder & Chief Physiotherapist",
-    image: "/doctor/doc1.jpg",
+    image: "/doctor/doc2.jpg",
     specialization: "BPT, COMT, NDT, Dry Needling, HVLA Chiropractic",
     experience: "10+ Years",
     bio: "Dr. Asad Solanki began his journey in physiotherapy with a clear vision—to bring advanced, evidence-based rehabilitation services to patients with a focus on long-term recovery, not just temporary relief. He completed his BPT in 2013 after clinical training at Apollo Hospital. He has served at Yuvraj Shivraj Singh Neuro Rehab Center and currently leads the physiotherapy department at Vasundhara Hospital, Jodhpur.",
