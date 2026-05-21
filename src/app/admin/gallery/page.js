@@ -104,12 +104,8 @@ export default function AdminGalleryManager() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-32 pb-20">
-      <div className="max-site max-w-5xl">
-        {/* Back Link */}
-        <Link href="/admin" className="inline-flex items-center gap-2 text-slate-500 hover:text-medical-blue font-bold text-sm uppercase tracking-wider mb-8 transition-colors">
-          <ArrowLeft size={16} /> Back to Dashboard
-        </Link>
+    <main className="w-full">
+      <div className="max-w-5xl mx-auto">
 
         {/* Upload Card */}
         <div className="bg-white rounded-[2.5rem] shadow-xl overflow-hidden border border-slate-100 mb-12">

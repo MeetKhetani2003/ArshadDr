@@ -10,17 +10,22 @@ import {
   Stethoscope, Info, Navigation2, ArrowUpRight
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
-import { teamMembers, locations } from "@/data/team";
+import { locations } from "@/data/team";
 import { treatments } from "@/data/treatments";
+import ReCAPTCHA from "react-google-recaptcha";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(null);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [doctors, setDoctors] = useState([]);
   const containerRef = useRef(null);
+  const recaptchaRef = useRef(null);
 
   useEffect(() => {
+    fetch("/api/doctors").then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -40,10 +45,15 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      alert("Please complete the reCAPTCHA verification.");
+      return;
+    }
     setIsSubmitting(true);
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    data.recaptchaToken = recaptchaToken;
 
     try {
       const res = await fetch("/api/bookings", {
@@ -62,6 +72,10 @@ export default function ContactPage() {
       alert("An error occurred.");
     } finally {
       setIsSubmitting(false);
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        setRecaptchaToken("");
+      }
     }
   };
 
@@ -269,7 +283,7 @@ export default function ContactPage() {
                         <div className="relative">
                           <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                           <select name="doctor" className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-12 pr-6 outline-none focus:border-medical-teal focus:bg-white transition-all font-medium text-medical-blue appearance-none">
-                            {teamMembers.map((d, idx) => (
+                            {doctors.map((d, idx) => (
                               <option key={idx} value={d.name}>{d.name}</option>
                             ))}
                             <option value="Any Specialist">Any Available Specialist</option>
@@ -305,6 +319,14 @@ export default function ContactPage() {
                         <Info className="absolute left-4 top-4 text-slate-300" size={18} />
                         <textarea name="problem" rows={4} className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-12 pr-6 outline-none focus:border-medical-teal focus:bg-white transition-all font-medium text-medical-blue resize-none" placeholder="Briefly describe your symptoms or recovery goals..." />
                       </div>
+                    </div>
+
+                    <div className="flex justify-center w-full">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+                        onChange={(token) => setRecaptchaToken(token)}
+                      />
                     </div>
 
                     <button

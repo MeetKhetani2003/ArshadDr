@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { teamMembers } from "@/data/team";
 import { motion } from "framer-motion";
 import { Users, Award, ShieldCheck, Star } from "lucide-react";
 
@@ -12,8 +11,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function TeamPage() {
   const containerRef = useRef(null);
+  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
+    fetch("/api/doctors").then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -95,7 +96,7 @@ export default function TeamPage() {
       <section className="section-padding bg-white relative overflow-hidden">
         <div className="max-site relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((m, i) => (
+            {doctors.map((m, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -106,7 +107,7 @@ export default function TeamPage() {
               >
                 <div className="aspect-[4/5] relative rounded-[2.5rem] overflow-hidden mb-6 bg-slate-100 shadow-xl border border-slate-100">
                   <Image
-                    src={m.image}
+                    src={`/api/media/${m.imageId}`}
                     alt={m.name}
                     fill
                     className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"

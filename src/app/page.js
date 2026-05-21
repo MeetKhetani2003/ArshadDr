@@ -13,7 +13,7 @@ import {
   Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus, Image as ImageIcon, X, Play, ZoomIn, Download, Loader2
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
-import { teamMembers, locations } from "@/data/team";
+import { locations } from "@/data/team";
 import { useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
@@ -117,7 +117,10 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const [doctors, setDoctors] = useState([]);
+  
   useEffect(() => {
+    fetch("/api/doctors").then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -683,7 +686,9 @@ export default function HomePage() {
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-white relative">
                           <Image
-                            src={item.doctor === "Senior On-Call PT" ? teamMembers[0].image : teamMembers[1].image}
+                            src={item.doctor === "Senior On-Call PT" ? 
+                              (doctors[0] ? `/api/media/${doctors[0].imageId}` : "/doctor/doc2.jpg") : 
+                              (doctors[1] ? `/api/media/${doctors[1].imageId}` : "/Doctors/Dr. Rubina Pathan .jpeg")}
                             alt="Doctor"
                             fill
                             className="object-cover"
@@ -938,9 +943,9 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-medical-blue/20" />
               </div>
               {/* Floating Tech Tag */}
-              <div className="absolute -top-10 -right-10 glass-panel !bg-medical-teal/90 p-8 rounded-3xl border-none shadow-2xl animate-float">
+              <div className="absolute -top-10 -right-12 glass-panel !bg-medical-teal/90 p-8 rounded-3xl border-none shadow-2xl animate-float">
                 <div className="text-4xl font-light text-white mb-1">98%</div>
-                <div className="text-[0.6rem] font-bold uppercase tracking-widest text-white/70">Recovery Precision</div>
+                <div className="text-[0.4rem] md:text-[0.6rem] font-bold uppercase tracking-widest text-white/70">Recovery Precision</div>
               </div>
             </div>
           </div>
@@ -1473,8 +1478,8 @@ export default function HomePage() {
       <section className="py-24 bg-medical-blue relative overflow-hidden">
         <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 will-animate scroll-reveal reveal">
-            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Cashless Government Health Schemes</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Government Health Schemes</h2>
+            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6"> Government Health Schemes</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Cashless Government Health Schemes</h2>
             <p className="text-slate-300 text-lg font-normal">
               Healing Hands Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
             </p>
@@ -1549,7 +1554,7 @@ export default function HomePage() {
           </div>
 
           <div className="flex md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
-            {teamMembers.slice(0, 8).map((doctor, i) => (
+            {doctors.slice(0, 8).map((doctor, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}

@@ -16,13 +16,28 @@ export default function BlogDetailPage({ params }) {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const containerRef = useRef(null);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem("hh_blogs") : null;
-    const customBlogs = stored ? JSON.parse(stored) : [];
-    const allBlogs = [...customBlogs, ...defaultBlogs];
-    const found = allBlogs.find((b) => b.slug === slug);
-    setBlog(found || null);
-    setRelatedBlogs(allBlogs.filter((b) => b.slug !== slug).slice(0, 3));
+    const fetchBlog = async () => {
+      try {
+        const res = await fetch("/api/blogs");
+        const dbBlogs = await res.json();
+        const allBlogs = [...dbBlogs, ...defaultBlogs];
+        const found = allBlogs.find((b) => b.slug === slug);
+        setBlog(found || null);
+        setRelatedBlogs(allBlogs.filter((b) => b.slug !== slug).slice(0, 3));
+      } catch (err) {
+        console.error("Failed to fetch blogs:", err);
+        const found = defaultBlogs.find((b) => b.slug === slug);
+        setBlog(found || null);
+        setRelatedBlogs(defaultBlogs.filter((b) => b.slug !== slug).slice(0, 3));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchBlog();
   }, [slug]);
 
   useEffect(() => {
@@ -44,7 +59,7 @@ export default function BlogDetailPage({ params }) {
     return () => ctx.revert();
   }, [blog]);
 
-  if (!blog) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-medical-surface pt-40">
         <motion.div
@@ -57,44 +72,116 @@ export default function BlogDetailPage({ params }) {
     );
   }
 
+  if (!blog) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-medical-surface pt-40">
+        <h2 className="text-3xl font-bold text-medical-blue mb-4">Entry Not Found</h2>
+        <p className="text-slate-500 mb-8">The journal entry you are looking for does not exist.</p>
+        <Link href="/blogs" className="btn-modern bg-medical-blue text-white hover:bg-medical-teal">
+          Back to Journal
+        </Link>
+      </div>
+    );
+  }
+
   const renderContent = (content) => {
-    return content.split("\n\n").map((paragraph, i) => {
-      if (paragraph.startsWith("## ")) {
+    if (!content) return null;
+    
+    // Normalize newlines
+    const normalizedContent = content.replace(/\r\n/g, '\n');
+    
+    // Split by double newlines to get paragraphs/blocks
+    const blocks = normalizedContent.split(/\n\n+/);
+    
+    return blocks.map((block, i) => {
+      // Heading
+      if (block.match(/^#+\s/)) {
         return (
           <h2 key={i} className="text-2xl md:text-3xl font-bold text-medical-blue mt-12 mb-6 tracking-tight">
-            {paragraph.replace("## ", "")}
+            {block.replace(/^#+\s/, "")}
           </h2>
         );
       }
-      if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
+      
+      // Check if the block contains any list-like items
+      const hasListItems = block.split('\n').some(line => line.match(/^\s*([\*\-\•]|\d+\.|\d+\s)/));
+      
+      if (hasListItems) {
+        const lines = block.split('\n');
+        
+        const renderElements = [];
+        let currentList = [];
+
+        const flushList = () => {
+          if (currentList.length === 0) return;
+          const useGrid = currentList.length >= 4;
+          renderElements.push(
+            <div key={`list-${renderElements.length}`} className={useGrid ? "grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-6" : "flex flex-col gap-3 mb-6"}>
+              {currentList}
+            </div>
+          );
+          currentList = [];
+        };
+
+        lines.forEach((line, j) => {
+          const listMatch = line.match(/^\s*([\*\-\•]|\d+\.|\d+\s)\s*(.*)/);
+          
+          if (listMatch) {
+            let itemContent = listMatch[2];
+            itemContent = itemContent.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>");
+            
+            const isNumbered = listMatch[1].trim().match(/^\d/);
+            const bulletStr = listMatch[1].trim().replace(/\.$/, '');
+            
+            currentList.push(
+              <div key={j} className="flex gap-4 text-slate-600 leading-relaxed font-normal items-start">
+                <span className={`font-bold shrink-0 ${isNumbered ? 'text-medical-blue bg-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-sm border border-slate-200' : 'text-medical-teal text-xl leading-none mt-1'}`}>
+                  {isNumbered ? bulletStr : '•'}
+                </span>
+                <span dangerouslySetInnerHTML={{ __html: itemContent }} className={isNumbered ? "pt-1" : ""} />
+              </div>
+            );
+          } else if (line.trim()) {
+            flushList();
+            
+            let textContent = line.trim();
+            textContent = textContent.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>");
+            
+            if (textContent.endsWith(':')) {
+               renderElements.push(<h3 key={j} className="text-lg font-bold text-medical-blue mb-5 mt-6 first:mt-0" dangerouslySetInnerHTML={{ __html: textContent }} />);
+            } else {
+               renderElements.push(<p key={j} className="text-medical-blue font-bold mb-4 mt-5 first:mt-0" dangerouslySetInnerHTML={{ __html: textContent }} />);
+            }
+          }
+        });
+        flushList();
+
         return (
-          <h3 key={i} className="text-xl font-bold text-medical-blue mt-8 mb-4">
-            {paragraph.replace(/\*\*/g, "")}
-          </h3>
-        );
-      }
-      if (paragraph.includes("\n-") || paragraph.includes("\n1.")) {
-        const lines = paragraph.split("\n");
-        return (
-          <div key={i} className="mb-8 bg-slate-50 p-8 rounded-2xl border border-slate-100">
-            {lines.map((line, j) => {
-              if (line.startsWith("- ") || /^\d+\.\s/.test(line)) {
-                return (
-                  <div key={j} className="flex gap-4 mb-4 text-slate-600 leading-relaxed font-normal">
-                    <span className="text-medical-teal font-bold shrink-0 mt-1">•</span>
-                    <span dangerouslySetInnerHTML={{ __html: line.replace(/^-\s/, "").replace(/^\d+\.\s/, "").replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>") }} />
-                  </div>
-                );
-              }
-              return (
-                <p key={j} className="text-slate-600 leading-relaxed mb-3" dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>") }} />
-              );
-            })}
+          <div key={i} className="mb-12 bg-slate-50 p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+            <div className="relative z-10">
+              {renderElements}
+            </div>
           </div>
         );
       }
+
+      // Normal paragraph
+      let pContent = block.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue font-bold'>$1</strong>");
+      
+      if (block.startsWith('**') && block.endsWith('**') && !block.includes('\n')) {
+         return (
+          <h3 key={i} className="text-xl font-bold text-medical-blue mt-8 mb-4">
+            {block.replace(/\*\*/g, "")}
+          </h3>
+        );
+      }
+      
+      // Preserve single line breaks
+      pContent = pContent.replace(/\n/g, '<br/>');
+
       return (
-        <p key={i} className="text-slate-600 text-[1.05rem] leading-[1.8] mb-8 font-normal" dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue font-bold'>$1</strong>") }} />
+        <p key={i} className="text-slate-600 text-[1.05rem] leading-[1.8] mb-8 font-normal" dangerouslySetInnerHTML={{ __html: pContent }} />
       );
     });
   };
@@ -121,7 +208,7 @@ export default function BlogDetailPage({ params }) {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
         
         <motion.div 
-          className="max-w-4xl mx-auto relative z-10"
+          className="max-w-6xl mx-auto relative z-10 px-4 md:px-0"
           initial="hidden"
           animate="visible"
           variants={heroVariants}
@@ -159,7 +246,7 @@ export default function BlogDetailPage({ params }) {
 
       {/* ===== CONTENT ===== */}
       <section className="section-padding !pt-0 relative z-10 pb-32">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto px-4 md:px-0">
           
           {/* Featured Image */}
           <motion.div 
@@ -168,11 +255,11 @@ export default function BlogDetailPage({ params }) {
             transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
             className="aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-2xl mb-16 relative border-8 border-white bg-slate-100"
           >
-            <Image src={blog.image} alt={blog.title} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 1024px" />
+            <Image src={blog.imageId ? `/api/media/${blog.imageId}` : blog.image} alt={blog.title} fill className="object-cover" priority sizes="(max-width: 1024px) 100vw, 1024px" />
           </motion.div>
 
           {/* Article Body */}
-          <article className="will-animate scroll-reveal reveal max-w-3xl mx-auto">
+          <article className="will-animate scroll-reveal reveal w-full mx-auto">
             {renderContent(blog.content)}
           </article>
 
@@ -210,7 +297,7 @@ export default function BlogDetailPage({ params }) {
                   className="will-animate scroll-reveal reveal modern-card group flex flex-col h-full border-slate-100 shadow-md bg-slate-50/50"
                 >
                   <div className="aspect-[16/10] relative rounded-xl overflow-hidden mb-6 bg-slate-100">
-                    <Image src={b.image} alt={b.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <Image src={b.imageId ? `/api/media/${b.imageId}` : b.image} alt={b.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0" sizes="(max-width: 768px) 100vw, 33vw" />
                     <div className="absolute inset-0 bg-medical-blue/20 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
                   <div className="flex items-center gap-3 mb-4">

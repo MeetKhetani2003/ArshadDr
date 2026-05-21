@@ -4,7 +4,8 @@ import Link from "next/link";
 import { 
   Users, BookOpen, Calendar, Clock, 
   ChevronRight, ArrowUpRight, CheckCircle, 
-  XCircle, Filter, Search, Mail, Image as ImageIcon
+  XCircle, Filter, Search, Mail, Image as ImageIcon,
+  Stethoscope
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -35,21 +36,13 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-24 pb-20">
+    <main className="w-full">
       <div className="max-site">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
             <h1 className="text-4xl font-bold text-medical-blue tracking-tight">Clinical Management</h1>
             <p className="text-slate-500 mt-2">Oversee your appointments and clinical insights</p>
-          </div>
-          <div className="flex gap-4 flex-wrap">
-            <Link href="/admin/gallery" className="btn-modern btn-outline py-3 px-6 text-sm bg-white border-slate-200">
-              Manage Gallery <ImageIcon size={18} />
-            </Link>
-            <Link href="/admin/blogs" className="btn-modern btn-primary py-3 px-6 text-sm">
-              Upload Blog <BookOpen size={18} />
-            </Link>
           </div>
         </div>
 

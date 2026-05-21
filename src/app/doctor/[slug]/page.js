@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,22 +7,41 @@ import { motion } from "framer-motion";
 import { 
   ArrowLeft, Star, MapPin, Award, GraduationCap, 
   Stethoscope, ShieldCheck, Activity, Calendar, 
-  ChevronRight, Phone, Mail, ArrowRight
+  ChevronRight, Phone, Mail, ArrowRight, Loader2
 } from "lucide-react";
-import { teamMembers } from "@/data/team";
 import { useBooking } from "@/components/BookingContext";
 
 export default function DoctorProfile() {
   const { slug } = useParams();
   const { openBookingModal } = useBooking();
-  const doctor = teamMembers.find(m => m.slug === slug);
+  const [doctor, setDoctor] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/doctors/${slug}`)
+      .then(res => {
+         if (!res.ok) throw new Error("Not found");
+         return res.json();
+      })
+      .then(data => setDoctor(data))
+      .catch(() => setDoctor(null))
+      .finally(() => setLoading(false));
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <Loader2 className="animate-spin text-medical-teal" size={48} />
+      </div>
+    );
+  }
 
   if (!doctor) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-medical-blue mb-4">Doctor Not Found</h2>
-          <Link href="/about" className="text-medical-teal font-bold hover:underline">Return to Team</Link>
+          <Link href="/about/team" className="text-medical-teal font-bold hover:underline">Return to Team</Link>
         </div>
       </div>
     );
@@ -59,7 +79,7 @@ export default function DoctorProfile() {
                 className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/20 group"
               >
                 <Image
-                  src={doctor.image}
+                  src={`/api/media/${doctor.imageId}`}
                   alt={doctor.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-1000"
@@ -77,7 +97,7 @@ export default function DoctorProfile() {
                 <div className="flex items-center gap-2 mb-6">
                   <div className="flex items-center gap-1 text-yellow-400">
                     <Star size={16} fill="currentColor" />
-                    <span className="text-sm font-bold text-white/90">4.9/5.0</span>
+                    <span className="text-sm font-bold text-white/90">{doctor.rating || "4.9/5.0"}</span>
                   </div>
                   <span className="text-white/20">|</span>
                   <span className="text-xs font-bold text-medical-teal uppercase tracking-widest">Verified Expert</span>
@@ -95,11 +115,11 @@ export default function DoctorProfile() {
                   </div>
                   <div className="p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
                     <p className="text-[0.6rem] font-bold text-slate-300 uppercase tracking-widest mb-2">Patients</p>
-                    <p className="text-lg font-bold text-white">2,500+</p>
+                    <p className="text-lg font-bold text-white">{doctor.patients || "2,500+"}</p>
                   </div>
                   <div className="p-6 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
                     <p className="text-[0.6rem] font-bold text-slate-300 uppercase tracking-widest mb-2">Success Rate</p>
-                    <p className="text-lg font-bold text-white">99%</p>
+                    <p className="text-lg font-bold text-white">{doctor.successRate || "99%"}</p>
                   </div>
                 </div>
 

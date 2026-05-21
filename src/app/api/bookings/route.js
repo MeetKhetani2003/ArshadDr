@@ -8,7 +8,19 @@ export async function POST(req) {
     await dbConnect();
     const data = await req.json();
 
-    // 1. Save to Database
+    // 1. Verify reCAPTCHA
+    const secretKey = process.env.RECAPTCHA_SECRET;
+    if (!secretKey || !data.recaptchaToken) {
+      return NextResponse.json({ success: false, error: "ReCAPTCHA token missing" }, { status: 400 });
+    }
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${data.recaptchaToken}`;
+    const verifyRes = await fetch(verifyUrl, { method: "POST" });
+    const verifyData = await verifyRes.json();
+    if (!verifyData.success) {
+      return NextResponse.json({ success: false, error: "Invalid ReCAPTCHA" }, { status: 400 });
+    }
+
+    // 2. Save to Database
     const booking = await Booking.create(data);
 
     // 2. Setup Email Transporter & Send (Optional/Graceful)

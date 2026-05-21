@@ -1,13 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Clock, User, Phone, Mail, Stethoscope, ChevronDown, CheckCircle2, Loader2 } from "lucide-react";
-import { teamMembers } from "@/data/team";
 import { treatments } from "@/data/treatments";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function BookingModal({ isOpen, onClose, initialData = {} }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const recaptchaRef = useRef(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,6 +21,14 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
     date: "",
     time: "",
   });
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/doctors")
+      .then((res) => res.json())
+      .then((data) => setDoctors(data))
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -34,12 +44,16 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!recaptchaToken) {
+      alert("Please complete the reCAPTCHA verification.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
       if (res.ok) {
         setIsSuccess(true);
@@ -54,6 +68,10 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
       alert("Submission failed.");
     } finally {
       setIsSubmitting(false);
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        setRecaptchaToken("");
+      }
     }
   };
 
@@ -177,7 +195,7 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
                           onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
                         >
                           <option value="">Select Doctor</option>
-                          {teamMembers.map((m) => (
+                          {doctors.map((m) => (
                             <option key={m.slug} value={m.name}>{m.name}</option>
                           ))}
                         </select>
@@ -247,6 +265,14 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
                   </div>
 
                   {/* Submit Button */}
+                  <div className="flex justify-center w-full">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY}
+                      onChange={(token) => setRecaptchaToken(token)}
+                    />
+                  </div>
+
                   <button
                     disabled={isSubmitting}
                     type="submit"
