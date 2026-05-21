@@ -1,5 +1,8 @@
 "use client";
 import { useState, useEffect, use, useRef } from "react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -84,107 +87,7 @@ export default function BlogDetailPage({ params }) {
     );
   }
 
-  const renderContent = (content) => {
-    if (!content) return null;
-    
-    // Normalize newlines
-    const normalizedContent = content.replace(/\r\n/g, '\n');
-    
-    // Split by double newlines to get paragraphs/blocks
-    const blocks = normalizedContent.split(/\n\n+/);
-    
-    return blocks.map((block, i) => {
-      // Heading
-      if (block.match(/^#+\s/)) {
-        return (
-          <h2 key={i} className="text-2xl md:text-3xl font-bold text-medical-blue mt-12 mb-6 tracking-tight">
-            {block.replace(/^#+\s/, "")}
-          </h2>
-        );
-      }
-      
-      // Check if the block contains any list-like items
-      const hasListItems = block.split('\n').some(line => line.match(/^\s*([\*\-\•]|\d+\.|\d+\s)/));
-      
-      if (hasListItems) {
-        const lines = block.split('\n');
-        
-        const renderElements = [];
-        let currentList = [];
-
-        const flushList = () => {
-          if (currentList.length === 0) return;
-          const useGrid = currentList.length >= 4;
-          renderElements.push(
-            <div key={`list-${renderElements.length}`} className={useGrid ? "grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-6" : "flex flex-col gap-3 mb-6"}>
-              {currentList}
-            </div>
-          );
-          currentList = [];
-        };
-
-        lines.forEach((line, j) => {
-          const listMatch = line.match(/^\s*([\*\-\•]|\d+\.|\d+\s)\s*(.*)/);
-          
-          if (listMatch) {
-            let itemContent = listMatch[2];
-            itemContent = itemContent.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>");
-            
-            const isNumbered = listMatch[1].trim().match(/^\d/);
-            const bulletStr = listMatch[1].trim().replace(/\.$/, '');
-            
-            currentList.push(
-              <div key={j} className="flex gap-4 text-slate-600 leading-relaxed font-normal items-start">
-                <span className={`font-bold shrink-0 ${isNumbered ? 'text-medical-blue bg-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-sm border border-slate-200' : 'text-medical-teal text-xl leading-none mt-1'}`}>
-                  {isNumbered ? bulletStr : '•'}
-                </span>
-                <span dangerouslySetInnerHTML={{ __html: itemContent }} className={isNumbered ? "pt-1" : ""} />
-              </div>
-            );
-          } else if (line.trim()) {
-            flushList();
-            
-            let textContent = line.trim();
-            textContent = textContent.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue'>$1</strong>");
-            
-            if (textContent.endsWith(':')) {
-               renderElements.push(<h3 key={j} className="text-lg font-bold text-medical-blue mb-5 mt-6 first:mt-0" dangerouslySetInnerHTML={{ __html: textContent }} />);
-            } else {
-               renderElements.push(<p key={j} className="text-medical-blue font-bold mb-4 mt-5 first:mt-0" dangerouslySetInnerHTML={{ __html: textContent }} />);
-            }
-          }
-        });
-        flushList();
-
-        return (
-          <div key={i} className="mb-12 bg-slate-50 p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-medical-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-            <div className="relative z-10">
-              {renderElements}
-            </div>
-          </div>
-        );
-      }
-
-      // Normal paragraph
-      let pContent = block.replace(/\*\*(.*?)\*\*/g, "<strong class='text-medical-blue font-bold'>$1</strong>");
-      
-      if (block.startsWith('**') && block.endsWith('**') && !block.includes('\n')) {
-         return (
-          <h3 key={i} className="text-xl font-bold text-medical-blue mt-8 mb-4">
-            {block.replace(/\*\*/g, "")}
-          </h3>
-        );
-      }
-      
-      // Preserve single line breaks
-      pContent = pContent.replace(/\n/g, '<br/>');
-
-      return (
-        <p key={i} className="text-slate-600 text-[1.05rem] leading-[1.8] mb-8 font-normal" dangerouslySetInnerHTML={{ __html: pContent }} />
-      );
-    });
-  };
+  // Removed custom parser in favor of standard ReactMarkdown
 
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -260,7 +163,26 @@ export default function BlogDetailPage({ params }) {
 
           {/* Article Body */}
           <article className="will-animate scroll-reveal reveal w-full mx-auto">
-            {renderContent(blog.content)}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                h1: ({node, ...props}) => <h1 className="text-3xl md:text-4xl font-bold text-medical-blue mt-12 mb-6 tracking-tight" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-2xl md:text-3xl font-bold text-medical-blue mt-10 mb-5 tracking-tight" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-xl md:text-2xl font-bold text-medical-blue mt-8 mb-4 tracking-tight" {...props} />,
+                p: ({node, ...props}) => <p className="text-slate-600 text-lg leading-relaxed mb-6 font-normal whitespace-pre-wrap" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc list-outside ml-6 space-y-2 mb-6 text-slate-600 text-lg leading-relaxed marker:text-medical-teal" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal list-outside ml-6 space-y-2 mb-6 text-slate-600 text-lg leading-relaxed marker:text-medical-blue font-bold" {...props} />,
+                li: ({node, ...props}) => <li className="pl-2" {...props} />,
+                strong: ({node, ...props}) => <strong className="text-medical-blue font-bold" {...props} />,
+                a: ({node, ...props}) => <a className="text-medical-teal hover:underline font-medium" {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-medical-teal pl-6 italic text-slate-500 my-8" {...props} />,
+                u: ({node, ...props}) => <u className="underline decoration-medical-teal decoration-2 underline-offset-4" {...props} />,
+                mark: ({node, ...props}) => <mark className="bg-medical-teal/20 text-medical-blue px-1.5 py-0.5 rounded-md font-semibold" {...props} />
+              }}
+            >
+              {blog.content}
+            </ReactMarkdown>
           </article>
 
           {/* CTA Box */}

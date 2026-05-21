@@ -5,35 +5,49 @@ import {
   Users, BookOpen, Calendar, Clock, 
   ChevronRight, ArrowUpRight, CheckCircle, 
   XCircle, Filter, Search, Mail, Image as ImageIcon,
-  Stethoscope
+  Stethoscope, Trash2
 } from "lucide-react";
 
 export default function AdminDashboard() {
   const [bookings, setBookings] = useState([]);
   const [stats, setStats] = useState({ total: 0, pending: 0, online: 0 });
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      // For now, we'll fetch from our API. 
-      // We need to create a GET route for bookings.
-      try {
-        const res = await fetch("/api/bookings");
-        if (res.ok) {
-          const data = await res.json();
-          setBookings(data);
-          
-          setStats({
-            total: data.length,
-            pending: data.filter(b => b.status === 'Pending').length,
-            online: data.filter(b => b.consultType === 'Online').length
-          });
-        }
-      } catch (err) {
-        console.error("Failed to fetch bookings");
+  const fetchBookings = async () => {
+    try {
+      const res = await fetch("/api/bookings");
+      if (res.ok) {
+        const data = await res.json();
+        setBookings(data);
+        
+        setStats({
+          total: data.length,
+          pending: data.filter(b => b.status === 'Pending').length,
+          online: data.filter(b => b.consultType === 'Online').length
+        });
       }
-    };
+    } catch (err) {
+      console.error("Failed to fetch bookings");
+    }
+  };
+
+  useEffect(() => {
     fetchBookings();
   }, []);
+
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to permanently delete this appointment?")) return;
+    try {
+      const res = await fetch(`/api/bookings/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchBookings();
+      } else {
+        alert("Failed to delete booking");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error deleting booking");
+    }
+  };
 
   return (
     <main className="w-full">
@@ -111,17 +125,23 @@ export default function AdminDashboard() {
                     </td>
                     <td className="px-8 py-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-amber-500" />
-                        <span className="text-xs font-bold text-slate-600">{booking.status}</span>
+                        <div className={`w-2 h-2 rounded-full ${
+                          booking.status === 'Scheduled' ? 'bg-emerald-500' :
+                          booking.status === 'Completed' ? 'bg-blue-500' :
+                          booking.status === 'Cancelled' ? 'bg-red-500' :
+                          'bg-amber-500'
+                        }`} />
+                        <span className="text-xs font-bold text-slate-600">{booking.status || "Pending"}</span>
                       </div>
                     </td>
                     <td className="px-8 py-6">
                       <div className="flex gap-2">
-                        <button className="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-all">
-                          <CheckCircle size={16} />
-                        </button>
-                        <button className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all">
-                          <XCircle size={16} />
+                        <button 
+                          onClick={() => handleDelete(booking._id)}
+                          className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"
+                          title="Delete Appointment"
+                        >
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     </td>

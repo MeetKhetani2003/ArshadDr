@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Stethoscope, Image as ImageIcon, BookOpen, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Stethoscope, Image as ImageIcon, BookOpen, LogOut, Menu, X, Calendar } from "lucide-react";
 import { useState } from "react";
 
 export default function AdminLayout({ children }) {
@@ -13,6 +13,7 @@ export default function AdminLayout({ children }) {
     { name: "Doctors", href: "/admin/doctors", icon: Stethoscope },
     { name: "Gallery", href: "/admin/gallery", icon: ImageIcon },
     { name: "Blogs", href: "/admin/blogs", icon: BookOpen },
+    { name: "Appointments", href: "/admin/appointments", icon: Calendar },
   ];
 
   return (
