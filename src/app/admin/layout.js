@@ -1,12 +1,20 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Stethoscope, Image as ImageIcon, BookOpen, LogOut, Menu, X, Calendar } from "lucide-react";
 import { useState } from "react";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const isLoginPage = pathname === "/admin/login";
+
+  if (isLoginPage) {
+    return <div className="min-h-screen bg-slate-50">{children}</div>;
+  }
 
   const navItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -60,10 +68,25 @@ export default function AdminLayout({ children }) {
         </nav>
 
         <div className="p-4 border-t border-white/10">
-          <Link href="/" className="flex items-center gap-3 px-4 py-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition-all font-medium">
+          <button 
+            onClick={async () => {
+              if (isLoggingOut) return;
+              setIsLoggingOut(true);
+              try {
+                await fetch('/api/admin/logout', { method: 'POST' });
+                router.push('/admin/login');
+              } catch (error) {
+                console.error('Logout failed', error);
+              } finally {
+                setIsLoggingOut(false);
+              }
+            }}
+            className="w-full flex items-center gap-3 px-4 py-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition-all font-medium text-left"
+            disabled={isLoggingOut}
+          >
             <LogOut size={18} />
-            <span className="text-sm">Exit Admin</span>
-          </Link>
+            <span className="text-sm">{isLoggingOut ? "Exiting..." : "Exit Admin"}</span>
+          </button>
         </div>
       </aside>
 
