@@ -19,6 +19,18 @@ const GalleryItemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  category: {
+    type: String,
+    enum: ["clinical", "event"],
+    default: "clinical",
+  },
+  eventId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "AcademicsEvent",
+    required: function() {
+      return this.category === "event";
+    },
+  },
   createdAt: {
     type: Date,
     default: Date.now,

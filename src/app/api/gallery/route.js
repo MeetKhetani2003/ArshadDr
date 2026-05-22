@@ -3,10 +3,18 @@ import dbConnect, { getGridFSBucket } from "@/lib/mongodb";
 import GalleryItem from "@/models/GalleryItem";
 import { Readable } from "stream";
 
-export async function GET() {
+export async function GET(req) {
   try {
     await dbConnect();
-    const items = await GalleryItem.find({}).sort({ createdAt: -1 });
+    const { searchParams } = new URL(req.url);
+    const category = searchParams.get("category");
+    const eventId = searchParams.get("eventId");
+
+    const query = {};
+    if (category) query.category = category;
+    if (eventId) query.eventId = eventId;
+
+    const items = await GalleryItem.find(query).sort({ createdAt: -1 });
     return NextResponse.json(items);
   } catch (error) {
     console.error("Gallery GET Error:", error);
@@ -22,10 +30,16 @@ export async function POST(req) {
     const type = formData.get("type");
     const title = formData.get("title") || "";
     const videoUrl = formData.get("videoUrl") || "";
+    const category = formData.get("category") || "clinical";
+    const eventId = formData.get("eventId") || null;
     const file = formData.get("image");
 
     if (!type || (type !== "image" && type !== "video")) {
       return NextResponse.json({ error: "Invalid gallery item type" }, { status: 400 });
+    }
+
+    if (category === "event" && !eventId) {
+      return NextResponse.json({ error: "eventId is required for event gallery items" }, { status: 400 });
     }
 
     let imageId = null;
@@ -61,6 +75,8 @@ export async function POST(req) {
       title,
       imageId,
       videoUrl: type === "video" ? videoUrl : undefined,
+      category,
+      eventId: category === "event" ? eventId : undefined,
     });
 
     return NextResponse.json(item, { status: 201 });

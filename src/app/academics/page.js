@@ -1,22 +1,32 @@
 import dbConnect from "@/lib/mongodb";
+import AcademicsEvent from "@/models/AcademicsEvent";
 import GalleryItem from "@/models/GalleryItem";
-import GalleryClient from "@/components/GalleryClient";
+import AcademicsClient from "@/components/AcademicsClient";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Clinical Media & Recovery Gallery | Healing Hands Physiotherapy",
-  description: "Browse high-resolution recovery photos and clinical case study videos showcasing Healing Hands' advanced rehabilitation solutions in Jodhpur under Dr. Asad Solanki.",
-  keywords: "physiotherapy gallery, recovery case studies, rehabilitation videos, Jodhpur physical therapy, Dr. Asad Solanki",
+  title: "Academics & Events | Healing Hands Physiotherapy",
+  description: "Browse our academic events, recovery photos, and clinical case study videos showcasing Healing Hands' advanced rehabilitation solutions in Jodhpur.",
+  keywords: "physiotherapy academics, events, clinical gallery, rehabilitation videos, Jodhpur physical therapy",
 };
 
-// Fetch items on the server for optimal SEO and rapid initial rendering
-async function getGalleryItems() {
+async function getAcademicsData() {
   try {
     await dbConnect();
-    const items = await GalleryItem.find({}).sort({ createdAt: -1 });
     
-    // Map Mongoose documents to plain objects for safe props transfer
-    return items.map(doc => ({
+    // Fetch Events
+    const events = await AcademicsEvent.find({}).sort({ createdAt: -1 });
+    const formattedEvents = events.map(doc => ({
+      _id: doc._id.toString(),
+      title: doc.title,
+      description: doc.description || "",
+      coverImageId: doc.coverImageId.toString(),
+      createdAt: doc.createdAt.toISOString()
+    }));
+
+    // Fetch Clinical Items
+    const clinicalItemsDocs = await GalleryItem.find({ category: "clinical" }).sort({ createdAt: -1 });
+    const formattedClinicalItems = clinicalItemsDocs.map(doc => ({
       _id: doc._id.toString(),
       type: doc.type,
       title: doc.title || "",
@@ -24,18 +34,36 @@ async function getGalleryItems() {
       videoUrl: doc.videoUrl || "",
       createdAt: doc.createdAt.toISOString()
     }));
+
+    // Fetch Event Items
+    const eventItemsDocs = await GalleryItem.find({ category: "event" }).sort({ createdAt: -1 });
+    const formattedEventItems = eventItemsDocs.map(doc => ({
+      _id: doc._id.toString(),
+      eventId: doc.eventId.toString(),
+      type: doc.type,
+      title: doc.title || "",
+      imageId: doc.imageId ? doc.imageId.toString() : null,
+      videoUrl: doc.videoUrl || "",
+      createdAt: doc.createdAt.toISOString()
+    }));
+
+    return {
+      events: formattedEvents,
+      clinicalItems: formattedClinicalItems,
+      eventItems: formattedEventItems
+    };
   } catch (error) {
-    console.error("Failed to load gallery items on server:", error);
-    return [];
+    console.error("Failed to load academics data on server:", error);
+    return { events: [], clinicalItems: [], eventItems: [] };
   }
 }
 
-export default async function GalleryPage() {
-  const items = await getGalleryItems();
+export default async function AcademicsPage() {
+  const { events, clinicalItems, eventItems } = await getAcademicsData();
 
   return (
     <main className="bg-medical-surface min-h-screen selection:bg-medical-teal selection:text-white">
-      {/* ===== IMMERSIVE GALLERY HERO ===== */}
+      {/* ===== IMMERSIVE ACADEMICS HERO ===== */}
       <section className="relative min-h-[55vh] flex items-center overflow-hidden bg-medical-blue">
         {/* Full-bleed background image with modern cinematic overlay */}
         <div className="absolute inset-0 z-0">
@@ -61,26 +89,30 @@ export default async function GalleryPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-sm border border-white/10 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-medical-teal animate-pulse" />
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Clinical Portfolio</span>
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Academics & Gallery</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-              Clinical Recovery <br />
-              <span className="text-medical-teal">Gallery.</span>
+              Academics <br />
+              <span className="text-medical-teal">Portfolio.</span>
             </h1>
             
             <p className="text-slate-200 text-lg md:text-xl leading-relaxed font-normal max-w-2xl">
-              Witness the results of precision physiotherapy. Explore recovery snapshots, 
-              advanced rehabilitation equipment displays, and expert clinical case study videos.
+              Explore our latest academic events, recovery snapshots, 
+              advanced equipment displays, and expert clinical case study videos.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ===== GALLERY CONTENT ===== */}
+      {/* ===== ACADEMICS CONTENT ===== */}
       <section className="section-padding relative z-10 bg-mesh">
         <div className="max-site">
-          <GalleryClient initialItems={items} />
+          <AcademicsClient 
+            initialEvents={events} 
+            initialClinicalItems={clinicalItems}
+            initialEventItems={eventItems} 
+          />
         </div>
       </section>
     </main>

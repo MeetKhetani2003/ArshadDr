@@ -17,7 +17,7 @@ const links = [
     ]
   },
   { href: "/blogs", label: "Journal" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/academics", label: "Academics" },
   { href: "/contact", label: "Appointments" },
 ];
 

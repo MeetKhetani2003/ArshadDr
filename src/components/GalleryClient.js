@@ -15,7 +15,7 @@ function getYouTubeId(url) {
   return (match && match[2].length === 11) ? match[2] : null;
 }
 
-export default function GalleryClient({ initialItems }) {
+export default function GalleryClient({ initialItems, disableFetch = false }) {
   const [items, setItems] = useState(initialItems || []);
   const [filter, setFilter] = useState("all"); // "all" | "image" | "video"
   const [activeVideo, setActiveVideo] = useState(null); // active YouTube URL for playing
@@ -24,7 +24,7 @@ export default function GalleryClient({ initialItems }) {
 
   // Fetch fresh items if needed or use initial
   useEffect(() => {
-    if (!initialItems || initialItems.length === 0) {
+    if (!disableFetch && (!initialItems || initialItems.length === 0)) {
       const loadItems = async () => {
         try {
           const res = await fetch("/api/gallery");
@@ -37,8 +37,10 @@ export default function GalleryClient({ initialItems }) {
         }
       };
       loadItems();
+    } else {
+      setItems(initialItems || []);
     }
-  }, [initialItems]);
+  }, [initialItems, disableFetch]);
 
   // Filter items
   const filteredItems = filter === "all" 
