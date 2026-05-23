@@ -1560,7 +1560,8 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="group relative min-w-[85vw] md:min-w-0 snap-center"
               >
-                <div className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
+                <div className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 flex flex-col h-full relative">
+                  <Link href={`/doctor/${doctor.slug}`} className="absolute inset-0 z-10" />
                   <div className="aspect-[4/5] relative overflow-hidden">
                     <img
                       src={`/api/media/${doctor.imageId}`}
@@ -1597,7 +1598,7 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-3 mt-auto">
+                    <div className="flex gap-3 mt-auto relative z-20">
                       <Link
                         href={`/doctor/${doctor.slug}`}
                         className="flex-1 py-3 rounded-xl border border-slate-100 text-medical-blue text-[0.65rem] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all text-center"

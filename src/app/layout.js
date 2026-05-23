@@ -14,7 +14,9 @@ const inter = Inter({
 export const metadata = {
   title: "Healing Hands Physiotherapy | Advanced Rehabilitation Center in Jodhpur",
   description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+  authors: [{ name: "mkdigitalnexus.in" }],
   keywords: "physiotherapy, Jodhpur, rehabilitation, orthopedic, neurological, pediatric, women's health, Dr. Asad Solanki",
+  // referrer: "origin-when-cross-origin",
 };
 
 export default function RootLayout({ children }) {
