@@ -49,7 +49,7 @@ export default function Navbar() {
         <Link href="/" className="relative flex items-center justify-center -ml-2">
           <div className="w-[180px] h-[40px] md:w-[220px] md:h-[45px] relative transform scale-125 md:scale-[1.3] origin-left">
             <Image
-              src="/Logo.png"
+              src="/logo2.jpeg"
               alt="Healing Hands"
               fill
               className="object-cover "
