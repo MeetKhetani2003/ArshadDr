@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Upload, CheckCircle, Loader2, Image as ImageIcon, 
   Video as VideoIcon, Type, Link as LinkIcon, Trash2, 
-  FileImage, Calendar, FileText, ChevronRight
+  FileImage, Calendar, FileText, ChevronRight, Edit
 } from "lucide-react";
 
 function getYouTubeId(url) {
@@ -31,6 +31,7 @@ export default function AdminAcademicsManager() {
   const [eventImagePreview, setEventImagePreview] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null); // The event currently being managed (to upload specific media)
   const [eventItems, setEventItems] = useState([]); // Media for the selected event
+  const [editingEvent, setEditingEvent] = useState(null); // Event being edited
   
   // Shared State
   const [isLoading, setIsLoading] = useState(true);
@@ -116,21 +117,25 @@ export default function AdminAcademicsManager() {
     setIsEventSubmitting(true);
     const formData = new FormData(e.target);
 
+    const url = editingEvent ? `/api/academics/events/${editingEvent._id}` : "/api/academics/events";
+    const method = editingEvent ? "PUT" : "POST";
+
     try {
-      const res = await fetch("/api/academics/events", { method: "POST", body: formData });
+      const res = await fetch(url, { method, body: formData });
       if (res.ok) {
         setEventSuccess(true);
         e.target.reset();
         setEventImagePreview(null);
+        setEditingEvent(null);
         fetchData();
         setTimeout(() => setEventSuccess(false), 3000);
       } else {
         const err = await res.json();
-        alert(`Failed to create event: ${err.error}`);
+        alert(`Failed to save event: ${err.error}`);
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to create event");
+      alert("Failed to save event");
     } finally {
       setIsEventSubmitting(false);
     }
@@ -319,36 +324,41 @@ export default function AdminAcademicsManager() {
               
               {/* LEFT COL: EVENT CREATOR & LIST */}
               <div className="lg:col-span-1 space-y-8">
-                {/* Create Event */}
+                {/* Create/Edit Event */}
                 <div className="bg-white rounded-[2rem] shadow-md border border-slate-100 overflow-hidden">
-                  <div className="bg-medical-teal p-6 text-white">
-                    <h2 className="text-xl font-bold">Create New Event</h2>
+                  <div className="bg-medical-teal p-6 text-white flex justify-between items-center">
+                    <h2 className="text-xl font-bold">{editingEvent ? "Edit Event" : "Create New Event"}</h2>
+                    {editingEvent && (
+                      <button onClick={() => { setEditingEvent(null); setEventImagePreview(null); }} className="text-sm underline hover:text-slate-200">Cancel Edit</button>
+                    )}
                   </div>
-                  <form onSubmit={handleEventSubmit} className="p-6 space-y-5">
+                  <form key={editingEvent ? editingEvent._id : "new"} onSubmit={handleEventSubmit} className="p-6 space-y-5">
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-500 uppercase">Event Title</label>
-                      <input required name="title" className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-medical-teal focus:outline-none text-sm font-medium" placeholder="e.g., Annual Workshop 2024" />
+                      <input required name="title" defaultValue={editingEvent?.title || ""} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-medical-teal focus:outline-none text-sm font-medium" placeholder="e.g., Annual Workshop 2024" />
                     </div>
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-slate-500 uppercase">Description</label>
-                      <textarea name="description" rows="3" className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-medical-teal focus:outline-none text-sm" placeholder="Short description of the event..." />
+                      <textarea name="description" defaultValue={editingEvent?.description || ""} rows="3" className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:border-medical-teal focus:outline-none text-sm" placeholder="Short description of the event..." />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 uppercase">Cover Image</label>
+                      <label className="text-xs font-bold text-slate-500 uppercase">Cover Image {editingEvent && "(Optional)"}</label>
                       <div className="relative group aspect-video bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl overflow-hidden flex items-center justify-center cursor-pointer">
-                        <input required type="file" name="image" accept="image/*" onChange={(e) => {
+                        <input required={!editingEvent} type="file" name="image" accept="image/*" onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) setEventImagePreview(URL.createObjectURL(file));
                         }} className="absolute inset-0 opacity-0 cursor-pointer z-10" />
                         {eventImagePreview ? (
                           <img src={eventImagePreview} className="w-full h-full object-cover" alt="Preview" />
+                        ) : editingEvent?.coverImageId ? (
+                          <img src={`/api/media/${editingEvent.coverImageId}`} className="w-full h-full object-cover opacity-50" alt="Current Cover" />
                         ) : (
                           <Upload className="text-slate-300" size={24} />
                         )}
                       </div>
                     </div>
                     <button disabled={isEventSubmitting} className="w-full py-4 bg-medical-blue text-white rounded-xl font-bold hover:bg-medical-teal transition-all flex items-center justify-center gap-2">
-                      {isEventSubmitting ? <Loader2 className="animate-spin" size={18} /> : eventSuccess ? <CheckCircle size={18} /> : <><Calendar size={18} /> Create Event</>}
+                      {isEventSubmitting ? <Loader2 className="animate-spin" size={18} /> : eventSuccess ? <CheckCircle size={18} /> : <><Calendar size={18} /> {editingEvent ? "Update Event" : "Create Event"}</>}
                     </button>
                   </form>
                 </div>
@@ -369,6 +379,9 @@ export default function AdminAcademicsManager() {
                           <p className="text-[0.65rem] text-slate-400 font-bold">{new Date(event.createdAt).toLocaleDateString()}</p>
                         </div>
                         <div className="flex items-center gap-2">
+                          <button onClick={(e) => { e.stopPropagation(); setEditingEvent(event); setEventImagePreview(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="text-slate-300 hover:text-blue-500 p-2">
+                            <Edit size={16} />
+                          </button>
                           <button onClick={(e) => { e.stopPropagation(); handleDeleteEvent(event._id); }} className="text-slate-300 hover:text-red-500 p-2">
                             {deletingId === event._id ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />}
                           </button>

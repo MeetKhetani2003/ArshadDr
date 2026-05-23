@@ -19,9 +19,8 @@ export default function AcademicsClient({ initialEvents, initialClinicalItems, i
         <div className="relative flex p-2 bg-white rounded-full shadow-lg border border-slate-100 max-w-lg w-full">
           <button
             onClick={() => setActiveTab("events")}
-            className={`relative flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-full select-none z-10 ${
-              activeTab === "events" ? "text-white" : "text-slate-500 hover:text-medical-blue"
-            }`}
+            className={`relative flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-full select-none z-10 ${activeTab === "events" ? "text-white" : "text-slate-500 hover:text-medical-blue"
+              }`}
           >
             {activeTab === "events" && (
               <motion.div
@@ -34,9 +33,8 @@ export default function AcademicsClient({ initialEvents, initialClinicalItems, i
           </button>
           <button
             onClick={() => setActiveTab("clinical")}
-            className={`relative flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-full select-none z-10 ${
-              activeTab === "clinical" ? "text-white" : "text-slate-500 hover:text-medical-blue"
-            }`}
+            className={`relative flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-all duration-300 rounded-full select-none z-10 ${activeTab === "clinical" ? "text-white" : "text-slate-500 hover:text-medical-blue"
+              }`}
           >
             {activeTab === "clinical" && (
               <motion.div
@@ -82,26 +80,23 @@ export default function AcademicsClient({ initialEvents, initialClinicalItems, i
                     <button
                       key={event._id}
                       onClick={() => setActiveEventId(event._id)}
-                      className={`text-left p-5 rounded-2xl transition-all duration-300 flex items-center justify-between group ${
-                        activeEventId === event._id
-                          ? "bg-medical-blue text-white shadow-xl shadow-medical-blue/10 scale-105"
-                          : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 hover:border-medical-teal hover:text-medical-blue hover:shadow-md"
-                      }`}
+                      className={`text-left p-5 rounded-2xl transition-all duration-300 flex items-center justify-between group ${activeEventId === event._id
+                        ? "bg-medical-blue text-white shadow-xl shadow-medical-blue/10 scale-105"
+                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 hover:border-medical-teal hover:text-medical-blue hover:shadow-md"
+                        }`}
                     >
                       <div className="flex flex-col gap-1 pr-4">
                         <span className="font-bold text-sm lg:text-base leading-tight">
                           {event.title}
                         </span>
-                        <span className={`text-[0.65rem] uppercase tracking-wider font-bold ${
-                          activeEventId === event._id ? "text-medical-teal" : "text-slate-400"
-                        }`}>
+                        <span className={`text-[0.65rem] uppercase tracking-wider font-bold ${activeEventId === event._id ? "text-medical-teal" : "text-slate-400"
+                          }`}>
                           <Calendar size={10} className="inline mr-1" />
                           {new Date(event.createdAt).toLocaleDateString()}
                         </span>
                       </div>
-                      <ChevronRight size={18} className={`transition-transform duration-300 ${
-                        activeEventId === event._id ? "text-white translate-x-1" : "text-slate-300 group-hover:text-medical-teal"
-                      }`} />
+                      <ChevronRight size={18} className={`transition-transform duration-300 ${activeEventId === event._id ? "text-white translate-x-1" : "text-slate-300 group-hover:text-medical-teal"
+                        }`} />
                     </button>
                   ))}
                 </div>
@@ -120,21 +115,21 @@ export default function AcademicsClient({ initialEvents, initialClinicalItems, i
                     className="space-y-10"
                   >
                     {/* Top: Cover Photo & Description */}
-                    <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-slate-100 shadow-xl shadow-slate-200/40 flex flex-col md:flex-row gap-8 items-start">
-                      <div className="w-full md:w-5/12 aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg relative shrink-0">
+                    <div className="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-xl shadow-slate-200/40 flex flex-col  gap-10 items-center">
+                      <div className="w-full h-[200px] md:h-auto aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg relative shrink-0">
                         <Image
                           src={`/api/media/${activeEvent.coverImageId}`}
                           alt={activeEvent.title}
                           fill
-                          className="object-cover hover:scale-105 transition-transform duration-700"
+                          className="object-contain transition-transform duration-700"
                         />
                       </div>
-                      <div className="flex-1 flex flex-col justify-center pt-2">
-                        <h2 className="text-3xl md:text-4xl font-bold text-medical-blue mb-4">
+                      <div className="flex-1 flex flex-col justify-center">
+                        <h2 className="text-4xl lg:text-5xl font-bold text-medical-blue mb-6">
                           {activeEvent.title}
                         </h2>
-                        <div className="w-16 h-1.5 bg-medical-teal rounded-full mb-6" />
-                        <p className="text-slate-500 leading-relaxed text-base md:text-lg">
+                        <div className="w-20 h-2 bg-medical-teal rounded-full mb-8" />
+                        <p className="text-slate-500 leading-relaxed text-lg lg:text-xl">
                           {activeEvent.description || "No description provided for this event."}
                         </p>
                       </div>
@@ -148,11 +143,11 @@ export default function AcademicsClient({ initialEvents, initialClinicalItems, i
                           {activeEventMedia.length} Items
                         </span>
                       </div>
-                      
-                      <GalleryClient 
+
+                      <GalleryClient
                         key={activeEvent._id} // force remount when event changes
-                        initialItems={activeEventMedia} 
-                        disableFetch={true} 
+                        initialItems={activeEventMedia}
+                        disableFetch={true}
                       />
                     </div>
                   </motion.div>
