@@ -3,6 +3,8 @@ import dbConnect, { getGridFSBucket } from "@/lib/mongodb";
 import GalleryItem from "@/models/GalleryItem";
 import { Readable } from "stream";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req) {
   try {
     await dbConnect();

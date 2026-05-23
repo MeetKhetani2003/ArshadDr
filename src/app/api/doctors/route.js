@@ -3,6 +3,8 @@ import dbConnect, { getGridFSBucket } from "@/lib/mongodb";
 import Doctor from "@/models/Doctor";
 import { Readable } from "stream";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     await dbConnect();

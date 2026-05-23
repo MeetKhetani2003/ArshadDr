@@ -98,7 +98,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const res = await fetch("/api/gallery");
+        const res = await fetch("/api/gallery", { cache: "no-store" });
         if (res.ok) {
           const data = await res.json();
           setGalleryItems(data.slice(0, 10));
@@ -120,7 +120,7 @@ export default function HomePage() {
   const [doctors, setDoctors] = useState([]);
   
   useEffect(() => {
-    fetch("/api/doctors").then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
+    fetch("/api/doctors", { cache: "no-store" }).then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -685,13 +685,12 @@ export default function HomePage() {
                     <div className="flex items-center justify-between mb-8 p-1.5 pr-6 rounded-full bg-slate-50 border border-slate-100 group/doc hover:bg-white transition-all duration-500">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-white relative">
-                          <Image
+                          <img
                             src={item.doctor === "Senior On-Call PT" ? 
                               (doctors[0] ? `/api/media/${doctors[0].imageId}` : "/doctor/doc2.jpg") : 
                               (doctors[1] ? `/api/media/${doctors[1].imageId}` : "/Doctors/Dr. Rubina Pathan .jpeg")}
                             alt="Doctor"
-                            fill
-                            className="object-cover"
+                            className="absolute inset-0 w-full h-full object-cover"
                           />
                         </div>
                         <div>
@@ -1563,11 +1562,10 @@ export default function HomePage() {
               >
                 <div className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 flex flex-col h-full">
                   <div className="aspect-[4/5] relative overflow-hidden">
-                    <Image
-                      src={doctor.image}
+                    <img
+                      src={`/api/media/${doctor.imageId}`}
                       alt={doctor.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute top-4 left-4">
                       <div className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100 flex items-center gap-1.5">

@@ -4,6 +4,8 @@ import GalleryItem from "@/models/GalleryItem";
 import AcademicsClient from "@/components/AcademicsClient";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Academics & Events | Healing Hands Physiotherapy",
   description: "Browse our academic events, recovery photos, and clinical case study videos showcasing Healing Hands' advanced rehabilitation solutions in Jodhpur.",
