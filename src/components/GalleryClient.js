@@ -147,7 +147,7 @@ export default function GalleryClient({ initialItems, disableFetch = false }) {
       {/* Media Grid */}
       <motion.div 
         layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
       >
         <AnimatePresence mode="popLayout">
           {filteredItems.map((item, index) => {
@@ -166,7 +166,7 @@ export default function GalleryClient({ initialItems, disableFetch = false }) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 15 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.06)] hover:shadow-[0_30px_70px_-10px_rgba(37,99,235,0.15)] transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                className="group relative bg-white rounded-md overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.06)] hover:shadow-[0_30px_70px_-10px_rgba(37,99,235,0.15)] transition-all duration-500 hover:-translate-y-2 flex flex-col"
               >
                 {/* Media Wrapper */}
                 <div 

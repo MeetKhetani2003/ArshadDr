@@ -1123,9 +1123,9 @@ export default function HomePage() {
                   <ChevronRight size={24} className="rotate-180" />
                 </button>
                 <button
-                  onClick={() => setGalleryIndex(prev => Math.min(galleryItems.length - (isMobile ? 1 : 3), prev + 1))}
-                  className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${galleryIndex >= (galleryItems.length - (isMobile ? 1 : 3)) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
-                  disabled={galleryIndex >= (galleryItems.length - (isMobile ? 1 : 3))}
+                  onClick={() => setGalleryIndex(prev => Math.min(galleryItems.length - (isMobile ? 1 : 2), prev + 1))}
+                  className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${galleryIndex >= (galleryItems.length - (isMobile ? 1 : 2)) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                  disabled={galleryIndex >= (galleryItems.length - (isMobile ? 1 : 2))}
                 >
                   <ChevronRight size={24} />
                 </button>
@@ -1138,20 +1138,20 @@ export default function HomePage() {
                 drag="x"
                 dragConstraints={{
                   right: 0,
-                  left: isMobile ? -((galleryItems.length - 1) * 100) + '%' : -((galleryItems.length - 3) * 33.8) + '%'
+                  left: isMobile ? -((galleryItems.length - 1) * 100) + '%' : `calc(-${(galleryItems.length - 2) * 50}% - ${(galleryItems.length - 2) * 1}rem)`
                 }}
                 dragElastic={0.1}
                 dragMomentum={false}
                 onDragEnd={(e, { offset }) => {
                   const swipe = offset.x;
                   const threshold = 50;
-                  if (swipe < -threshold && galleryIndex < galleryItems.length - (isMobile ? 1 : 3)) {
+                  if (swipe < -threshold && galleryIndex < galleryItems.length - (isMobile ? 1 : 2)) {
                     setGalleryIndex(prev => prev + 1);
                   } else if (swipe > threshold && galleryIndex > 0) {
                     setGalleryIndex(prev => prev - 1);
                   }
                 }}
-                animate={{ x: `-${galleryIndex * (isMobile ? 100 : 33.8)}%` }}
+                animate={{ x: isMobile ? `-${galleryIndex * 100}%` : `calc(-${galleryIndex * 50}% - ${galleryIndex * 1}rem)` }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
               >
@@ -1164,12 +1164,12 @@ export default function HomePage() {
                       : null;
 
                   return (
-                    <div key={item._id} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
+                    <div key={item._id} className="flex-shrink-0 w-full md:w-[calc(50%-1rem)] px-4 md:px-0">
                       <div
-                        className="group bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.05)] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full relative"
+                        className="group bg-white rounded-md overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.05)] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full relative"
                       >
                         {/* Media Thumbnail */}
-                        <div className="aspect-[4/3] relative w-full bg-slate-50 overflow-hidden shrink-0">
+                        <div className="aspect-square relative w-full bg-slate-50 overflow-hidden shrink-0">
                           {thumbUrl ? (
                             <img
                               src={thumbUrl}
@@ -1232,9 +1232,9 @@ export default function HomePage() {
             </div>
 
             {/* Pagination Dots */}
-            {galleryItems.length > (isMobile ? 1 : 3) && (
+            {galleryItems.length > (isMobile ? 1 : 2) && (
               <div className="flex justify-center gap-2 mt-8">
-                {[...Array(galleryItems.length - (isMobile ? 0 : 2))].map((_, i) => (
+                {[...Array(galleryItems.length - (isMobile ? 0 : 1))].map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setGalleryIndex(i)}
@@ -1246,8 +1246,8 @@ export default function HomePage() {
 
             {/* View All Button */}
             <div className="flex justify-center mt-12">
-              <Link href="/gallery" className="btn-modern btn-primary px-10 py-5 text-sm uppercase tracking-widest font-extrabold shadow-xl">
-                View Full Recovery Gallery <ArrowRight size={16} />
+              <Link href="/academics" className="btn-modern btn-primary px-10 py-5 text-sm uppercase tracking-widest font-extrabold shadow-xl">
+                View All Clinical Gallery <ArrowRight size={16} />
               </Link>
             </div>
           </div>

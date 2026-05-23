@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BookingProvider } from "@/components/BookingContext";
+import LaunchEvent from "@/components/LaunchEvent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col font-sans">
+        <LaunchEvent />
         <BookingProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
