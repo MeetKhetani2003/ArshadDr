@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Link href="/" >
               <Image
-                src="/Logo.png"
+                src="/logofooter.png"
                 alt="Healing Hands Logo"
                 height={280}
                 width={280}

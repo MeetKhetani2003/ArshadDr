@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col font-sans">
-        <LaunchEvent />
+        {/* <LaunchEvent /> */}
         <BookingProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
