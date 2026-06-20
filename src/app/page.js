@@ -61,6 +61,20 @@ function StatCounter({ value }) {
 
 export default function HomePage() {
   const containerRef = useRef(null);
+  const focusScrollRef = useRef(null);
+  const locationsScrollRef = useRef(null);
+  const journeyScrollRef = useRef(null);
+
+  const scrollContainer = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = window.innerWidth > 768 ? window.innerWidth / 3 : window.innerWidth * 0.85;
+      ref.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const [partnerIndex, setPartnerIndex] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -287,18 +301,29 @@ export default function HomePage() {
         </div>
 
         <div className="max-site relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8 mb-16">
             <div className="will-animate scroll-reveal reveal">
               <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Specialized Expertise</span>
               <h2 className="text-4xl md:text-5xl text-medical-blue font-bold tracking-tight">Clinical Focus Areas.</h2>
             </div>
-            <Link href="/treatments" className="will-animate scroll-reveal reveal btn-modern btn-outline bg-white group font-semibold border-slate-200 shadow-sm hover:shadow-md">
-              Explore All Services
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            
+            <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
+              <div className="flex items-center gap-2 will-animate scroll-reveal reveal">
+                <button onClick={() => scrollContainer(focusScrollRef, 'left')} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-medical-blue hover:bg-medical-teal hover:text-white transition-all shadow-sm">
+                  <ArrowRight size={20} className="rotate-180" />
+                </button>
+                <button onClick={() => scrollContainer(focusScrollRef, 'right')} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-medical-blue hover:bg-medical-teal hover:text-white transition-all shadow-sm">
+                  <ArrowRight size={20} />
+                </button>
+              </div>
+              <Link href="/treatments" className="will-animate scroll-reveal reveal btn-modern btn-outline bg-white group font-semibold border-slate-200 shadow-sm hover:shadow-md">
+                Explore All Services
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+          <div ref={focusScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
             {treatments.map((t, i) => (
               <motion.div
                 key={t.slug}
@@ -307,7 +332,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="min-w-[85vw] md:min-w-0 snap-center"
+                className="min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center"
               >
                 <Link
                   href={`/treatments/${t.slug}`}
@@ -490,13 +515,24 @@ export default function HomePage() {
         />
 
         <div className="container-wide relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-12 will-animate scroll-reveal reveal">
-            <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Physical Center</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">Serving Across Jodhpur</h2>
-            <p className="text-slate-300 text-lg font-normal">We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.</p>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 will-animate scroll-reveal reveal">
+            <div className="text-left max-w-2xl">
+              <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Physical Center</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">Serving Across Jodhpur</h2>
+              <p className="text-slate-300 text-lg font-normal">We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.</p>
+            </div>
+            
+            <div className="flex items-center gap-2 mt-4 md:mt-0 self-end md:self-auto w-full md:w-auto justify-end">
+              <button onClick={() => scrollContainer(locationsScrollRef, 'left')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
+                <ArrowRight size={20} className="rotate-180" />
+              </button>
+              <button onClick={() => scrollContainer(locationsScrollRef, 'right')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
+                <ArrowRight size={20} />
+              </button>
+            </div>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+          <div ref={locationsScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
             {locations.map((loc, i) => (
               <motion.div
                 key={i}
@@ -504,7 +540,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="group relative min-w-[320px] md:min-w-0"
+                className="group relative min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center"
               >
                 <div className="bg-[#E5E9F0] rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden">
                   {/* Card Header: PIN Badge */}
@@ -703,10 +739,10 @@ export default function HomePage() {
 
                     <Link
                       href="/contact"
-                      className="w-full flex items-center justify-center gap-3 bg-medical-teal text-white py-5 rounded-2xl font-bold text-sm uppercase tracking-widest shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
+                      className="w-full flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 bg-medical-teal text-white py-4 sm:py-5 rounded-2xl font-bold text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest shadow-xl shadow-medical-teal/20 hover:bg-medical-blue transition-all"
                     >
-                      <span>{item.buttonText}</span>
-                      <ArrowRight size={18} />
+                      <span className="text-center">{item.buttonText}</span>
+                      <ArrowRight size={18} className="shrink-0" />
                     </Link>
                   </div>
                 </div>
@@ -716,24 +752,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== FLOATING TRUST BAR ===== */}
       <section className="relative z-30 -mt-16 mb-20">
-        <div className="container-wide bg-medical-blue text-white rounded-2xl p-10 shadow-2xl shadow-medical-blue/10 overflow-hidden relative">
+        <div className="container-wide bg-medical-blue text-white rounded-2xl p-6 sm:p-10 shadow-2xl shadow-medical-blue/10 overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-r from-medical-blue to-slate-800" />
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center divide-x divide-white/10">
+          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-2 sm:gap-8 md:gap-12 text-center md:divide-x divide-white/10">
             {[
               { n: 250000, suffix: "+", l: "Patients Restored" },
               { n: 13, suffix: "+ Years", l: "Clinical Experience" },
               { n: 1, suffix: " on 1", l: "Personalized Care" },
               { n: 8, suffix: "+ Hubs", l: "Expanding Across Jodhpur" }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal px-4">
-                <p className="text-3xl md:text-4xl font-light mb-2 tracking-tight text-white drop-shadow-sm flex items-center justify-center">
-                  <StatCounter value={item.n} />
-                  {item.suffix.startsWith(" ") ? "\u00A0" : ""}
-                  {item.suffix.trim()}
+              <div key={i} className="will-animate scroll-reveal reveal px-1 sm:px-4 flex flex-col justify-center">
+                <p className="text-2xl sm:text-3xl md:text-4xl font-light mb-1 sm:mb-2 tracking-tight text-white drop-shadow-sm flex items-center justify-center">
+                  <span className="whitespace-nowrap flex items-baseline">
+                    <StatCounter value={item.n} />
+                    <span>{item.suffix.startsWith(" ") ? "\u00A0" : ""}{item.suffix.trim()}</span>
+                  </span>
                 </p>
-                <p className="text-medical-teal font-medium uppercase tracking-[0.2em] text-[0.55rem] opacity-90">{item.l}</p>
+                <p className="text-medical-teal font-medium uppercase tracking-widest sm:tracking-[0.2em] text-[0.5rem] sm:text-[0.55rem] opacity-90 leading-tight">{item.l}</p>
               </div>
             ))}
           </div>
@@ -760,13 +796,24 @@ export default function HomePage() {
         </div>
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 opacity-60" />
         <div className="max-site relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
-            <span className="text-label">The Patient Journey</span>
-            <h2 className="text-title text-4xl md:text-6xl mt-4 text-white">The Path to Restoration.</h2>
-            <p className="text-slate-300 mt-6 text-lg font-normal">Our 3-step evidence-based recovery model ensures precision in every movement and certainty in your results.</p>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-20 will-animate scroll-reveal reveal">
+            <div className="text-left max-w-2xl">
+              <span className="text-label">The Patient Journey</span>
+              <h2 className="text-title text-4xl md:text-6xl mt-4 text-white">The Path to Restoration.</h2>
+              <p className="text-slate-300 mt-6 text-lg font-normal">Our 3-step evidence-based recovery model ensures precision in every movement and certainty in your results.</p>
+            </div>
+            
+            <div className="flex items-center gap-2 mt-4 md:mt-0 self-end md:self-auto w-full md:w-auto justify-end">
+              <button onClick={() => scrollContainer(journeyScrollRef, 'left')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
+                <ArrowRight size={20} className="rotate-180" />
+              </button>
+              <button onClick={() => scrollContainer(journeyScrollRef, 'right')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
+                <ArrowRight size={20} />
+              </button>
+            </div>
           </div>
 
-          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 relative">
+          <div ref={journeyScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth relative">
             {/* Connection Line (Desktop) */}
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-100 -translate-y-12 z-0" />
 
@@ -796,7 +843,7 @@ export default function HomePage() {
                 bg: "bg-medical-teal/10"
               }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal relative z-10 min-w-[85vw] md:min-w-0 snap-center">
+              <div key={i} className="will-animate scroll-reveal reveal relative z-10 min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center">
                 <div className="modern-card group hover:shadow-2xl transition-all duration-700 bg-white border-slate-100 p-10 h-full flex flex-col items-center text-center">
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50">
                     {item.step}
