@@ -62,7 +62,7 @@ export default function AdminLogin() {
                 <Shield className="text-white w-8 h-8" />
               </div>
               <h1 className="text-2xl font-bold text-white mb-2">Admin Portal</h1>
-              <p className="text-blue-100 text-sm">Secure access for MayoMotion staff</p>
+              <p className="text-blue-100 text-sm">Secure access for MyoMotion staff</p>
             </div>
           </div>
 
@@ -134,7 +134,7 @@ export default function AdminLogin() {
         </div>
         
         <div className="mt-8 text-center text-slate-500 text-sm">
-          &copy; {new Date().getFullYear()} MayoMotion. All rights reserved.
+          &copy; {new Date().getFullYear()} MyoMotion. All rights reserved.
         </div>
       </motion.div>
     </div>

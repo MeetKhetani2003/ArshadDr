@@ -93,7 +93,7 @@ export default function GalleryClient({ initialItems, disableFetch = false }) {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = filename || `mayomotion-recovery-${imageId}.jpg`;
+      a.download = filename || `myomotion-recovery-${imageId}.jpg`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -387,7 +387,7 @@ export default function GalleryClient({ initialItems, disableFetch = false }) {
             {/* Bottom Bar: Title Caption */}
             <div className="text-center text-white max-w-xl mx-auto pb-4 relative z-10">
               <h4 className="text-lg font-bold tracking-tight">
-                {filteredItems[activePhotoIndex].title || "MayoMotion Recovery Archive"}
+                {filteredItems[activePhotoIndex].title || "MyoMotion Recovery Archive"}
               </h4>
               <p className="text-xs text-slate-400 mt-2">
                 Click side arrows or use key arrows (← / →) on your keyboard to navigate photos.

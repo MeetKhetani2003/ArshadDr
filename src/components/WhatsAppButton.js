@@ -2,7 +2,7 @@
 import { FaWhatsapp } from "react-icons/fa6";
 
 export default function WhatsAppButton() {
-  const whatsappUrl = "https://wa.me/916378062237?text=Hello%20MayoMotion,%20I%20would%20like%20to%20book%20an%20appointment.";
+  const whatsappUrl = "https://wa.me/916378062237?text=Hello%20MyoMotion,%20I%20would%20like%20to%20book%20an%20appointment.";
   
   return (
     <a

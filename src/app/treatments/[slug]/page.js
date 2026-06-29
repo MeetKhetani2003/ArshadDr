@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   const treatment = getTreatmentBySlug(slug);
   if (!treatment) return { title: "Treatment Not Found" };
   return {
-    title: `${treatment.title} | MayoMotion Physiotherapy`,
+    title: `${treatment.title} | MyoMotion Physiotherapy`,
     description: treatment.shortDesc,
   };
 }

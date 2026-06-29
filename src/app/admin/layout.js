@@ -43,7 +43,7 @@ export default function AdminLayout({ children }) {
       `}>
         <div className="p-8">
           <h2 className="text-xl font-bold tracking-tight mb-1">Admin Panel</h2>
-          <p className="text-[0.65rem] text-medical-teal uppercase tracking-widest font-bold">MayoMotion</p>
+          <p className="text-[0.65rem] text-medical-teal uppercase tracking-widest font-bold">MyoMotion</p>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 overflow-y-auto">

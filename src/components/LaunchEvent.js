@@ -77,7 +77,7 @@ export default function LaunchEvent() {
                   transition={{ duration: 0.8 }}
                 >
                   <h1 className="text-amber-400 text-2xl sm:text-4xl md:text-5xl font-light tracking-[0.2em] uppercase mb-4 drop-shadow-lg">
-                    MayoMotion Physiotherapy
+                    MyoMotion Physiotherapy
                   </h1>
                   <p className="text-slate-300 text-lg sm:text-xl font-light tracking-widest uppercase">
                     Advanced Rehabilitation Center

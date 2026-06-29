@@ -377,7 +377,7 @@ export default function ContactPage() {
 
                   {/* Title Section */}
                   <div className="mb-6">
-                    <h3 className="text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">MayoMotion Clinic</h3>
+                    <h3 className="text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">MyoMotion Clinic</h3>
                     <p className="text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.name}</p>
                   </div>
 

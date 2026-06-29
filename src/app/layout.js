@@ -13,21 +13,21 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "MayoMotion | MayoMotion Physiotherapy | Advanced Rehabilitation Center",
-  description: "MayoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+  title: "MyoMotion | MyoMotion Physiotherapy | Advanced Rehabilitation Center",
+  description: "MyoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
   authors: [{ name: "mkdigitalnexus.in" }],
   keywords: "physiotherapy, Jodhpur, rehabilitation, orthopedic, neurological, pediatric, women's health, Dr. Asad Solanki",
   openGraph: {
-    title: "MayoMotion | MayoMotion Physiotherapy | Advanced Rehabilitation Center",
-    description: "MayoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+    title: "MyoMotion | MyoMotion Physiotherapy | Advanced Rehabilitation Center",
+    description: "MyoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
     url: "https://www.myomotion.co.in",
-    siteName: "MayoMotion",
+    siteName: "MyoMotion",
     images: [
       {
         url: "https://www.myomotion.co.in/Logo.png",
         width: 800,
         height: 600,
-        alt: "MayoMotion Logo",
+        alt: "MyoMotion Logo",
       },
     ],
     locale: "en_IN",

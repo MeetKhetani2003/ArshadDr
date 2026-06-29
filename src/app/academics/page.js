@@ -7,8 +7,8 @@ import Image from "next/image";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Academics & Events | MayoMotion Physiotherapy",
-  description: "Browse our academic events, recovery photos, and clinical case study videos showcasing MayoMotion's advanced rehabilitation solutions in Jodhpur.",
+  title: "Academics & Events | MyoMotion Physiotherapy",
+  description: "Browse our academic events, recovery photos, and clinical case study videos showcasing MyoMotion's advanced rehabilitation solutions in Jodhpur.",
   keywords: "physiotherapy academics, events, clinical gallery, rehabilitation videos, Jodhpur physical therapy",
 };
 

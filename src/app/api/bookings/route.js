@@ -37,13 +37,13 @@ export async function POST(req) {
         });
 
         const mailOptions = {
-          from: `"MayoMotion Physiotherapy" <${process.env.EMAIL_SERVER_USER}>`,
+          from: `"MyoMotion Physiotherapy" <${process.env.EMAIL_SERVER_USER}>`,
           to: data.email,
           subject: `Appointment Confirmation - Ref: ${booking._id.toString().slice(-6).toUpperCase()}`,
           html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden;">
               <div style="background-color: #0f172a; padding: 40px; text-align: center;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">MayoMotion</h1>
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">MyoMotion</h1>
                 <p style="color: #38bdf8; margin: 10px 0 0; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: bold;">Physotherapy & Rehabilitation</p>
               </div>
               
@@ -86,7 +86,7 @@ export async function POST(req) {
               </div>
               
               <div style="background-color: #f1f5f9; padding: 20px; text-align: center; font-size: 12px; color: #64748b;">
-                © ${new Date().getFullYear()} MayoMotion Physiotherapy. All Rights Reserved.
+                © ${new Date().getFullYear()} MyoMotion Physiotherapy. All Rights Reserved.
               </div>
             </div>
           `,

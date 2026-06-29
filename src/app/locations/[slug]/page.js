@@ -160,7 +160,7 @@ export default function LocationPage({ params }) {
               <p className="text-[0.7rem] text-slate-500 font-normal uppercase tracking-widest">{location.address}</p>
               <div className="mt-6 flex gap-4">
                 <a 
-                  href={`https://www.google.com/maps/search/?api=1&query=MayoMotion+Physiotherapy+${location.name}+Jodhpur`}
+                  href={`https://www.google.com/maps/search/?api=1&query=MyoMotion+Physiotherapy+${location.name}+Jodhpur`}
                   target="_blank"
                   className="px-6 py-3 bg-medical-blue text-white rounded-xl text-[0.65rem] font-medium uppercase tracking-widest hover:bg-medical-teal transition-all flex items-center gap-2"
                 >
@@ -171,7 +171,7 @@ export default function LocationPage({ params }) {
             
             <div className="aspect-[21/9] min-h-[450px] w-full relative">
               <iframe 
-                src={`https://www.google.com/maps?q=MayoMotion+Physiotherapy+${location.name}+Jodhpur&output=embed`}
+                src={`https://www.google.com/maps?q=MyoMotion+Physiotherapy+${location.name}+Jodhpur&output=embed`}
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 

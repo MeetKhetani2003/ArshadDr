@@ -134,7 +134,7 @@ export default function FAQPage() {
                   <ShieldCheck className="text-medical-teal mb-4" size={32} />
                   <h4 className="text-medical-blue font-bold mb-2 text-lg">Clinical Standards</h4>
                   <p className="text-slate-500 text-sm leading-relaxed">
-                    Every treatment protocol at MayoMotion is backed by evidence-based clinical research.
+                    Every treatment protocol at MyoMotion is backed by evidence-based clinical research.
                   </p>
                 </div>
               </div>
