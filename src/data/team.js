@@ -9,9 +9,9 @@ export const teamMembers = [
     rating: "4.9/5.0",
     patients: "250,000+",
     successRate: "99%",
-    bio: "Dr. Asad Solanki is a renowned physiotherapist with over 13 years of clinical experience. He founded Healing Hands Clinic with a vision to redefine physical rehabilitation through advanced, evidence-based therapy.",
+    bio: "Dr. Asad Solanki is a renowned physiotherapist with over 13 years of clinical experience. He founded MayoMotion Clinic with a vision to redefine physical rehabilitation through advanced, evidence-based therapy.",
     journey: [
-      "Founded Healing Hands Physiotherapy Clinic in Jodhpur.",
+      "Founded MayoMotion Physiotherapy Clinic in Jodhpur.",
       "Introduced advanced rehabilitation modalities like Laser & Shockwave Therapy.",
       "Treated over 2.5 lakh patients with orthopedic and neuromuscular conditions."
     ]
@@ -28,7 +28,7 @@ export const teamMembers = [
     successRate: "98%",
     bio: "Dr. Rubina Pathan is an expert in neurological rehabilitation, helping patients recover from stroke, nerve injuries, and chronic pain using customized recovery pathways.",
     journey: [
-      "Joined Healing Hands Clinic as a Senior Consultant.",
+      "Joined MayoMotion Clinic as a Senior Consultant.",
       "Headed the Tele-Rehab division to offer remote clinical consultations.",
       "Specialized in advanced neuromuscular facilitation techniques."
     ]
@@ -45,7 +45,7 @@ export const teamMembers = [
     successRate: "98%",
     bio: "Dr. Avantika is dedicated to offering specialized clinical care directly in the comfort of patients' homes. She is highly experienced in pediatric development and geriatric mobility training.",
     journey: [
-      "Spearheaded the Healing Hands Home Care initiative across Jodhpur City.",
+      "Spearheaded the MayoMotion Home Care initiative across Jodhpur City.",
       "Designed specialized home rehabilitation protocols for post-operative recovery.",
       "Expert in pediatric motor development and developmental delay therapy."
     ]
@@ -79,7 +79,7 @@ export const teamMembers = [
     successRate: "97%",
     bio: "Dr. Simran Mathur specializes in pre/postnatal care, pelvic floor rehabilitation, and musculoskeletal pain management in women.",
     journey: [
-      "Established pre/postnatal wellness workshops at Healing Hands.",
+      "Established pre/postnatal wellness workshops at MayoMotion.",
       "Specialized training in pelvic floor muscle assessment and biofeedback.",
       "Helped thousands of mothers recover post-childbirth."
     ]

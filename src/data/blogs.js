@@ -21,7 +21,7 @@ export const defaultBlogs = [
 
 ## How Physiotherapy Helps
 
-At Healing Hands Physiotherapy, we use a comprehensive approach to treat back pain:
+At MayoMotion Physiotherapy, we use a comprehensive approach to treat back pain:
 
 1. **Manual Therapy** - Hands-on techniques to mobilize joints and soft tissues
 2. **Exercise Prescription** - Targeted exercises to strengthen core muscles
@@ -80,7 +80,7 @@ Recovery after a stroke is a gradual process. The most rapid recovery typically 
 - Celebrate small victories
 - Attend therapy sessions when possible
 
-At Healing Hands, our specialized neuro rehabilitation team is dedicated to helping stroke survivors achieve their maximum potential. Contact us to begin your recovery journey.`,
+At MayoMotion, our specialized neuro rehabilitation team is dedicated to helping stroke survivors achieve their maximum potential. Contact us to begin your recovery journey.`,
     author: "Dr. Hadiya Khilji",
     date: "2026-04-10",
     category: "Neurology",
@@ -128,7 +128,7 @@ The treatment typically lasts 15-30 minutes. You may feel a brief twitch respons
 - Knee pain
 - Plantar fasciitis
 
-Dr. Asad Solanki is certified in dry needling therapy and has successfully treated hundreds of patients using this technique. Book your session today at Healing Hands Physiotherapy.`,
+Dr. Asad Solanki is certified in dry needling therapy and has successfully treated hundreds of patients using this technique. Book your session today at MayoMotion Physiotherapy.`,
     author: "Dr. Asad Solanki",
     date: "2026-04-05",
     category: "Advanced Therapy",
@@ -184,7 +184,7 @@ After delivery, your body needs time and proper care to recover:
 - **Prenatal:** Can begin as early as the first trimester
 - **Postnatal:** After doctor's clearance (usually 6 weeks for normal delivery, 8-12 weeks for C-section)
 
-At Healing Hands, our women's health specialists provide compassionate, evidence-based care for every stage of motherhood.`,
+At MayoMotion, our women's health specialists provide compassionate, evidence-based care for every stage of motherhood.`,
     author: "Dr. Simran",
     date: "2026-03-28",
     category: "Women's Health",

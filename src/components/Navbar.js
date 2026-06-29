@@ -50,7 +50,7 @@ export default function Navbar() {
           <div className="w-[180px] h-[40px] md:w-[220px] md:h-[45px] relative transform scale-125 md:scale-[1.3] origin-left">
             <Image
               src="/logonav.png"
-              alt="Healing Hands"
+              alt="MayoMotion"
               fill
               className="object-contain "
               priority

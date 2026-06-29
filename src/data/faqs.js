@@ -98,7 +98,7 @@ export const faqs = [
         a: "A typical session lasts between 30 to 60 minutes depending on the condition and treatment plan."
       },
       {
-        q: "Why choose Healing Hands Physiotherapy?",
+        q: "Why choose MayoMotion Physiotherapy?",
         a: "We offer evidence-based treatment, personalized plans, experienced therapists, advanced techniques, and a focus on root-cause treatment for long-term recovery."
       }
     ]

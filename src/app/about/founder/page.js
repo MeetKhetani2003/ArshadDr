@@ -119,7 +119,7 @@ export default function FounderPage() {
 
           <div className="lg:col-span-7 lg:pl-10">
             <h2 className="text-4xl md:text-5xl mb-8 will-animate scroll-reveal reveal text-medical-blue font-light">
-              Healing Hands / MyoMotion.
+              MayoMotion.
             </h2>
 
             <div className="space-y-8 text-slate-500 leading-relaxed font-normal text-lg will-animate scroll-reveal reveal">

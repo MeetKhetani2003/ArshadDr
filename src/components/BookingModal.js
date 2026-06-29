@@ -97,7 +97,7 @@ export default function BookingModal({ isOpen, onClose, initialData = {} }) {
             <div className="bg-medical-blue p-8 flex justify-between items-center text-white shrink-0">
               <div>
                 <h2 className="text-2xl font-bold">Book Appointment</h2>
-                <p className="text-slate-400 text-sm mt-1 uppercase tracking-widest font-bold">Healing Hands Physiotherapy</p>
+                <p className="text-slate-400 text-sm mt-1 uppercase tracking-widest font-bold">MayoMotion Physiotherapy</p>
               </div>
               <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
                 <X size={24} />

@@ -225,7 +225,7 @@ export default function DoctorProfile() {
                       <Phone size={20} className="text-medical-teal" />
                       <span className="text-sm font-medium">Connect Instantly</span>
                     </a>
-                    <a href="mailto:contact@healinghands.com" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
+                    <a href="mailto:contact@mayomotion.com" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
                       <Mail size={20} className="text-medical-teal" />
                       <span className="text-sm font-medium">Send Email</span>
                     </a>

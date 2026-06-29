@@ -13,21 +13,21 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Myomotion | Healing Hands Physiotherapy | Advanced Rehabilitation Center",
-  description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+  title: "MayoMotion | MayoMotion Physiotherapy | Advanced Rehabilitation Center",
+  description: "MayoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
   authors: [{ name: "mkdigitalnexus.in" }],
   keywords: "physiotherapy, Jodhpur, rehabilitation, orthopedic, neurological, pediatric, women's health, Dr. Asad Solanki",
   openGraph: {
-    title: "Myomotion | Healing Hands Physiotherapy | Advanced Rehabilitation Center",
-    description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+    title: "MayoMotion | MayoMotion Physiotherapy | Advanced Rehabilitation Center",
+    description: "MayoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
     url: "https://www.myomotion.co.in",
-    siteName: "Myomotion By Healing Hands",
+    siteName: "MayoMotion",
     images: [
       {
         url: "https://www.myomotion.co.in/Logo.png",
         width: 800,
         height: 600,
-        alt: "Myomotion Logo",
+        alt: "MayoMotion Logo",
       },
     ],
     locale: "en_IN",
