@@ -154,6 +154,18 @@ export const treatments = [
     conditions: ["Obesity Management", "Weight Loss Rehab", "Sedentary Lifestyle Issues", "Wellness Conditioning"],
     techniques: ["Functional Training", "Corrective Exercises", "Flexibility Training", "Lifestyle Coaching"],
     fullDescription: "Holistic approach to fitness, helping you build a sustainable active lifestyle through medically supervised exercise."
+  },
+  {
+    slug: "onco-physiotherapy",
+    title: "Onco Physiotherapy",
+    icon: "🎗️",
+    shortDesc: "Specialized rehabilitation for cancer patients to manage fatigue, pain, and restore mobility.",
+    image: "/treatments/pain_management.png",
+    protocolImage: "/treatments/protocol-pain.png",
+    color: "#ef4444",
+    conditions: ["Cancer-Related Fatigue", "Lymphedema Management", "Post-Mastectomy Stiffness", "Chemotherapy-Induced Neuropathy", "Radiation Fibrosis", "General Physical Conditioning"],
+    techniques: ["Manual Lymphatic Drainage (MLD)", "Gentle Range of Motion Exercises", "Energy Conservation Techniques", "Myofascial Release", "Scar Tissue Mobilization"],
+    fullDescription: "Specialized physiotherapy support for cancer survivors and patients undergoing active treatment. We focus on enhancing strength, managing secondary complications like lymphedema, and improving quality of life."
   }
 ];
 

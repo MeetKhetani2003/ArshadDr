@@ -10,6 +10,7 @@ import {
   ChevronRight, Phone, Mail, ArrowRight, Loader2
 } from "lucide-react";
 import { useBooking } from "@/components/BookingContext";
+import { teamMembers } from "@/data/team";
 
 export default function DoctorProfile() {
   const { slug } = useParams();
@@ -23,8 +24,18 @@ export default function DoctorProfile() {
          if (!res.ok) throw new Error("Not found");
          return res.json();
       })
-      .then(data => setDoctor(data))
-      .catch(() => setDoctor(null))
+      .then(data => {
+         if (data && data.name) {
+           setDoctor(data);
+         } else {
+           const staticDoc = teamMembers.find(d => d.slug === slug);
+           setDoctor(staticDoc || null);
+         }
+      })
+      .catch(() => {
+         const staticDoc = teamMembers.find(d => d.slug === slug);
+         setDoctor(staticDoc || null);
+      })
       .finally(() => setLoading(false));
   }, [slug]);
 
@@ -79,7 +90,7 @@ export default function DoctorProfile() {
                 className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/20 group"
               >
                 <Image
-                  src={`/api/media/${doctor.imageId}`}
+                  src={doctor.imageId && (doctor.imageId.startsWith("/") || doctor.imageId.startsWith("http")) ? doctor.imageId : `/api/media/${doctor.imageId}`}
                   alt={doctor.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-1000"

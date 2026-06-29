@@ -117,7 +117,7 @@ export default function ContactPage() {
               <span className="text-[0.65rem] md:text-xs font-bold uppercase tracking-[0.4em] text-medical-teal">Clinical Scheduler</span>
             </motion.div>
 
-            <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-bold text-white tracking-tight leading-[0.9] mb-10">
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl md:text-8xl font-bold text-white tracking-tight leading-[0.9] mb-10">
               Book Your <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical-teal to-blue-400">Recovery.</span>
             </motion.h1>

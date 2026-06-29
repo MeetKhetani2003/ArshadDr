@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { treatments } from "@/data/treatments";
 import { motion } from "framer-motion";
+import TreatmentImageSlideshow from "@/components/TreatmentImageSlideshow";
 import { 
   ArrowUpRight, Activity, Bone, Brain, 
   HeartPulse, Baby, Dumbbell, Laptop, Zap,
@@ -115,11 +116,10 @@ export default function TreatmentsPage() {
                 className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
               >
                 <div className="relative h-56 w-full overflow-hidden">
-                  <Image 
-                    src={t.image} 
+                  <TreatmentImageSlideshow 
+                    defaultImage={t.image} 
+                    slug={t.slug} 
                     alt={t.title} 
-                    fill 
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                   
@@ -138,6 +138,7 @@ export default function TreatmentsPage() {
                       {t.slug.includes("vestibular") && <ArrowUpRight size={24} />}
                       {t.slug.includes("occupational") && <Laptop size={24} />}
                       {t.slug.includes("fitness") && <Dumbbell size={24} />}
+                      {t.slug.includes("onco") && <Activity size={24} />}
                     </div>
                   </div>
 

@@ -13,7 +13,8 @@ import {
   Search, Target, Cpu, Layers, Sparkles, Clock, Wallet, Laptop, Star, Home, Navigation2, Globe, Plus, Image as ImageIcon, X, Play, ZoomIn, Download, Loader2
 } from "lucide-react";
 import { treatments } from "@/data/treatments";
-import { locations } from "@/data/team";
+import { locations, teamMembers } from "@/data/team";
+import TreatmentImageSlideshow from "@/components/TreatmentImageSlideshow";
 import { useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
@@ -134,7 +135,19 @@ export default function HomePage() {
   const [doctors, setDoctors] = useState([]);
   
   useEffect(() => {
-    fetch("/api/doctors", { cache: "no-store" }).then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
+    fetch("/api/doctors", { cache: "no-store" })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setDoctors(data);
+        } else {
+          setDoctors(teamMembers);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch doctors, using static fallback:", err);
+        setDoctors(teamMembers);
+      });
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -339,11 +352,10 @@ export default function HomePage() {
                   className="group block bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(37,99,235,0.15)] transition-all duration-500 border border-slate-100/50 hover:border-medical-teal/30 h-full flex flex-col"
                 >
                   <div className="relative h-56 w-full overflow-hidden">
-                    <Image
-                      src={t.image}
+                    <TreatmentImageSlideshow
+                      defaultImage={t.image}
+                      slug={t.slug}
                       alt={t.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
 
@@ -356,6 +368,7 @@ export default function HomePage() {
                         {t.slug === "pediatric-physiotherapy" && <Activity size={24} />}
                         {t.slug === "geriatric-physiotherapy" && <Stethoscope size={24} />}
                         {t.slug === "advanced-physiotherapy-services" && <Zap size={24} />}
+                        {t.slug === "onco-physiotherapy" && <Activity size={24} />}
                       </div>
                     </div>
 
@@ -657,7 +670,7 @@ export default function HomePage() {
             <p className="text-slate-500 text-lg font-normal">Bespoke rehabilitation protocols delivered wherever you are.</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 max-w-5xl mx-auto">
             {[
               {
                 id: "01",
@@ -686,7 +699,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.8 }}
-                className="group relative"
+                className="group relative min-w-[85vw] md:min-w-0 snap-center"
               >
                 <div className="relative h-full bg-white rounded-[3rem] p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 overflow-hidden flex flex-col transition-all duration-500 hover:shadow-[0_40px_100px_-20px_rgba(37,99,235,0.12)] hover:-translate-y-2">
 
@@ -723,8 +736,8 @@ export default function HomePage() {
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-white relative">
                           <img
                             src={item.doctor === "Senior On-Call PT" ? 
-                              (doctors[0] ? `/api/media/${doctors[0].imageId}` : "/doctor/doc2.jpg") : 
-                              (doctors[1] ? `/api/media/${doctors[1].imageId}` : "/Doctors/Dr. Rubina Pathan .jpeg")}
+                              (doctors[0] && doctors[0].imageId ? (doctors[0].imageId.startsWith("/") ? doctors[0].imageId : `/api/media/${doctors[0].imageId}`) : "/doctor/doc2.jpg") : 
+                              (doctors[1] && doctors[1].imageId ? (doctors[1].imageId.startsWith("/") ? doctors[1].imageId : `/api/media/${doctors[1].imageId}`) : "/Doctors/Dr. Rubina Pathan .jpeg")}
                             alt="Doctor"
                             className="absolute inset-0 w-full h-full object-cover"
                           />
@@ -796,26 +809,17 @@ export default function HomePage() {
         </div>
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-medical-teal/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 opacity-60" />
         <div className="max-site relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-20 will-animate scroll-reveal reveal">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-20 will-animate scroll-reveal reveal">
             <div className="text-left max-w-2xl">
               <span className="text-label">The Patient Journey</span>
               <h2 className="text-title text-4xl md:text-6xl mt-4 text-white">The Path to Restoration.</h2>
               <p className="text-slate-300 mt-6 text-lg font-normal">Our 3-step evidence-based recovery model ensures precision in every movement and certainty in your results.</p>
             </div>
-            
-            <div className="flex items-center gap-2 mt-4 md:mt-0 self-end md:self-auto w-full md:w-auto justify-end">
-              <button onClick={() => scrollContainer(journeyScrollRef, 'left')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
-                <ArrowRight size={20} className="rotate-180" />
-              </button>
-              <button onClick={() => scrollContainer(journeyScrollRef, 'right')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
-                <ArrowRight size={20} />
-              </button>
-            </div>
           </div>
 
-          <div ref={journeyScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
             {/* Connection Line (Desktop) */}
-            <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-100 -translate-y-12 z-0" />
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-12 z-0" />
 
             {[
               {
@@ -843,16 +847,22 @@ export default function HomePage() {
                 bg: "bg-medical-teal/10"
               }
             ].map((item, i) => (
-              <div key={i} className="will-animate scroll-reveal reveal relative z-10 min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center">
-                <div className="modern-card group hover:shadow-2xl transition-all duration-700 bg-white border-slate-100 p-10 h-full flex flex-col items-center text-center">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50">
+              <div key={i} className="will-animate scroll-reveal reveal relative z-10 w-full">
+                <div className="modern-card group hover:shadow-2xl transition-all duration-700 bg-white border-slate-100 p-5 md:p-10 h-full flex flex-row md:flex-col items-center md:items-center text-left md:text-center gap-5 md:gap-0">
+                  <div className="absolute -top-3 -left-3 md:-top-4 md:-left-4 w-9 h-9 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50 z-20">
                     {item.step}
                   </div>
-                  <div className={`w-20 h-20 rounded-[2rem] ${item.bg} ${item.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
-                    <item.icon size={36} strokeWidth={1.5} />
+                  
+                  {/* Icon Wrapper */}
+                  <div className={`w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[2rem] ${item.bg} ${item.color} flex items-center justify-center mb-0 md:mb-8 shrink-0 group-hover:scale-110 transition-transform duration-500`}>
+                    <item.icon className="w-7 h-7 md:w-9 md:h-9" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-light text-medical-blue mb-4 tracking-tight">{item.title}</h3>
-                  <p className="text-slate-500 text-[0.95rem] leading-relaxed font-normal">{item.desc}</p>
+                  
+                  {/* Text Content */}
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-semibold md:font-light text-medical-blue mb-1 md:mb-4 tracking-tight">{item.title}</h3>
+                    <p className="text-slate-500 text-sm md:text-[0.95rem] leading-relaxed font-normal">{item.desc}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -860,51 +870,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== SERVICES GRID: PREMIUM BENTO ===== */}
-      <section className="section-padding bg-white relative overflow-hidden">
+      {/* ===== COMMON CONDITIONS: PREMIUM CARDS ===== */}
+      <section className="section-padding bg-white relative overflow-hidden z-30">
         {/* Right Corner Pattern */}
         <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden z-0">
           <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <linearGradient id="grad-right-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="grad-right-2-spec" x1="100%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
                 <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <path d="M100 0 L0 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
-            <path d="M100 10 L10 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
-            <path d="M100 20 L20 100" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
-            <path d="M90 0 L0 90" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
-            <path d="M80 0 L0 80" stroke="url(#grad-right-2)" strokeWidth="0.2" fill="none" />
+            <path d="M100 0 L0 100" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
+            <path d="M100 10 L10 100" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
+            <path d="M100 20 L20 100" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
+            <path d="M90 0 L0 90" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
+            <path d="M80 0 L0 80" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
           </svg>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none z-0" />
 
-      </section>
-
-      {/* ===== COMMON CONDITIONS: PREMIUM CARDS ===== */}
-      <section className="section-padding bg-white -mt-48 relative z-30">
-        <div className="max-site">
+        <div className="max-site relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6">Expert Specializations</span>
             <h2 className="text-4xl md:text-6xl font-bold text-medical-blue tracking-tight">What We Treat.</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 px-4 md:px-0">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 px-4 md:px-0">
             {[
-              { cat: "Orthopedic", icon: Bone, desc: "Bone, joint, and muscle pain recovery." },
-              { cat: "Neurological", icon: Brain, desc: "Stroke, paralysis, and nerve disorders." },
-              { cat: "Pediatric", icon: Baby, desc: "Developmental and childhood motor care." },
-              { cat: "Sports Injury", icon: Activity, desc: "Athletic injuries and performance rehab." },
-              { cat: "Geriatric", icon: HeartPulse, desc: "Age-related mobility and balance care." },
-              { cat: "Cardiopulmonary", icon: Activity, desc: "Heart and lung health rehabilitation." },
-              { cat: "Women’s Health", icon: Users, desc: "Pre/postnatal and pelvic floor care." },
-              { cat: "Pain Management", icon: Zap, desc: "Chronic pain and trigger point therapy." },
-              { cat: "Post Surgical", icon: Stethoscope, desc: "Recovery after major surgeries." },
-              { cat: "Manual Therapy", icon: Layers, desc: "Hands-on mobilization and advanced rehab." },
-              { cat: "Vestibular", icon: Navigation, desc: "Vertigo and balance restoration." },
-              { cat: "Occupational", icon: Laptop, desc: "Work-related injuries and ergonomics." },
-              { cat: "Fitness & Lifestyle", icon: Dumbbell, desc: "Weight loss and lifestyle rehabilitation." }
+              { cat: "Orthopaedic Physiotherapy", icon: Bone, desc: "Bone, joint, and muscle pain recovery." },
+              { cat: "Sports Physiotherapy", icon: Activity, desc: "Athletic injury rehabilitation and performance conditioning." },
+              { cat: "Neurological Physiotherapy", icon: Brain, desc: "Rehab for stroke, paralysis, Parkinson's, and nerve injuries." },
+              { cat: "Musculoskeletal Physiotherapy", icon: Layers, desc: "Musculoskeletal pain and structural alignment care." },
+              { cat: "Spine Physiotherapy", icon: Crosshair, desc: "Focused care for cervical, lumbar, slip disc, and spine issues." },
+              { cat: "Pain Management Physiotherapy", icon: Zap, desc: "Chronic pain, trigger point, and advanced laser physical therapy." },
+              { cat: "Geriatric Physiotherapy", icon: HeartPulse, desc: "Age-related balance, gait, and mobility training." },
+              { cat: "Pediatric Physiotherapy", icon: Baby, desc: "Childhood developmental milestones and motor care." },
+              { cat: "Women's Health Physiotherapy", icon: Users, desc: "Pre/postnatal physical wellness and core exercises." },
+              { cat: "Pelvic Floor Physiotherapy", icon: ShieldCheck, desc: "Pelvic health, core stability, and functional rehabilitation." },
+              { cat: "Cardiorespiratory Physiotherapy", icon: Activity, desc: "Heart and lung endurance, asthma, and COPD rehab." },
+              { cat: "ICU & Critical Care Physiotherapy", icon: Stethoscope, desc: "Cardiopulmonary support and early chest mobilization in ICU." },
+              { cat: "Post-Surgical Rehabilitation", icon: CheckCircle2, desc: "Structured recovery after TKR, THR, and orthopedic surgeries." },
+              { cat: "Oncology Rehabilitation", icon: HeartPulse, desc: "Managing post-cancer fatigue, pain, and lymphatic drainage." },
+              { cat: "Vestibular Rehabilitation", icon: Navigation, desc: "Dizziness, inner ear disorders, and vertigo recovery." },
+              { cat: "Hand Rehabilitation", icon: Sparkles, desc: "Fine motor restoration and hand and wrist injury care." },
+              { cat: "Occupational Health & Ergonomic Physiotherapy", icon: Laptop, desc: "Posture correction and workplace injury prevention." },
+              { cat: "Community-Based Rehabilitation", icon: Users, desc: "Promoting physical wellness and accessibility at local centers." },
+              { cat: "Home Care Physiotherapy", icon: Home, desc: "Physiotherapy checkups directly in the comfort of your home." },
+              { cat: "Tele-Physiotherapy", icon: Video, desc: "Remote visual guidance and rehabilitation consultations." },
+              { cat: "Preventive Physiotherapy", icon: ShieldCheck, desc: "Early screen checks, exercises, and injury prevention." },
+              { cat: "Fitness & Exercise Rehabilitation", icon: Dumbbell, desc: "Weight management, strength, and supervised conditioning." }
             ].map((group, i) => (
               <motion.div
                 key={i}
@@ -913,26 +928,26 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: (i % 4) * 0.1, duration: 0.6 }}
                 whileHover={{ y: -5 }}
-                className="group relative bg-white p-6 md:p-8 rounded-[2rem] border border-slate-100 hover:border-medical-teal/30 hover:shadow-xl hover:shadow-medical-teal/5 transition-all duration-500 flex flex-col items-start text-left overflow-hidden h-full"
+                className="group relative bg-white p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2rem] border border-slate-100 hover:border-medical-teal/30 hover:shadow-xl hover:shadow-medical-teal/5 transition-all duration-500 flex flex-col items-start text-left overflow-hidden h-full"
               >
                 {/* Background Decor */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
+                <div className="absolute -top-4 -right-4 w-12 h-12 sm:w-20 sm:h-20 bg-medical-teal/5 rounded-full blur-2xl group-hover:bg-medical-teal/10 transition-all duration-500" />
 
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-medical-teal mb-6 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shrink-0">
-                  <group.icon size={24} />
+                <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-slate-50 flex items-center justify-center text-medical-teal mb-3 sm:mb-6 group-hover:bg-medical-teal group-hover:text-white transition-all duration-500 shrink-0">
+                  <group.icon size={20} className="sm:w-6 sm:h-6" />
                 </div>
 
-                <h3 className="text-lg font-bold text-medical-blue mb-3 tracking-tight group-hover:text-medical-teal transition-colors">
+                <h3 className="text-sm sm:text-lg font-bold text-medical-blue mb-1 sm:mb-3 tracking-tight group-hover:text-medical-teal transition-colors truncate w-full">
                   {group.cat}
                 </h3>
 
-                <p className="text-slate-500 font-normal text-[0.8rem] leading-relaxed mb-6">
+                <p className="text-slate-500 font-normal text-[0.7rem] sm:text-[0.8rem] leading-relaxed mb-4 sm:mb-6 line-clamp-2">
                   {group.desc}
                 </p>
 
-                <div className="mt-auto pt-4 border-t border-slate-50 w-full flex items-center justify-between">
-                  <Link href="/contact" className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 group-hover:text-medical-teal transition-all flex items-center gap-2">
-                    Inquire <ArrowRight size={12} />
+                <div className="mt-auto pt-2 sm:pt-4 border-t border-slate-50 w-full flex items-center justify-between">
+                  <Link href="/contact" className="text-[0.5rem] sm:text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 group-hover:text-medical-teal transition-all flex items-center gap-1 sm:gap-2">
+                    Inquire <ArrowRight size={10} className="sm:w-3 sm:h-3" />
                   </Link>
                 </div>
               </motion.div>
@@ -1531,7 +1546,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-6 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto px-4 md:px-0">
             {[
               {
                 name: "RGHS",
@@ -1550,6 +1565,12 @@ export default function HomePage() {
                 fullName: "Ex-Servicemen Contributory Health Scheme",
                 desc: "Cashless Physiotherapy for our veterans and their dependents.",
                 image: "/cirtificates/echs.png"
+              },
+              {
+                name: "ONGC",
+                fullName: "Oil and Natural Gas Corporation",
+                desc: "Cashless Physiotherapy for ONGC employees, retirees, and their dependents.",
+                image: "/logo2.jpeg"
               }
             ].map((item, i) => (
               <motion.div
@@ -1559,9 +1580,9 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="p-3 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col items-center text-center group min-w-[90vw] md:min-w-0 snap-center"
+                className="p-4 md:p-3 rounded-3xl md:rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-row md:flex-col items-center md:items-center text-left md:text-center gap-4 md:gap-0 group w-full md:min-w-0"
               >
-                <div className="w-full aspect-[3/4] relative mb-8 rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 group-hover:scale-[1.02] transition-transform duration-500">
+                <div className="w-16 h-20 md:w-full md:aspect-[3/4] relative mb-0 md:mb-8 rounded-xl md:rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shrink-0 group-hover:scale-[1.02] transition-transform duration-500">
                   <Image
                     src={item.image}
                     alt={item.fullName}
@@ -1569,14 +1590,16 @@ export default function HomePage() {
                     className="object-contain"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-medical-blue mb-2">{item.name}</h3>
-                <p className="text-[0.65rem] font-bold text-medical-teal uppercase tracking-widest mb-4">{item.fullName}</p>
-                <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                  {item.desc}
-                </p>
-                <div className="mt-auto flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-full border border-green-100">
-                  <ShieldCheck size={14} />
-                  <span className="text-[0.55rem] font-bold uppercase tracking-widest">Authorized Center</span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg md:text-2xl font-bold text-medical-blue mb-0.5 md:mb-2">{item.name}</h3>
+                  <p className="text-[0.55rem] md:text-[0.65rem] font-bold text-medical-teal uppercase tracking-widest mb-1 md:mb-4">{item.fullName}</p>
+                  <p className="text-xs md:text-sm text-slate-500 leading-relaxed mb-2 md:mb-6 hidden sm:block md:block">
+                    {item.desc}
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-1 md:px-4 md:py-2 rounded-full border border-green-100 mt-1">
+                    <ShieldCheck size={12} className="md:w-[14px] md:h-[14px]" />
+                    <span className="text-[0.5rem] md:text-[0.55rem] font-bold uppercase tracking-widest">Authorized Center</span>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -1611,7 +1634,7 @@ export default function HomePage() {
                   <Link href={`/doctor/${doctor.slug}`} className="absolute inset-0 z-10" />
                   <div className="aspect-[4/5] relative overflow-hidden">
                     <img
-                      src={`/api/media/${doctor.imageId}`}
+                      src={doctor.imageId && (doctor.imageId.startsWith("/") || doctor.imageId.startsWith("http")) ? doctor.imageId : `/api/media/${doctor.imageId}`}
                       alt={doctor.name}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -1691,9 +1714,9 @@ export default function HomePage() {
                 <ChevronRight size={24} className="rotate-180" />
               </button>
               <button
-                onClick={() => setPartnerIndex(prev => Math.min(isMobile ? 4 : 2, prev + 1))}
-                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= (isMobile ? 4 : 2) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
-                disabled={partnerIndex >= (isMobile ? 4 : 2)}
+                onClick={() => setPartnerIndex(prev => Math.min(isMobile ? 8 : 6, prev + 1))}
+                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= (isMobile ? 8 : 6) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
+                disabled={partnerIndex >= (isMobile ? 8 : 6)}
               >
                 <ChevronRight size={24} />
               </button>
@@ -1705,14 +1728,14 @@ export default function HomePage() {
               drag="x"
               dragConstraints={{
                 right: 0,
-                left: isMobile ? -(4 * 100) + '%' : -(2 * 33.33) + '%'
+                left: isMobile ? -(8 * 100) + '%' : -(6 * 33.33) + '%'
               }}
               dragElastic={0.1}
               dragMomentum={false}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = offset.x;
                 const threshold = 50;
-                if (swipe < -threshold && partnerIndex < (isMobile ? 4 : 2)) {
+                if (swipe < -threshold && partnerIndex < (isMobile ? 8 : 6)) {
                   setPartnerIndex(prev => prev + 1);
                 } else if (swipe > threshold && partnerIndex > 0) {
                   setPartnerIndex(prev => prev - 1);
@@ -1728,6 +1751,10 @@ export default function HomePage() {
                 { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", rating: "5.0" },
                 { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
                 { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
+                { name: "Hari Om Hospital", image: "/hospital_1.png", rating: "5.0" },
+                { name: "Healing Hands Physiotherapy", image: "/Logo.png", rating: "5.0" },
+                { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
+                { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
               ].map((item, i) => (
                 <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
                   <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">

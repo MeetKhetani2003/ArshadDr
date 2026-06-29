@@ -166,10 +166,10 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
             <div className="flex flex-col gap-1">
               <p className="text-[0.65rem] font-medium text-slate-500">
-                © {new Date().getFullYear()} Healing Hands Physiotherapy. All Rights Reserved.
+                © {new Date().getFullYear()} <a href="https://www.myomotion.co.in" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Healing Hands Physiotherapy</a>. All Rights Reserved.
               </p>
               <p className="text-[0.65rem] font-medium text-slate-500">
-                Powered by <a href="https://paleradesign.com" target="_blank" rel="noopener noreferrer" className="text-medical-teal hover:text-white transition-colors">paleradesign.com</a>
+                Powered by <a href="https://mkdigitalnexus.in" target="_blank" rel="noopener noreferrer" className="text-medical-teal hover:text-white transition-colors">mkdigitalnexus.in</a>
               </p>
             </div>
             <div className="flex items-center gap-6 text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">

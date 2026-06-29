@@ -170,3 +170,15 @@ body {
 }
 
 ::selection { background: var(--color-medical-teal); color: #fff; }
+
+/* Hide scrollbars globally for custom utility classes */
+.scrollbar-hide::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.scrollbar-hide,
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}

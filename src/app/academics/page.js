@@ -14,7 +14,10 @@ export const metadata = {
 
 async function getAcademicsData() {
   try {
-    await dbConnect();
+    const conn = await dbConnect();
+    if (!conn) {
+      return { events: [], clinicalItems: [], eventItems: [] };
+    }
     
     // Fetch Events
     const events = await AcademicsEvent.find({}).sort({ createdAt: -1 });
