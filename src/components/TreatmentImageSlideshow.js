@@ -33,23 +33,50 @@ export default function TreatmentImageSlideshow({ defaultImage, slug, alt }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Start with the default category image
     const list = [defaultImage];
     
-    // Select 3 random unique images from the pool to create a 4-image slideshow
-    const shuffledPool = shuffle(therapistPool);
-    let added = 0;
-    for (const img of shuffledPool) {
-      if (img !== defaultImage && added < 3) {
-        list.push(img);
-        added++;
+    // Fetch doctor profiles from API to show actual doctor images in slideshow
+    fetch("/api/doctors", { cache: "no-store" })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          const drImages = data.map(doc => {
+            const img = doc.imageId;
+            if (!img) return null;
+            return (img.startsWith("/") || img.startsWith("http")) ? img : `/api/media/${img}`;
+          }).filter(Boolean);
+          
+          if (drImages.length > 0) {
+            const shuffledDr = shuffle(drImages);
+            let added = 0;
+            for (const img of shuffledDr) {
+              if (img !== defaultImage && added < 3) {
+                list.push(img);
+                added++;
+              }
+            }
+            setImages(shuffle(list));
+            return;
+          }
+        }
+        fallbackToTherapistPool();
+      })
+      .catch(err => {
+        console.error("Failed to fetch doctors for slideshow, using fallback:", err);
+        fallbackToTherapistPool();
+      });
+
+    function fallbackToTherapistPool() {
+      const shuffledPool = shuffle(therapistPool);
+      let added = 0;
+      for (const img of shuffledPool) {
+        if (img !== defaultImage && added < 3) {
+          list.push(img);
+          added++;
+        }
       }
+      setImages(shuffle(list));
     }
-    
-    // Shuffle the list so the sequence varies on every refresh
-    const randomizedList = shuffle(list);
-    
-    setImages(randomizedList);
   }, [defaultImage]);
 
   useEffect(() => {

@@ -20,14 +20,26 @@ export default function Footer() {
 
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4">
-            <Link href="/" >
-              <Image
-                src="/logofooter.png"
-                alt="Healing Hands Logo"
-                height={280}
-                width={280}
-                className="object-contain"
-              />
+            <Link href="/" className="flex items-center gap-2 md:gap-3 mb-8 w-fit">
+              <div className="relative h-[28px] w-[73px] md:h-[36px] md:w-[94px]">
+                <Image
+                  src="/logonav.png"
+                  alt="MyoMotion"
+                  fill
+                  className="object-contain brightness-0 invert"
+                  sizes="(max-width: 768px) 73px, 94px"
+                />
+              </div>
+              <div className="h-6 w-px bg-slate-700 self-center" />
+              <div className="relative h-[24px] w-[103px] md:h-[31px] md:w-[133px]">
+                <Image
+                  src="/healingheading.png"
+                  alt="Healing Hands"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 103px, 133px"
+                />
+              </div>
             </Link>
 
             <div className="space-y-6 relative z-10">

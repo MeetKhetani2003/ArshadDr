@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
@@ -18,6 +18,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function TreatmentsPage() {
   const containerRef = useRef(null);
+  const [treatmentsList, setTreatmentsList] = useState(treatments);
+
+  useEffect(() => {
+    fetch("/api/treatments", { cache: "no-store" })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTreatmentsList(data);
+        }
+      })
+      .catch(err => console.error("Failed to fetch treatments:", err));
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -102,7 +114,7 @@ export default function TreatmentsPage() {
       <section className="section-padding bg-medical-surface relative">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-medical-surface pointer-events-none" />
         <div className="max-site grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {treatments.map((t, i) => (
+          {treatmentsList.map((t, i) => (
             <motion.div
               key={t.slug}
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +129,7 @@ export default function TreatmentsPage() {
               >
                 <div className="relative h-56 w-full overflow-hidden">
                   <TreatmentImageSlideshow 
-                    defaultImage={t.image} 
+                    defaultImage={t.image && (t.image.startsWith("/") || t.image.startsWith("http")) ? t.image : `/api/media/${t.image}`} 
                     slug={t.slug} 
                     alt={t.title} 
                   />

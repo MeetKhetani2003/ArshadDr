@@ -132,8 +132,21 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const [treatmentsList, setTreatmentsList] = useState(treatments);
+
+  useEffect(() => {
+    fetch("/api/treatments", { cache: "no-store" })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTreatmentsList(data);
+        }
+      })
+      .catch(err => console.error("Failed to fetch treatments:", err));
+  }, []);
+
   const [doctors, setDoctors] = useState([]);
-  
+
   useEffect(() => {
     fetch("/api/doctors", { cache: "no-store" })
       .then(res => res.json())
@@ -314,12 +327,12 @@ export default function HomePage() {
         </div>
 
         <div className="max-site relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-2 md:gap-8 mb-2">
             <div className="will-animate scroll-reveal reveal">
               <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Specialized Expertise</span>
               <h2 className="text-4xl md:text-5xl text-medical-blue font-bold tracking-tight">Clinical Focus Areas.</h2>
             </div>
-            
+
             <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
               <div className="flex items-center gap-2 will-animate scroll-reveal reveal">
                 <button onClick={() => scrollContainer(focusScrollRef, 'left')} className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-medical-blue hover:bg-medical-teal hover:text-white transition-all shadow-sm">
@@ -337,7 +350,7 @@ export default function HomePage() {
           </div>
 
           <div ref={focusScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
-            {treatments.map((t, i) => (
+            {treatmentsList.map((t, i) => (
               <motion.div
                 key={t.slug}
                 initial={{ opacity: 0, y: 20 }}
@@ -353,11 +366,11 @@ export default function HomePage() {
                 >
                   <div className="relative h-56 w-full overflow-hidden">
                     <TreatmentImageSlideshow
-                      defaultImage={t.image}
+                      defaultImage={t.image && (t.image.startsWith("/") || t.image.startsWith("http")) ? t.image : `/api/media/${t.image}`}
                       slug={t.slug}
                       alt={t.title}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-medical-blue/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 " />
 
                     <div className="absolute top-4 right-4 z-20">
                       <div className="w-12 h-12 rounded-xl bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-medical-teal group-hover:bg-medical-teal group-hover:text-white group-hover:rotate-[360deg] transition-all duration-700">
@@ -372,7 +385,7 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="absolute bottom-4 left-6 z-20">
+                    <div className="absolute bottom-2 left-6 z-20">
                       <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-medical-teal transition-colors">
                         {t.title}
                       </h3>
@@ -534,7 +547,7 @@ export default function HomePage() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">Serving Across Jodhpur</h2>
               <p className="text-slate-300 text-lg font-normal">We are available at multiple locations to ensure easy access to advanced physiotherapy care. Our hubs are equipped with high-end rehabilitation technology.</p>
             </div>
-            
+
             <div className="flex items-center gap-2 mt-4 md:mt-0 self-end md:self-auto w-full md:w-auto justify-end">
               <button onClick={() => scrollContainer(locationsScrollRef, 'left')} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-medical-blue transition-all shadow-sm">
                 <ArrowRight size={20} className="rotate-180" />
@@ -555,9 +568,9 @@ export default function HomePage() {
                 transition={{ delay: i * 0.1, duration: 0.8 }}
                 className="group relative min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center"
               >
-                <div className="bg-[#E5E9F0] rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden">
+                <div className="bg-[#E5E9F0] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden">
                   {/* Card Header: PIN Badge */}
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-4 md:mb-6">
                     <div className="px-3 py-1 bg-[#3B82F6] rounded-md flex items-center gap-2 shadow-lg shadow-blue-500/20">
                       <span className="text-[0.6rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
                       <div className="w-1 h-1 bg-white/40 rounded-full" />
@@ -566,62 +579,62 @@ export default function HomePage() {
                   </div>
 
                   {/* Title Section */}
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">MyoMotion Clinic</h3>
-                    <p className="text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.name}</p>
+                  <div className="mb-4 md:mb-6">
+                    <h3 className="text-xl md:text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">MyoMotion Clinic</h3>
+                    <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.name}</p>
                   </div>
 
                   {/* Location Section */}
-                  <div className="mb-6">
-                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-2 opacity-60">Location Coordinates</p>
-                    <div className="p-4 rounded-xl bg-white/40 border border-white/60">
-                      <p className="text-[0.7rem] font-bold text-[#1E293B] leading-relaxed">{loc.address}</p>
+                  <div className="mb-4 md:mb-6">
+                    <p className="text-[0.5rem] md:text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-1.5 md:mb-2 opacity-60">Location Coordinates</p>
+                    <div className="p-3 md:p-4 rounded-xl bg-white/40 border border-white/60">
+                      <p className="text-[0.65rem] md:text-[0.7rem] font-bold text-[#1E293B] leading-relaxed">{loc.address}</p>
                     </div>
                   </div>
 
                   {/* Access Points Section */}
-                  <div className="mb-6">
-                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-3 opacity-60">Access Points</p>
-                    <div className="space-y-2">
+                  <div className="mb-4 md:mb-6">
+                    <p className="text-[0.5rem] md:text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-2 md:mb-3 opacity-60">Access Points</p>
+                    <div className="space-y-1.5 md:space-y-2">
                       {[
                         { label: "Near AIIMS Jodhpur", tag: "3 KM DRIVE", icon: <Navigation2 size={12} /> },
                         { label: "Near Tai Puliya", tag: "WALKABLE", icon: <Navigation2 size={12} /> },
                         { label: "DPS Circle", icon: <Navigation2 size={12} />, tag: "5 MINS AWAY" }
                       ].map((point, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white/60 border border-white/80 group/point hover:bg-white transition-all">
+                        <div key={idx} className="flex items-center justify-between p-2 md:p-3 rounded-xl bg-white/60 border border-white/80 group/point hover:bg-white transition-all">
                           <div className="flex items-center gap-3">
                             <div className="text-blue-500">{point.icon}</div>
-                            <span className="text-[0.65rem] font-bold text-[#475569]">{point.label}</span>
+                            <span className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#475569]">{point.label}</span>
                           </div>
-                          <span className="text-[0.55rem] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">{point.tag}</span>
+                          <span className="text-[0.5rem] md:text-[0.55rem] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">{point.tag}</span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   {/* Availability Matrix Section */}
-                  <div className="mb-6">
-                    <div className="p-4 rounded-2xl bg-[#0F172A] flex items-center gap-4 border border-white/10 relative overflow-hidden">
+                  <div className="mb-4 md:mb-6">
+                    <div className="p-3 md:p-4 rounded-2xl bg-[#0F172A] flex items-center gap-3 md:gap-4 border border-white/10 relative overflow-hidden">
                       <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0 border border-white/5">
-                        <Clock size={20} />
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0 border border-white/5">
+                        <Clock size={16} />
                       </div>
                       <div>
-                        <p className="text-[0.5rem] font-black text-blue-400 uppercase tracking-widest mb-0.5">Availability Matrix</p>
-                        <p className="text-[0.65rem] font-bold text-white">Mon–Sat: 8 AM–2 PM & 4–8:30 PM</p>
+                        <p className="text-[0.45rem] md:text-[0.5rem] font-black text-blue-400 uppercase tracking-widest mb-0.5">Availability Matrix</p>
+                        <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-white">Mon–Sat: 8 AM–2 PM & 4–8:30 PM</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Founder Info */}
-                  <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
-                      <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
+                  <div className="mt-auto pt-4 md:pt-6 border-t border-black/5 flex items-center justify-between mb-4 md:mb-6">
+                    <div className="flex items-center gap-2 md:gap-3 bg-white/60 p-1.5 md:p-2 pr-4 md:pr-6 rounded-full border border-white/80">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
                         <Image src="/doctor/doc2.jpg" alt="Dr. Asad" fill className="object-cover" />
                       </div>
                       <div>
-                        <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
-                        <p className="text-[0.55rem] font-black text-blue-500 uppercase tracking-widest leading-none">Founder</p>
+                        <p className="text-[0.65rem] md:text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
+                        <p className="text-[0.5rem] md:text-[0.55rem] font-black text-blue-500 uppercase tracking-widest leading-none">Founder</p>
                       </div>
                     </div>
                     <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
@@ -631,12 +644,12 @@ export default function HomePage() {
                   <div className="flex gap-2">
                     <Link
                       href="/contact"
-                      className="flex-1 py-4 bg-[#3B82F6] text-white rounded-2xl text-[0.7rem] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/30 hover:bg-[#2563EB] transition-all text-center flex items-center justify-center group/btn"
+                      className="flex-1 py-3 md:py-4 bg-[#3B82F6] text-white rounded-2xl text-[0.65rem] md:text-[0.7rem] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/30 hover:bg-[#2563EB] transition-all text-center flex items-center justify-center group/btn"
                     >
                       View Clinic
                     </Link>
-                    <button className="w-14 h-14 bg-white/60 border border-white/80 rounded-2xl flex items-center justify-center text-[#64748B] hover:text-blue-500 hover:bg-white transition-all shadow-sm">
-                      <MapPin size={18} />
+                    <button className="w-11 h-11 md:w-14 md:h-14 bg-white/60 border border-white/80 rounded-2xl flex items-center justify-center text-[#64748B] hover:text-blue-500 hover:bg-white transition-all shadow-sm shrink-0">
+                      <MapPin size={16} />
                     </button>
                   </div>
                 </div>
@@ -735,8 +748,8 @@ export default function HomePage() {
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md bg-white relative">
                           <img
-                            src={item.doctor === "Senior On-Call PT" ? 
-                              (doctors[0] && doctors[0].imageId ? (doctors[0].imageId.startsWith("/") ? doctors[0].imageId : `/api/media/${doctors[0].imageId}`) : "/doctor/doc2.jpg") : 
+                            src={item.doctor === "Senior On-Call PT" ?
+                              (doctors[0] && doctors[0].imageId ? (doctors[0].imageId.startsWith("/") ? doctors[0].imageId : `/api/media/${doctors[0].imageId}`) : "/doctor/doc2.jpg") :
                               (doctors[1] && doctors[1].imageId ? (doctors[1].imageId.startsWith("/") ? doctors[1].imageId : `/api/media/${doctors[1].imageId}`) : "/Doctors/Dr. Rubina Pathan .jpeg")}
                             alt="Doctor"
                             className="absolute inset-0 w-full h-full object-cover"
@@ -852,12 +865,12 @@ export default function HomePage() {
                   <div className="absolute -top-3 -left-3 md:-top-4 md:-left-4 w-9 h-9 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-xs font-bold text-slate-400 border border-slate-50 z-20">
                     {item.step}
                   </div>
-                  
+
                   {/* Icon Wrapper */}
                   <div className={`w-16 h-16 md:w-20 md:h-20 rounded-[1.5rem] md:rounded-[2rem] ${item.bg} ${item.color} flex items-center justify-center mb-0 md:mb-8 shrink-0 group-hover:scale-110 transition-transform duration-500`}>
                     <item.icon className="w-7 h-7 md:w-9 md:h-9" strokeWidth={1.5} />
                   </div>
-                  
+
                   {/* Text Content */}
                   <div className="flex-1">
                     <h3 className="text-xl md:text-2xl font-semibold md:font-light text-medical-blue mb-1 md:mb-4 tracking-tight">{item.title}</h3>
@@ -1199,7 +1212,7 @@ export default function HomePage() {
                 drag="x"
                 dragConstraints={{
                   right: 0,
-                  left: isMobile ? -((galleryItems.length - 1) * 100) + '%' : `calc(-${(galleryItems.length - 2) * 50}% - ${(galleryItems.length - 2) * 1}rem)`
+                  left: isMobile ? -((galleryItems.length - 1) * 100) + '%' : `calc(-${(galleryItems.length - 2) * 50}% - ${(galleryItems.length - 2) * 10}px)`
                 }}
                 dragElastic={0.1}
                 dragMomentum={false}
@@ -1212,9 +1225,9 @@ export default function HomePage() {
                     setGalleryIndex(prev => prev - 1);
                   }
                 }}
-                animate={{ x: isMobile ? `-${galleryIndex * 100}%` : `calc(-${galleryIndex * 50}% - ${galleryIndex * 1}rem)` }}
+                animate={{ x: isMobile ? `-${galleryIndex * 100}%` : `calc(-${galleryIndex * 50}% - ${galleryIndex * 10}px)` }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
+                className="flex gap-4 md:gap-5 cursor-grab active:cursor-grabbing"
               >
                 {galleryItems.map((item, i) => {
                   const ytId = item.type === "video" ? getYouTubeId(item.videoUrl) : null;
@@ -1225,7 +1238,7 @@ export default function HomePage() {
                       : null;
 
                   return (
-                    <div key={item._id} className="flex-shrink-0 w-full md:w-[calc(50%-1rem)] px-4 md:px-0">
+                    <div key={item._id} className="flex-shrink-0 w-full md:w-[calc((100%-20px)/2)] px-4 md:px-0">
                       <div
                         className="group bg-white rounded-md overflow-hidden border border-slate-100 shadow-[0_15px_40px_-15px_rgba(15,23,42,0.05)] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full relative"
                       >
@@ -1347,12 +1360,12 @@ export default function HomePage() {
           </div>
 
           <div className="relative group/carousel px-4 md:px-12">
-            <div className="overflow-hidden py-12">
+            <div className="overflow-hidden py-8">
               <motion.div
                 drag="x"
                 dragConstraints={{
                   right: 0,
-                  left: isMobile ? -(10 * 100) + '%' : -(8 * (100 / 3 + 1)) + '%'
+                  left: isMobile ? -(10 * 100) + '%' : `calc(-${8 * 33.33}% - ${8 * 6.67}px)`
                 }}
                 dragElastic={0.1}
                 dragMomentum={false}
@@ -1365,9 +1378,9 @@ export default function HomePage() {
                     setTestimonialIndex(prev => prev - 1);
                   }
                 }}
-                animate={{ x: `-${testimonialIndex * (isMobile ? 100 : 33.8)}%` }}
+                animate={{ x: isMobile ? `-${testimonialIndex * 100}%` : `calc(-${testimonialIndex * 33.33}% - ${testimonialIndex * 6.67}px)` }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
+                className="flex gap-4 md:gap-5 cursor-grab active:cursor-grabbing"
               >
                 {[
                   {
@@ -1415,9 +1428,9 @@ export default function HomePage() {
                     author: "Suresh Mehra", role: "Verified Patient", date: "6 weeks ago"
                   }
                 ].map((test, i) => (
-                  <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
-                    <div className="will-animate scroll-reveal reveal p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 relative flex flex-col h-full group/card">
-                      <div className="flex justify-between items-start mb-6">
+                  <div key={i} className="flex-shrink-0 w-full md:w-[calc((100%-40px)/3)] px-4 md:px-0">
+                    <div className="will-animate scroll-reveal reveal p-5 md:p-6 rounded-[1.5rem] bg-white border border-slate-100 shadow-[0_15px_45px_-10px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 relative flex flex-col h-full group/card">
+                      <div className="flex justify-between items-start mb-4">
                         <div className="flex gap-0.5">
                           {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="#FBBC05" className="text-[#FBBC05]" />)}
                         </div>
@@ -1427,11 +1440,11 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      <p className="text-base text-slate-600 font-normal leading-relaxed mb-8 flex-1 italic">
+                      <p className="text-sm md:text-base text-slate-600 font-normal leading-relaxed mb-4 flex-1 italic">
                         &ldquo;{test.text}&rdquo;
                       </p>
 
-                      <div className="flex items-center justify-between pt-6 border-t border-slate-50">
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-50">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover/card:bg-medical-teal/10 group-hover/card:text-medical-teal transition-all">
                             <Users size={20} />
@@ -1705,7 +1718,7 @@ export default function HomePage() {
                 Trusted by leading medical institutions for fast response and quality care.
               </p>
             </div>
-            <div className="flex gap-4">
+            <div className="hidden md:flex gap-4">
               <button
                 onClick={() => setPartnerIndex(prev => Math.max(0, prev - 1))}
                 className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex === 0 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
@@ -1723,67 +1736,104 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative mb-12 overflow-hidden py-10">
-            <motion.div
-              drag="x"
-              dragConstraints={{
-                right: 0,
-                left: isMobile ? -(8 * 100) + '%' : -(6 * 33.33) + '%'
+          <div className="relative mb-12 py-10">
+            {/* Mobile View: Grid layout without swipe */}
+            <div 
+              className="md:hidden"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                gap: '8px'
               }}
-              dragElastic={0.1}
-              dragMomentum={false}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = offset.x;
-                const threshold = 50;
-                if (swipe < -threshold && partnerIndex < (isMobile ? 8 : 6)) {
-                  setPartnerIndex(prev => prev + 1);
-                } else if (swipe > threshold && partnerIndex > 0) {
-                  setPartnerIndex(prev => prev - 1);
-                }
-              }}
-              animate={{ x: `-${partnerIndex * (isMobile ? 100 : 33.33)}%` }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="flex gap-0 md:gap-8 cursor-grab active:cursor-grabbing"
             >
               {[
-                { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", rating: "5.0" },
-                { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", rating: "5.0" },
-                { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", rating: "5.0" },
-                { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
-                { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
-                { name: "Hari Om Hospital", image: "/hospital_1.png", rating: "5.0" },
-                { name: "MyoMotion Physiotherapy", image: "/Logo.png", rating: "5.0" },
-                { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
-                { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
+                { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg" },
+                { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg" },
+                { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg" },
+                { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg" },
+                { name: "Subham Hospital", image: "/Hospitals/subham.jpeg" },
+                { name: "Hari Om Hospital", image: "/hospital_1.png" },
+                { name: "MyoMotion Physiotherapy", image: "/logonav.png" },
+                { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png" },
+                { name: "Salar Health Care", image: "/hospital_3.png" },
               ].map((item, i) => (
-                <div key={i} className="flex-shrink-0 w-full md:w-[calc(33.33%-1.5rem)] px-4 md:px-0">
-                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
-                    <div className="aspect-[4/3] relative mb-8 flex items-center justify-center">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={200}
-                        height={150}
-                        className="object-contain group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold text-medical-blue mb-4 leading-tight">{item.name}</h3>
-                    <div className="mt-auto">
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-4">
-                        <CheckCircle2 size={10} />
-                        <span className="text-[0.6rem] font-bold uppercase tracking-widest">Verified</span>
+                <div key={i} className="bg-white p-2 rounded-xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col items-center justify-center text-center group">
+                  <div className="relative w-full h-8 flex items-center justify-center mb-1">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-contain p-0.5"
+                    />
+                  </div>
+                  <span className="text-[0.5rem] font-bold text-slate-600 leading-tight line-clamp-1 px-0.5">{item.name}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop View: Slider layout */}
+            <div className="hidden md:block overflow-hidden">
+              <motion.div
+                drag="x"
+                dragConstraints={{
+                  right: 0,
+                  left: -(6 * 33.33) + '%'
+                }}
+                dragElastic={0.1}
+                dragMomentum={false}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = offset.x;
+                  const threshold = 50;
+                  if (swipe < -threshold && partnerIndex < 6) {
+                    setPartnerIndex(prev => prev + 1);
+                  } else if (swipe > threshold && partnerIndex > 0) {
+                    setPartnerIndex(prev => prev - 1);
+                  }
+                }}
+                animate={{ x: `-${partnerIndex * 33.33}%` }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="flex gap-8 cursor-grab active:cursor-grabbing"
+              >
+                {[
+                  { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", rating: "5.0" },
+                  { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", rating: "5.0" },
+                  { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", rating: "5.0" },
+                  { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
+                  { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
+                  { name: "Hari Om Hospital", image: "/hospital_1.png", rating: "5.0" },
+                  { name: "MyoMotion Physiotherapy", image: "/logonav.png", rating: "5.0" },
+                  { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
+                  { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
+                ].map((item, i) => (
+                  <div key={i} className="flex-shrink-0 w-[calc(33.33%-1.5rem)]">
+                    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
+                      <div className="aspect-[4/3] relative mb-8 flex items-center justify-center">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={200}
+                          height={150}
+                          className="object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <div className="flex items-center gap-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star key={star} size={10} fill="#FFD700" color="#FFD700" />
-                        ))}
-                        <span className="text-[0.7rem] font-bold text-slate-400 ml-2">{item.rating}</span>
+                      <h3 className="text-lg font-bold text-medical-blue mb-4 leading-tight">{item.name}</h3>
+                      <div className="mt-auto">
+                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-4">
+                          <CheckCircle2 size={10} />
+                          <span className="text-[0.6rem] font-bold uppercase tracking-widest">Verified</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star key={star} size={10} fill="#FFD700" color="#FFD700" />
+                          ))}
+                          <span className="text-[0.7rem] font-bold text-slate-400 ml-2">{item.rating}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
 
 
