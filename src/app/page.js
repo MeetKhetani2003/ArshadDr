@@ -1583,7 +1583,7 @@ export default function HomePage() {
                 name: "ONGC",
                 fullName: "Oil and Natural Gas Corporation",
                 desc: "Cashless Physiotherapy for ONGC employees, retirees, and their dependents.",
-                image: "/logo2.jpeg"
+                image: "/ongc.png"
               }
             ].map((item, i) => (
               <motion.div
@@ -1718,34 +1718,11 @@ export default function HomePage() {
                 Trusted by leading medical institutions for fast response and quality care.
               </p>
             </div>
-            <div className="hidden md:flex gap-4">
-              <button
-                onClick={() => setPartnerIndex(prev => Math.max(0, prev - 1))}
-                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex === 0 ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
-                disabled={partnerIndex === 0}
-              >
-                <ChevronRight size={24} className="rotate-180" />
-              </button>
-              <button
-                onClick={() => setPartnerIndex(prev => Math.min(isMobile ? 8 : 6, prev + 1))}
-                className={`w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center transition-all bg-white shadow-sm ${partnerIndex >= (isMobile ? 8 : 6) ? "opacity-50 cursor-not-allowed text-slate-300" : "text-slate-400 hover:border-medical-teal hover:text-medical-teal"}`}
-                disabled={partnerIndex >= (isMobile ? 8 : 6)}
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
           </div>
 
           <div className="relative mb-12 py-10">
             {/* Mobile View: Grid layout without swipe */}
-            <div 
-              className="md:hidden"
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-                gap: '8px'
-              }}
-            >
+            <div className="hidden max-md:grid grid-cols-3 gap-2">
               {[
                 { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg" },
                 { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg" },
@@ -1771,29 +1748,9 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Desktop View: Slider layout */}
-            <div className="hidden md:block overflow-hidden">
-              <motion.div
-                drag="x"
-                dragConstraints={{
-                  right: 0,
-                  left: -(6 * 33.33) + '%'
-                }}
-                dragElastic={0.1}
-                dragMomentum={false}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = offset.x;
-                  const threshold = 50;
-                  if (swipe < -threshold && partnerIndex < 6) {
-                    setPartnerIndex(prev => prev + 1);
-                  } else if (swipe > threshold && partnerIndex > 0) {
-                    setPartnerIndex(prev => prev - 1);
-                  }
-                }}
-                animate={{ x: `-${partnerIndex * 33.33}%` }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                className="flex gap-8 cursor-grab active:cursor-grabbing"
-              >
+            {/* Desktop View: Grid layout */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-1 md:grid-cols-3  gap-6 lg:gap-8">
                 {[
                   { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", rating: "5.0" },
                   { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", rating: "5.0" },
@@ -1805,34 +1762,33 @@ export default function HomePage() {
                   { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
                   { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
                 ].map((item, i) => (
-                  <div key={i} className="flex-shrink-0 w-[calc(33.33%-1.5rem)]">
-                    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-500 group flex flex-col h-full">
-                      <div className="aspect-[4/3] relative mb-8 flex items-center justify-center">
+                  <div key={i} className="w-full">
+                    <div className="bg-white p-5 lg:p-6 rounded-3xl border border-slate-100 shadow-[0_10px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-500 group flex flex-col items-center text-center h-full">
+                      <div className="h-20 w-full relative mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-3">
                         <Image
                           src={item.image}
                           alt={item.name}
-                          width={200}
-                          height={150}
-                          className="object-contain group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          className="object-contain p-1 group-hover:scale-[1.03] transition-transform duration-500"
                         />
                       </div>
-                      <h3 className="text-lg font-bold text-medical-blue mb-4 leading-tight">{item.name}</h3>
-                      <div className="mt-auto">
-                        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-4">
+                      <h3 className="text-sm lg:text-base font-bold text-medical-blue mb-2.5 leading-tight">{item.name}</h3>
+                      <div className="mt-auto flex flex-col items-center">
+                        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-3">
                           <CheckCircle2 size={10} />
-                          <span className="text-[0.6rem] font-bold uppercase tracking-widest">Verified</span>
+                          <span className="text-[0.55rem] font-bold uppercase tracking-wider">Verified</span>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center justify-center gap-1">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star key={star} size={10} fill="#FFD700" color="#FFD700" />
                           ))}
-                          <span className="text-[0.7rem] font-bold text-slate-400 ml-2">{item.rating}</span>
+                          <span className="text-[0.65rem] font-bold text-slate-400 ml-1.5">{item.rating}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
 
