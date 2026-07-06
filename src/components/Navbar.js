@@ -52,7 +52,7 @@ export default function Navbar() {
               src="/logonav.png"
               alt="MyoMotion"
               fill
-              className="object-contain invert brightness-0"
+              className="object-contain  "
               priority
               sizes="(max-width: 768px) 73px, 94px"
             />
@@ -63,7 +63,7 @@ export default function Navbar() {
               src="/healingheading.png"
               alt="Healing Hands"
               fill
-              className="object-contain invert brightness-0"
+              className="object-contain "
               priority
               sizes="(max-width: 768px) 103px, 133px"
             />
