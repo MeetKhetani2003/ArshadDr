@@ -151,6 +151,7 @@ export const locations = [
   },
   {
     name: "Hari Om Hospital",
+    brand: "Healing Hands Physiotherapy Centre",
     slug: "hari-om-hospital",
     description: "Authorized recovery center providing cashless care and specialized clinical rehabilitation in Jodhpur.",
     address: "Hari Om Hospital, Chopasni Road, Jodhpur",
@@ -160,6 +161,8 @@ export const locations = [
   },
   {
     name: "Dr. Rupal Physiotherapy",
+    brand: "Dr. Rupal Physiotherapy",
+    subtitle: "Healing Hands Physiotherapy Centre",
     slug: "dr-rupal-physiotherapy",
     description: "Empaneled clinical center offering advanced physical therapy and personalized rehab protocols.",
     address: "Dr. Rupal Physiotherapy Center, Shastri Nagar, Jodhpur",

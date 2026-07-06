@@ -580,8 +580,8 @@ export default function HomePage() {
 
                   {/* Title Section */}
                   <div className="mb-4 md:mb-6">
-                    <h3 className="text-xl md:text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">MyoMotion Clinic</h3>
-                    <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.name}</p>
+                    <h3 className="text-xl md:text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">{loc.brand || "Healing Hands Therapy Center"}</h3>
+                    <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.subtitle || loc.name}</p>
                   </div>
 
                   {/* Location Section */}
@@ -1142,7 +1142,7 @@ export default function HomePage() {
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Leadership</span>
             <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Asad Solanki.</h2>
             <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-xl font-normal">
-              Founder of MyoMotion, Dr. Asad Solanki trained at Apollo Hospital
+              Founder of Healing Hands | MyoMotion, Dr. Asad Solanki trained at Apollo Hospital
               and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads
               the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing
               advanced international protocols to Rajasthan. His vision is to redefine

@@ -21,23 +21,23 @@ export default function Footer() {
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-2 md:gap-3 mb-8 w-fit">
-              <div className="relative h-[28px] w-[73px] md:h-[36px] md:w-[94px]">
+              <div className="relative h-[40px] w-[104px] md:h-[50px] md:w-[130px]">
                 <Image
                   src="/logonav.png"
                   alt="MyoMotion"
                   fill
                   className="object-contain brightness-0 invert"
-                  sizes="(max-width: 768px) 73px, 94px"
+                  sizes="(max-width: 768px) 104px, 130px"
                 />
               </div>
-              <div className="h-6 w-px bg-slate-700 self-center" />
-              <div className="relative h-[24px] w-[103px] md:h-[31px] md:w-[133px]">
+              <div className="h-8 w-px bg-slate-700 self-center" />
+              <div className="relative h-[34px] w-[147px] md:h-[43px] md:w-[185px]">
                 <Image
                   src="/healingheading.png"
                   alt="Healing Hands"
                   fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 103px, 133px"
+                  className="object-contain brightness-0 invert"
+                  sizes="(max-width: 768px) 147px, 185px"
                 />
               </div>
             </Link>
@@ -149,6 +149,9 @@ export default function Footer() {
                 </div>
                 <div className="px-3 py-1.5 bg-white rounded-md text-[0.5rem] font-black text-medical-blue flex items-center gap-1.5 shadow-sm">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-600" /> ECHS
+                </div>
+                <div className="px-3 py-1.5 bg-white rounded-md text-[0.5rem] font-black text-medical-blue flex items-center gap-1.5 shadow-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-orange-500" /> ONGC
                 </div>
               </div>
             </div>
