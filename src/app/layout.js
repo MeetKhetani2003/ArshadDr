@@ -13,6 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://www.myomotion.co.in"),
   title: "MyoMotion | MyoMotion Physiotherapy | Advanced Rehabilitation Center",
   description: "MyoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
   authors: [{ name: "mkdigitalnexus.in" }],
@@ -24,7 +25,7 @@ export const metadata = {
     siteName: "MyoMotion",
     images: [
       {
-        url: "https://www.myomotion.co.in/Logo.png",
+        url: "/Logo.png",
         width: 800,
         height: 600,
         alt: "MyoMotion Logo",
@@ -32,6 +33,15 @@ export const metadata = {
     ],
     locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MyoMotion | MyoMotion Physiotherapy | Advanced Rehabilitation Center",
+    description: "MyoMotion Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+    images: ["/Logo.png"],
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
