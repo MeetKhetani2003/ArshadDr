@@ -25,18 +25,11 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
   }, [pathname]);
-
-  if (!mounted) return null;
 
   return (
     <motion.nav

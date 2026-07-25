@@ -51,8 +51,14 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} antialiased`}
     >
+      <head>
+        <link rel="preload" href="/logonav.png" as="image" />
+        <link rel="preload" href="/healingheading.png" as="image" />
+        <link rel="preload" href="/logofooter.png" as="image" />
+        <link rel="preload" href="/Logo.png" as="image" />
+      </head>
       <body className="min-h-screen flex flex-col font-sans">
-        {/* <LaunchEvent /> */}
+        <LaunchEvent />
         <BookingProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
