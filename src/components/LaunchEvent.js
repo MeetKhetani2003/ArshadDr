@@ -139,12 +139,12 @@ export default function LaunchEvent() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(236,72,153,0.2),_transparent_50%)]" />
 
           {/* Skip Button */}
-          <button
+          {/* <button
             onClick={handleSkip}
             className="absolute top-6 right-6 z-20 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-slate-400 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-700/60 rounded-full transition-all duration-300 backdrop-blur-md cursor-pointer"
           >
             Skip Intro
-          </button>
+          </button> */}
 
           {/* PHASE 1: 10 COUNTDOWN */}
           {phase === "countdown" && (
@@ -252,7 +252,7 @@ export default function LaunchEvent() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="text-slate-200 text-lg sm:text-2xl font-light tracking-widest uppercase max-w-2xl text-center drop-shadow-md"
               >
-                Advanced Physiotherapy & Rehabilitation Center
+                Best  Physiotherapy & Rehabilitation Center
               </motion.p>
             </motion.div>
           )}
