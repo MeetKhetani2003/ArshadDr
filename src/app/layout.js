@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BookingProvider } from "@/components/BookingContext";
-import LaunchEvent from "@/components/LaunchEvent";
+// import LaunchEvent from "@/components/LaunchEvent";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
         <link rel="preload" href="/Logo.png" as="image" />
       </head>
       <body className="min-h-screen flex flex-col font-sans">
-        <LaunchEvent />
+        {/* <LaunchEvent /> */}
         <BookingProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
