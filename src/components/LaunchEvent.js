@@ -26,7 +26,6 @@ export default function LaunchEvent() {
   // Preload main logos and assets during launching countdown
   useEffect(() => {
     const assetsToPreload = [
-      "/logonav.png",
       "/healingheading.png",
       "/logofooter.png",
       "/Logo.png",
@@ -158,7 +157,7 @@ export default function LaunchEvent() {
               {/* Header Badge */}
               <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-8 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
                 <Sparkles className="w-4 h-4 animate-spin" style={{ animationDuration: '4s' }} />
-                <span>Launching Healing Hands / MyoMotion</span>
+                <span>Launching Healing Hands</span>
               </div>
 
               {/* Countdown Ring Container */}
@@ -243,7 +242,7 @@ export default function LaunchEvent() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-400 drop-shadow-[0_0_40px_rgba(251,191,36,0.6)] mb-6 uppercase"
               >
-                welcome to the healing hands / myomotion
+                welcome to the healing hands
               </motion.h1>
 
               <motion.p

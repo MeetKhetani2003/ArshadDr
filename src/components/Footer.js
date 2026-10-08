@@ -21,16 +21,7 @@ export default function Footer() {
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-2 md:gap-3 mb-8 w-fit">
-              <div className="relative h-[40px] w-[104px] md:h-[50px] md:w-[130px]">
-                <Image
-                  src="/logonav.png"
-                  alt="MyoMotion"
-                  fill
-                  className="object-contain brightness-0 invert"
-                  sizes="(max-width: 768px) 104px, 130px"
-                />
-              </div>
-              <div className="h-8 w-px bg-slate-700 self-center" />
+
               <div className="relative h-[34px] w-[147px] md:h-[43px] md:w-[185px]">
                 <Image
                   src="/healingheading.png"
@@ -44,7 +35,7 @@ export default function Footer() {
 
             <div className="space-y-6 relative z-10">
               <p className="text-xl leading-relaxed max-w-md font-medium text-slate-300">
-                Healing Hands / MyoMotion is Jodhpur's premier physiotherapy network,
+                Healing Hands is Jodhpur's premier physiotherapy network,
                 pioneering advanced, evidence-based rehabilitation and personalized
                 patient care pathways since 2013.
               </p>

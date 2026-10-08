@@ -40,17 +40,7 @@ export default function Navbar() {
     >
       <div className="nav-container">
         <Link href="/" className="flex items-center gap-2 md:gap-3 -ml-1 md:-ml-2">
-          <div className="relative h-[28px] w-[73px] md:h-[36px] md:w-[94px]">
-            <Image
-              src="/logonav.png"
-              alt="MyoMotion"
-              fill
-              className="object-contain  "
-              priority
-              sizes="(max-width: 768px) 73px, 94px"
-            />
-          </div>
-          <div className="h-6 w-px bg-slate-300 self-center" />
+
           <div className="relative h-[24px] w-[103px] md:h-[31px] md:w-[133px]">
             <Image
               src="/healingheading.png"

@@ -97,7 +97,7 @@ export default function HomePage() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = title || `myomotion-recovery-${imageId}.jpg`;
+      a.download = title || `healing-hands-recovery-${imageId}.jpg`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -282,7 +282,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-medical-teal mb-3 block">The MyoMotion Method</span>
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.4em] text-medical-teal mb-3 block">The Healing Hands Method</span>
             <h2 className="text-2xl md:text-4xl font-semibold text-white tracking-tighter uppercase">Redefining Recovery for Jodhpur.</h2>
           </motion.div>
         </div>
@@ -687,7 +687,7 @@ export default function HomePage() {
             {[
               {
                 id: "01",
-                title: "MyoMotion Home Care",
+                title: "Healing Hands Home Care",
                 subtitle: "Across Jodhpur City",
                 icon: Home,
                 address: "We bring the entire clinical setup to your home.",
@@ -697,7 +697,7 @@ export default function HomePage() {
               },
               {
                 id: "02",
-                title: "MyoMotion Online",
+                title: "Healing Hands Online",
                 subtitle: "Virtual Consultation",
                 icon: Globe,
                 address: "Consult our experts via video call from anywhere.",
@@ -1026,7 +1026,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== THE MYOMOTION STANDARD: CORE VALUES ===== */}
+      {/* ===== THE HEALING HANDS STANDARD: CORE VALUES ===== */}
       <section className="section-padding bg-medical-surface relative overflow-hidden border-y border-slate-100">
         {/* Decorative Background Elements */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-medical-teal/5 rounded-full blur-[120px] translate-x-1/4 -translate-y-1/4 pointer-events-none" />
@@ -1040,7 +1040,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto mb-20 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.4em] text-medical-teal mb-4 block">Clinical Excellence</span>
             <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-8 tracking-tight">
-              The MyoMotion Standard.
+              The Healing Hands Standard.
             </h2>
             <p className="text-slate-500 font-normal text-xl leading-relaxed">
               We redefine physical rehabilitation through a systematic, evidence-based approach
@@ -1142,7 +1142,7 @@ export default function HomePage() {
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Leadership</span>
             <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Asad Solanki.</h2>
             <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-xl font-normal">
-              Founder of Healing Hands | MyoMotion, Dr. Asad Solanki trained at Apollo Hospital
+              Founder of Healing Hands | Healing Hands, Dr. Asad Solanki trained at Apollo Hospital
               and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads
               the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing
               advanced international protocols to Rajasthan. His vision is to redefine
@@ -1173,7 +1173,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== HOMEPAGE GALLERY CAROUSEL: MYOMOTION IN ACTION ===== */}
+      {/* ===== HOMEPAGE GALLERY CAROUSEL: HEALING HANDS IN ACTION ===== */}
       {galleryItems.length > 0 && (
         <section className="section-padding bg-white relative overflow-hidden border-t border-slate-100">
           <div className="max-site relative z-10">
@@ -1183,7 +1183,7 @@ export default function HomePage() {
                   <div className="w-4 h-4 border-2 border-medical-teal rotate-45" />
                   Visual Portfolio
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-4 tracking-tight">MyoMotion in Action</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-4 tracking-tight">Healing Hands in Action</h2>
                 <p className="text-slate-500 text-lg max-w-2xl">
                   Take a look at our clinical excellence, state-of-the-art rehabilitation setups, and real patient recovery stories.
                 </p>
@@ -1538,7 +1538,7 @@ export default function HomePage() {
               <div className="aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-white/5">
                 <Image
                   src="/clinic_interior.png"
-                  alt="MyoMotion Clinic"
+                  alt="Healing Hands Clinic"
                   fill
                   className="object-cover"
                 />
@@ -1555,7 +1555,7 @@ export default function HomePage() {
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6"> Government Health Schemes</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Cashless Government Health Schemes</h2>
             <p className="text-slate-300 text-lg font-normal">
-              MyoMotion Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
+              Healing Hands Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
             </p>
           </div>
 
@@ -1730,7 +1730,7 @@ export default function HomePage() {
                 { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg" },
                 { name: "Subham Hospital", image: "/Hospitals/subham.jpeg" },
                 { name: "Hari Om Hospital", image: "/hospital_1.png" },
-                { name: "MyoMotion Physiotherapy", image: "/logonav.png" },
+                { name: "Healing Hands Physiotherapy", image: "/healingheading.png" },
                 { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png" },
                 { name: "Salar Health Care", image: "/hospital_3.png" },
               ].map((item, i) => (
@@ -1758,7 +1758,7 @@ export default function HomePage() {
                   { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
                   { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
                   { name: "Hari Om Hospital", image: "/hospital_1.png", rating: "5.0" },
-                  { name: "MyoMotion Physiotherapy", image: "/logonav.png", rating: "5.0" },
+                  { name: "Healing Hands Physiotherapy", image: "/healingheading.png", rating: "5.0" },
                   { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
                   { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
                 ].map((item, i) => (
@@ -1836,7 +1836,7 @@ export default function HomePage() {
               </p>
               <div className="flex gap-4">
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=MyoMotion+Physiotherapy+Jodhpur"
+                  href="https://www.google.com/maps/search/?api=1&query=Healing Hands+Physiotherapy+Jodhpur"
                   target="_blank"
                   className="px-8 py-4 bg-medical-blue text-white rounded-2xl text-[0.7rem] font-medium uppercase tracking-widest hover:bg-medical-teal transition-all flex items-center gap-2"
                 >
@@ -1847,7 +1847,7 @@ export default function HomePage() {
 
             <div className="aspect-[21/9] min-h-[500px] w-full relative">
               <iframe
-                src="https://www.google.com/maps?q=MyoMotion+Physiotherapy+Jodhpur&output=embed"
+                src="https://www.google.com/maps?q=Healing Hands+Physiotherapy+Jodhpur&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -1958,7 +1958,7 @@ export default function HomePage() {
                   <span className="text-medical-teal">Pricing Beyond Doubt.</span>
                 </h2>
                 <p className="text-slate-300 text-lg mb-12 leading-relaxed font-normal max-w-xl">
-                  MyoMotion Physiotherapy is built on the foundation of trust. We believe medical care should be transparent, accessible, and focused entirely on the patient&apos;s well-being.
+                  Healing Hands Physiotherapy is built on the foundation of trust. We believe medical care should be transparent, accessible, and focused entirely on the patient&apos;s well-being.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-8 mb-12">
@@ -2094,7 +2094,7 @@ export default function HomePage() {
 
             <div className="text-center text-white max-w-xl mx-auto pb-4 relative z-10">
               <h4 className="text-lg font-bold tracking-tight">
-                {activeHomePhoto.title || "MyoMotion Case Study"}
+                {activeHomePhoto.title || "Healing Hands Case Study"}
               </h4>
               <p className="text-xs text-slate-400 mt-2">
                 Click close or click outside to return. Visit our full gallery page to download high-resolution photos.

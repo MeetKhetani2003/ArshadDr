@@ -70,7 +70,7 @@ export async function generateMetadata({ params }) {
   const treatment = await getTreatment(slug);
   if (!treatment) return { title: "Treatment Not Found" };
   return {
-    title: `${treatment.title} | MyoMotion Physiotherapy`,
+    title: `${treatment.title} | Healing Hands Physiotherapy`,
     description: treatment.shortDesc,
   };
 }
