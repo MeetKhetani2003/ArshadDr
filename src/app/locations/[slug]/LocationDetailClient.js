@@ -45,16 +45,16 @@ export default function LocationDetailClient({ location }) {
                 in <span className="text-medical-teal">{location.name}</span>
               </h1>
               <p className="text-slate-200 text-lg mb-10 leading-relaxed font-normal max-w-xl opacity-90">
-                {location.description} Located near {location.landmarks.map(l => typeof l === 'string' ? l : l.name).join(" and ")}, our specialized center provides 
-                advanced evidence-based care for residents in {location.areas.slice(0, 2).join(", ")}.
+                {location.description || `Specialized physiotherapy rehabilitation clinic in ${location.name}.`} Located near {(location.landmarks || []).map(l => typeof l === 'string' ? l : l.name).join(" and ") || location.name}, our specialized center provides 
+                advanced evidence-based care for residents in {(location.areas || []).slice(0, 3).join(", ") || "the surrounding area"}.
               </p>
               
               <div className="flex flex-wrap items-center gap-4">
                 <Link href="/contact" className="px-8 py-4 bg-medical-teal text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-medical-blue transition-all flex items-center gap-3 group">
                   Book at {location.name} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="tel:+916378062237" className="px-8 py-4 glass-panel text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all flex items-center gap-3">
-                  <Phone size={16} /> +91 63780 62237
+                <a href={`tel:${(location.phone || "+91 63780 62237").replace(/[^0-9+]/g, '')}`} className="px-8 py-4 glass-panel text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all flex items-center gap-3">
+                  <Phone size={16} /> {location.phone || "+91 63780 62237"}
                 </a>
               </div>
             </motion.div>
@@ -120,7 +120,7 @@ export default function LocationDetailClient({ location }) {
               <div className="space-y-4 mb-8">
                 <h4 className="text-sm font-bold uppercase tracking-wider text-medical-blue">Key Nearby Landmarks</h4>
                 <div className="flex flex-wrap gap-2">
-                  {location.landmarks.map((landmark, i) => {
+                  {(location.landmarks || []).map((landmark, i) => {
                     const label = typeof landmark === "string" ? landmark : landmark.name;
                     const tag = typeof landmark === "object" && landmark.tag ? landmark.tag : null;
                     return (
@@ -131,18 +131,24 @@ export default function LocationDetailClient({ location }) {
                       </span>
                     );
                   })}
+                  {(!location.landmarks || location.landmarks.length === 0) && (
+                    <span className="text-xs text-slate-400 italic">Landmark details available upon request.</span>
+                  )}
                 </div>
               </div>
 
               <div className="space-y-4">
                 <h4 className="text-sm font-bold uppercase tracking-wider text-medical-blue">Surrounding Areas Covered</h4>
                 <div className="flex flex-wrap gap-2">
-                  {location.areas.map((area, i) => (
+                  {(location.areas || []).map((area, i) => (
                     <span key={i} className="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-medium text-slate-700 shadow-sm flex items-center gap-2">
                       <CheckCircle2 size={12} className="text-medical-teal" />
                       {area}
                     </span>
                   ))}
+                  {(!location.areas || location.areas.length === 0) && (
+                    <span className="text-xs text-slate-400 italic">Serving all adjoining localities in Jodhpur.</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -151,13 +157,13 @@ export default function LocationDetailClient({ location }) {
               <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-xl space-y-6">
                 <h3 className="text-xl font-bold text-medical-blue">Physiotherapy Services at {location.name}</h3>
                 <div className="space-y-3">
-                  {[
+                  {(location.services && location.services.length > 0 ? location.services : [
                     "Neurological Rehabilitation (Stroke, Paralysis, Parkinson's)",
                     "Orthopedic Physiotherapy (Back, Neck, Joint & Knee Pain)",
                     "Post-Operative Recovery & Joint Replacement Care",
                     "Pediatric & Child Development Therapy",
                     "Home Visit Physiotherapy in " + location.name,
-                  ].map((service, i) => (
+                  ]).map((service, i) => (
                     <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
                       <CheckCircle2 size={16} className="text-medical-teal shrink-0" />
                       <span className="text-xs font-medium text-slate-800">{service}</span>
@@ -168,8 +174,8 @@ export default function LocationDetailClient({ location }) {
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <div>
                     <p className="text-[0.65rem] uppercase tracking-wider text-slate-400 font-bold">Helpline</p>
-                    <a href="tel:+916378062237" className="text-lg font-bold text-medical-blue hover:text-medical-teal transition-colors">
-                      +91 63780 62237
+                    <a href={`tel:${(location.phone || "+91 63780 62237").replace(/[^0-9+]/g, '')}`} className="text-lg font-bold text-medical-blue hover:text-medical-teal transition-colors">
+                      {location.phone || "+91 63780 62237"}
                     </a>
                   </div>
                   <Link href="/contact" className="btn-modern btn-primary text-xs py-3 px-6">

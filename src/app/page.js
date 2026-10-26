@@ -85,6 +85,7 @@ export default function HomePage() {
   const [activeHomeVideo, setActiveHomeVideo] = useState(null);
   const [activeHomePhoto, setActiveHomePhoto] = useState(null);
   const [downloadingId, setDownloadingId] = useState(null);
+  const [locationsList, setLocationsList] = useState(locations);
 
   const handleDownload = async (e, imageId, title) => {
     e.stopPropagation();
@@ -123,6 +124,17 @@ export default function HomePage() {
       }
     };
     fetchGallery();
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/locations", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setLocationsList(data);
+        }
+      })
+      .catch((err) => console.error("Homepage locations fetch failed:", err));
   }, []);
 
   useEffect(() => {
@@ -563,7 +575,7 @@ export default function HomePage() {
           </div>
 
           <div ref={locationsScrollRef} className="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
-            {locations.map((loc, i) => (
+            {locationsList.map((loc, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}

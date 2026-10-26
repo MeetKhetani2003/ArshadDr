@@ -22,11 +22,15 @@ export default function ContactPage() {
   const [status, setStatus] = useState(null);
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [doctors, setDoctors] = useState([]);
+  const [locationsList, setLocationsList] = useState(locations);
   const containerRef = useRef(null);
   const recaptchaRef = useRef(null);
 
   useEffect(() => {
     fetch("/api/doctors").then(res => res.json()).then(data => setDoctors(data)).catch(console.error);
+    fetch("/api/locations").then(res => res.json()).then(data => {
+      if (Array.isArray(data) && data.length > 0) setLocationsList(data);
+    }).catch(console.error);
     const ctx = gsap.context(() => {
       gsap.to(".scroll-reveal", {
         y: 0,
@@ -357,7 +361,7 @@ export default function ContactPage() {
             <p className="text-slate-500 font-medium text-lg">Multiple clinical hubs across Jodhpur for your convenience.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {locations.map((loc, i) => (
+            {locationsList.map((loc, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
