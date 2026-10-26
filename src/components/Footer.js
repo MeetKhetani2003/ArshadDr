@@ -20,22 +20,21 @@ export default function Footer() {
 
           {/* Brand Column (4 cols) */}
           <div className="lg:col-span-4">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 mb-8 w-fit">
-
-              <div className="relative h-[34px] w-[147px] md:h-[43px] md:w-[185px]">
+            <Link href="/" className="flex items-center gap-2 md:gap-3 mb-8 w-fit group">
+              <div className="relative h-[42px] w-[135px] md:h-[50px] md:w-[160px]">
                 <Image
-                  src="/healingheading.png"
-                  alt="Healing Hands"
+                  src="/logofooter.png"
+                  alt="Healing Hands Physiotherapy"
                   fill
-                  className="object-contain brightness-0 invert"
-                  sizes="(max-width: 768px) 147px, 185px"
+                  className="object-contain transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 135px, 160px"
                 />
               </div>
             </Link>
 
             <div className="space-y-6 relative z-10">
               <p className="text-xl leading-relaxed max-w-md font-medium text-slate-300">
-                Healing Hands is Jodhpur's premier physiotherapy network,
+                Healing Hands Physiotherapy is a trusted physiotherapy network in Jodhpur,
                 pioneering advanced, evidence-based rehabilitation and personalized
                 patient care pathways since 2013.
               </p>
@@ -172,7 +171,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
             <div className="flex flex-col gap-1">
               <p className="text-[0.65rem] font-medium text-slate-500">
-                © {new Date().getFullYear()} <a href="https://www.myomotion.co.in" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Healing Hands Physiotherapy</a>. All Rights Reserved.
+                © {new Date().getFullYear()} <Link href="/" className="hover:text-white transition-colors">Healing Hands Physiotherapy</Link>. All Rights Reserved.
               </p>
               <p className="text-[0.65rem] font-medium text-slate-500">
                 Powered by <a href="https://paleradesign.com" target="_blank" rel="noopener noreferrer" className="text-medical-teal hover:text-white transition-colors">paleradesign.com</a>

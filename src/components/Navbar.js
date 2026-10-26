@@ -39,16 +39,15 @@ export default function Navbar() {
       className="nav-slim"
     >
       <div className="nav-container">
-        <Link href="/" className="flex items-center gap-2 md:gap-3 -ml-1 md:-ml-2">
-
-          <div className="relative h-[24px] w-[103px] md:h-[31px] md:w-[133px]">
+        <Link href="/" className="flex items-center gap-2 md:gap-3 -ml-1 md:-ml-2 group">
+          <div className="relative h-[30px] w-[92px] sm:h-[34px] sm:w-[104px] md:h-[38px] md:w-[116px]">
             <Image
-              src="/healingheading.png"
-              alt="Healing Hands"
+              src="/logo-header.png"
+              alt="Healing Hands Physiotherapy"
               fill
-              className="object-contain "
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
               priority
-              sizes="(max-width: 768px) 103px, 133px"
+              sizes="(max-width: 768px) 92px, 116px"
             />
           </div>
         </Link>

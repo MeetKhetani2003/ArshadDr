@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -119,7 +120,7 @@ export default function ContactPage() {
 
             <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl md:text-8xl font-bold text-white tracking-tight leading-[0.9] mb-10">
               Book Your <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical-teal to-blue-400">Recovery.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-medical-teal to-medical-teal-light">Recovery.</span>
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-slate-300 text-lg md:text-2xl max-w-2xl font-light opacity-90 leading-relaxed mb-12">
@@ -365,89 +366,101 @@ export default function ContactPage() {
                 transition={{ delay: i * 0.1, duration: 0.8 }}
                 className="group relative"
               >
-                <div className="bg-[#E5E9F0] rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden text-left">
-                  {/* Card Header: PIN Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="px-3 py-1 bg-[#3B82F6] rounded-md flex items-center gap-2 shadow-lg shadow-blue-500/20">
-                      <span className="text-[0.6rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
-                      <div className="w-1 h-1 bg-white/40 rounded-full" />
+                <div className="bg-[#E5E9F0] rounded-[1.75rem] md:rounded-[2rem] p-4 sm:p-5 shadow-xl border border-white/40 flex flex-col h-full relative overflow-hidden transition-all duration-300 hover:shadow-2xl text-left">
+                  {/* Card Header: PIN Badge & Partner Badge */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="px-2.5 py-0.5 bg-medical-teal rounded-md flex items-center gap-1.5 shadow-md shadow-medical-teal/20">
+                      <span className="text-[0.55rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    {loc.isPartner ? (
+                      <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[0.5rem] font-bold uppercase tracking-wider border border-amber-200">
+                        Partner Clinic
+                      </span>
+                    ) : (
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[0.5rem] font-bold uppercase tracking-wider border border-emerald-200">
+                        Healing Hands Hub
+                      </span>
+                    )}
                   </div>
 
-                  {/* Title Section */}
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">{loc.brand || "Healing Hands Therapy Center"}</h3>
-                    <p className="text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.subtitle || loc.name}</p>
-                  </div>
+                  {/* Title Section (Clickable to center page) */}
+                  <Link href={`/locations/${loc.slug}`} className="mb-3 block group/title" title={`View details for ${loc.name}`}>
+                    <h3 className="text-base sm:text-lg font-black text-[#1E293B] group-hover/title:text-medical-teal tracking-tight leading-snug transition-colors flex items-center justify-between">
+                      <span>{loc.name}</span>
+                      <ArrowUpRight size={15} className="text-medical-teal opacity-70 group-hover/title:opacity-100 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all shrink-0" />
+                    </h3>
+                    <p className="text-[0.58rem] font-bold text-[#64748B] uppercase tracking-[0.15em] mt-0.5">{loc.brand || "Healing Hands Physiotherapy"}</p>
+                  </Link>
 
                   {/* Location Section */}
-                  <div className="mb-6">
-                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-2 opacity-60">Location Coordinates</p>
-                    <div className="p-4 rounded-xl bg-white/40 border border-white/60">
-                      <p className="text-[0.7rem] font-bold text-[#1E293B] leading-relaxed">{loc.address}</p>
+                  <div className="mb-3">
+                    <p className="text-[0.5rem] font-black text-medical-teal uppercase tracking-widest mb-1 opacity-80">Address</p>
+                    <div className="p-2.5 rounded-xl bg-white/50 border border-white/80">
+                      <p className="text-[0.62rem] sm:text-[0.68rem] font-semibold text-[#1E293B] leading-relaxed line-clamp-2">{loc.address}</p>
                     </div>
                   </div>
 
                   {/* Access Points Section */}
-                  <div className="mb-6">
-                    <p className="text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-3 opacity-60">Access Points</p>
-                    <div className="space-y-2">
-                      {[
-                        { label: "Near AIIMS Jodhpur", tag: "3 KM DRIVE", icon: <Navigation2 size={12} /> },
-                        { label: "Near Tai Puliya", tag: "WALKABLE", icon: <Navigation2 size={12} /> },
-                        { label: "DPS Circle", icon: <Navigation2 size={12} />, tag: "5 MINS AWAY" }
-                      ].map((point, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white/60 border border-white/80 group/point hover:bg-white transition-all">
-                          <div className="flex items-center gap-3">
-                            <div className="text-blue-500">{point.icon}</div>
-                            <span className="text-[0.65rem] font-bold text-[#475569]">{point.label}</span>
+                  <div className="mb-3">
+                    <p className="text-[0.5rem] font-black text-medical-teal uppercase tracking-widest mb-1.5 opacity-80">Nearby Landmarks</p>
+                    <div className="space-y-1.5">
+                      {(loc.landmarks || []).slice(0, 2).map((point, idx) => {
+                        const label = typeof point === "string" ? point : point.name;
+                        const tag = typeof point === "string" ? "LANDMARK" : point.tag;
+                        return (
+                          <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-white/60 border border-white/80 text-[0.6rem]">
+                            <div className="flex items-center gap-2 truncate pr-2">
+                              <Navigation2 size={11} className="text-medical-teal shrink-0" />
+                              <span className="font-semibold text-[#475569] truncate">{label}</span>
+                            </div>
+                            <span className="text-[0.48rem] font-black text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 shrink-0">{tag}</span>
                           </div>
-                          <span className="text-[0.55rem] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">{point.tag}</span>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Availability Matrix Section */}
-                  <div className="mb-6">
-                    <div className="p-4 rounded-2xl bg-[#0F172A] flex items-center gap-4 border border-white/10 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0 border border-white/5">
-                        <Clock size={20} />
+                  {/* Availability & Phone Section */}
+                  <div className="mb-3 space-y-1.5">
+                    <div className="p-2.5 rounded-xl bg-[#0F172A] flex items-center gap-2.5 border border-white/10">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-medical-teal shrink-0">
+                        <Clock size={13} />
                       </div>
-                      <div>
-                        <p className="text-[0.5rem] font-black text-blue-400 uppercase tracking-widest mb-0.5">Availability Matrix</p>
-                        <p className="text-[0.65rem] font-bold text-white">Mon–Sat: 8 AM–2 PM & 4–8:30 PM</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Founder Info */}
-                  <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3 bg-white/60 p-2 pr-6 rounded-full border border-white/80">
-                      <div className="w-10 h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                        <Image src="/doctor/doc2.jpg" alt="Dr. Asad" fill className="object-cover" />
-                      </div>
-                      <div>
-                        <p className="text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
-                        <p className="text-[0.55rem] font-black text-blue-500 uppercase tracking-widest leading-none">Founder</p>
+                      <div className="truncate">
+                        <p className="text-[0.45rem] font-bold text-medical-teal uppercase tracking-wider leading-none mb-0.5">Hours</p>
+                        <p className="text-[0.58rem] font-bold text-white truncate">{loc.hours || "Mon–Sat: 8 AM–2 PM & 4–8:30 PM"}</p>
                       </div>
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+                    <a
+                      href={`tel:${loc.phone ? loc.phone.replace(/[^0-9+]/g, '') : '+916378062237'}`}
+                      className="p-2 rounded-xl bg-emerald-50/80 border border-emerald-100 flex items-center justify-between hover:bg-emerald-100/80 transition-colors"
+                    >
+                      <div className="flex items-center gap-1.5 text-medical-blue font-bold text-[0.65rem]">
+                        <Phone size={12} className="text-medical-teal" />
+                        <span>{loc.phone || "+91 63780 62237"}</span>
+                      </div>
+                      <span className="text-[0.5rem] font-bold uppercase text-medical-teal tracking-wider">Direct Call</span>
+                    </a>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <a
-                      href={`tel:+916378062237`}
-                      className="flex-1 py-4 bg-[#3B82F6] text-white rounded-2xl text-[0.7rem] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/30 hover:bg-[#2563EB] transition-all text-center flex items-center justify-center group/btn"
+                  <div className="mt-auto pt-2 flex gap-2">
+                    <Link
+                      href={`/locations/${loc.slug}`}
+                      className="flex-1 py-2.5 bg-medical-teal hover:bg-[#559c2f] text-white rounded-xl text-[0.62rem] sm:text-[0.68rem] font-black uppercase tracking-[0.15em] shadow-md shadow-medical-teal/25 transition-all text-center flex items-center justify-center gap-1"
                     >
-                      Call Clinic
+                      <span>View Details</span>
+                      <ArrowRight size={12} />
+                    </Link>
+                    <a 
+                      href={`https://www.google.com/maps/search/?api=1&query=Healing+Hands+Physiotherapy+${encodeURIComponent(loc.name)}+Jodhpur`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 sm:w-10 sm:h-10 bg-white/70 border border-white/80 rounded-xl flex items-center justify-center text-[#64748B] hover:text-medical-teal hover:bg-white transition-all shadow-sm shrink-0"
+                      title="Open Google Maps"
+                    >
+                      <MapPin size={15} />
                     </a>
-                    <button className="w-14 h-14 bg-white/60 border border-white/80 rounded-2xl flex items-center justify-center text-[#64748B] hover:text-blue-500 hover:bg-white transition-all shadow-sm">
-                      <MapPin size={18} />
-                    </button>
                   </div>
                 </div>
               </motion.div>

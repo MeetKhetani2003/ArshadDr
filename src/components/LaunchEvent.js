@@ -68,7 +68,7 @@ export default function LaunchEvent() {
       spread: 90,
       angle: 60,
       origin: { x: 0, y: 0.7 },
-      colors: ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4', '#f43f5e', '#facc15'],
+      colors: ['#68b63f', '#0a62ae', '#f5842e', '#e8258d', '#10b981', '#facc15', '#464545'],
       zIndex: 10000,
       startVelocity: 55,
     });
@@ -77,7 +77,7 @@ export default function LaunchEvent() {
       spread: 90,
       angle: 120,
       origin: { x: 1, y: 0.7 },
-      colors: ['#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4', '#f43f5e', '#facc15'],
+      colors: ['#68b63f', '#0a62ae', '#f5842e', '#e8258d', '#10b981', '#facc15', '#464545'],
       zIndex: 10000,
       startVelocity: 55,
     });
@@ -155,7 +155,7 @@ export default function LaunchEvent() {
               exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.4 } }}
             >
               {/* Header Badge */}
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-8 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-medical-teal/10 border border-medical-teal/30 text-medical-teal text-xs sm:text-sm font-semibold uppercase tracking-widest mb-8 shadow-[0_0_20px_rgba(104,182,63,0.2)]">
                 <Sparkles className="w-4 h-4 animate-spin" style={{ animationDuration: '4s' }} />
                 <span>Launching Healing Hands</span>
               </div>
@@ -163,8 +163,8 @@ export default function LaunchEvent() {
               {/* Countdown Ring Container */}
               <div className="relative flex items-center justify-center w-52 h-52 sm:w-64 sm:h-64 my-4">
                 {/* Outer Glow & Pulsing Rings */}
-                <div className="absolute inset-0 rounded-full border border-blue-500/20 animate-ping opacity-25" />
-                <div className="absolute inset-2 rounded-full border border-cyan-500/30 shadow-[0_0_50px_rgba(6,182,212,0.3)]" />
+                <div className="absolute inset-0 rounded-full border border-medical-teal/20 animate-ping opacity-25" />
+                <div className="absolute inset-2 rounded-full border border-medical-teal/30 shadow-[0_0_50px_rgba(104,182,63,0.3)]" />
 
                 {/* Circular SVG Ring */}
                 <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -180,7 +180,7 @@ export default function LaunchEvent() {
                     cx="50"
                     cy="50"
                     r="44"
-                    className="stroke-blue-500"
+                    className="stroke-medical-teal"
                     strokeWidth="4"
                     strokeDasharray="276.46"
                     animate={{ strokeDashoffset: 276.46 * (1 - count / 10) }}
@@ -199,7 +199,7 @@ export default function LaunchEvent() {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 1.6, y: -20 }}
                       transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="text-6xl sm:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-blue-400 drop-shadow-[0_0_35px_rgba(59,130,246,0.6)] font-mono tracking-tighter"
+                      className="text-6xl sm:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-medical-teal drop-shadow-[0_0_35px_rgba(104,182,63,0.6)] font-mono tracking-tighter"
                     >
                       {count}
                     </motion.span>

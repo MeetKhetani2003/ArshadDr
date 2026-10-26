@@ -13,22 +13,27 @@ const inter = Inter({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.myomotion.co.in"),
-  title: "Healing Hands | Healing Hands Physiotherapy | Advanced Rehabilitation Center",
-  description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
-  authors: [{ name: "mkdigitalnexus.in" }],
-  keywords: "physiotherapy, Jodhpur, rehabilitation, orthopedic, neurological, pediatric, women's health, Dr. Asad Solanki",
+  metadataBase: new URL("https://arshad-dr.vercel.app"),
+  title: "Physiotherapy in Jodhpur | Healing Hands Physiotherapy – Dr. Asad Solanki",
+  description: "Healing Hands Physiotherapy offers evidence-based physiotherapy in Jodhpur: orthopedic, neuro, pediatric, sports and women's health rehab, plus home visits. Call 6378-062237.",
+  authors: [{ name: "paleradesign.com", url: "https://paleradesign.com" }],
+  keywords: "physiotherapy, Jodhpur, rehabilitation, orthopedic, neurological, pediatric, women's health, Dr. Asad Solanki, जोधपुर में फिजियोथेरेपी",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/logo-emblem.png",
+  },
   openGraph: {
-    title: "Healing Hands | Healing Hands Physiotherapy | Advanced Rehabilitation Center",
-    description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
-    url: "https://www.myomotion.co.in",
-    siteName: "Healing Hands",
+    title: "Physiotherapy in Jodhpur | Healing Hands Physiotherapy – Dr. Asad Solanki",
+    description: "Healing Hands Physiotherapy offers evidence-based physiotherapy in Jodhpur: orthopedic, neuro, pediatric, sports and women's health rehab, plus home visits. Call 6378-062237.",
+    url: "https://arshad-dr.vercel.app",
+    siteName: "Healing Hands Physiotherapy",
     images: [
       {
         url: "/Logo.png",
-        width: 800,
-        height: 600,
-        alt: "Healing Hands Logo",
+        width: 1952,
+        height: 665,
+        alt: "Healing Hands Physiotherapy Logo",
       },
     ],
     locale: "en_IN",
@@ -36,8 +41,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Healing Hands | Healing Hands Physiotherapy | Advanced Rehabilitation Center",
-    description: "Healing Hands Physiotherapy offers advanced, evidence-based physiotherapy and rehabilitation services in Jodhpur. Specializing in Neuro, Ortho, Pediatric & Women's Health rehab under Dr. Asad Solanki.",
+    title: "Physiotherapy in Jodhpur | Healing Hands Physiotherapy – Dr. Asad Solanki",
+    description: "Healing Hands Physiotherapy offers evidence-based physiotherapy in Jodhpur: orthopedic, neuro, pediatric, sports and women's health rehab, plus home visits. Call 6378-062237.",
     images: ["/Logo.png"],
   },
   alternates: {
@@ -52,7 +57,7 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} antialiased`}
     >
       <head>
-        <link rel="preload" href="/healingheading.png" as="image" />
+        <link rel="preload" href="/logo-header.png" as="image" />
         <link rel="preload" href="/logofooter.png" as="image" />
         <link rel="preload" href="/Logo.png" as="image" />
       </head>

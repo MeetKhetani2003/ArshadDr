@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, Stethoscope, Image as ImageIcon, BookOpen, LogOut, Menu, X, Calendar, Activity } from "lucide-react";
 import { useState } from "react";
@@ -42,9 +43,20 @@ export default function AdminLayout({ children }) {
         fixed w-64 bg-medical-blue text-white h-[calc(100vh-6rem)] left-0 top-24 flex flex-col shadow-xl z-40 transition-transform duration-300 rounded-tr-[2rem] rounded-br-[2rem]
         ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
       `}>
-        <div className="p-8">
-          <h2 className="text-xl font-bold tracking-tight mb-1">Admin Panel</h2>
-          <p className="text-[0.65rem] text-medical-teal uppercase tracking-widest font-bold">Healing Hands</p>
+        <div className="p-6 border-b border-slate-800/80 mb-2">
+          <div className="relative h-9 w-40 mb-3">
+            <Image
+              src="/logofooter.png"
+              alt="Healing Hands Physiotherapy"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold tracking-tight text-slate-200">Admin Portal</h2>
+            <span className="text-[0.6rem] px-2 py-0.5 rounded-full bg-medical-teal/20 text-medical-teal font-bold uppercase tracking-wider">v2.0</span>
+          </div>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 overflow-y-auto">

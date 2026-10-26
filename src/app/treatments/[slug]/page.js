@@ -68,10 +68,17 @@ const mapImagePath = (img) => {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const treatment = await getTreatment(slug);
-  if (!treatment) return { title: "Treatment Not Found" };
+  if (!treatment) return { title: "Treatment | Healing Hands Physiotherapy" };
+  const title = `${treatment.title} in Jodhpur | Healing Hands Physiotherapy`;
+  const description = `${treatment.shortDesc || `Advanced ${treatment.title} in Jodhpur by experienced physiotherapists at Healing Hands Physiotherapy.`} Call +91 63780 62237.`;
   return {
-    title: `${treatment.title} | Healing Hands Physiotherapy`,
-    description: treatment.shortDesc,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: ["/Logo.png"],
+    },
   };
 }
 

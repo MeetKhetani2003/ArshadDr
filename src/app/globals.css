@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-medical-teal: #2563eb; /* Sophisticated Cobalt Blue */
-  --color-medical-blue: #0f172a; /* Deep Slate Blue */
-  --color-medical-surface: #f8fafc;
+  --color-medical-teal: #68b63f; /* Signature Logo Vibrant Green */
+  --color-medical-teal-dark: #559c2f;
+  --color-medical-teal-light: #7cd34d;
+  --color-medical-blue: #0f172a; /* Deep Obsidian Slate */
+  --color-medical-surface: #f9fbf8;
 }
 
 :root {
@@ -93,7 +95,7 @@ body {
 }
 
 .btn-primary {
-  @apply bg-medical-blue text-white shadow-[0_8px_16px_-4px_rgba(15,23,42,0.2)] hover:shadow-[0_12px_24px_-4px_rgba(15,23,42,0.3)] hover:-translate-y-0.5;
+  @apply bg-medical-teal text-white shadow-[0_8px_16px_-4px_rgba(104,182,63,0.35)] hover:shadow-[0_12px_24px_-4px_rgba(104,182,63,0.45)] hover:bg-[#559c2f] hover:-translate-y-0.5;
 }
 
 .btn-outline {
@@ -116,7 +118,7 @@ body {
 /* Smooth Backgrounds - Fix Color Blending Glitches */
 .bg-mesh {
   background: 
-    radial-gradient(100% 100% at 100% 0%, rgba(6, 182, 212, 0.04) 0%, transparent 100%),
+    radial-gradient(100% 100% at 100% 0%, rgba(104, 182, 63, 0.06) 0%, transparent 100%),
     radial-gradient(100% 100% at 0% 100%, rgba(15, 23, 42, 0.02) 0%, transparent 100%);
   background-color: #ffffff;
 }
@@ -165,7 +167,7 @@ body {
 }
 
 .hover-glow:hover {
-  @apply shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)];
+  @apply shadow-[0_0_30px_-5px_rgba(104,182,63,0.35)];
   filter: brightness(1.02);
 }
 

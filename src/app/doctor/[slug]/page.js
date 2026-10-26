@@ -220,16 +220,14 @@ export default function DoctorProfile() {
                 <div className="p-8 rounded-[2.5rem] bg-medical-blue text-white overflow-hidden relative group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
                   <h3 className="text-xl font-bold mb-6">Need Assistance?</h3>
-                  <div className="space-y-4 relative z-10">
-                    <a href="tel:+919876543210" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
+                    <a href="tel:+916378062237" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
                       <Phone size={20} className="text-medical-teal" />
-                      <span className="text-sm font-medium">Connect Instantly</span>
+                      <span className="text-sm font-medium">Call +91 63780 62237</span>
                     </a>
-                    <a href="mailto:contact@myomotion.com" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
+                    <a href="mailto:healinghandsjodhpur@gmail.com" className="flex items-center gap-4 p-3 rounded-2xl bg-white/10 hover:bg-white/20 transition-all">
                       <Mail size={20} className="text-medical-teal" />
                       <span className="text-sm font-medium">Send Email</span>
                     </a>
-                  </div>
                 </div>
               </div>
             </div>

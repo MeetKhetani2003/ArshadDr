@@ -221,16 +221,20 @@ export default function HomePage() {
             >
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-medical-teal/20 rounded-full border border-medical-teal/30 mb-8 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-medical-teal animate-pulse" />
-                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Now Serving Across Jodhpur</span>
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">जोधपुर में फिजियोथेरेपी • Serving Across Jodhpur</span>
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
-                Precision Physiotherapy <br />
+                Physiotherapy in Jodhpur <br />
                 <span className="text-medical-teal drop-shadow-sm">for Long-Term Recovery</span>
               </h1>
 
-              <p className="text-lg md:text-xl text-slate-200 mb-10 font-normal leading-relaxed max-w-2xl mx-auto">
-                Restore movement, eliminate pain at its root cause, and prevent recurrence with advanced, evidence-based rehabilitation.
+              <p className="text-lg md:text-xl text-slate-200 mb-4 font-normal leading-relaxed max-w-2xl mx-auto">
+                Restore movement, eliminate pain at its root cause, and reduce the chance of recurrence with advanced, evidence-based rehabilitation.
+              </p>
+
+              <p className="text-sm md:text-base text-slate-300/90 mb-10 font-normal leading-relaxed max-w-2xl mx-auto">
+                Dedicated clinic care and home visits across Chopasni Housing Board, Paota, Mandore, Shastri Nagar, Pal Road, and Kamla Nehru Nagar.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
@@ -316,8 +320,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.05]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-focus-left" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M0 0 L100 100" stroke="url(#grad-focus-left)" strokeWidth="0.2" fill="none" />
@@ -463,8 +467,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-left-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M0 0 L100 100" stroke="url(#grad-left-1)" strokeWidth="0.2" fill="none" />
@@ -497,18 +501,18 @@ export default function HomePage() {
                   We move beyond the surface. Our clinical experts use advanced movement screening to identify exactly where your body is over-compensating or failing.
                 </p>
                 <p>
-                  By combining manual therapy with precision loading, we retrain your nervous system and rebuild structural integrity to ensure pain never returns.
+                  By combining manual therapy with precision loading, we retrain your nervous system and rebuild structural integrity to reduce the chance of recurrence.
                 </p>
               </div>
               <div className="mt-12 flex flex-col sm:flex-row gap-8">
                 <div className="flex flex-col">
                   <span className="text-4xl font-bold text-medical-blue mb-2">100%</span>
-                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Bespoke Protocols</span>
+                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Personalized Treatment Plans</span>
                 </div>
                 <div className="w-px h-12 bg-slate-100 hidden sm:block" />
                 <div className="flex flex-col">
-                  <span className="text-4xl font-bold text-medical-blue mb-2">AI</span>
-                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Recovery Tracking</span>
+                  <span className="text-4xl font-bold text-medical-blue mb-2">Track</span>
+                  <span className="text-[0.6rem] font-bold uppercase tracking-widest text-slate-400">Clinical Progress Tracking</span>
                 </div>
               </div>
             </div>
@@ -523,8 +527,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.05]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-right-1" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#2563eb" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#2563eb" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.3" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M100 0 L0 100" stroke="url(#grad-right-1)" strokeWidth="0.2" fill="none" />
@@ -558,99 +562,111 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div ref={locationsScrollRef} className="flex gap-6 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
+          <div ref={locationsScrollRef} className="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth">
             {locations.map((loc, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="group relative min-w-[85vw] md:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-2rem)] snap-center"
+                transition={{ delay: i * 0.08, duration: 0.6 }}
+                className="group relative min-w-[76vw] sm:min-w-[280px] md:min-w-[300px] lg:min-w-[310px] max-w-[320px] snap-center shrink-0"
               >
-                <div className="bg-[#E5E9F0] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 shadow-2xl border border-white/20 flex flex-col h-full relative overflow-hidden">
-                  {/* Card Header: PIN Badge */}
-                  <div className="flex items-center justify-between mb-4 md:mb-6">
-                    <div className="px-3 py-1 bg-[#3B82F6] rounded-md flex items-center gap-2 shadow-lg shadow-blue-500/20">
-                      <span className="text-[0.6rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
-                      <div className="w-1 h-1 bg-white/40 rounded-full" />
+                <div className="bg-[#E5E9F0] rounded-[1.75rem] md:rounded-[2rem] p-4 sm:p-5 shadow-xl border border-white/40 flex flex-col h-full relative overflow-hidden transition-all duration-300 hover:shadow-2xl text-left">
+                  {/* Card Header: PIN Badge & Partner Badge */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="px-2.5 py-0.5 bg-medical-teal rounded-md flex items-center gap-1.5 shadow-md shadow-medical-teal/20">
+                      <span className="text-[0.55rem] font-bold text-white uppercase tracking-wider">PIN {loc.pincode}</span>
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    {loc.isPartner ? (
+                      <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[0.5rem] font-bold uppercase tracking-wider border border-amber-200">
+                        Partner Clinic
+                      </span>
+                    ) : (
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[0.5rem] font-bold uppercase tracking-wider border border-emerald-200">
+                        Healing Hands Hub
+                      </span>
+                    )}
                   </div>
 
-                  {/* Title Section */}
-                  <div className="mb-4 md:mb-6">
-                    <h3 className="text-xl md:text-2xl font-black text-[#1E293B] tracking-tight leading-none mb-1">{loc.brand || "Healing Hands Therapy Center"}</h3>
-                    <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#64748B] uppercase tracking-[0.2em]">{loc.subtitle || loc.name}</p>
-                  </div>
+                  {/* Title Section (Clickable to center page) */}
+                  <Link href={`/locations/${loc.slug}`} className="mb-3 block group/title" title={`View details for ${loc.name}`}>
+                    <h3 className="text-base sm:text-lg font-black text-[#1E293B] group-hover/title:text-medical-teal tracking-tight leading-snug transition-colors flex items-center justify-between">
+                      <span>{loc.name}</span>
+                      <ArrowUpRight size={15} className="text-medical-teal opacity-70 group-hover/title:opacity-100 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all shrink-0" />
+                    </h3>
+                    <p className="text-[0.58rem] font-bold text-[#64748B] uppercase tracking-[0.15em] mt-0.5">{loc.brand || "Healing Hands Physiotherapy"}</p>
+                  </Link>
 
-                  {/* Location Section */}
-                  <div className="mb-4 md:mb-6">
-                    <p className="text-[0.5rem] md:text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-1.5 md:mb-2 opacity-60">Location Coordinates</p>
-                    <div className="p-3 md:p-4 rounded-xl bg-white/40 border border-white/60">
-                      <p className="text-[0.65rem] md:text-[0.7rem] font-bold text-[#1E293B] leading-relaxed">{loc.address}</p>
+                  {/* Location Coordinates */}
+                  <div className="mb-3">
+                    <p className="text-[0.5rem] font-black text-medical-teal uppercase tracking-widest mb-1 opacity-80">Address</p>
+                    <div className="p-2.5 rounded-xl bg-white/50 border border-white/80">
+                      <p className="text-[0.62rem] sm:text-[0.68rem] font-semibold text-[#1E293B] leading-relaxed line-clamp-2">{loc.address}</p>
                     </div>
                   </div>
 
                   {/* Access Points Section */}
-                  <div className="mb-4 md:mb-6">
-                    <p className="text-[0.5rem] md:text-[0.55rem] font-black text-[#3B82F6] uppercase tracking-widest mb-2 md:mb-3 opacity-60">Access Points</p>
-                    <div className="space-y-1.5 md:space-y-2">
-                      {[
-                        { label: "Near AIIMS Jodhpur", tag: "3 KM DRIVE", icon: <Navigation2 size={12} /> },
-                        { label: "Near Tai Puliya", tag: "WALKABLE", icon: <Navigation2 size={12} /> },
-                        { label: "DPS Circle", icon: <Navigation2 size={12} />, tag: "5 MINS AWAY" }
-                      ].map((point, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-2 md:p-3 rounded-xl bg-white/60 border border-white/80 group/point hover:bg-white transition-all">
-                          <div className="flex items-center gap-3">
-                            <div className="text-blue-500">{point.icon}</div>
-                            <span className="text-[0.6rem] md:text-[0.65rem] font-bold text-[#475569]">{point.label}</span>
+                  <div className="mb-3">
+                    <p className="text-[0.5rem] font-black text-medical-teal uppercase tracking-widest mb-1.5 opacity-80">Nearby Landmarks</p>
+                    <div className="space-y-1.5">
+                      {(loc.landmarks || []).slice(0, 2).map((point, idx) => {
+                        const label = typeof point === "string" ? point : point.name;
+                        const tag = typeof point === "string" ? "LANDMARK" : point.tag;
+                        return (
+                          <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-white/60 border border-white/80 text-[0.6rem]">
+                            <div className="flex items-center gap-2 truncate pr-2">
+                              <Navigation2 size={11} className="text-medical-teal shrink-0" />
+                              <span className="font-semibold text-[#475569] truncate">{label}</span>
+                            </div>
+                            <span className="text-[0.48rem] font-black text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 shrink-0">{tag}</span>
                           </div>
-                          <span className="text-[0.5rem] md:text-[0.55rem] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">{point.tag}</span>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Availability Matrix Section */}
-                  <div className="mb-4 md:mb-6">
-                    <div className="p-3 md:p-4 rounded-2xl bg-[#0F172A] flex items-center gap-3 md:gap-4 border border-white/10 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0 border border-white/5">
-                        <Clock size={16} />
+                  {/* Availability & Phone Section */}
+                  <div className="mb-3 space-y-1.5">
+                    <div className="p-2.5 rounded-xl bg-[#0F172A] flex items-center gap-2.5 border border-white/10">
+                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-medical-teal shrink-0">
+                        <Clock size={13} />
                       </div>
-                      <div>
-                        <p className="text-[0.45rem] md:text-[0.5rem] font-black text-blue-400 uppercase tracking-widest mb-0.5">Availability Matrix</p>
-                        <p className="text-[0.6rem] md:text-[0.65rem] font-bold text-white">Mon–Sat: 8 AM–2 PM & 4–8:30 PM</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Founder Info */}
-                  <div className="mt-auto pt-4 md:pt-6 border-t border-black/5 flex items-center justify-between mb-4 md:mb-6">
-                    <div className="flex items-center gap-2 md:gap-3 bg-white/60 p-1.5 md:p-2 pr-4 md:pr-6 rounded-full border border-white/80">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-200 overflow-hidden relative border-2 border-white shadow-sm">
-                        <Image src="/doctor/doc2.jpg" alt="Dr. Asad" fill className="object-cover" />
-                      </div>
-                      <div>
-                        <p className="text-[0.65rem] md:text-[0.7rem] font-black text-[#1E293B] leading-none mb-0.5">Dr. Asad Solanki</p>
-                        <p className="text-[0.5rem] md:text-[0.55rem] font-black text-blue-500 uppercase tracking-widest leading-none">Founder</p>
+                      <div className="truncate">
+                        <p className="text-[0.45rem] font-bold text-medical-teal uppercase tracking-wider leading-none mb-0.5">Hours</p>
+                        <p className="text-[0.58rem] font-bold text-white truncate">{loc.hours || "Mon–Sat: 8 AM–2 PM & 4–8:30 PM"}</p>
                       </div>
                     </div>
-                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+                    <a
+                      href={`tel:${loc.phone ? loc.phone.replace(/[^0-9+]/g, '') : '+916378062237'}`}
+                      className="p-2 rounded-xl bg-emerald-50/80 border border-emerald-100 flex items-center justify-between hover:bg-emerald-100/80 transition-colors"
+                    >
+                      <div className="flex items-center gap-1.5 text-medical-blue font-bold text-[0.65rem]">
+                        <Phone size={12} className="text-medical-teal" />
+                        <span>{loc.phone || "+91 63780 62237"}</span>
+                      </div>
+                      <span className="text-[0.5rem] font-bold uppercase text-medical-teal tracking-wider">Direct Call</span>
+                    </a>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
+                  <div className="mt-auto pt-2 flex gap-2">
                     <Link
-                      href="/contact"
-                      className="flex-1 py-3 md:py-4 bg-[#3B82F6] text-white rounded-2xl text-[0.65rem] md:text-[0.7rem] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/30 hover:bg-[#2563EB] transition-all text-center flex items-center justify-center group/btn"
+                      href={`/locations/${loc.slug}`}
+                      className="flex-1 py-2.5 bg-medical-teal hover:bg-[#559c2f] text-white rounded-xl text-[0.62rem] sm:text-[0.68rem] font-black uppercase tracking-[0.15em] shadow-md shadow-medical-teal/25 transition-all text-center flex items-center justify-center gap-1"
                     >
-                      View Clinic
+                      <span>View Details</span>
+                      <ArrowRight size={12} />
                     </Link>
-                    <button className="w-11 h-11 md:w-14 md:h-14 bg-white/60 border border-white/80 rounded-2xl flex items-center justify-center text-[#64748B] hover:text-blue-500 hover:bg-white transition-all shadow-sm shrink-0">
-                      <MapPin size={16} />
-                    </button>
+                    <a 
+                      href={`https://www.google.com/maps/search/?api=1&query=Healing+Hands+Physiotherapy+${encodeURIComponent(loc.name)}+Jodhpur`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 sm:w-10 sm:h-10 bg-white/70 border border-white/80 rounded-xl flex items-center justify-center text-[#64748B] hover:text-medical-teal hover:bg-white transition-all shadow-sm shrink-0"
+                      title="Open Google Maps"
+                    >
+                      <MapPin size={15} />
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -666,8 +682,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.1]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-left-new" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M0 0 L100 100" stroke="url(#grad-left-new)" strokeWidth="0.2" fill="none" />
@@ -680,7 +696,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto mb-12 will-animate scroll-reveal reveal">
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal mb-4 block">Flexible Care</span>
             <h2 className="text-4xl md:text-5xl font-bold text-medical-blue mb-3 tracking-tight">Home & Online</h2>
-            <p className="text-slate-500 text-lg font-normal">Bespoke rehabilitation protocols delivered wherever you are.</p>
+            <p className="text-slate-500 text-lg font-normal">Personalized rehabilitation protocols delivered wherever you are.</p>
           </div>
 
           <div className="flex md:grid md:grid-cols-2 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 max-w-5xl mx-auto">
@@ -809,8 +825,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.05]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-left-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#2563eb" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#2563eb" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.3" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M0 0 L100 100" stroke="url(#grad-left-2)" strokeWidth="0.2" fill="none" />
@@ -890,8 +906,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-right-2-spec" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M100 0 L0 100" stroke="url(#grad-right-2-spec)" strokeWidth="0.2" fill="none" />
@@ -911,28 +927,14 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 px-4 md:px-0">
             {[
-              { cat: "Orthopaedic Physiotherapy", icon: Bone, desc: "Bone, joint, and muscle pain recovery." },
-              { cat: "Sports Physiotherapy", icon: Activity, desc: "Athletic injury rehabilitation and performance conditioning." },
+              { cat: "Orthopedic Physiotherapy", icon: Bone, desc: "Bone, joint, arthritis, and muscle pain recovery." },
               { cat: "Neurological Physiotherapy", icon: Brain, desc: "Rehab for stroke, paralysis, Parkinson's, and nerve injuries." },
-              { cat: "Musculoskeletal Physiotherapy", icon: Layers, desc: "Musculoskeletal pain and structural alignment care." },
-              { cat: "Spine Physiotherapy", icon: Crosshair, desc: "Focused care for cervical, lumbar, slip disc, and spine issues." },
-              { cat: "Pain Management Physiotherapy", icon: Zap, desc: "Chronic pain, trigger point, and advanced laser physical therapy." },
-              { cat: "Geriatric Physiotherapy", icon: HeartPulse, desc: "Age-related balance, gait, and mobility training." },
-              { cat: "Pediatric Physiotherapy", icon: Baby, desc: "Childhood developmental milestones and motor care." },
-              { cat: "Women's Health Physiotherapy", icon: Users, desc: "Pre/postnatal physical wellness and core exercises." },
-              { cat: "Pelvic Floor Physiotherapy", icon: ShieldCheck, desc: "Pelvic health, core stability, and functional rehabilitation." },
-              { cat: "Cardiorespiratory Physiotherapy", icon: Activity, desc: "Heart and lung endurance, asthma, and COPD rehab." },
-              { cat: "ICU & Critical Care Physiotherapy", icon: Stethoscope, desc: "Cardiopulmonary support and early chest mobilization in ICU." },
+              { cat: "Sports Physiotherapy", icon: Activity, desc: "Athletic injury rehabilitation and performance conditioning." },
+              { cat: "Spine & Slip Disc Care", icon: Crosshair, desc: "Focused care for cervical, lumbar, sciatica, and disc herniations." },
               { cat: "Post-Surgical Rehabilitation", icon: CheckCircle2, desc: "Structured recovery after TKR, THR, and orthopedic surgeries." },
-              { cat: "Oncology Rehabilitation", icon: HeartPulse, desc: "Managing post-cancer fatigue, pain, and lymphatic drainage." },
-              { cat: "Vestibular Rehabilitation", icon: Navigation, desc: "Dizziness, inner ear disorders, and vertigo recovery." },
-              { cat: "Hand Rehabilitation", icon: Sparkles, desc: "Fine motor restoration and hand and wrist injury care." },
-              { cat: "Occupational Health & Ergonomic Physiotherapy", icon: Laptop, desc: "Posture correction and workplace injury prevention." },
-              { cat: "Community-Based Rehabilitation", icon: Users, desc: "Promoting physical wellness and accessibility at local centers." },
-              { cat: "Home Care Physiotherapy", icon: Home, desc: "Physiotherapy checkups directly in the comfort of your home." },
-              { cat: "Tele-Physiotherapy", icon: Video, desc: "Remote visual guidance and rehabilitation consultations." },
-              { cat: "Preventive Physiotherapy", icon: ShieldCheck, desc: "Early screen checks, exercises, and injury prevention." },
-              { cat: "Fitness & Exercise Rehabilitation", icon: Dumbbell, desc: "Weight management, strength, and supervised conditioning." }
+              { cat: "Geriatric Physiotherapy", icon: HeartPulse, desc: "Age-related balance, fall prevention, and mobility restoration." },
+              { cat: "Pediatric Physiotherapy", icon: Baby, desc: "Childhood developmental milestones, cerebral palsy, and motor care." },
+              { cat: "Women's Health & Pelvic Floor", icon: Users, desc: "Pre/postnatal physical wellness, diastasis recti, and core rehab." }
             ].map((group, i) => (
               <motion.div
                 key={i}
@@ -959,12 +961,22 @@ export default function HomePage() {
                 </p>
 
                 <div className="mt-auto pt-2 sm:pt-4 border-t border-slate-50 w-full flex items-center justify-between">
-                  <Link href="/contact" className="text-[0.5rem] sm:text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 group-hover:text-medical-teal transition-all flex items-center gap-1 sm:gap-2">
-                    Inquire <ArrowRight size={10} className="sm:w-3 sm:h-3" />
+                  <Link href="/treatments" className="text-[0.5rem] sm:text-[0.6rem] font-bold uppercase tracking-widest text-slate-400 group-hover:text-medical-teal transition-all flex items-center gap-1 sm:gap-2">
+                    Learn More <ArrowRight size={10} className="sm:w-3 sm:h-3" />
                   </Link>
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/treatments"
+              className="inline-flex items-center gap-3 bg-medical-blue hover:bg-medical-teal text-white px-8 py-4 rounded-full font-bold text-sm tracking-wide transition-all shadow-lg hover:shadow-medical-teal/20 hover:scale-105"
+            >
+              <span>Explore All 22+ Clinical Treatments</span>
+              <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>
@@ -983,14 +995,14 @@ export default function HomePage() {
               </div>
               <h2 className="text-title text-4xl md:text-6xl text-white mb-8 leading-tight">Precision Rehab. <br />Driven by Technology.</h2>
               <p className="text-slate-300 text-lg mb-12 font-light leading-relaxed">
-                We bridge the gap between traditional therapy and high-performance recovery using AI-assisted protocols and digital movement tracking.
+                We bridge the gap between traditional therapy and high-performance recovery using evidence-based protocols, digital gait analysis, LASER, and shockwave therapy.
                 Experience rehabilitation that is mapped to your biology, not just your symptoms.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { t: "AI Recovery Paths", d: "Dynamic protocols that adapt based on your session progress.", i: Cpu },
-                  { t: "Precision Bio-Metrics", d: "Real-time tracking of joint angles and muscle activation.", i: Layers },
+                  { t: "Progress Tracking", d: "Dynamic protocols that adapt based on your session milestones and objective assessments.", i: Cpu },
+                  { t: "Movement Analysis", d: "Real-time tracking of joint angles and muscle activation.", i: Layers },
                   { t: "Digital Health Integration", d: "Access your recovery roadmap and progress data 24/7.", i: Activity }
                 ].map((feature, i) => (
                   <div key={i} className="flex gap-6 group">
@@ -1018,8 +1030,8 @@ export default function HomePage() {
               </div>
               {/* Floating Tech Tag */}
               <div className="absolute -top-10 -right-12 glass-panel !bg-medical-teal/90 p-8 rounded-3xl border-none shadow-2xl animate-float">
-                <div className="text-4xl font-light text-white mb-1">98%</div>
-                <div className="text-[0.4rem] md:text-[0.6rem] font-bold uppercase tracking-widest text-white/70">Recovery Precision</div>
+                <div className="text-4xl font-light text-white mb-1">15,000+</div>
+                <div className="text-[0.4rem] md:text-[0.6rem] font-bold uppercase tracking-widest text-white/70">Recovered Patients</div>
               </div>
             </div>
           </div>
@@ -1051,8 +1063,8 @@ export default function HomePage() {
           <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible pb-8 md:pb-0 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
             {[
               {
-                title: "Zero Waiting Time",
-                desc: "Instant booking and priority slots. We value your time as much as your recovery.",
+                title: "Minimal Waiting Time",
+                desc: "Scheduled appointment slots and priority booking. We value your time as much as your recovery.",
                 icon: Clock
               },
               {
@@ -1076,8 +1088,8 @@ export default function HomePage() {
                 icon: Home
               },
               {
-                title: "Advanced Tech",
-                desc: "Utilizing world-class modalities like LASER, Shockwave, and Digital Gait Analysis.",
+                title: "Advanced Modalities",
+                desc: "Equipped with modern clinical modalities including LASER, Shockwave Therapy, and Digital Gait Analysis.",
                 icon: Zap
               }
             ].map((item, i) => (
@@ -1142,7 +1154,7 @@ export default function HomePage() {
             <span className="text-sm font-medium uppercase tracking-[0.2em] text-medical-teal">Clinical Leadership</span>
             <h2 className="text-4xl md:text-6xl mt-4 mb-6 font-light text-white">Dr. Asad Solanki.</h2>
             <p className="text-slate-300 text-lg mb-10 leading-relaxed max-w-xl font-normal">
-              Founder of Healing Hands | Healing Hands, Dr. Asad Solanki trained at Apollo Hospital
+              Founder of Healing Hands Physiotherapy, Dr. Asad Solanki trained at Apollo Hospital
               and has served at the Yuvraj Shivraj Singh Neuro Rehab Center. He currently leads
               the physiotherapy department at Vasundhara Hospital, Jodhpur, bringing
               advanced international protocols to Rajasthan. His vision is to redefine
@@ -1385,47 +1397,47 @@ export default function HomePage() {
                 {[
                   {
                     text: "After months of back pain, I finally got relief with proper diagnosis and treatment here. Highly recommended for clinical precision.",
-                    author: "Rajesh Kumar", role: "Verified Patient", date: "2 weeks ago"
+                    author: "Rajesh Kumar", role: "Chronic Back Pain Rehab", date: "12 Oct 2026"
                   },
                   {
                     text: "Excellent neuro rehabilitation services. The doctors are highly skilled and the environment is very professional and hygienic.",
-                    author: "Ananya Sharma", role: "Verified Patient", date: "1 month ago"
+                    author: "Ananya Sharma", role: "Neuro Rehabilitation", date: "28 Sep 2026"
                   },
                   {
                     text: "Best physiotherapy clinic in Jodhpur. They really focus on the root cause rather than just short-term relief. Amazing team.",
-                    author: "Vikram Singh", role: "Verified Patient", date: "3 weeks ago"
+                    author: "Vikram Singh", role: "Posture & Spine Care", date: "05 Oct 2026"
                   },
                   {
                     text: "My arthritis pain has significantly reduced. The personalized exercise plan works wonders. Truly grateful to the team.",
-                    author: "Meera Bai", role: "Verified Patient", date: "5 days ago"
+                    author: "Meera Bai", role: "Knee Osteoarthritis", date: "19 Oct 2026"
                   },
                   {
                     text: "Recovered from an ACL injury faster than expected. The sports rehab protocol here is world-class and very scientific.",
-                    author: "Amit Patel", role: "Verified Patient", date: "2 months ago"
+                    author: "Amit Patel", role: "ACL Sports Rehab", date: "15 Aug 2026"
                   },
                   {
                     text: "Cervical pain was making my life difficult. Within 10 sessions, I felt 90% better. The manual therapy is exceptional.",
-                    author: "Sunita Devi", role: "Verified Patient", date: "1 week ago"
+                    author: "Sunita Devi", role: "Cervical Spondylosis", date: "18 Oct 2026"
                   },
                   {
                     text: "My father showed great improvement in movement after his stroke. The neuro-physiotherapists are very patient and expert.",
-                    author: "Rahul Verma", role: "Verified Patient", date: "3 months ago"
+                    author: "Rahul Verma", role: "Post-Stroke Care", date: "22 Jul 2026"
                   },
                   {
                     text: "The post-surgery rehabilitation for my knee replacement was seamless. I'm back to walking comfortably now.",
-                    author: "Priya Sharma", role: "Verified Patient", date: "2 weeks ago"
+                    author: "Priya Sharma", role: "Post-TKR Knee Rehab", date: "09 Oct 2026"
                   },
                   {
                     text: "Dealing with a slip disc was terrifying, but the non-surgical approach here helped me avoid surgery and recover fully.",
-                    author: "Kamal Kishor", role: "Verified Patient", date: "1 month ago"
+                    author: "Kamal Kishor", role: "Slip Disc Recovery", date: "14 Sep 2026"
                   },
                   {
                     text: "The Bell's Palsy treatment was very effective. I saw visible changes in facial movement within the first week of therapy.",
-                    author: "Anita Gupta", role: "Verified Patient", date: "4 days ago"
+                    author: "Anita Gupta", role: "Bell's Palsy Rehab", date: "20 Oct 2026"
                   },
                   {
                     text: "Great care for senior citizens. My grandfather's balance and mobility improved a lot with their geriatric specialized care.",
-                    author: "Suresh Mehra", role: "Verified Patient", date: "6 weeks ago"
+                    author: "Suresh Mehra", role: "Geriatric Balance & Mobility", date: "02 Sep 2026"
                   }
                 ].map((test, i) => (
                   <div key={i} className="flex-shrink-0 w-full md:w-[calc((100%-40px)/3)] px-4 md:px-0">
@@ -1555,7 +1567,7 @@ export default function HomePage() {
             <span className="text-sm font-bold uppercase tracking-[0.3em] text-medical-teal block mb-6"> Government Health Schemes</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Cashless Government Health Schemes</h2>
             <p className="text-slate-300 text-lg font-normal">
-              Healing Hands Clinic is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
+              Healing Hands Physiotherapy is proud to be an authorized provider for major government healthcare initiatives, ensuring quality rehabilitation for all.
             </p>
           </div>
 
@@ -1721,77 +1733,40 @@ export default function HomePage() {
           </div>
 
           <div className="relative mb-12 py-10">
-            {/* Mobile View: Grid layout without swipe */}
-            <div className="hidden max-md:grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
               {[
-                { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg" },
-                { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg" },
-                { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg" },
-                { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg" },
-                { name: "Subham Hospital", image: "/Hospitals/subham.jpeg" },
-                { name: "Hari Om Hospital", image: "/hospital_1.png" },
-                { name: "Healing Hands Physiotherapy", image: "/healingheading.png" },
-                { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png" },
-                { name: "Salar Health Care", image: "/hospital_3.png" },
+                { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", type: "Hospital Partner" },
+                { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", type: "Hospital Partner" },
+                { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", type: "Hospital Partner" },
+                { name: "Chandra Mangal Hospital", image: "/Hospitals/chandramangal.jpeg", type: "Hospital Partner" },
+                { name: "Shubham Hospital", image: "/Hospitals/subham.jpeg", type: "Hospital Partner" },
+                { name: "Hari Om Hospital", image: "/hospital_1.png", type: "Hospital Partner" },
+                { name: "Healing Hands Physiotherapy", image: "/logo-horizontal.png", type: "Main Center" },
+                { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", type: "Partner Clinic" },
+                { name: "Saral Heart and Dental Care", image: "/hospital_3.png", type: "Healthcare Partner" },
               ].map((item, i) => (
-                <div key={i} className="bg-white p-2 rounded-xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col items-center justify-center text-center group">
-                  <div className="relative w-full h-8 flex items-center justify-center mb-1">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-contain p-0.5"
-                    />
-                  </div>
-                  <span className="text-[0.5rem] font-bold text-slate-600 leading-tight line-clamp-1 px-0.5">{item.name}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Desktop View: Grid layout */}
-            <div className="hidden md:block">
-              <div className="grid grid-cols-1 md:grid-cols-3  gap-6 lg:gap-8">
-                {[
-                  { name: "Vasundhara Hospital", image: "/Hospitals/vasundhara.jpeg", rating: "5.0" },
-                  { name: "Marwar Hospital", image: "/Hospitals/marwar.jpeg", rating: "5.0" },
-                  { name: "Suncity Hospital", image: "/Hospitals/suncity.jpeg", rating: "5.0" },
-                  { name: "Chandramangal Hospital", image: "/Hospitals/chandramangal.jpeg", rating: "5.0" },
-                  { name: "Subham Hospital", image: "/Hospitals/subham.jpeg", rating: "5.0" },
-                  { name: "Hari Om Hospital", image: "/hospital_1.png", rating: "5.0" },
-                  { name: "Healing Hands Physiotherapy", image: "/healingheading.png", rating: "5.0" },
-                  { name: "Dr. Rupal Physiotherapy", image: "/hospital_2.png", rating: "5.0" },
-                  { name: "Salar Health Care", image: "/hospital_3.png", rating: "5.0" },
-                ].map((item, i) => (
-                  <div key={i} className="w-full">
-                    <div className="bg-white p-5 lg:p-6 rounded-3xl border border-slate-100 shadow-[0_10px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-500 group flex flex-col items-center text-center h-full">
-                      <div className="h-20 w-full relative mb-4 flex items-center justify-center bg-slate-50/50 rounded-2xl p-3">
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          className="object-contain p-1 group-hover:scale-[1.03] transition-transform duration-500"
-                        />
-                      </div>
-                      <h3 className="text-sm lg:text-base font-bold text-medical-blue mb-2.5 leading-tight">{item.name}</h3>
-                      <div className="mt-auto flex flex-col items-center">
-                        <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-green-50 text-green-600 border border-green-100 w-fit mb-3">
-                          <CheckCircle2 size={10} />
-                          <span className="text-[0.55rem] font-bold uppercase tracking-wider">Verified</span>
-                        </div>
-                        <div className="flex items-center justify-center gap-1">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <Star key={star} size={10} fill="#FFD700" color="#FFD700" />
-                          ))}
-                          <span className="text-[0.65rem] font-bold text-slate-400 ml-1.5">{item.rating}</span>
-                        </div>
+                <div key={i} className="w-full">
+                  <div className="bg-white p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-[0_10px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-lg transition-all duration-500 group flex flex-col items-center text-center h-full">
+                    <div className="h-16 sm:h-20 w-full relative mb-3 sm:mb-4 flex items-center justify-center bg-slate-50/50 rounded-xl sm:rounded-2xl p-2 sm:p-3">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-contain p-1 group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                    </div>
+                    <h3 className="text-xs sm:text-sm lg:text-base font-bold text-medical-blue mb-2.5 leading-tight">{item.name}</h3>
+                    <div className="mt-auto">
+                      <div className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-teal-50 text-medical-teal border border-teal-100/60">
+                        <CheckCircle2 size={11} />
+                        <span className="text-[0.55rem] sm:text-[0.6rem] font-bold uppercase tracking-wider">{item.type}</span>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-
 
           {/* Footer Icons */}
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 py-12 border-t border-white/10">
@@ -1799,7 +1774,7 @@ export default function HomePage() {
               { label: "Verified Partners", icon: <ShieldCheck size={20} className="text-medical-teal" /> },
               { label: "Quality Care", icon: <Award size={20} className="text-blue-400" /> },
               { label: "Instant Support", icon: <Zap size={20} className="text-yellow-400" /> },
-              { label: "Global Standards", icon: <Globe size={20} className="text-indigo-400" /> }
+              { label: "Clinical Excellence", icon: <Award size={20} className="text-indigo-400" /> }
             ].map((feature, i) => (
               <div key={i} className="flex flex-col items-center gap-3 group cursor-default">
                 <div className="w-12 h-12 rounded-2xl bg-white/5 shadow-sm border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -1930,8 +1905,8 @@ export default function HomePage() {
           <svg className="w-full h-full opacity-[0.15]" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <linearGradient id="grad-right-3" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
-                <stop offset="40%" stopColor="#06b6d4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#68b63f" stopOpacity="0.4" />
+                <stop offset="40%" stopColor="#68b63f" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M100 0 L0 100" stroke="url(#grad-right-3)" strokeWidth="0.2" fill="none" />
@@ -1945,7 +1920,7 @@ export default function HomePage() {
           <div className="bg-medical-blue rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-24 relative overflow-hidden group">
             {/* Animated Background Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-medical-teal/10 rounded-full blur-[100px] -mr-48 -mt-48 animate-pulse" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] -ml-48 -mb-48" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-medical-teal/10 rounded-full blur-[100px] -ml-48 -mb-48" />
 
             <div className="grid lg:grid-cols-12 gap-16 items-center relative z-10">
               <div className="lg:col-span-7 will-animate scroll-reveal reveal">

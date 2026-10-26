@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Shield, Lock, User, ArrowRight, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -58,11 +59,17 @@ export default function AdminLogin() {
             <div className="absolute inset-0 bg-gradient-to-br from-medical-blue to-[#003b73] opacity-50" />
             
             <div className="relative z-10 flex flex-col items-center">
-              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm mb-4 border border-white/20 shadow-inner">
-                <Shield className="text-white w-8 h-8" />
+              <div className="relative h-12 w-48 mb-4">
+                <Image
+                  src="/logofooter.png"
+                  alt="Healing Hands Physiotherapy"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <h1 className="text-2xl font-bold text-white mb-2">Admin Portal</h1>
-              <p className="text-blue-100 text-sm">Secure access for Healing Hands staff</p>
+              <h1 className="text-xl font-bold text-white mb-1 tracking-tight">Admin Portal</h1>
+              <p className="text-blue-100/80 text-xs">Secure staff authentication</p>
             </div>
           </div>
 

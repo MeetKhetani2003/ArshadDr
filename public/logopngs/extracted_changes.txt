@@ -1,0 +1,48 @@
+Healing Hands Physiotherapy Website
+Text and SEO changes for the designer
+Site: https://arshad-dr.vercel.app/   |   Target area: Jodhpur, Rajasthan (Gujarat later)
+Items are numbered so they can be referred to easily. Photos will be handled separately.
+A. Remove all Myomotion references
+Change the canonical URL, og:url and og:image to the Healing Hands domain. They currently point to myomotion.co.in.
+Change the footer copyright link from myomotion.co.in to the Healing Hands site.
+Update the author meta tag and the "Powered by" credit so they match.
+B. Page title and meta description
+Replace the title with: Physiotherapy in Jodhpur | Healing Hands Physiotherapy – Dr. Asad Solanki
+Replace the meta description (and the OG/Twitter versions) with: Healing Hands Physiotherapy offers evidence-based physiotherapy in Jodhpur: orthopedic, neuro, pediatric, sports and women's health rehab, plus home visits. Call 6378-062237.
+Remove "Healing Hands | Healing Hands" wherever it is repeated (title, footer, About section).
+Give each treatment and location page its own title and description, e.g. Neurological Physiotherapy in Jodhpur | Healing Hands.
+C. Homepage headings
+H1: change "Precision Physiotherapy for Long-Term Recovery" to "Physiotherapy in Jodhpur for Long-Term Recovery", or keep the current H1 and add "in Jodhpur" in the line below it.
+"Redefining Recovery for Jodhpur." can stay as it is.
+D. Brand name consistency
+Use one name everywhere: Healing Hands Physiotherapy. Replace "Healing Hands Clinic", "Healing Hands Therapy Center" and "Healing Hands Physiotherapy Centre".
+Standardize spellings: Shubham (not Subham); Chandra Mangal (not Chandramangal); Saral Heart and Dental Care (not "Salar Health Care"); Orthopaedic or Orthopedic: pick one and use it throughout.
+E. Clinic location cards (8 locations)
+Delete the repeated "Near AIIMS 3 KM / Near Tai Puliya WALKABLE / DPS Circle 5 MINS" block from every card.
+Replace it with correct landmarks for each location.
+Add each location's real hours, and show the phone number on each card.
+Dr. Rupal Physiotherapy: either rename it "Healing Hands at Dr. Rupal Physiotherapy" or label it "Partner Clinic". It should not look like a Healing Hands centre unless it is one.
+F. Overpromising claims to soften
+"ensure pain never returns" → "to reduce the chance of recurrence"
+"Zero Waiting Time" → "Minimal Waiting Time" (or "Priority Booking")
+"Jodhpur's premier physiotherapy network" → "A trusted physiotherapy network in Jodhpur"
+"100% Bespoke Protocols" → "Personalized Treatment Plans"
+"98% Recovery Precision": remove it, or replace it with a number that can be documented.
+"Global Standards" and "World-class modalities": remove them or make them specific (e.g. "LASER, Shockwave, Digital Gait Analysis").
+"AI Recovery Tracking" / "AI Recovery Paths": keep only if the clinic actually uses them; otherwise rename to "Progress Tracking".
+G. Trust section
+Replace the sample testimonials with real reviews that have actual dates, or embed live Google reviews. Remove the repeating "Verified Patient • 2 weeks ago" labels.
+Confirm that "4.9 rating, 500+ reviews", "15,000+ patients", "ISO 9001:2015" and the RGHS/CGHS/ECHS/ONGC listings are all accurate and backed by documents.
+Hospital partners: remove the "Verified 5.0" ratings from the hospital cards.
+H. Remove duplicates
+Treatments appear twice (14 cards, then 22 items). Keep one list, or make one a short summary that links to the Treatments page.
+Hospital partners appear twice (logos, then cards). Keep one.
+I. Contact details
+Show the phone number as +91 63780 62237 and make it a clickable tel: link.
+Add a floating WhatsApp button on every page.
+J. Local SEO text
+Add one short Jodhpur-focused paragraph near the top listing areas served (e.g. Chopasni, Paota, Mandore, Shastri Nagar).
+Add a few Hindi phrases, e.g. "जोधपुर में फिजियोथेरेपी".
+Notes for the owner (not for the designer)
+Check items 16–22 (Section F) against Indian healthcare advertising rules with someone qualified.
+Items 23–24 (Section G) need real data: the actual review count, patient count and certificates.

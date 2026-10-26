@@ -4,7 +4,7 @@ import dbConnect from '@/lib/mongodb';
 import mongoose from 'mongoose';
 
 export default async function sitemap() {
-  const baseUrl = 'https://www.myomotion.co.in';
+  const baseUrl = 'https://arshad-dr.vercel.app';
 
   // Core static routes
   const routes = [
